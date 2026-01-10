@@ -16,9 +16,9 @@
 }
 
         *{box-sizing:border-box}
-        body{ margin:0; background:var(--bg); font-family:'Inter', sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; color:#fff; overflow:hidden; }
+       body{ margin:0; background:var(--bg); font-family:'Inter', sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; color:#fff; overflow:hidden; }
         
-        #container{ width:800px; height:480px; background:#020617; border-radius:18px; padding:25px; position:relative; border:2px solid rgba(255,255,255,.1); box-shadow:0 0 80px rgba(0,0,0,1); display: flex; flex-direction: column; overflow: hidden; }
+#container{ width:800px; height:480px; background:#020617; border-radius:18px; padding:25px; position:relative; border:2px solid rgba(255,255,255,.1); box-shadow:0 20px 50px rgba(0,0,0,.5); overflow:hidden; display:flex; flex-direction:column; }
 
         .screen{display:none; flex:1; flex-direction:column;}
         .active{display:flex}
@@ -46,7 +46,7 @@
         .acertou-flash { animation: flashVerde3x 0.6s step-end; }
         .errou-flash { animation: flashVermelho3x 0.6s step-end; }
 
-        /* EFEITO BLOOD ALERT (BOMBA EXPLODINDO) */
+        /* EFEITO BOMBA EXPLODINDO) */
         @keyframes bloodFlash { 0% { background: rgba(139, 0, 0, 0.9); } 50% { background: rgba(255, 0, 0, 0.7); } 100% { background: rgba(139, 0, 0, 0.9); } }
         @keyframes shake { 0% { transform: translate(1px, 1px) rotate(0deg); } 50% { transform: translate(-1px, -2px) rotate(-1deg); } 20% { transform: translate(-5px, 0px) rotate(1deg); } 100% { transform: translate(1px, -2px) rotate(-1deg); } }
         .tremendo { animation: shake 0.1s infinite; }
@@ -128,6 +128,19 @@
     border-radius: 18px;
     border: 2px solid var(--accent);
 }
+
+@keyframes vitoria-brilho {
+    0% { box-shadow: 0 0 20px #39FF14; }
+    50% { box-shadow: 0 0 50px #39FF14, inset 0 0 30px #39FF14; }
+    100% { box-shadow: 0 0 20px #39FF14; }
+}
+
+.slide-vitoria {
+    background: #000 !important;
+    border: 5px solid #39FF14 !important;
+    animation: vitoria-brilho 2s infinite;
+}
+
     </style>
 </head>
 <body>
@@ -135,24 +148,30 @@
 <div id="container">
     <div id="overlay-blood" style="display:none;"></div>
     
-    <div id="win-overlay" style="display:none; position:absolute; inset:0; background:#000; z-index:6000; flex-direction:column; align-items:center; justify-content:center; text-align:center; border: 5px solid var(--accent);">
-        <div style="font-size:5em;">🚨👮‍♂️🚨</div>
-        <h1 style="color:var(--success); font-size:3em; font-weight:900;">MISSÃO CUMPRIDA!</h1>
-        <p id="win-stats" style="font-weight:800; font-size: 1.5em;"></p>
-    </div>
+<!-- Overlay central -->
+<canvas id="fireworksCanvas" style="display:none; position:fixed; inset:0; z-index:9998; pointer-events:none; background: transparent;"></canvas>
+
+<div id="win-overlay" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); width:92%; max-width:800px; min-height:400px; background:rgba(0,0,0,0.98); z-index:9999; flex-direction:column; align-items:center; justify-content:center; text-align:center; border: 5px solid #39FF14; border-radius: 20px; box-shadow: 0 0 40px rgba(57,255,20,0.6); overflow: hidden; padding: 20px;">
+    <div id="win-content" style="z-index: 10001; position: relative;"></div>
+    <button id="btn-teleporte" class="menu-btn" style="display: none; z-index: 10002; position: relative; border-color: #39FF14; color: #39FF14; background: rgba(0,0,0,0.8); margin-top: 25px; font-size: 1.3em; cursor: pointer; padding: 15px 30px; border-radius: 10px; font-weight: bold;" onclick="document.getElementById('win-overlay').style.display='none'; if(document.getElementById('fireworksCanvas')) document.getElementById('fireworksCanvas').style.display='none'; go('area-restrita');">
+        🔓 CONTINUAR MISSÃO
+    </button>
+</div>
 
 <div id="capa" class="screen active center">
     <button onclick="acessoAdmin()" style="position:absolute; top:20px; right:20px; background:transparent; border:none; color:transparent; cursor:default;">ADM</button>
     <div class="emoji-motivacional" onclick="mostrarProverbio()">💪</div>
     <h1 style="font-size:3.5em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-    <h2 style="font-size:2em;color:#39FF14;margin:0;">1500 QUESTÕES</h2>
+    <h2 style="font-size:2em;color:#39FF14;margin:0;">897 QUESTÕES</h2>
     <button class="menu-btn" onclick="go('menu')">ACESSAR SISTEMA</button>
 </div>
 
 <div id="menu" class="screen center">
     <div class="emoji-parceria" onclick="mostrarManifesto()">🤝</div>
-    <button class="menu-btn" onclick="startQuiz('total')">✍ PROVA ANALISTAS ✍</button>
-    <button class="menu-btn" onclick="triggerDenial()">🚫 ÁREA RESTRITA 🚫</button>
+<h2 style="font-size:1em;color:#39FF14;margin:0;">🥇 Passe na Prova dos Analistas para prosseguir 🥈</h2> 
+<button class="menu-btn" onclick="startQuiz('total')">👨‍💻 PROVA DOS ANALISTAS 👨‍💻</button>
+    <button class="menu-btn" onclick="triggerDenial()">🚫 ÁREA RESTRITA 🚫
+</button>
     
     <div style="margin-top:15px; color:rgba(255,255,255,0.6); font-weight:800; font-size:1.1em; background:rgba(59,130,246,0.1); padding:8px 20px; border-radius:10px; border:1px solid rgba(59,130,246,0.3);">
         RECORDE ANALISTA: <span id="rec-analista-main" style="color:var(--yellow)">0</span>/100
@@ -165,7 +184,7 @@
             <button class="btn-restrito-acao" onclick="startQuiz('modulos')">✍ TODOS OS MÓDULOS ✍</button>
             <button class="btn-restrito-acao" onclick="startQuiz('variados')">💢 EXTRAVAGANTE 💢</button>
             <button class="btn-restrito-acao" onclick="startQuiz('portarias')">👁‍🗨 PORTARIAS 👁‍🗨</button>
-            <button class="btn-restrito-acao" style="border:2px solid var(--fire); color:var(--fire); font-weight:900;" onclick="startQuiz(25)">💣 GERADOR 25 QUESTÕES</button>
+            <button class="btn-restrito-acao" style="border:2px solid var(--fire); color:var(--fire); font-weight:900;" onclick="startQuiz(25)">💣 MODO SOBREVIVENTE 💣</button>
             
             <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; font-size:0.8em; margin-bottom:10px; border-left:4px solid var(--yellow);">
                 🏆 VITÓRIAS: <span id="vit-25">0</span> | 💀 FRACASSOS: <span id="frac-25">0</span>
@@ -243,8 +262,8 @@ const bancoOficial = [
     {q:"👨‍💻 39. Um exemplo de falta grave é a evasão durante atividades externas, enquanto impedir atividades socioeducativas é considerado uma falta leve.", v:false, j:"Impedir ou sabotar atividades socioeducativas é conduta grave, pois obstaculiza o caráter pedagógico da medida."},
     {q:"👨‍💻 40. Nenhuma medida disciplinar pode interromper o direito à escolarização, ao atendimento técnico ou à visita familiar do adolescente.", v:true, j:"São direitos fundamentais que não podem ser suspensos como sanção disciplinar (Art. 124 do ECA)."},
     {q:"👨‍💻 41. O Programa de Oportunidades e Cidadania tem como um dos públicos-alvo adolescentes em cumprimento de medida de semiliberdade.", v:true, j:"O POC atende egressos e adolescentes em medidas, incluindo semiliberdade, visando inserção produtiva."},
-    {q:"👨‍💻 42. O Programa de Oportunidades e Cidadanía é uma estratégia de prevenção à violência para adolescentes em pós-cumprimento de medidas socioeducativas, mas não inclui aqueles que estão cumprindo medidas de meio aberto.", v:false, j:"O programa abrange o acompanhamento pós-medida e articula-se com diversas modalidades de atendimento para evitar a reincidência."},
-    {q:"👨‍💻 43. A participação no Programa de Oportunidades e Cidadanía é voluntária e com livre adesão.", v:true, j:"Programas de inserção social e profissional baseiam-se na adesão voluntária do jovem para garantir a eficácia."},
+    {q:"👨‍💻 42. O Programa de Oportunidades e Cidadania é uma estratégia de prevenção à violência para adolescentes em pós-cumprimento de medidas socioeducativas, mas não inclui aqueles que estão cumprindo medidas de meio aberto.", v:false, j:"O programa abrange o acompanhamento pós-medida e articula-se com diversas modalidades de atendimento para evitar a reincidência."},
+    {q:"👨‍💻 43. A participação no Programa de Oportunidades e Cidadania é voluntária e com livre adesão.", v:true, j:"Programas de inserção social e profissional baseiam-se na adesão voluntária do jovem para garantir a eficácia."},
     {q:"👨‍💻 44. Em qualquer período após o cumprimento de medidas socioeducativas, o Programa de Oportunidades e Cidadania pode promover o acompanhamento de adolescentes, contribuindo para sua reinserção social.", v:false, j:"O acompanhamento costuma ter prazos definidos (até 1 ano após a saída) para garantir o foco na transição para a liberdade."},
     {q:"👨‍💻 45. O Programa de Oportunidades e Cidadania é composto por projetos específicos, sendo o 'Novas Trilhas' focado em ações culturais e artísticas.", v:false, j:"O Novas Trilhas foca principalmente em qualificação profissional e inserção no mercado de trabalho/aprendizagem."},
     {q:"👨‍💻 46. As medidas socioeducativas objetivam desaprovar a conduta infracional e garantir os direitos individuais e sociais do adolescente.", v:true, j:"Objetivos expressos no Art. 1º, § 2º da Lei 12.594/12."},
@@ -253,7 +272,7 @@ const bancoOficial = [
     {q:"👨‍💻 49. O estabelecimento de uma rotina diária nos centros socioeducativos reduz tensões e conflitos e ajuda os adolescentes a desenvolverem autonomia e responsabilidade.", v:true, j:"A previsibilidade da rotina é essencial para a segurança e para o processo educativo."},
     {q:"👨‍💻 50. Na Unidade de Internação (UI), o Plano Individual de Atendimento (PIA) é um instrumento facultativo, pois a medida de internação aplicada é a mais grave.", v:false, j:"É obrigatório para todas as medidas, especialmente na internação."},
     {q:"👨‍💻 51. A internação provisória pode ser determinada por até 45 dias, mediante decisão fundamentada e com indícios suficientes de autoria e materialidade.", v:true, j:"Prazo improrrogável estabelecido pelo Art. 108 do ECA."},
-    {q:"👨‍💻 52. É assegurado ao adolescente, entre outros, o direito ao contraditório, que consiste em ser considerado inocente até que se prove o contrário.", v:false, j:"O enunciado descreve a Presunção de Inocência. O contraditório é o direito de rebater provas e argumentos da acusação."},
+    {q:"👨‍💻 52. É assegurado ao adolescente, entre outros, o direito ao contraditório, que consiste em ser considerado inocente até que se prove o contrário.", v:false, j:"Direito ao contraditório: participar de todas as etapas do processo, podendo contestar provas e alegações. Presunção de inocência: ser considerado inocente até que se prove o contrário. Portanto, direito ao contraditório e presunção de inocência são coisas distintas, apesar de relacionadas."},
     {q:"👨‍💻 53. A semiliberdade possui prazo determinado de duração, que deve ser fixado previamente pela autoridade judiciária.", v:false, j:"A medida não tem prazo determinado; sua manutenção deve ser reavaliada a cada 6 meses (Art. 121, § 2º do ECA)."},
     {q:"👨‍💻 54. Nos casos de flagrante de ato infracional cometido mediante violência ou grave ameaça a pessoa, a autoridade policial deverá lavrar auto de apreensão, ouvidos as testemunhas e o adolescente.", v:true, j:"Procedimento correto conforme Art. 173 do ECA."},
     {q:"👨‍💻 55. A internação pode ser aplicada mesmo havendo outra medida adequada ao caso, desde que haja interesse público.", v:false, j:"Pelo princípio da excepcionalidade, se houver medida menos gravosa adequada, ela deve ser preferida."},
@@ -267,7 +286,7 @@ const bancoOficial = [
     {q:"👨‍💻 63. É permitido o uso de algemas em adolescentes gestantes durante deslocamentos externos, desde que seja em uma internação.", v:false, j:"É vedado o uso de algemas em mulheres (e adolescentes) presas durante o parto e no pós-parto imediato (Lei 13.434/2017)."},
     {q:"👨‍💻 64. Em uma situação de crise, o uso da força deve ocorrer apenas quando todas as alternativas se mostrarem insuficientes, sendo sempre de forma proporcional e justificado.", v:true, j:"Segue o Uso Progressivo da Força e os princípios da necessidade e proporcionalidade."},
     {q:"👨‍💻 65. A Portaria SEAS nº 136/2022 autoriza o uso de equipamentos de proteção individual por qualquer servidor presente na unidade, desde que a situação seja classificada como evento crítico.", v:false, j:"Existe alguns requisitos para o uso de EPI's: ter concluído o curso específico ofertado pelo NUESO; não possuir processo na Corregedoria; designação do Coordenador de Segurança; ocorrência de Evento Simples ou Complexo com esgotamento de todas as possibilidades de diálogos."},
-    {q:"👨‍💻 66. O acionamento do Grupo de Intervenções Táticas (GIT) deve ser decidido pelo Diretor, que deve informar o gestor estadual, podendo o Coordenador de Segurança tomar essa decisão apenas em casos excepcionais.", v:false, j:"O acionamento segue protocolo hierárquico rígido e geralmente envolve o escalão superior da SEAS imediatamente."},
+    {q:"👨‍💻 66. O acionamento do Grupo de Intervenções Táticas (GIT) deve ser decidido pelo Diretor, que deve informar o gestor estadual, podendo o Coordenador de Segurança tomar essa decisão apenas em casos excepcionais.", v:false, j:"O acionamento segue protocolo hierárquico rígido que envolve o escalão superior da SEAS, e não o governo do Estado."},
     {q:"👨‍💻 67. O uso excepcional da força é permitido em casos como legítima defesa, tentativa de fuga ou eventos simples ou complexos não resolvidos pelo diálogo, desde que autorizado pelo Diretor ou, no caso de sua ausência, pelo Coordenador de Segurança.", v:true, j:"De acordo com a Portaria 136/2022, a força só pode ser usada quando o diálogo se esgotar. A autorização deve ser dada pelo Diretor ou, na ausência, pelo Coordenador de Segurança. É permitida em casos como legítima defesa, tentativa de fuga ou eventos simples ou complexos sem solução pelo diálogo."},
     {q:"👨‍💻 68. O socioeducador deve realizar inspeções regulares nos espaços físicos da unidade, recolher objetos que representem risco e comunicar imediatamente qualquer anormalidade.", v:true, j:"Dever de vigilância e manutenção da segurança preventiva."},
     {q:"👨‍💻 69. A Lei nº 12.594/2012 (Sinase) estabelece que a execução das medidas socioeducativas deve observar princípios como legalidade, proporcionalidade, brevidade e mínima intervenção.", v:true, j:"Princípios listados no Art. 35 da Lei do SINASE."},
@@ -606,7 +625,7 @@ const bancoModulos = [
 {q:"298. As visitas assistidas por técnicos (psicólogos/assistentes sociais) são obrigatórias para todos os adolescentes durante os primeiros 3 meses de internação.", v:false, j:"A visita assistida é uma medida excepcional aplicada quando há risco ao adolescente ou necessidade de mediação de conflitos familiares graves."},
 {q:"299. De acordo com a Portaria 366/2024, a emissão da carteira de visitante aos familiares é de competência exclusiva do Diretor da Unidade.", v:false, j:"Na Portaria 366/2024, essa competência passou para a Equipe Técnica. O Diretor era o responsável na Portaria 63/2017."},
 {q:"300. Tanto na Portaria 63/2017 quanto na 366/2024, as visitas ocorrem em dois turnos (manhã e tarde), totalizando até 3 horas de duração.", v:true, j:"Ambas mantêm o padrão de dois turnos e duração de até 3 horas, diferentemente da Portaria 123/2020 (época do Covid)."},
-{q:"301. Na vigência da Portaria 123/2020, o intervalo de 30 minutos entre os turnos de visita era destinado exclusivamente ao descanso dos socioeducadores.", v:false, j:"O intervalo de 30 minutos era destinado à higienização das salas como medida de prevenção ao Covid-19."},
+{q:"301. Na vigência da Portaria 123/2020, o intervalo de 30 minutos entre os turnos de visita era destinado ao descanso dos socioeducadores.", v:false, j:"O intervalo de 30 minutos era destinado à higienização das salas como medida de prevenção ao Covid-19."},
 {q:"302. Segundo a Portaria 366/2024, a autorização para visitas em dias excepcionais depende de deliberação do Conselho Disciplinar.", v:true, j:"Esta é uma mudança importante: antes (63/2017) quem autorizava era o Diretor; agora é o Conselho Disciplinar."},
 {q:"303. Na Portaria 123/2020, era permitida a entrada de até 02 visitantes por adolescente, desde que não fossem do grupo de risco.", v:false, j:"Era permitido apenas 01 visitante. A entrada de pessoas do grupo de risco era estritamente proibida."},
 {q:"304. Atualmente, sob a Portaria 366/2024, crianças com até 01 ano de idade não são computadas no número máximo de visitantes.", v:true, j:"Houve uma redução, pois na Portaria 63/2017 o limite para não contagem era de crianças com até 02 anos."},
@@ -1098,10 +1117,10 @@ const bancoModulos = [
   {q:"✍ 790. O documento que o policial preenche quando o ato não tem violência é o Boletim de Ocorrência Circunstanciada (BOC).", v:true, j:"Para atos leves, substitui-se o Auto de Apreensão pelo BOC para simplificar o procedimento e liberar o jovem rapidamente."},
   {q:"✍ 791. O Direito à Ampla Defesa consiste em o adolescente participar de todas as etapas do processo, podendo contestar provas e alegações.", v:false, j:"Essa é a definição exata do Direito ao Contraditório descrita no módulo III. O Direito à Ampla Defesa significa que o adolescente pode utilizar todos os meios legais disponíveis para se defender."},
   {q:"✍ 792. O Direito ao Contraditório consiste em o adolescente poder utilizar todos os meios legais disponíveis para se defender.", v:false, j:"Essa é a definição exata do Direito à Ampla Defesa descrito no módulo III. O Direito ao Contraditório significa que o adolescente pode participar de todas as etapas do processo, podendo contestar provas e alegações."},
-  {q:"✍ 793. O adolescente apreendido por ordem judicial será imediatamente encaminhado à autoridade judiciária competente. Já o adolescente apreendido em flagrante de ato infracional será, desde logo, encaminhado à autoridade policial competente.", v:false, j:"É justamente o contrário. O adolescente apreendido por ordem judicial será imediatamente encaminhado à autoridade judiciária competente. Já o adolescente apreendido em flagrante de ato infracional será, desde logo, encaminhado à autoridade policial competente."},
+  {q:"✍ 793. O adolescente apreendido por ordem judicial será imediatamente encaminhado à autoridade policial competente. Já o adolescente apreendido em flagrante de ato infracional será, desde logo, encaminhado à autoridade judiciária competente.", v:false, j:"É justamente o contrário. O adolescente apreendido por ordem judicial será imediatamente encaminhado à autoridade judiciária competente. Já o adolescente apreendido em flagrante de ato infracional será, desde logo, encaminhado à autoridade policial competente."},
   {q:"✍ 794. Nos casos de flagrante de ato infracional cometido mediante violência ou grave ameaça, a autoridade policial deverá lavrar auto de apreensão, ouvidos as testemunhas e o adolescente; apreender o produto e os instrumentos da infração; requisitar os exames ou perícias necessárias à comprovação da materialidade e autoria.", v:true, j:"Esse é o procedimento correto descrito no ECA e reforçado no módulo III. Nas demais hipóteses de flagrante, a lavratura do auto poderá ser substituída por boletim de ocorrência circunstanciado."},
   {q:"✍ 795. No caso de flagrante de ato infracional com violência ou grave ameaça, o adolescente deve ser prontamente liberado aos pais sob termo de compromisso.", v:false, j:"Essa é regra para atos leves. Para os atos graves, a autoridade policial encaminhará, desde logo, o adolescente ao representante do Ministério Público, juntamente com a cópia do auto de apreensão ou boletim de ocorrência."},
-  {q:"✍ 796. No caso de flagrante de ato infracional com violência ou grave ameaça, a autoridade policial encaminhará o adolescente ao Ministério Público. Sendo impossível a apresentação imediata, o adolescente será encaminhado aos Centros Socioeducativos. Nas localidades onde não houver Centros Socioeducativos, a apresentação será feita à polícia especializada. Na falta de repartição policial especializada, o adolescente aguardará em dependência separada da destinada para maiores, não podendo exceder o prazo de 48 horas", v:false, j:"O enunciado está quase todo correto, exceto que o prazo máximo é de 24 horas."},
+  {q:"✍ 796. No caso de flagrante de ato infracional com grave ameaça, a autoridade policial encaminhará o adolescente ao Ministério Público. Sendo impossível a apresentação imediata, o adolescente será encaminhado aos Centros Socioeducativos. Nas localidades onde não houver Centros Socioeducativos, a apresentação será feita à polícia especializada. Na falta de  polícia especializada, o adolescente aguardará em dependência separada da destinada para maiores, não podendo exceder o prazo de 48h.", v:false, j:"O enunciado está quase todo correto, exceto que o prazo máximo é de 24 horas."},
   {q:"✍ 797. A Remissão é uma forma de exclusão do processo, atendendo as circunstancias e consequências do fato. Ela poderá ser aplicada em qualquer fase do procedimento, antes da sentença. Pode vir acompanhada de medida socioeducativa em meio aberto, como Liberdade Assistida, Prestação de serviço a comunidade, Advertência e Semiliberdade.", v:false, j:"A remissão como forma de extinção ou suspensão do processo, não se aplica as medidas de semiliberdade e de internação."}
 
 
@@ -1315,21 +1334,138 @@ function next() {
     else finalizar();
 }
 
-function finalizar() {
-      clearInterval(timerInterval); // << PARA O RELÓGIO NA VITÓRIA
-    if(quizType === 'total') {
-        if(acertosSessao >= 98) {
-            localStorage.setItem('recAnalista', acertosSessao);
-            liberado = true;
-            alert("PARABÉNS! ACESSO À ÁREA RESTRITA LIBERADO.");
-            go('area-restrita');
-        } else {
-            alert(`FIM! Você acertou ${acertosSessao}/100. Precisa de 98 para liberar.`);
-            go('capa');
-        }
-    } else {
-        go('area-restrita');
+// --- FOGOS DE ARTIFÍCIO ---
+let rockets = [];
+let particles = [];
+let fireworkAnimationId = null;
+
+function autoLaunch() {
+  const canvas = document.getElementById('fireworksCanvas');
+  if (!canvas || canvas.style.display === 'none') return;
+  const x = Math.random() * canvas.width;
+  const style = Math.random() > 0.5 ? 4 : 5;
+  rockets.push(new Rocket(x, style));
+}
+
+class Rocket {
+  constructor(x, style) {
+    this.x = x;
+    this.y = window.innerHeight;
+    this.vy = -(Math.random() * 4 + 12);
+    this.style = style;
+    this.exploded = false;
+    this.trail = [];
+    this.targetY = Math.random() * window.innerHeight * 0.4 + window.innerHeight * 0.1;
+  }
+  update(ctx) {
+    this.y += this.vy;
+    this.vy += 0.15;
+    this.trail.push({ x: this.x, y: this.y });
+    if (this.trail.length > 15) this.trail.shift();
+
+    ctx.fillStyle = "#fff";
+    this.trail.forEach(t => ctx.fillRect(t.x, t.y, 2, 2));
+
+    if (this.y <= this.targetY && !this.exploded) {
+      this.explode();
+      this.exploded = true;
     }
+  }
+  explode() {
+    const colors = ['#ff3cac','#f8d235','#55ffdb','#2b86c5','#784ba0','#ffffff','#ff0000','#00ff00'];
+    const count = (this.style === 5) ? 250 : 150;
+    for (let i = 0; i < count; i++) {
+      const angle = (i / count) * 2 * Math.PI;
+      const speed = Math.random() * 4 + 2;
+      const life = (this.style === 4) ? 250 : 120;
+      particles.push({
+        x: this.x, y: this.y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life, maxLife: life,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+  }
+}
+
+function runCanvas() {
+  const canvas = document.getElementById('fireworksCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  function animarFogos() {
+    if (canvas.style.display === 'none') {
+      rockets = []; particles = [];
+      cancelAnimationFrame(fireworkAnimationId);
+      return;
+    }
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    rockets = rockets.filter(r => {
+      r.update(ctx);
+      return !r.exploded;
+    });
+
+    particles = particles.filter(p => {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.02; p.life--;
+      ctx.globalAlpha = p.life / p.maxLife;
+      ctx.fillStyle = p.color;
+      ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+      return p.life > 0;
+    });
+
+    ctx.globalAlpha = 1;
+    fireworkAnimationId = requestAnimationFrame(animarFogos);
+  }
+
+  animarFogos();
+
+  const interval = setInterval(() => {
+    if (canvas.style.display === 'none') {
+      clearInterval(interval);
+    } else {
+      autoLaunch();
+    }
+  }, 800);
+}
+
+function finalizar() {
+  if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+
+  const winOverlay = document.getElementById('win-overlay');
+  const winContent = document.getElementById('win-content');
+  const btnTeleporte = document.getElementById('btn-teleporte');
+  const canvas = document.getElementById('fireworksCanvas');
+
+  winOverlay.style.display = 'flex';
+
+  if (quizType === 'total') {
+    if (acertosSessao >= 98) {
+      localStorage.setItem('acessoRestrito', 'true');
+      winContent.innerHTML = `<div style="font-size:3em;">🚨</div><div style="color:#fff; font-weight:bold; text-shadow:0 0 10px #39FF14;">Você tem alma de Socioeducador!<br>Deus guardará seus caminhos!</div><p style="color:#39FF14; font-size:1.5em; font-weight:900;">VITÓRIA: ${acertosSessao}/100</p>`;
+      btnTeleporte.style.display = 'block';
+      canvas.style.display = 'block';
+      runCanvas();
+      setTimeout(() => { canvas.style.display = 'none'; }, 10000);
+    } else {
+      winContent.innerHTML = `<h1 style="color:#f00;">QUASE LÁ...</h1><button class="menu-btn" onclick="window.location.reload()">REFAZER</button>`;
+    }
+  } else if (quizType === 25) {
+    winContent.innerHTML = `<div style="font-size:3.5em;">💣🎆</div>
+<h1 style="color:#39FF14; line-height:1.3; margin:0;">
+        BOMBA DESARMADA<br>
+        <span style="font-size:0.8em;">PARABÉNS, SOCIOEDUCADOR!</span>
+    </h1>`;
+    btnTeleporte.style.display = 'block';
+    btnTeleporte.innerText = "VOLTAR AO PAINEL";
+    canvas.style.display = 'block';
+    runCanvas();
+    setTimeout(() => { canvas.style.display = 'none'; }, 10000);
+  }
 }
 
 // << FUNÇÕES DO RELÓGIO
@@ -1355,7 +1491,7 @@ function triggerDenial() {
     const ob = document.getElementById('overlay-blood'); 
     ob.className = 'denied-screen';
     
-    // AQUI: Adicionei o span com tamanho gigante e peso máximo
+    // SPAN DA ÁREA RESTRITA
     ob.innerHTML = '<span style="font-size: 3em; font-weight: 900; letter-spacing: 10px;">ACESSO NEGADO</span>';
     
     let count = 0; 
@@ -1401,7 +1537,7 @@ function startQuiz(modo) {
         let megaBanco = [...bancoOficial, ...bancoModulos, ...bancoVariados, ...bancoPortarias];
         currentQuestions = megaBanco.sort(() => 0.5 - Math.random()).slice(0, 25);
         vContainer.innerHTML = '<span class="bomba-pulsa">💣</span>';
-        btnExtra.innerText = "🏠 VOLTAR";
+        btnExtra.innerText = "🏠 INÍCIO 🏠";
         btnExtra.style.background = "#475569";
     } else {
         let base;
@@ -1415,7 +1551,7 @@ function startQuiz(modo) {
         vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
         
         if(modo === 'total') {
-            btnExtra.innerText = "🏠 MENU";
+            btnExtra.innerText = "🏠 MENU 🏠";
             btnExtra.style.background = "#475569";
         } else {
             btnExtra.innerText = "🙏 MISERICÓRDIA 🙏";
@@ -1438,7 +1574,7 @@ clearInterval(timerInterval); // PARA O RELÓGIO NA FALHA
         setTimeout(() => { 
             document.getElementById('fail-stats').innerHTML = `ACERTOS NESSA SESSÃO: <span style="color:var(--success)">${acertosSessao}</span>`;
             
-            // Usamos o ID específico para não haver erro de seleção
+            // ID específico para não haver erro de seleção
             const btnFalha = document.getElementById('btn-tentar-novamente');
             
             if(quizType === 'total') {
@@ -1456,40 +1592,13 @@ clearInterval(timerInterval); // PARA O RELÓGIO NA FALHA
     }
 }
 
-function finalizar() {
-    // --- PARA PARAR O RELÓGIO ---
-    clearInterval(timerInterval); 
-    
-    if(quizType === 'total') {
-        if(acertosSessao >= 98) {
-            localStorage.setItem('recAnalista', acertosSessao);
-            liberado = true;
-            alert("PARABÉNS! ACESSO À ÁREA RESTRITA LIBERADO.");
-            go('area-restrita');
-        } else {
-            alert(`FIM! Você acertou ${acertosSessao}/100. Precisa de 98 para liberar.`);
-            go('capa');
-        }
-    } else if(quizType === 25) {
-        let v = (parseInt(localStorage.getItem('vitoriasGerador')) || 0) + 1;
-        localStorage.setItem('vitoriasGerador', v);
-        
-        // --- OPCIONAL: Mostrar o tempo que o cara levou pra desarmar a bomba ---
-        alert("BOMBA DESARMADA! Tempo: " + formatarTempo(tempo));
-        
-        go('area-restrita');
-    } else {
-        go('area-restrita');
-    }
-}
-
 function mostrarManifesto() {
     const overlay = document.createElement('div');
     overlay.className = 'manifesto-overlay';
     overlay.innerHTML = `
         <div style="font-size: 1.0em; line-height: 1.3; color: #fff; font-weight: 600;">
             Este aplicativo não tem fins lucrativos.<br>
-            Ele foi desenvolvido por <strong>RT</strong>, com o objetivo de ajudar todas as pessoas que ainda estão na batalha pela sonhada estabilidade no concurso da SEAS-CE para o cargo de <strong>Socioeducador</strong>.<br>
+            Ele foi desenvolvido por mim, Renato T. com o objetivo de ajudar todos que ainda estão na batalha pela sonhada estabilidade no concurso da SEAS-CE para o cargo de <strong>Socioeducador</strong>.<br>
             
             <div style="font-size: 1.5em; color: var(--yellow); font-weight: 900; margin-top: 10px;">
                 O seu uso é GRATUITO e dispensa<br>quaisquer formas de ônus financeiro.
@@ -1500,10 +1609,11 @@ function mostrarManifesto() {
             </div>
         </div>
         <button class="menu-btn" style="margin-top: 20px; width: 200px; border-color: var(--accent);" 
-                onclick="this.parentElement.remove()">ENTENDIDO</button>
+                onclick="this.parentElement.remove()">ENTENDI AS 4 CONDIÇÕES</button>
     `;
     document.getElementById('container').appendChild(overlay);
 }
+
 </script>
 </body>
 </html>
