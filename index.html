@@ -1866,7 +1866,7 @@ function startQuiz(modo) {
     const progressoSalvo = localStorage.getItem('seas_save_' + modo);
     
     if (progressoSalvo && !window.jaPerguntou) {
-        if (confirm("Você saiu pra cagar e retornou. Deseja continuar de onde parou?")) {
+        if (confirm("Você saiu pra cagar, e retornou. Deseja continuar de onde parou?")) {
             const dados = JSON.parse(progressoSalvo);
             quizType = dados.tipo;
             currentQuestions = dados.questoes;
