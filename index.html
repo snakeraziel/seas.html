@@ -49,10 +49,35 @@
             font-size: 4em;
             margin-top: 20px;
         }
+
+   .contador-hits {
+  position: fixed; /* Não ocupa espaço no fluxo, flutua sobre o layout */
+  bottom: 10px;
+  right: 10px;
+  z-index: 999999;
+  background: white;
+  padding: 4px 6px;
+  border-radius: 4px;
+  pointer-events: none; /* Evita que o clique do usuário "bata" no contador em vez do botão */
+}
+
+<!-- @media (max-width: 768px) {
+  .contador-hits {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 8px;
+  }
+} 
     </style>
 </head>
 <body>
-
+ <img
+  id="contador-hits"
+  src="https://hits.dwyl.com/snakeraziel/seas.html.svg?style=flat-square&color=2f80ed"
+  alt="contador"
+  class="contador-hits"
+> 
+    
     <div class="aviso">
         <h1>ALGUMA COISA QUEBROU.</h1>
         <p>VOLTE MAIS TARDE!</p>
