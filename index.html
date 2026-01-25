@@ -5827,40 +5827,48 @@ function fecharSlideVitoria() {
 }
 
 // Função para abrir a Audioteca
+// Função para abrir a Audioteca
 function acessoAdmin() {
+
+  // bloco de ofuscação da senha
+  const _k = ["NTAxMA=="]; // "5010" em Base64
+  const _d = s => atob(s);
+  const _v = i => _d(_k[i]);
+
   const senha = prompt("DIGITE A SENHA DE ADMINISTRADOR");
 
-  if (senha === "5010") {
+  if (senha === _v(0)) {
     liberado = true;
 
     // 1. ACESSANDO O "MUNDO DA AUDIOTECA" (OVERLAY)
     const telaAudioteca = document.getElementById('audioteca');
     if (telaAudioteca) {
-      // Aplicando a correção cirúrgica do seu amigo:
       telaAudioteca.style.display = "flex";
       telaAudioteca.style.position = "fixed";
       telaAudioteca.style.inset = "0";
       telaAudioteca.style.zIndex = "9999";
-      
-      // Nota: NÃO removemos a classe .active das outras telas. 
-      // O "Mundo 1" continua vivo lá atrás.
     }
 
     // 2. CARREGANDO OS ÁUDIOS
     if (typeof carregarAudioteca === "function") {
-      // Usa a sua listaAulas real do GitHub
-      const listaParaUsar = (typeof listaAulas !== 'undefined') ? listaAulas : [
-        { titulo: "Aula 01 - Carregada via ADM", url: "#" },
-        { titulo: "Aula 02 - Carregada via ADM", url: "#" }
-      ];
+      const listaParaUsar =
+        (typeof listaAulas !== 'undefined')
+          ? listaAulas
+          : [
+              { titulo: "Aula 01 - Carregada via ADM", url: "#" },
+              { titulo: "Aula 02 - Carregada via ADM", url: "#" }
+            ];
+
       carregarAudioteca(listaParaUsar);
     }
 
   } else {
-    // SE ERRAR, O DRAMA CONTINUA O MESMO
-    mostrarMensagem(`<h1 style="color:red; font-weight:900; text-shadow:0 0 30px red;">💥🚨 ACESSO NEGADO 🚨💥</h1>`, 'erro');
-    tocarSom('explosao.mp3'); 
-    animarExpulsao(); 
+    mostrarMensagem(
+      `<h1 style="color:red; font-weight:900; text-shadow:0 0 30px red;">💥🚨 ACESSO NEGADO 🚨💥</h1>`,
+      'erro'
+    );
+    tocarSom('explosao.mp3');
+    animarExpulsao();
     go('capa');
   }
 }
