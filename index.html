@@ -689,7 +689,7 @@ mostrarMensagem(`
       </p>
 
       <p style="color:white; font-weight:700; margin-bottom:10px;">
-        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">28 dias</span> até o grande dia.<br>
+        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">27 dias</span> até o grande dia.<br>
         Aproveite esse tempo para estudar.
       </p>
     </div>
@@ -5661,29 +5661,38 @@ function mostrarManifesto() {
     overlay.className = 'manifesto-overlay';
     overlay.innerHTML = `
         <div style="
-            display: flex; 
-            flex-direction: column; 
-            max-height: 85vh; 
-            width: 100%;
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%; /* Ocupa quase toda a largura no mobile */
+            max-width: 800px; /* No PC fica confortável */
+            height: auto;
+            max-height: 62vh;
+            background: rgba(0,0,0,0.95);
+            border-radius: 12px;
+            border: 1px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         ">
             <div style="
                 overflow-y: auto; 
-                padding-right: 10px; 
+                padding: 30px 20px; 
                 text-align: center; 
                 -webkit-overflow-scrolling: touch;
             ">
-                <div style="font-size: 1.0em; line-height: 1.3; color: #fff; font-weight: 600;">
+                <div style="font-size: 1.05em; line-height: 1.5; color: #fff; font-weight: 600;">
                     Este aplicativo não tem fins lucrativos.<br>
                     Ele foi desenvolvido por mim, Renato T. com o objetivo de ajudar todos que ainda estão na batalha pela sonhada estabilidade no concurso da SEAS-CE para o cargo de <strong>Socioeducador</strong>.<br>
                     
-                    <div style="font-size: 1.1em; color: var(--yellow); font-weight: 900; margin-top: 10px;">
-                        O seu uso é GRATUITO e dispensa quaisquer formas de ônus financeiro, mas lhe dá direito a uma certa vantagem.
+                    <div style="font-size: 1.15em; color: var(--yellow); font-weight: 900; margin-top: 20px; margin-bottom: 20px;">
+                        O seu uso é GRATUITO e dispensa quaisquer formas de ônus financeiro, mas <strong>considere uma doação</strong> e ganhe acesso irrestrito a Audioteca.
                     </div>
                     
-                    <br>
                     Dito isso, se você, no auge do seu anonimato, reconhece meus esforços, se sentiu ajudado, tiver condições e desejar contribuir com qualquer quantia, sinta-se à vontade.  
                     
-                    <div style="font-size: 0.95em; color: #39FF14; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 10px #39FF1455; margin-top: 15px; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 8px;">
+                    <div style="font-size: 1.0em; color: #39FF14; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 10px #39FF1455; margin-top: 25px; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px; border: 1px dashed #39FF14;">
                         Raimundo Nonato Romão Silva<br>
                         PIX: 802.138.123-04<br>
                         Nubank
@@ -5691,15 +5700,20 @@ function mostrarManifesto() {
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 20px;">
+            <div style="text-align: center; padding: 20px; background: rgba(0,0,0,0.6); border-top: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
                 <button class="menu-btn" style="
                     display: inline-block;
                     width: auto; 
-                    padding: 8px 20px; 
-                    border-color: var(--accent);
-                    font-size: 0.9em;
+                    padding: 12px 35px; 
+                    border: 1px solid var(--accent);
+                    background: transparent;
+                    color: #fff;
+                    cursor: pointer;
+                    font-size: 1em;
+                    border-radius: 5px;
+                    font-weight: bold;
                 " onclick="this.closest('.manifesto-overlay').remove()">
-                    ENTENDI AS 4 CONDIÇÕES
+                    ENTENDI AS CONDIÇÕES
                 </button>
             </div>
         </div>
@@ -6228,7 +6242,7 @@ function usuarioIphone() {
           <p style="color:white; font-weight:700;">Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span></p>
           <p style="color:white; font-weight:700;">Tipo de inscrição: <span style="color:${corTipo};">${pessoa.tipo ?? "Ampla"}</span></p>
           <p style="color:white; font-weight:700; margin-bottom:10px;">
-            Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">28 dias</span> até o grande dia.<br>
+            Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">27 dias</span> até o grande dia.<br>
             Aproveite esse tempo para estudar.
           </p>
         </div>
