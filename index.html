@@ -397,7 +397,7 @@ button {
   <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; border: 2px dashed var(--yellow); min-width: 280px;">
       <p style="color:var(--limon); margin:0; font-weight:800; font-size: 0.9em;">CHAVE DE ACESSO EXCLUSIVA:</p>
       <div class="senha-gerada" style="font-size: 4em; font-weight: 900; color: #fff; letter-spacing: 8px; margin: 10px 0;">00000</div>
-      <p style="color:#ccc; font-size:0.75em; margin:0;">Válida por 24 horas. Anote-a antes de sair!</p>
+      <p style="color:#ccc; font-size:0.75em; margin:0;">Válida por 3 horas. Anote-a antes de sair!</p>
   </div>
 
   <button class="menu-btn" style="margin-top: 30px; background: var(--success); color: #000; font-weight: 900;" onclick="fecharSlideVitoria()">
@@ -5734,7 +5734,7 @@ function mostrarMensagem(texto, tipo) {
 function gerarSenhaTemporaria() {
     // Gera os 5 números
     const senha = Math.floor(10000 + Math.random() * 90000);
-    const expira = Date.now() + (24 * 60 * 60 * 1000);
+    const expira = Date.now() + (3 * 60 * 60 * 1000);
 
     // Salva na variável global para o script saber que existe uma senha ativa
     senhaAdminTemp = String(senha);
@@ -5908,7 +5908,7 @@ function validarVip(id) {
    ===================================================== */
 function acessoAdmin() {
 
-  const id = prompt("DIGITE SUA SENHA DE DOADOR:");
+  const id = prompt("DIGITE SUA SENHA EXCLUSIVA DE DOADOR:");
   if (!id) return;
 
   const doador = validarVip(id);
