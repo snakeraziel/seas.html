@@ -5,6 +5,42 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PROVÃO SEAS</title>
     <style>
+
+/* Efeito de aumento e diminuição do emoji */
+.zoom-music {
+  display: inline-block;
+  animation: zoom-music 2s infinite ease-in-out;
+}
+
+@keyframes zoom-music {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1); }
+}
+
+/* Efeito de ondas saindo por trás */
+.radar-music {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-music::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid gold;
+  pointer-events: none;
+  animation: radar-music 2s infinite;
+}
+
+@keyframes radar-music {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
 /* Estilo do Player  */
 .audioteca-slide {
   position: fixed;
@@ -521,27 +557,28 @@ button {
     </div>
 </div>
 
-    <div id="area-restrita" class="screen center">
-        <h2 style="color:var(--success); font-weight:900;">ÁREA DE ESTUDOS</h2>
-        <div style="width:100%; max-width:400px;">
-            <button class="btn-restrito-acao" onclick="startQuiz('modulos')">✍ TODOS OS MÓDULOS ✍</button>
-            <button class="btn-restrito-acao" onclick="startQuiz('variados')">💢 SIMULADOS ALEATÓRIOS 💢</button>
-            <button class="btn-restrito-acao" onclick="startQuiz('portarias')">👁‍🗨 PORTARIAS 👁‍🗨</button>
-            <button class="btn-restrito-acao" style="border:2px solid var(--fire); color:var(--fire); font-weight:900;" onclick="startQuiz(25)">💣 MODO SOBREVIVENTE 💣</button>
-            
-            <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; font-size:0.8em; margin-bottom:10px; border-left:4px solid var(--yellow);">
-                🏆 VITÓRIAS: <span id="vit-25">0</span> | 💀 FRACASSOS: <span id="frac-25">0</span>
+<div id="area-restrita" class="screen center">
+    <h2 style="color:var(--success); font-weight:900; margin-bottom:10px;">ÁREA DE ESTUDOS</h2>
+    
+    <div style="width:100%; max-width:400px; position: relative;">
+        <button class="btn-restrito-acao" onclick="startQuiz('modulos')">✍ TODOS OS MÓDULOS ✍</button>
+        <button class="btn-restrito-acao" onclick="startQuiz('variados')">💢 SIMULADOS ALEATÓRIOS 💢</button>
+        <button class="btn-restrito-acao" onclick="startQuiz('portarias')">👁‍🗨 PORTARIAS 👁‍🗨</button>
+        <button class="btn-restrito-acao" style="border:2px solid var(--fire); color:var(--fire); font-weight:900;" onclick="startQuiz(25)">💣 MODO SOBREVIVENTE 💣</button>
+        
+        <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; font-size:0.8em; margin-top:5px; border-left:4px solid var(--yellow);">
+            🏆 VITÓRIAS: <span id="vit-25">0</span> | 💀 FRACASSOS: <span id="frac-25">0</span>
+        </div>
+
+        <div class="topbar" style="display: flex; justify-content: space-around; align-items: center; margin-top: -2px; height: 45px;">
+            <div class="emoji-parceria" style="cursor:pointer;" onclick="mostrarManifesto()">🤝</div>
+            <div class="emoji-motivacional" style="cursor:pointer;" onclick="mostrarProverbio()">💪</div>
+            <div class="radar-music" onclick="abrirCadeado()" style="cursor:pointer;"> <div class="emoji zoom-music" style="font-size: 28px;">🎶</div>
             </div>
-<div class="topbar">
-  <!-- Menu principal (transferido) -->
-  <div class="emoji-parceria" onclick="mostrarManifesto()">🤝</div>
-  <!-- Capa (transferido) -->
-  <div class="emoji-motivacional" onclick="mostrarProverbio()">💪</div>
-  <!-- Cadeado (config -->
-  <div class="emoji-cadeado" onclick="abrirCadeado()">🔒</div>
-</div>
         </div>
     </div>
+</div>
+
 
     <div id="quiz" class="screen">
       <div class="quiz-header">
@@ -779,7 +816,7 @@ mostrarMensagem(`
 go('area-restrita');
 });
 
-    /* ===============================
+/* ===============================
    PROTEÇÃO BÁSICA FRONT-END
    Autor: Renato T.
    =============================== */
@@ -850,6 +887,7 @@ go('area-restrita');
   );
 
 })();
+
 
 const bancoOficial = [
     {q:"👨‍💻 1. A Superintendência do Sistema Estadual de Atendimento Socioeducativo (SEAS), criada pela Lei Estadual nº 16.040/2016, possui como atribuição exclusiva a administração das unidades de internação, não integrando sua competência a formulação e a coordenação da política estadual de atendimento socioeducativo.", v:false, j:"A SEAS também tem por finalidade a formulação, planejamento e coordenação da política estadual de atendimento socioeducativo (Art. 2º, Lei 16.040/16)."},
@@ -6221,6 +6259,11 @@ function fecharSlideVitoria() {
     go('area-restrita');
 }
 
+
+/* =====================================================
+   BANCO DE DOADORES
+   ===================================================== */
+
 const _d = [
   /* nomes */
   [82,101,110,97,116,111,32,84,104,101,114,105,111,110],
@@ -6259,6 +6302,10 @@ const DOADORES = [
   { id: _s(18), nome: _s(8) },
   { id: _s(19), nome: _s(9) }
 ];
+
+/* ===============================
+   DECODIFICADOR
+   =============================== */
 
 function _s(i){
   return _d[i].map(c => String.fromCharCode(c)).join("");
