@@ -371,9 +371,11 @@ button {
   }
 } -->
 
+
     </style>
 </head>
 <body> 
+
 <button onclick="usuarioIphone()" 
         style="position:absolute; bottom:0; right:0; width:50px; height:50px; background:transparent; border:none; color:transparent; cursor:default; z-index:9999;">
     IPHONE
@@ -385,8 +387,6 @@ button {
   alt="contador"
   class="contador-hits"
 > -->
-
-
 
 <!-- SLIDE DA SENHA -->
 <div id="slideSenha" class="slide-senha" style="display:none; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
@@ -447,29 +447,57 @@ button {
 
 <div id="capa" class="screen active center" style="position: relative;">
 
-    <div onclick="usuarioIphone()" 
+<!--    <div onclick="usuarioIphone()" 
          style="position:absolute; bottom:0; right:0; width:50px; height:50px; z-index:99999; cursor:default; background:transparent;">
-    </div>
+    </div> -->
 
     <h1 style="font-size:3.5em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-    <h2 style="font-size:2em;color:#39FF14;margin:0;">1579 QUESTÕES</h2>
+    <h2 style="font-size:2.5em;color:#39FF14;margin:0;">1605 QUESTÕES</h2>
 
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
       <div id="chave" draggable="true" style="font-size:3em; cursor:grab;">🔑</div>
       <div id="fechadura" style="font-size:3em; border:3px dashed #39FF14; padding:20px; border-radius:15px;">🔒</div>
-    </div>
+    </div> 
+
+    <button class="menu-btn" onclick="usuarioIphone()" 
+  style="
+    border-color:#DA70D6;
+    color:#DA70D6;
+    margin-top:20px;
+    box-shadow:0 0 12px rgba(218,112,214,.6);
+    text-shadow:0 0 8px rgba(218,112,214,.8);
+  ">
+  🆔 INSIRA SUA INSCRIÇÃO 🆔
+</button>
+
 
     <button class="menu-btn" onclick="entrarComoVisitante()">👥 ENTRE COMO VISITANTE 👥</button>
 
 </div>
 
-
 <div id="menu" class="screen center">
    <!-- <div class="emoji-parceria" onclick="mostrarManifesto()">🤝</div> -->
 
-    <h2 style="font-size:1em;color:#39FF14;margin:0;">
-        🥇 Visitante, passe na prova para conquistar 24h de acesso 🥈
-    </h2>  
+<div style="text-align:center; margin-bottom:8px;">
+    <span style="
+        font-size:3em;
+        display:inline-block;
+        animation:teste 1s infinite;
+        filter:drop-shadow(0 0 10px gold);
+    ">🥇</span>
+
+    <span style="
+        font-size:3em;
+        display:inline-block;
+        animation:teste 1s infinite;
+        filter:drop-shadow(0 0 10px silver);
+    ">🥈</span>
+</div>
+
+<h2 style="font-size:1.5em;color:#39FF14;margin:0;">
+    Visitante, passe na prova dos analistas<br> para conquistar 24h de acesso
+</h2>
+
 
     <button class="menu-btn" onclick="startQuiz('total')">
         👨‍💻 PROVA DOS ANALISTAS 👨‍💻
@@ -529,27 +557,63 @@ button {
     <button id="btn-tentar-novamente" class="menu-btn" style="border-color:var(--success); color:var(--success)"></button>
 </div>
 
-<div id="audioteca" style="display:none; flex-direction:column; background:#080808; padding:20px; align-items:center; position:fixed; inset:0; z-index:9999;">  
-  <h1 style="color:#ffd700; font-size:1.8em; margin-bottom:5px; text-align:center; font-weight:900; text-shadow:0 0 15px #ffd700;">
+<div id="audioteca" style="
+  display:none;
+  flex-direction:column;
+  background:#080808;
+  padding:20px;
+  align-items:center;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+">
+
+  <h1 style="
+    color:#ffd700;
+    font-size:1.8em;
+    margin-bottom:10px;
+    text-align:center;
+    font-weight:900;
+    text-shadow:0 0 15px #ffd700;
+  ">
     🎧 AUDIOTECA 🔊
   </h1>
 
-  <div onclick="fecharAudioteca()" style="font-size:2.5em; cursor:pointer; margin-bottom:15px; filter:drop-shadow(0 0 10px #bf40bf);">
-    🚪
+  <!-- TOPO: RELÓGIO + SAÍDA -->
+  <div id="topo-audioteca" style="
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    margin-bottom:18px;
+  ">
+
+    <div id="timer-audioteca" style="
+      color:#ffd700;
+      font-weight:900;
+      text-shadow:0 0 10px gold;
+    "></div>
+
+    <div onclick="fecharAudioteca()" style="
+      font-size:2.5em;
+      cursor:pointer;
+      filter:drop-shadow(0 0 10px #d4af37);
+    ">
+      🚪
+    </div>
+
   </div>
 
-<div id="controles-repeticao"
-     style="
-       display:flex;
-       gap:12px;
-       margin-bottom:18px;
-       justify-content:center;
-       flex-wrap:wrap;
-     ">
+  <!-- CONTROLES -->
+  <div id="controles-repeticao" style="
+    display:flex;
+    gap:12px;
+    margin-bottom:18px;
+    justify-content:center;
+    flex-wrap:wrap;
+  ">
 
-  <button id="btn-repeat-one"
-    onclick="toggleRepeatOne()"
-    style="
+    <button id="btn-repeat-one" onclick="toggleRepeatOne()" style="
       padding:10px 18px;
       border-radius:30px;
       border:2px solid #ffd700;
@@ -559,12 +623,10 @@ button {
       cursor:pointer;
       box-shadow:0 0 12px rgba(255,215,0,0.4);
     ">
-    🔁 REPETIR UMA: OFF
-  </button>
+      🔁 REPETIR UMA: OFF
+    </button>
 
-  <button id="btn-repeat-all"
-    onclick="toggleRepeatAll()"
-    style="
+    <button id="btn-repeat-all" onclick="toggleRepeatAll()" style="
       padding:10px 18px;
       border-radius:30px;
       border:2px solid #ffd700;
@@ -574,15 +636,25 @@ button {
       cursor:pointer;
       box-shadow:0 0 12px rgba(255,215,0,0.4);
     ">
-    🔂 REPETIR TODAS: OFF
-  </button>
+      🔂 REPETIR TODAS: OFF
+    </button>
+
+  </div>
+
+  <!-- LISTA -->
+  <div id="lista-audios" style="
+    width:100%;
+    max-width:480px;
+    height:65vh;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  ">
+  </div>
 
 </div>
 
-
-  <div id="lista-audios" style="width:100%; max-width:480px; height:65vh; overflow-y:auto; display:flex; flex-direction:column; gap:12px;">
-    </div>
-</div>
 
 <script>
 function decodificar(x) {
@@ -1969,6 +2041,32 @@ const bancoModulos = [
 {q:"🤝 1163. Epidemia caracteriza-se quando uma doença se torna recorrente em uma região, apresentando aumento de casos em épocas específicas do ano.", v:false, j:"A descrição refere-se à Endemia (doença típica de uma região). Epidemia refere-se ao aumento de casos de uma doença em várias regiões de um país, mas sem alcançar proporções globais."},
 {q:"🤝 1164. Endemia é o termo utilizado para descrever o aumento de casos de uma doença em diversas regiões de um país ou continente, atingindo níveis globais.", v:false, j:"Níveis globais caracterizam uma Pandemia. Endemia é a presença contínua de uma doença recorrente em uma região, apresentando aumento de casos em épocas específicas do ano."},
 {q:"🤝 1165. O atributo depreciativo endereçado a um indivíduo devido a uma característica específica, tornando-se algo totalizador de sua identidade, é definido como Preconceito.", v:false, j:"O conceito descrito é o de Estigma. O preconceito é um julgamento prévio formado sem conhecimento, enquanto o estigma é uma 'marca' social negativa."},
+{q:"✍ 1166. A adolescência é um dado homogêneo e ocorre de forma idêntica independente dos contextos socioeconômicos.", v:false, j:"O módulo IV afirma que não há essa homogeneidade e que a adolescência não se dá deslocada dos contextos socioeconômicos."},
+{q:"✍ 1167. A universalidade é um princípio do SUS, entendida como conjunto articulado e contínuo das ações e serviços preventivos e curativos, individuais e coletivos, exigidos para cada caso em todos os níveis de complexidade do sistema.", v:false, j:"De fato, a universalidade é um dos princípios do SUS, mas a definição citada no enunciado é do princípio da Integralidade de Assistência."},
+{q:"✍ 1168. A preservação da autonomia das pessoas na defesa de sua integridade física e mental é um dos princípios do SUS.", v:false, j:"O princípio da autonomia trata da defesa da integridade física e moral das pessoas."},
+{q:"✍ 1169. A Organização Mundial da Saúde (OMS) estabelece a adolescência como o período que vai dos 12 aos 18 anos.", v:false, j:"O módulo IV afirma que a Convenção da OMS estabelece a faixa etária dos 10 aos 19 anos para adolescentes."},
+{q:"✍ 1170. O paradigma da proteção integral reconhece crianças e adolescentes como sujeitos de direitos, numa condição peculiar de desenvolvimento.", v:true, j:"É a mudança histórica de paradigma mencionada logo no início do texto da Unidade I - Módulo IV."},
+{q:"✍ 1171. A participação juvenil, a equidade de gênero, direitos sexuais e direitos reprodutivos são exemplos de eixos estruturantes.", v:true, j:"Além dos citados no enunciado, temos ainda o projeto de vida, cultura de paz, ética e cidadania e a igualdade racial e étinica."},
+{q:"✍ 1172. No atendimento à saúde de adolescentes, deve-se buscar estratégias que favoreçam seu acesso, como parceria com escolas e outras instituições.", v:true, j:"A intersetorialidade é fundamental para a garantia de um cuidado que consiga olhar para as múltiplas necessidades e demandas desses sujeitos."},
+{q:"✍ 1173. A igualdade da assistência à saúde, sem preconceitos, mas com privilégios, é um dos princípio do SUS.", v:false, j:"A definição desse princípio é a igualdade da assistência à saúde, sem preconceitos ou privilégios de qualquer espécie."},
+{q:"✍ 1174. A integralidade da assistência no SUS deve ser entendida como um conjunto fragmentado de ações e serviços preventivos.", v:false, j:"O texto define integralidade como um conjunto articulado e contínuo de ações e serviços."},
+{q:"✍ 1175. A participação juvenil e a ética e cidadania são eixos estruturantes que contribuem para incentivar o isolamento social.", v:false, j:"O texto afirma que o isolamento social deve ser combatido e esses eixos contribuem para reduzir esse risco."},
+{q:"✍ 1176. Cuidar da saúde dos adolescentes exige uma abordagem que considere diferentes aspectos da vida deles — biológicos, emocionais, sociais e culturais. Os princípios do SUS apontam nessa direção.", v:true, j:"De fato, os princípios do SUS apontam nessa direção, principalmente, os princípios da integralidade e da proteção integral dos direitos humanos de todos os usuários e especial atenção à identificação de maus-tratos, de negligência e de violência sexual praticados contra crianças e adolescentes."},
+{q:"✍ 1177. O sigilo no atendimento ao adolescente deve ser garantido, exceto em casos de risco à sua vida ou a de terceiros.", v:true, j:"Esta é a exceção prevista nas diretrizes e no ECA mencionada no texto."},
+{q:"✍ 1178. A Lei nº 12.594, que institui o SINASE, regulamenta a execução das medidas socioeducativas e estabelece a responsabilidade do SUS no cuidado em saúde de adolescentes em conflito com a lei.", v:true, j:"O SINASE regulamenta a execução das medidas socioeducativas e estabelece a responsabilidade do SUS no cuidado em saúde a adolescentes em conflito com a lei."},
+{q:"✍ 1179. A Política Nacional de Atenção Integral à Saúde de Adolescentes em Conflito com a Lei (PNAISARI) foi lançada pelo Ministério da Saúde em 2012.", v:false, j:"No ano de 2014 o Ministério da Saúde lança a Política Nacional de Atenção Integral à Saúde de Adolescentes em Conflito com a Lei (PNAISARI)."},
+{q:"✍ 1180. Um dos objetivos da PNAISARI é garantir a inclusão dos adolescentes em conflito com a lei no Sistema Único de Saúde (SUS).", v:true, j:"A PNAISARI tem como objetivo a inclusão dessa população no Sistema Único de Saúde - SUS, organizando e ampliando o acesso aos cuidados em saúde."},
+{q:"✍ 1181. A PNAISARI estabelece que o cuidado em saúde deve privilegiar intervenções isoladas de cada política pública, evitando a intersetorialidade devido a possibilidade de informações desencontradas.", v:false, j:"A política visa privilegiar as intervenções intersetoriais e articular as diversas políticas públicas."},
+{q:"✍ 1182. É um objetivo específico da PNAISARI estimular a responsabilização conjunta das equipes de saúde e das equipes socioeducativas.", v:true, j:"O Objetivo II é estimular ações intersetoriais para a responsabilização conjunta das equipes de saúde e das equipes socioeducativas."},
+{q:"✍ 1183. A PNAISARI incentiva a articulação dos Projetos Terapêuticos Singulares (PTS) aos Planos Individuais de Atendimento (PIA).", v:true, j:"O Objetivo III busca incentivar a articulação dos Projetos Terapêuticos Singulares (PTS) aos Planos Individuais de Atendimento (PIA)."},
+{q:"✍ 1184. As diretrizes da PNAISARI preveem que as ações de saúde mental devem ser pautadas na lógica da internação hospitalar.", v:false, j:"As ações de saúde mental devem ser pautadas na lógica da atenção psicossocial, visando o fortalecimento de vínculos e a reinserção social."},
+{q:"✍ 1185. A política de atenção à saúde do adolescente em conflito com a lei deve, obrigatoriamente, priorizar o foco na abstinência para usuários de álcool.", v:false, j:"A perspectiva da Redução de Danos tira o foco da obrigatoriedade da abstinência para focar na redução dos prejuízos biológicos e sociais."},
+{q:"✍ 1186. Conforme a PNAISARI, o adolescente sob medida socioeducativa passa a ser considerado munícipe e fica sob responsabilidade do município onde está o centro.", v:true, j:"O adolescente passa a ser contabilizado pelo IBGE como munícipe e ser de responsabilidade do município que sedia a unidade socioeducativa enquanto estiver sob medida socioeducativa."},
+{q:"✍ 1187. A gestão estadual de saúde deve assumir diretamente as ações de atenção primária dentro dos centros socioeducativos, excluindo o município.", v:false, j:"A gestão municipal deve assumir as ações de saúde e designar a equipe da Atenção Primária à Saúde de referência para atender esses adolescentes."},
+{q:"✍ 1188. A PNAISARI orienta que o atendimento de saúde deve ocorrer prioritariamente dentro das dependências das unidades socioeducativas.", v:false, j:"A PNAISARI estabelece a necessidade de se priorizar o atendimento de saúde fora das unidades socioeducativas, na rede de saúde do território."},
+{q:"✍ 1189. O Plano Individual de Atendimento (PIA) é um instrumento onde o eixo saúde deve ser contemplado obrigatoriamente.", v:true, j:"O PIA é um instrumento fundamental do sistema socioeducativo e nele o eixo saúde deve ser contemplado."},
+{q:"✍ 1190. O diagnóstico de saúde é dispensável para o conhecimento da rede e dos fluxos oficiais de atendimento aos adolescentes.", v:false, j:"O diagnóstico de saúde é vital para a identificação dos agravos mais recorrentes e conhecimento da rede e fluxos oficiais."},
+{q:"✍ 1191. Um dos eixos das diretrizes da PNAISARI é a educação permanente dos trabalhadores envolvidos no atendimento.", v:true, j:"O Eixo III das diretrizes para atenção integral à saúde de adolescentes em conflito com a lei é a Educação Permanente dos Trabalhadores."}
 
 ]; 
 
@@ -5090,6 +5188,107 @@ const listaAulas = [
 
 ];
 
+let timerExpulsaoAudioteca = null;
+
+function iniciarVigilanciaAudioteca() {
+    const expira = Number(localStorage.getItem("senhaAudiotecaExpira"));
+    if (!expira) return;
+
+    const intervalo = setInterval(() => {
+        const agora = Date.now();
+
+        if (agora >= expira) {
+            clearInterval(intervalo);
+
+            // Para todos os áudios
+            document.querySelectorAll("audio").forEach(a => {
+                a.pause();
+                a.src = "";
+            });
+
+            // Desabilita botões
+            document.querySelectorAll("button").forEach(b => {
+                b.disabled = true;
+                b.style.opacity = "0.4";
+            });
+
+            alert("⏳ Seu acesso à Audioteca expirou.\nConquiste uma nova chave no Modo Sobrevivente.");
+
+            // Limpa a senha
+            localStorage.removeItem("senhaAudioteca");
+            localStorage.removeItem("senhaAudiotecaExpira");
+
+            // Expulsa
+            window.location.reload();
+        }
+    }, 10000); // checa a cada 10s
+}
+
+
+function expulsarDaAudioteca() {
+
+  // Para todos os áudios
+  document.querySelectorAll('audio').forEach(a => {
+    a.pause();
+    a.src = "";
+    a.load();
+  });
+
+  // Remove dados da senha
+  localStorage.removeItem("senhaAudioteca");
+  localStorage.removeItem("senhaAudiotecaExpira");
+
+  // Bloqueia interações
+  document.body.style.pointerEvents = "none";
+
+  // Overlay de bloqueio
+  const overlay = document.createElement("div");
+  overlay.id = "overlay-expirado";
+  overlay.innerHTML = `
+    <div style="
+      background:#000;
+      border:2px solid red;
+      padding:30px;
+      border-radius:15px;
+      text-align:center;
+      color:#ff4444;
+      font-weight:900;
+      box-shadow:0 0 30px red;
+    ">
+      ⏱️ TEMPO ESGOTADO ⏱️<br><br>
+      <span style="font-size:0.9em;">
+        Sua sessão expirou.<br>
+        Conquiste uma nova chave no<br>
+        <b>Modo Sobrevivente</b>.
+      </span><br><br>
+      <button onclick="window.location.reload()" 
+        style="
+          padding:12px 20px;
+          font-weight:bold;
+          border:none;
+          border-radius:8px;
+          background:#ffd700;
+          cursor:pointer;
+        ">
+        VOLTAR À CAPA
+      </button>
+    </div>
+  `;
+
+  Object.assign(overlay.style, {
+    position: "fixed",
+    inset: "0",
+    background: "rgba(0,0,0,0.95)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: "10000",
+    pointerEvents: "auto"
+  });
+
+  document.body.appendChild(overlay);
+}
+
 
  // botao some // menu de salvar some
 document.addEventListener("contextmenu", e => {
@@ -5196,7 +5395,7 @@ function check(answer, btn) {
         if(quizType === 25) {
             acertosContadorSenha++;
             if(acertosContadorSenha === 25) {
-                gerarSenhaTemporaria(); // Chama aquela função que configuramos antes
+                gerarSenhaTemporaria(); 
                 acertosContadorSenha = 0; // Reseta para não gerar duplicado
             }
         }
@@ -5690,7 +5889,7 @@ function mostrarManifesto() {
                         O seu uso é GRATUITO e dispensa quaisquer formas de ônus financeiro, mas <strong>considere uma doação</strong> e ganhe acesso irrestrito a Audioteca.
                     </div>
                     
-                    Dito isso, se você, no auge do seu anonimato, reconhece meus esforços, se sentiu ajudado, tiver condições e desejar contribuir com qualquer quantia, sinta-se à vontade.  
+                    Dito isso, se você, no auge do seu anonimato, reconhece meus esforços, se sentiu ajudado, tiver condições e desejar contribuir com qualquer quantia, sinta-se à vontade.  Qualquer coisa : 88 994354250.
                     
                     <div style="font-size: 1.0em; color: #39FF14; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 10px #39FF1455; margin-top: 25px; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px; border: 1px dashed #39FF14;">
                         Raimundo Nonato Romão Silva<br>
@@ -5841,6 +6040,8 @@ function validarSenha() {
             if (typeof carregarAudioteca === "function") {
                 carregarAudioteca();
             }
+                iniciarVigilanciaAudioteca();
+                iniciarRelogioAudioteca();
 
         } else {
             alert("❌ Senha incorreta. Verifique o código e tente novamente.");
@@ -5856,6 +6057,83 @@ function validarSenha() {
     }
 }
 
+function expulsarAudioteca() {
+    // Para tudo
+    document.querySelectorAll("audio").forEach(a => {
+        a.pause();
+        a.removeAttribute("src");
+        a.load();
+    });
+
+    // Limpa credenciais FREE
+    localStorage.removeItem("senhaAudioteca");
+    localStorage.removeItem("senhaAudiotecaExpira");
+
+    // Mensagem final
+    alert("⏳ Seu tempo de acesso à Audioteca expirou.");
+
+    // Mata a sessão
+    window.location.reload(); 
+    // ou: go('capa');
+}
+
+function iniciarVigilanciaAudioteca() {
+    const expira = Number(localStorage.getItem("senhaAudiotecaExpira"));
+    if (!expira) return;
+
+    const intervalo = setInterval(() => {
+        if (Date.now() > expira) {
+            clearInterval(intervalo);
+            expulsarAudioteca();
+        }
+    }, 10000); // checa a cada 10s
+}
+
+function criarRelogioAudioteca() {
+    if (document.getElementById("timer-audioteca")) return;
+
+    const div = document.createElement("div");
+    div.id = "timer-audioteca";
+    div.style.cssText = `
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        background: rgba(0,0,0,0.7);
+        color: #FFD700;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        z-index: 10000;
+        box-shadow: 0 0 10px #FFD700;
+    `;
+    document.body.appendChild(div);
+}
+
+function atualizarRelogioAudioteca() {
+    const div = document.getElementById("timer-audioteca");
+    const expira = Number(localStorage.getItem("senhaAudiotecaExpira"));
+    if (!div || !expira) return;
+
+    const restante = expira - Date.now();
+    if (restante <= 0) {
+        div.textContent = "00:00:00";
+        return;
+    }
+
+    const h = String(Math.floor(restante / 3600000)).padStart(2, "0");
+    const m = String(Math.floor((restante % 3600000) / 60000)).padStart(2, "0");
+    const s = String(Math.floor((restante % 60000) / 1000)).padStart(2, "0");
+
+    div.textContent = `⏳ ${h}:${m}:${s}`;
+}
+
+function iniciarRelogioAudioteca() {
+    criarRelogioAudioteca();
+    setInterval(atualizarRelogioAudioteca, 1000);
+}
+
+
 function fecharSlideVitoria() {
     // Esconde o slide da senha
     document.getElementById('slideSenha').style.display = 'none';
@@ -5868,6 +6146,7 @@ function fecharSlideVitoria() {
    BANCO DE DOADORES
    ===================================================== */
 const DOADORES = [
+ 
   { id: atob("NTAxMA=="), nome: atob("UmVuYXRvIFRoZXJpb24=") },
   { id: atob("NTgz"), nome: atob("Vml2aWFuZSBCYXN0b3MgTWFjaWVsIFJvZHJpZ3Vlcw==") },
   { id: atob("NDg2Mg=="), nome: atob("UmFtb24gU291emEgZG8gTmFzY2ltZW50bw==") },
@@ -5875,7 +6154,8 @@ const DOADORES = [
   { id: atob("MjA3NjA="), nome: atob("RmVybmFuZG8gRnJlaXJlcyBCYXN0b3MgTWVsbw==") },
   { id: atob("MTIyMw=="), nome: atob("THVjYXMgVmluaWNpdXMgQWx2ZXMgZG8gTmFzY2ltZW50bw==") },
   { id: atob("NDI4NA=="), nome: atob("QWRhbGJlcnRvIGRvcyBSZWlzIFNhbGVz") },
-  { id: atob("MjYwMDk="), nome: atob("Q2xlaWxzb24gQ29lbGhvIFBlcmVpcmE=") }
+  { id: atob("MjYwMDk="), nome: atob("Q2xlaWxzb24gQ29lbGhvIFBlcmVpcmE=") },
+  { id: atob("NjQxOQ=="), nome: atob("UmFmYWVsIEFsZXhhbmRyZSBGZXJyZWlyYSBSYW1vcw==") }
 ];
 
 
@@ -6207,6 +6487,7 @@ function audioFinalizado(id) {
     if (btn) btn.textContent = "▶";
 }
 
+// 1. SUA FUNÇÃO ORIGINAL (MANTIDA INTEGRALMENTE)
 function usuarioIphone() {
     const numero = prompt("FUTURO SOCIOEDUCADOR, IDENTIFIQUE-SE!:");
     if (!numero) return;
@@ -6225,7 +6506,6 @@ function usuarioIphone() {
         return;
     }
 
-    // Lógica de cores interna para não depender de variáveis externas
     const corStatus = (pessoa.status === "Classificado") ? "#00ff41" : "#ff4d4d";
     const corTipo = (pessoa.tipo && pessoa.tipo.includes("Cotas")) ? "#FFD700" : "#3b82f6";
 
@@ -6250,6 +6530,44 @@ function usuarioIphone() {
     `, 'sucesso');
 
     go('area-restrita');
+}
+
+// 2. LÓGICA DA CHAVE E FECHADURA (COM MODO FUGA)
+const elChave = document.getElementById('chave');
+const elFechadura = document.getElementById('fechadura');
+
+if (elChave) {
+    // Efeito de fuga (Trollagem)
+    ['mouseover', 'touchstart'].forEach(evento => {
+        elChave.addEventListener(evento, (e) => {
+            // Se for touch, o primeiro toque faz ela fugir antes de iniciar o drag
+            const novaX = Math.random() * (window.innerWidth - 80);
+            const novaY = Math.random() * (window.innerHeight - 80);
+            
+            elChave.style.position = 'fixed';
+            elChave.style.zIndex = '100000';
+            elChave.style.transition = 'all 0.15s ease-out';
+            elChave.style.left = `${novaX}px`;
+            elChave.style.top = `${novaY}px`;
+        });
+    });
+
+    // Permite que a chave ainda seja arrastada (Modo Difícil)
+    elChave.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text', 'chave');
+    });
+}
+
+if (elFechadura) {
+    elFechadura.addEventListener('dragover', e => e.preventDefault());
+    elFechadura.addEventListener('drop', e => {
+        e.preventDefault();
+        const item = e.dataTransfer.getData('text');
+        if (item === 'chave') {
+            // Se o cara conseguiu, chama a SUA função original
+            usuarioIphone();
+        }
+    });
 }
 
 </script>
