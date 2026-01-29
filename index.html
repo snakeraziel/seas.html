@@ -779,6 +779,78 @@ mostrarMensagem(`
 go('area-restrita');
 });
 
+    /* ===============================
+   PROTEÇÃO BÁSICA FRONT-END
+   Autor: Renato T.
+   =============================== */
+
+(() => {
+
+
+  // Bloqueia botão direito
+  document.addEventListener("contextmenu", e => e.preventDefault());
+
+  // Bloqueia atalhos comuns
+  document.addEventListener("keydown", e => {
+    const k = e.key.toLowerCase();
+
+    if (
+      e.key === "F12" ||
+      e.key === "PrintScreen" ||
+      (e.ctrlKey && ["c","u","s","p","a"].includes(k))
+    ) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  });
+
+  // Bloqueia seleção de texto
+  document.addEventListener("selectstart", e => e.preventDefault());
+
+  // Blur ao perder foco (print / alt+tab)
+  document.addEventListener("visibilitychange", () => {
+    document.documentElement.style.filter =
+      document.hidden ? "blur(12px)" : "none";
+  });
+
+  /* ---------- DETECÇÃO SIMPLES DE DEVTOOLS ---------- */
+  let _w = window.outerWidth - window.innerWidth > 160;
+  let _h = window.outerHeight - window.innerHeight > 160;
+
+  setInterval(() => {
+    if (_w || _h) {
+      document.documentElement.innerHTML =
+        "<h1 style='color:red;text-align:center;margin-top:20%'>⚠️ Acesso não autorizado</h1>";
+    }
+  }, 1000);
+
+  /* ---------- OFUSCAÇÃO LEVE (ATRITO REAL) ---------- */
+
+  function _s(a){
+    return a.map(b => String.fromCharCode(b)).join("");
+  }
+
+  const _dados = [
+    [82,101,110,97,116,111,32,84,104,101,114,105,111,110],
+    [53,48,49,48]
+  ];
+
+  // Exemplo de uso real
+  window.DOADOR_EXEMPLO = {
+    nome: _s(_dados[0]),
+    id: _s(_dados[1])
+  };
+
+  /* ---------- WATERMARK INVISÍVEL ---------- */
+
+  console.log(
+    "%c© Renato T. | Código autoral | Cópia não autorizada",
+    "color:#39FF14;font-size:12px"
+  );
+
+})();
+
 const bancoOficial = [
     {q:"👨‍💻 1. A Superintendência do Sistema Estadual de Atendimento Socioeducativo (SEAS), criada pela Lei Estadual nº 16.040/2016, possui como atribuição exclusiva a administração das unidades de internação, não integrando sua competência a formulação e a coordenação da política estadual de atendimento socioeducativo.", v:false, j:"A SEAS também tem por finalidade a formulação, planejamento e coordenação da política estadual de atendimento socioeducativo (Art. 2º, Lei 16.040/16)."},
     {q:"👨‍💻 2. De acordo com a Lei nº 12.594/2012, do Sistema Nacional de Atendimento Socioeducativo (Sinase), o Plano Individual de Atendimento (PIA) deve ser elaborado por equipe técnica interdisciplinar, não se admitindo que sua construção seja feita de forma unilateral por um único profissional.", v:true, j:"O Art. 53 da Lei do SINASE exige expressamente a elaboração do PIA por equipe técnica: O PIA será elaborado sob a responsabilidade da equipe técnica do respectivo programa de atendimento, com a participação efetiva do adolescente e de sua família."},
