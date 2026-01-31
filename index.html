@@ -5914,32 +5914,26 @@ function startQuiz(modo) {
   erros = 0;
   acertosSessao = 0;
   acertosContadorSenha = 0;
-  historico = {}; 
+  historico = {}; // padronizado sem acento
 
   const vContainer = document.getElementById('vidas-container');
   const btnExtra = document.getElementById('btnExtra');
   const feedback = document.getElementById('feedback');
   if (feedback) feedback.style.display = 'none';
 
-  // FUNÇÃO INTERNA DE EMBARALHAR (Fisher-Yates) - A MAIS PODEROSA
-  const shuffle = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
-
   if (modo === 25) {
-    let megaBanco = [...bancoOficial, ...bancoModulos, ...bancoVariados, ...bancoPortarias];
-    currentQuestions = shuffle(megaBanco).slice(0, 25); // EMBARALHA DE VERDADE
+    // Modo sobrevivente: 25 aleatórias do mega banco
+    const megaBanco = [...bancoOficial, ...bancoModulos, ...bancoVariados, ...bancoPortarias];
+    currentQuestions = megaBanco.sort(() => 0.5 - Math.random()).slice(0, 25);
 
     vContainer.innerHTML = '<span class="bomba-pulsa">💣</span>';
     btnExtra.innerText = "💪 MOTIVACIONAL 💪";
     btnExtra.style.background = "#475569";
     btnExtra.onclick = mostrarProverbio;
-    clearProgress(modo); 
+
+    clearProgress(modo); // desafio não carrega progresso
   } else {
+    // Seleção do banco
     let base;
     if (modo === 'total') base = [...bancoOficial];
     else if (modo === 'modulos') base = [...bancoModulos];
@@ -5947,14 +5941,17 @@ function startQuiz(modo) {
     else if (modo === 'portarias') base = [...bancoPortarias];
     else base = [...bancoOficial];
 
+    // Em 'total' você pode limitar a 100, nos estudos usa o tamanho do banco
+    currentQuestions = base.sort(() => 0.5 - Math.random()).slice(0, modo === 'total' ? 100 : base.length);
+
     if (modo === 'total') {
-      currentQuestions = shuffle([...base]).slice(0, 100); // EMBARALHA DE VERDADE
       vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
       btnExtra.innerText = "🏠 MENU 🏠";
       btnExtra.style.background = "#475569";
-      btnExtra.onclick = () => location.reload(); 
-      clearProgress(modo); 
+      btnExtra.onclick = () => location.reload(); // seu fluxo atual
+      clearProgress(modo); // desafio não carrega progresso
     } else {
+      // Estudo: tenta carregar progresso
       vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
       btnExtra.innerText = "🙏 MISERICÓRDIA 🙏";
       btnExtra.style.background = "#dc2626";
@@ -5962,19 +5959,17 @@ function startQuiz(modo) {
 
       const saved = loadProgress(modo);
       if (saved) {
-        currentQuestions = [...base]; // Se tem progresso, mantém a ordem do banco
         currentIndex = Math.min(saved.index || 0, currentQuestions.length - 1);
         acertosSessao = saved.acertosSessao || 0;
         erros = saved.erros || 0;
         historico = saved.historico || {};
-      } else {
-        currentQuestions = shuffle([...base]); // SE É NOVO, EMBARALHA DE VERDADE
       }
     }
   }
 
+  // Se não houver questões, evita quebrar
   if (!currentQuestions || currentQuestions.length === 0) {
-    alert("Nenhuma questão disponível neste banco.");
+    mostrarMensagem("Nenhuma questão disponível neste banco.", "erro");
   }
 
   document.getElementById('btnPrev').classList.add('visible');
