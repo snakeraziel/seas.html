@@ -488,7 +488,7 @@ button {
     </div> -->
 
     <h1 style="font-size:3em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-    <h2 style="font-size:2em;color:#39FF14;margin:0;">1668 QUESTÕES</h2>
+    <h2 style="font-size:2em;color:#39FF14;margin:0;">1675 QUESTÕES</h2>
 
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
       <div id="chave" draggable="true" style="font-size:3em; cursor:grab;">🔑</div>
@@ -504,7 +504,7 @@ button {
     text-shadow:0 0 8px rgba(218,112,214,.8);
   ">
   🆔 INSIRA SUA INSCRIÇÃO 🆔
-    </button>
+</button>
 
 
     <button class="menu-btn" onclick="entrarComoVisitante()">👥 ENTRE COMO VISITANTE 👥</button>
@@ -624,30 +624,67 @@ button {
     🎧 AUDIOTECA 🔊
   </h1>
 
-  <!-- TOPO: RELÓGIO + SAÍDA -->
-  <div id="topo-audioteca" style="
+<!-- TOPO: RELÓGIO + PORTA -->
+<div id="topo-audioteca" style="
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+">
+
+  <!-- LINHA CENTRAL: RELÓGIO + PORTA -->
+  <div style="
     display:flex;
     align-items:center;
     justify-content:center;
     gap:16px;
-    margin-bottom:18px;
   ">
 
+    <!-- RELÓGIO -->
     <div id="timer-audioteca" style="
       color:#ffd700;
       font-weight:900;
       text-shadow:0 0 10px gold;
+      min-width:70px;
+      text-align:center;
     "></div>
 
+    <!-- PORTA -->
     <div onclick="fecharAudioteca()" style="
       font-size:2.5em;
       cursor:pointer;
       filter:drop-shadow(0 0 10px #d4af37);
+      transform: translateX(-30px);
     ">
       🚪
     </div>
 
   </div>
+
+  <!-- VELOCIDADES (ABAIXO DA PORTA) -->
+  <div style="
+    display:flex;
+    gap:16px;
+    margin-top:6px;
+  ">
+
+    <!-- ESQUERDA -->
+    <div class="speed-group" style="display:flex; gap:6px;">
+      <button data-speed="1">1x</button>
+      <button data-speed="1.25">1.25x</button>
+    </div>
+
+    <!-- DIREITA -->
+    <div class="speed-group" style="display:flex; gap:6px;">
+      <button data-speed="1.5">1.5x</button>
+      <button data-speed="2">2x</button>
+    </div>
+
+  </div>
+
+</div>
+
 
   <!-- CONTROLES -->
   <div id="controles-repeticao" style="
@@ -699,7 +736,6 @@ button {
   </div>
 
 </div>
-
 
 <script>
 function decodificar(x) {
@@ -2182,6 +2218,13 @@ const bancoModulos = [
 {q:"✍ 1225. O objeto da palavra deve ser passado de forma aleatória pelo facilitador para quem ele julgar que deve falar no momento.", v:false, j:"Esse é um objeto que passará por todas as pessoas da roda, de modo sequencial."},
 {q:"✍ 1226. Humildade-amorosa, para os círculos de paz, significa ter humildade com acolhimento afetivo e coração aberto.", v:true, j:"Os círculos se baseiam em princípios como respeito mútuo, empatia, humildade-amorosa (humildade com acolhimento afetivo)."},
 {q:"✍ 1227. O processo decisório, nos círculos que visam consenso, deve garantir que todas as pessoas tenham a certeza de que foram escutadas.", v:true, j:"Todas as pessoas devem ter a certeza de que foram escutadas e que o consenso no qual se chegou as contempla."},
+{q:"✍ 1228. No projeto Abraço em Família, as equipes multidisciplinares dos centros socioeducativos são responsáveis por oganizar as temáticas mensais, enquanto a Coordenadoria das Diretrizes Pedagógicas é responsável pelo acompanhamento dos adolescentes e pelo planejamento dos eventos.", v:false, j:"É justamente o contrário. As equipes multidisciplinares dos centros socioeducativos são responsáveis pelo acompanhamento dos adolescentes e pelo planejamento dos eventos, enquanto a Coordenadoria das Diretrizes Pedagógicas da Séas organiza as temáticas mensais."},
+{q:"✍ 1229. Conforme a Lei nº 12.594/2012 (SINASE), o jovem em cumprimento de medida socioeducativa pode ser submetido ao isolamento, desde que seja assegurada uma frequência mínima de visitas.", v:false, j:"O SINASE assegura que o jovem em cumprimento de medida socioeducativa não seja submetido ao isolamento (Art. 35, V), e não o contrário."},
+{q:"✍ 1230. O princípio de que toda criança ou adolescente tem direito a ser criado no seio de sua família está estabelecido no Artigo 19 da Lei do SINASE (Lei nº 12.594/2012).", v:false, j:"Este princípio está estabelecido no Artigo 19 do Estatuto da Criança e do Adolescente (ECA), embora o SINASE também o reforce."},
+{q:"✍ 1231. A Portaria nº 366/2024 é a mais recente sobre o tema das visitas e seu propósito principal é instituir um Plano de Retomada Gradual de Visitas, substituindo as regras da Portaria nº 63/2017.", v:false, j:"A Portaria que instituiu o Plano de Retomada Gradual de Visitas (devido à COVID-19) foi a Portaria nº 123/2020. A Portaria nº 366/2024 é a atualização geral pós-pandemia."},
+{q:"✍ 1232. Conforme a Portaria nº 63/2017, a duração da visita semanal era de até 3 horas e não era exigido agendamento prévio individual e nenhuma restrição específica por idade ou grupo de risco. ", v:true, j:"A Portaria nº 63/2017 estabelecia frequência semanal, duração de até 3 horas, não exigia agendamento prévio individual e não havia nenhuma restrição específica por idade ou grupo de risco."},
+{q:"✍ 1233. Na Portaria nº 63/2017, o número de visitantes por dia era limitado a 2 pessoas (ou 3, se houver família constituída), sendo que crianças de 2 anos eram computadas nesse limite.", v:false, j:"De fato, o número de visitantes por dia era limitado a 2 pessoas (ou 3, se houver família constituída), entretanto, crianças de até 2 anos de idade não eram computadas no limite de até 2 pessoas."},
+{q:"✍ 1234. A Portaria nº 123/2020 foi uma resposta emergencial e temporária à pandemia de COVID-19, estabelecendo a frequência de visita quinzenal com duração de 1 hora e 30 minutos.", v:true, j:"Esta Portaria regulamentou a Retomada Gradual, estabelecendo frequência quinzenal e duração de 1 hora e 30 minutos. Essa portaria exigia agendamento prévio obrigatório e proibia estritamente a entrada de alimentos e outros materiais (livros, fotos, etc.)."}
 ]; 
 
 let bancoVariados = [
@@ -5306,9 +5349,9 @@ const listaAulas = [
     { id: 3, titulo: "Módulo I - Unidade I", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%201%20-%20Unidade%201.mp3" },
     { id: 4, titulo: "Módulo I - Unidade II", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%201%20Unidade%202.mp3" },
     { id: 5, titulo: "Módulo I - Unidade III", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20I%20-%20Unidade%20III.mp3" },
-    { id: 6, titulo: "Questões - Módulo I - EM BREVE", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/quest%C3%B5es%20-%20m%C3%B3dulo%20l.mp3" },
-    { id: 7, titulo: "Módulo II - Unidade I - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
-    { id: 8, titulo: "Módulo II - Unidade II - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
+    { id: 6, titulo: "Questões - Módulo I", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/quest%C3%B5es%20-%20m%C3%B3dulo%20l.mp3" },
+    { id: 7, titulo: "Módulo II - Unidade I", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20I.mp3" },
+    { id: 8, titulo: "Módulo II - Unidade II", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20II.mp3" },
     { id: 9, titulo: "Módulo II - Unidade III - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
    { id: 10, titulo: "Módulo II - Unidade IV - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
    { id: 11, titulo: "Módulo II - Unidade V - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
@@ -6292,7 +6335,7 @@ function fecharSlideVitoria() {
 
 (() => {
   const _d = [
-    /* nomes (0 a 13) */
+    /* nomes (0 a 14) */
     [82,101,110,97,116,111,32,84,104,101,114,105,111,110],
     [86,105,118,105,97,110,101,32,66,97,115,116,111,115,32,77,97,99,105,101,108,32,82,111,100,114,105,103,117,101,115],
     [82,97,109,111,110,32,83,111,117,122,97,32,100,111,32,78,97,115,99,105,109,101,110,116,111],
@@ -6307,8 +6350,9 @@ function fecharSlideVitoria() {
     [77,97,114,107,101,110,105,97,32,75,101,108,108,121,32,100,97,32,83,105,108,118,97,32,81,117,101,105,114,111,122],
     [67,105,99,101,114,111,32,72,105,108,100,101,114,108,108,111,110,32,100,97,32,83,105,108,118,97,32,67,97,118,97,108,99,97,110,116,101],
     [84,105,97,103,111,32,83,111,97,114,101,115,32,66,97,116,105,115,116,97],
+    [77,97,114,107,101,110,105,97,32,75,101,108,108,121,32,100,97,32,83,105,108,118,97,32,81,117,101,105,114,111,122],
 
-    /* ids (14 a 27) */
+    /* ids (15 a 29) */
     [53,48,49,48],
     [53,56,51],
     [52,56,54,50],
@@ -6322,32 +6366,33 @@ function fecharSlideVitoria() {
     [56,50,48,57],
     [49,52,50,57,56],
     [50,52,55,49,48],
-    [55,56,48,54]
+    [55,56,48,54],
+    [48,49,52,50,57,56]
   ];
 
   const _s = i => String.fromCharCode(..._d[i]);
 
   const DOADORES = [
-    { id: _s(14), nome: _s(0) },
-    { id: _s(15), nome: _s(1) },
-    { id: _s(16), nome: _s(2) },
-    { id: _s(17), nome: _s(3) },
-    { id: _s(18), nome: _s(4) },
-    { id: _s(19), nome: _s(5) },
-    { id: _s(20), nome: _s(6) },
-    { id: _s(21), nome: _s(7) },
-    { id: _s(22), nome: _s(8) },
-    { id: _s(23), nome: _s(9) },
-    { id: _s(24), nome: _s(10) },
-    { id: _s(25), nome: _s(11) },
-    { id: _s(26), nome: _s(12) },
-    { id: _s(27), nome: _s(13) }
+    { id: _s(15), nome: _s(0) },
+    { id: _s(16), nome: _s(1) },
+    { id: _s(17), nome: _s(2) },
+    { id: _s(18), nome: _s(3) },
+    { id: _s(19), nome: _s(4) },
+    { id: _s(20), nome: _s(5) },
+    { id: _s(21), nome: _s(6) },
+    { id: _s(22), nome: _s(7) },
+    { id: _s(23), nome: _s(8) },
+    { id: _s(24), nome: _s(9) },
+    { id: _s(25), nome: _s(10) },
+    { id: _s(26), nome: _s(11) },
+    { id: _s(27), nome: _s(12) },
+    { id: _s(28), nome: _s(13) },
+    { id: _s(29), nome: _s(14) }
   ];
 
   window.DOADORES = DOADORES;
 
 })();
-
 
 /* ===============================
    DECODIFICADOR
@@ -6683,6 +6728,59 @@ function audioFinalizado(id) {
     // comportamento normal
     if (btn) btn.textContent = "▶";
 }
+
+(() => {
+
+  const SPEED_KEY = "audioteca_speed";
+  let currentSpeed = parseFloat(localStorage.getItem(SPEED_KEY)) || 1;
+
+  const buttons = document.querySelectorAll(".speed-group button");
+
+  function applySpeed(v) {
+    currentSpeed = v;
+    localStorage.setItem(SPEED_KEY, v);
+
+    document.querySelectorAll("audio").forEach(a => {
+      a.playbackRate = v;
+    });
+
+    buttons.forEach(b => {
+      b.style.background = "rgba(255,215,0,0.08)";
+      b.style.color = "#ffd700";
+      b.style.boxShadow = "0 0 8px rgba(255,215,0,0.4)";
+    });
+
+    const active = [...buttons].find(b => parseFloat(b.dataset.speed) === v);
+    if (active) {
+      active.style.background = "rgba(255,0,0,0.15)";
+      active.style.color = "#ff3b3b";
+      active.style.boxShadow = "0 0 10px rgba(255,0,0,0.8)";
+    }
+  }
+
+  buttons.forEach(btn => {
+    btn.style.fontSize = "0.9em";
+    btn.style.padding = "6px 8px";
+    btn.style.borderRadius = "12px";
+    btn.style.border = "2px solid #ffd700";
+    btn.style.cursor = "pointer";
+
+    btn.addEventListener("click", () => {
+      applySpeed(parseFloat(btn.dataset.speed));
+    });
+  });
+
+  document.addEventListener("loadedmetadata", e => {
+    if (e.target.tagName === "AUDIO") {
+      e.target.playbackRate = currentSpeed;
+    }
+  }, true);
+
+  applySpeed(currentSpeed);
+
+})();
+
+
 
 // 1. SUA FUNÇÃO ORIGINAL (MANTIDA INTEGRALMENTE)
 function usuarioIphone() {
