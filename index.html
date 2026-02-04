@@ -6,6 +6,52 @@
     <title>PROVÃO SEAS</title>
     <style>
 
+/* Container Principal */
+.area-stats-vip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #111;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    gap: 10px;
+}
+
+/* Engrenagem Giratória */
+.giro-vip {
+    cursor: pointer;
+    font-size: 1.6rem; /* Aumentei o tamanho */
+    animation: rodar 4s linear infinite; /* Gira infinitamente */
+    display: inline-block;
+}
+
+/* Coração Pulsante */
+.heart-vip {
+    cursor: pointer;
+    font-size: 1.6rem; /* Aumentei o tamanho */
+    animation: pulsar 1.5s ease-in-out infinite; /* Pulsa suave */
+    display: inline-block;
+}
+
+/* Animação de Rotação */
+@keyframes rodar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Animação de Pulso */
+@keyframes pulsar {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); filter: drop-shadow(0 0 8px #ff3b3b); }
+    100% { transform: scale(1); }
+}
+
+/* Efeito ao passar o mouse para dar feedback */
+.giro-vip:hover, .heart-vip:hover {
+    filter: brightness(1.5);
+}
+
 /* Efeito de aumento e diminuição do emoji */
 .zoom-music {
   display: inline-block;
@@ -495,7 +541,7 @@ button {
       <div id="fechadura" style="font-size:3em; border:3px dashed #39FF14; padding:20px; border-radius:15px;">🔒</div>
     </div> 
 
-    <button class="menu-btn" onclick="usuarioIphone()"
+    <button class="menu-btn" onclick="usuarioIphone()
   style="
     border-color:#DA70D6;
     color:#DA70D6;
@@ -508,6 +554,7 @@ button {
 
 
     <button class="menu-btn" onclick="entrarComoVisitante()">👥 ENTRE COMO VISITANTE 👥</button>
+
 
 </div>
 
@@ -547,9 +594,13 @@ button {
         👨‍💻 PROVA DOS ANALISTAS 👨‍💻
     </button>
 
-<button class="menu-btn" onclick="acessoAdmin()">
+<!-- <button class="menu-btn" onclick="acessoAdmin()">
         🎵🎶🔊 AUDIOTECA 🎵🎶🔊
-    </button>
+    </button> -->
+
+<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador()">
+    ⭐ SALA DO DOADOR ⭐
+</button>
 
     <!-- Painel de recorde dentro do menu -->
     <div style="margin-top:15px; color:rgba(255,255,255,0.6); font-weight:800; font-size:1.1em; background:rgba(59,130,246,0.1); padding:8px 20px; border-radius:10px; border:1px solid rgba(59,130,246,0.3);">
@@ -737,6 +788,48 @@ button {
 
 </div>
 
+
+<div id="area-apoiador" class="screen" style="display:none !important; width:100vw; height:100vh; flex-direction:column; align-items:center; justify-content: center; background-color: #000 !important; position: fixed; top:0; left:0; z-index: 99999;">
+    
+    <div style="text-align: center; margin-bottom: 10px;">
+        <p style="color: #FFD700; font-size: 0.75em; font-weight: 700; margin: 0; letter-spacing: 2px; opacity: 0.8;">
+            SALA EXCLUSIVA DE
+        </p>
+        <div id="nome-doador-vip" style="color: #FFD700; font-size: 1.9em; font-weight: 900; text-shadow: 0 0 15px #FFD700; text-transform: uppercase; line-height: 1;">
+            ---
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 3px; align-items: center; width: 100%; margin-top: -10px;">
+        
+        <button class="menu-btn" onclick="abrirAudiotecaPelaSalaVip()" style="width: 350px; padding: 14px 10px; border: 2px solid #3b82f6; background: rgba(59, 130, 246, 0.1); color: white; font-weight: 800; border-radius: 12px; cursor: pointer;">
+            🎵🎶🔊 AUDIOTECA 🎵🎶🔊
+        </button>
+
+        <button class="menu-btn" onclick="abrirEstudosPelaSalaVip()" style="width: 350px; padding: 14px 10px; border: 2px solid #00ff41; background: rgba(0, 255, 65, 0.1); color: #fff; font-weight: 800; border-radius: 12px; cursor: pointer;">
+            📖📚 ÁREA DE ESTUDOS 📚📖
+        </button>
+
+        <button class="menu-btn" 
+        onclick="iniciarSimuladoPelaSalaVip()" 
+        style="width: 350px; padding: 14px 10px; border: 2px solid #ff3b3b; background: rgba(255, 59, 59, 0.1); color: white; font-weight: 900; border-radius: 12px; cursor: pointer;">
+    💡📝📊 SIMULADOS 📊📝💡
+</button>
+
+<div class="area-stats-vip">
+    <div class="giro-vip" onclick="iniciarModulo4Vip()">⚙️</div>
+
+    <div id="painel-stats-vip" style="width: 230px; margin-top: 2px;"></div>
+
+    <div class="heart-vip" onclick="agradecimentoVip()">❤️</div>
+</div>
+
+<button onclick="location.reload()" style="margin-top: 15px; color: #444; background: none; border: none; text-decoration: underline; font-size: 0.75em; cursor: pointer; display: block; width: 100%;">
+    SAIR DA SALA
+</button>
+
+</div>
+
 <script>
 function decodificar(x) {
   return atob(x);
@@ -920,7 +1013,7 @@ const bancoOficial = [
     {q:"👨‍💻 31. O prontuário de atendimento técnico é um instrumento sigiloso que deve conter informações relevantes sobre o adolescente, sua família e os registros de todas as ações e serviços oferecidos.", v:true, j:"O sigilo profissional e a proteção de dados sensíveis são fundamentais no acompanhamento socioeducativo."},
     {q:"👨‍💻 32. O prontuário processual é de responsabilidade do serviço social e contém os documentos processuais, como termos de audiências e sentenças, além das cópias dos documentos civis do adolescente e da família.", v:false, j:"A gestão de documentos processuais e civis costuma ser da secretaria/setor administrativo da unidade, e não do serviço social."},
     {q:"👨‍💻 33. Os prontuários devem ser guardados em armários individuais, sem necessidade de trancamento, para que toda a equipe tenha acesso facilitado.", v:false, j:"Informações sigilosas devem ser guardadas sob chave/tranca para impedir acesso de pessoas não autorizadas."},
-    {q:"👨‍💻 34. Os atendimentos individuais e grupais preconizados pelo Sistema Nacional de Atendimento Socioeducativo devem ter frequência mínima quinzenal e mensal, respectivamente.", v:false, j:"A periodicidade deve ser adequada à necessidade do PIA, mas as metas do SINASE focam na qualidade e no fluxo do projeto pedagógico."},
+    {q:"👨‍💻 34. Os atendimentos individuais e grupais preconizados pelo Sistema Nacional de Atendimento Socioeducativo devem ter frequência mínima quinzenal e mensal, respectivamente.", v:false, j:"A periodicidade deve ser adequada à necessidade do PIA, mas o SINASE preconiza que os atendimentos individuais tenham frequência mínima quinzenal, e os grupais, mínima semanal (semanal para semiliberdade). "},
     {q:"👨‍💻 35. As unidades de internação provisória são responsáveis pela elaboração do Relatório de Diagnóstico Polidimensional, que subsidia a elaboração do Plano Individual de Atendimento, caso uma medida socioeducativa seja aplicada.", v:true, j:"O diagnóstico feito na IP é fundamental para iniciar o PIA se a medida for definitiva."},
     {q:"👨‍💻 36. As práticas restaurativas do Sistema Estadual de Atendimento Socioeducativo são baseadas na justiça restaurativa, que enfatiza a punição do jovem e a reparação dos danos.", v:false, j:"A Justiça Restaurativa foca na solução do conflito e reparação do dano, não na punição retributiva."},
     {q:"👨‍💻 37. A Lei nº 16.040/2016 prevê que o Sistema Estadual de Atendimento Socioeducativo deve implantar e manter práticas restaurativas restritas a determinados níveis organizacionais.", v:false, j:"As práticas restaurativas devem permear todo o sistema e todos os níveis de atendimento."},
@@ -1229,7 +1322,7 @@ const bancoModulos = [
 {q:"✍ 236. De acordo com o Módulo I, Márcio Seligmann-Silva caracteriza as cartas escritas na prisão como 'literatura de testemunho', pois focam no conteúdo humano e nos fatos relatados.", v:true, j:"Essa abordagem privilegia o testemunho do indivíduo sobre a execução penal e sua percepção das instituições e práticas dos agentes."},
 {q:"✍ 237. Segundo o artigo Literaura Carcerária, o projeto 'Cartas do Cárcere' concluiu que correspondências enviadas por presos às autoridades não devem ser consideradas literatura carcerária.", v:false, j:"Pela primeira vez, essas cartas receberam tratamento acadêmico e foram sinalizadas como parte integrante da literatura carcerária."},
 {q:"✍ 238. Segundo o artigo Literaura Carcerária, a alfabetização de adultos dentro da prisão é considerada a gênese e a motivação da literatura carcerária produzida pelos próprios presos.", v:true, j:"O testemunho de educadores como Van der Poel mostra que aprender a ler e escrever é o ponto de partida para o preso se tornar autor de sua própria história."},
-{q:"✍ 239. Segundo o artigo Literaura Carcerária, a remição de pena pelo estudo e leitura no Brasil visa apenas o desenvolvimento literário do preso, sem finalidade de redução de dias na sentença.", v:false, j:"A literatura carcerária afirma que os marcos regulatórios reconhecem a educação e a leitura como fatores de redução da pena (remição), além de bons indicadores na melhora do conhecimento."},
+{q:"✍ 239. Segundo o artigo Literatura Carcerária, a remição de pena pelo estudo e leitura no Brasil visa apenas o desenvolvimento literário do preso, sem finalidade de redução de dias na sentença.", v:false, j:"A literatura carcerária afirma que os marcos regulatórios reconhecem a educação e a leitura como fatores de redução da pena (remição), além de bons indicadores na melhora do conhecimento."},
 {q:"✍ 240. A fase inicial do atendimento socioeducativo tem como um de seus marcos principais a recepção do adolescente, onde deve ocorrer a conferência rigorosa da documentação obrigatória.", v:true, j:"O ingresso exige documentos como a guia de execução e a cópia da sentença ou decisão que determinou a internação."},
 {q:"✍ 241. No momento do acolhimento, a revista pessoal do adolescente é uma medida de segurança, mas é vedado o fornecimento de kit de higiene pessoal até que o PIA seja aprovado.", v:false, j:"O fornecimento de vestuário e kit de higiene pessoal é parte imediata do acolhimento, garantindo a dignidade do adolescente desde a entrada."},
 {q:"✍ 242. A integração do adolescente à rotina da unidade envolve a leitura e explicação das normas disciplinares, direitos e deveres, não sendo permitida a presença de familiares nesse momento.", v:false, j:"A família deve ser envolvida e informada sobre as normas e o funcionamento da unidade desde a fase inicial."},
@@ -1567,7 +1660,7 @@ const bancoModulos = [
 {q:"✍ 574. A SEAS utiliza o Programa de Oportunidades e Cidadania (POC) como uma vitrine para parcerias com a iniciativa privada visando a cota de aprendizagem.", v:true, j:"A articulação com empresas para o cumprimento da Lei de Aprendizagem é uma das frentes de atuação do programa."},
 {q:"✍ 575. O Regimento Disciplinar da SEAS é instituído pela Portaria nº 093/2022 e classifica as faltas disciplinares em leves, médias e graves.", v:true, j:"Esta portaria estabelece as normas de conduta e as sanções para infrações cometidas."},
 {q:"✍ 576. Possuir objetos não autorizados ou recusar-se a participar de atividades sem justificativa são exemplos de faltas de natureza média.", v:false, j:"Esses exemplos são classificados como faltas leves."},
-{q:"✍ 577. Impedir atividades socioeducativas, vender objetos lícitos ou simular doenças para se eximir de deveres são consideradas faltas médias.", v:true, j:"São condutas que causam um impacto maior na rotina da unidade."},
+{q:"✍ 577. Impedir atividades socioeducativas, vender objetos lícitos ou simular doenças para se eximir de deveres são consideradas faltas médias.", v:true, j:"São condutas que causam um impacto maior na rotina da unidade, por isso são médias."},
 {q:"✍ 578. Uma das medidas aplicáveis para faltas graves é a restrição ao dormitório por um período de até dez dias.", v:false, j:"O limite para restrição ao dormitório em faltas graves é de até 7 dias."},
 {q:"✍ 579. Nenhuma medida disciplinar pode interromper a escolarização, o atendimento técnico, a saúde ou a visita familiar do adolescente.", v:true, j:"O regimento garante que direitos essenciais não sejam suspensos por sanções."},
 {q:"✍ 580. O Conselho Disciplinar é a instância deliberativa responsável por analisar ocorrências e garantir o direito ao contraditório e à ampla defesa.", v:true, j:"Ele sugere sanções e pode encaminhar casos para práticas restaurativas."},
@@ -1857,7 +1950,7 @@ const bancoModulos = [
 {q:"✍ 864. A segurança baseada na relação interpessoal utiliza o vínculo entre profissional e adolescente como ferramenta para antecipar conflitos e promover um clima de respeito mútuo.", v:true, j:"Segurança baseada na relação interpessoal: Ocorre através do estabelecimento de vínculos de confiança e respeito entre socioeducadores e adolescentes, permitindo a mediação de conflitos e a identificação de riscos por meio do diálogo."},
 {q:"✍ 865. No gerenciamento de riscos, a análise de vulnerabilidade foca apenas nos pontos cegos das câmeras, ignorando o comportamento dos adolescentes ou a fragilidade das normas internas.", v:false, j:"O gerenciamento de riscos envolve a identificação e análise de diversas vulnerabilidades, sejam elas estruturais (físicas), processuais (falha em normas) ou relacionais (clima tenso entre grupos)."},
 {q:"✍ 866. A revista de visitantes é um procedimento de segurança que deve ser executado com rigor, impedindo a entrada de objetos ilícitos ou materiais que ofereçam risco à integridade da unidade.", v:true, j:"Revista de Visitantes: Procedimento obrigatório para garantir que pessoas externas não introduzam materiais proibidos no Centro Socioeducativo, preservando a segurança de todos."},
-{q:"✍ 867. É um dever do socioeducador, durante a revista de alojamento, descartar alimentos estragados ou objetos que tenham sido transformados em ferramentas perigosas (estoques).", v:true, j:"Durante a revista, devem ser recolhidos objetos que representem risco ou que estejam em desacordo com as normas de convivência e higiene da unidade."},
+{q:"✍ 867. É dever do socioeducador, durante a revista de alojamento, descartar alimentos estragados ou objetos que tenham sido transformados em ferramentas perigosas (estoques).", v:true, j:"Durante a revista, devem ser recolhidos objetos que representem risco ou que estejam em desacordo com as normas de convivência e higiene da unidade."},
 {q:"✍ 868. A passividade diante de uma pequena infração disciplinar é recomendada pelo Módulo 3 para evitar que o adolescente se sinta pressionado e inicie uma rebelião.", v:false, j:"A manutenção da rotina e das regras é elemento de segurança preventiva. A omissão diante de faltas disciplinares pode gerar um sentimento de impunidade e desorganizar o ambiente coletivo."},
 {q:"✍ 869. Crise de Nível 1 (Verde) é aquela que pode ser resolvida pela equipe de plantão por meio da verbalização e mediação, sem necessidade de reforço externo.", v:true, j:"Crise de Nível 1: Situações de baixa complexidade, como discussões ou recusas de atendimento, que podem ser resolvidas com os recursos e a equipe local através do diálogo."},
 {q:"✍ 870. Crise de Nível 3 (Vermelha) caracteriza-se pela perda total do controle da unidade, com reféns ou feridos graves, exigindo obrigatoriamente a intervenção de forças especializadas.", v:true, j:"Crise de Nível 3: Situações críticas, como rebeliões com reféns ou autolesões graves, que extrapolam a capacidade de resposta imediata da equipe de plantão, exigindo protocolos de intervenção externa."},
@@ -5377,7 +5470,49 @@ const usuarios = [
 { id: 25820, nome: "Edson Diego Goncalves Amancio", pontos: 131.5, cidade: "Fortaleza", status: "Cadastro Reserva", tipo: "Ampla", colocacao: "1127º" },
 
 
+];
 
+const bancoVip = [
+{q:"💛 1. A adolescência é um período de transformações intensas que se dá de forma homogênea, independentemente dos contextos socioeconômicos e culturais nos quais o sujeito está inserido.", v:false, j:"Não há homogeneidade na adolescência, pois ela depende dos contextos socioeconômicos e culturais."},
+{q:"💛 2. Para fins de legislação e organização de políticas públicas no Brasil, o critério adotado para definir a população adolescente é exclusivamente o critério cronológico.", v:true, j:"Conforme o módulo, o critério cronológico é o adotado para fins de legislação e políticas públicas."},
+{q:"💛 3. O Estatuto da Criança e do Adolescente (ECA) de 1990 consolidou o antigo paradigma assistencialista e correcional de atendimento à infância e juventude.", v:false, j:"O ECA rompeu com o antigo paradigma assistencialista e correcional, inaugurando um novo modelo."},
+{q:"💛 4. A doutrina da proteção integral reconhece crianças e adolescentes como sujeitos de direitos, em uma condição peculiar de desenvolvimento.", v:true, j:"Com a mudança de paradigma após a criação do ECA, eles passaram a ser reconhecidos como sujeitos de direitos."},
+{q:"💛 5. A primazia de receber proteção e socorro em quaisquer circunstâncias é uma das garantias que compõem a prioridade absoluta assegurada pelo ECA.", v:true, j:"Esta garantia está expressamente listada como garantia da prioridade absoluta."},
+{q:"💛 6. A atenção integral à saúde do adolescente faz referência apenas aos atendimentos clínicos realizados em serviços de saúde.", v:false, j:"O módulo diz explicitamente que a atenção integral não faz referência exclusiva aos atendimentos em serviços de saúde."},
+{q:"💛 7. O princípio da integralidade do SUS é definido como um conjunto fragmentado de ações curativas voltadas apenas ao nível de alta complexidade.", v:false, j:"A integralidade é um conjunto articulado e contínuo de ações preventivas e curativas em todos os níveis de complexidade."},
+{q:"💛 8. A Organização Mundial da Saúde (OMS) define a adolescência como a faixa etária compreendida entre os 10 e os 19 anos.", v:true, j:"O documento cita a convenção internacional da OMS que estabelece a adolescência dos 10 aos 19 anos."},
+{q:"💛 9. No Brasil, o SUS adota a faixa etária de 12 a 18 anos para o atendimento de adolescentes, em conformidade estrita com o ECA.", v:false, j:"O módulo menciona que o SUS adota a convenção da OMS, que é de 10 a 19 anos."},
+{q:"💛 10. A universalidade de acesso aos serviços de saúde em todos os níveis de assistência é um dos princípios do SUS citados no Módulo IV.", v:true, j:"A universalidade de acesso é o princípio do inciso I do Art. 7º da Lei 8.080/90 citado no texto."},
+{q:"💛 11. O direito ao sigilo no atendimento ao adolescente deve ser quebrado obrigatoriamente caso ele procure a Unidade Básica de Saúde desacompanhado.", v:false, j:"O sigilo deve ser garantido, mesmo sem responsável, exceto em casos de risco à vida ou previsão legal."},
+{q:"💛 12. De acordo com as diretrizes, o tratamento medicamentoso é um dos sete eixos estruturantes da Atenção Integral à Saúde de Adolescentes.", v:false, j:"O tratamento medicamentoso não está entre as Diretrizes Nacionais."},
+{q:"💛 13. O isolamento social do adolescente deve ser combatido, e eixos como a Participação Juvenil podem contribuir para reduzir esse risco.", v:true, j:"O isolamento deve ser combatido e a Participação Juvenil ajuda a reduzir o risco."},
+{q:"💛 14. A precedência de atendimento nos serviços públicos ou de relevância pública é um aspecto da prioridade absoluta garantida ao adolescente.", v:true, j:"Conforme descrito no item 2 das garantias listadas no módulo sobre prioridade absoluta."},
+{q:"💛 15. A atenção integral à saúde deve promover obrigatoriamente a dependência dos sujeitos em relação aos responsáveis para garantir o cuidado.", v:false, j:"A atenção integral deve promover o protagonismo dos sujeitos."},
+{q:"💛 16. A igualdade da assistência à saúde veda privilégios de qualquer espécie no atendimento aos usuários do SUS.", v:true, j:"Este é o princípio de igualdade contido no inciso IV do Art. 7º da Lei 8.080/90."},
+{q:"💛 17. A juventude é o período da vida que compreende a faixa etária dos 15 aos 24 anos, segundo a OMS.", v:true, j:"O módulo cita essa faixa etária para a juventude conforme a Organização Mundial da Saúde."},
+{q:"💛 18. A ausência de um responsável legal justifica o encaminhamento automático do adolescente para atendimento hospitalar em detrimento da UBS.", v:false, j:"A ausência de responsável não justifica encaminhamento a outro ponto da rede."},
+{q:"💛 19. A técnica legislativa apurada do ECA é um dos fatores que contribuíram para a sua repercussão nacional e internacional.", v:true, j:"O módulo IV atribui a repercussão do ECA tanto à sua técnica legislativa quanto à nova concepção de sociedade."},
+{q:"💛 20. Cabe ao Conselho Tutelar, e não ao profissional de saúde, avaliar as condições de saúde de um adolescente que busca atendimento sozinho.", v:false, j:"O módulo IV afirma que cabe ao profissional avaliar as condições do adolescente para a tomada de decisões."},
+{q:"💛 21. A reorganização estrutural cerebral é um fenômeno que ocorre de forma independente das intensas transformações corporais características da adolescência.", v:false, j:"O texto associa a reorganização cerebral justamente como parte das intensas transformações desse período."},
+{q:"💛 22. Segundo o Módulo IV, a adolescência é o período em que se constrói grande parte do repertório cognitivo e moral dos sujeitos.", v:true, j:"É nessa fase que tal repertório é construído."},
+{q:"💛 23. A promulgação do Estatuto da Criança e do Adolescente (ECA) em 1990 é apontada como o marco que encerrou a concepção de jovens como sujeitos de direitos.", v:false, j:"Pelo contrário, o ECA reconheceu e inaugurou a concepção de crianças e adolescentes como sujeitos de direitos."},
+{q:"💛 24. A técnica legislativa apurada do ECA é um elemento que, somado à nova concepção social sobre os jovens, garante sua repercussão internacional.", v:true, j:"O texto destaca esses dois pontos como razões para a repercussão da norma."},
+{q:"💛 25. A 'prioridade absoluta' assegurada pelo ECA restringe-se ao atendimento médico, não abrangendo a formulação de políticas públicas ou recursos orçamentários.", v:false, j:"A prioridade inclui a destinação privilegiada de recursos públicos e a precedência em políticas públicas."},
+{q:"💛 26. A atenção integral à saúde do adolescente deve ser obrigatoriamente desvinculada das ações de promoção e prevenção para focar no tratamento curativo.", v:false, j:"A atenção integral pressupõe um conjunto articulado de ações preventivas e curativas."},
+{q:"💛 27. De acordo com a Lei 8.080/90, a descentralização político-administrativa é um princípio do SUS que deve ser observado no atendimento ao adolescente.", v:true, j:"A descentralização é um dos princípios fundamentais do SUS listados no documento."},
+{q:"💛 28. O texto afirma que a adolescência deve ser compreendida apenas através da sua dimensão biológica, ignorando as influências culturais.", v:false, j:"O texto ressalta que a adolescência possui dimensões individuais, socioeconômicas e culturais."},
+{q:"💛 29. A integralidade da assistência no SUS veda a continuidade de ações preventivas quando o tratamento curativo já foi iniciado.", v:false, j:"A integralidade exige um conjunto articulado e contínuo de ações preventivas E curativas."},
+{q:"💛 30. A Organização Mundial da Saúde utiliza o critério cronológico de 10 a 19 anos para definir a adolescência em nível internacional.", v:true, j:"Essa é a definição da OMS citada como convenção internacional no texto."},
+{q:"💛 31. O conceito de juventude, para a OMS, abrange exclusivamente indivíduos que já concluíram o desenvolvimento da fase adolescente.", v:false, j:"A faixa de juventude (15-24) se sobrepõe à de adolescência (10-19), não sendo exclusividade pós-adolescente."},
+{q:"💛 32. A participação juvenil é considerada um eixo estruturante capaz de contribuir para a redução do risco de isolamento social do adolescente.", v:true, j:"O texto cita a participação juvenil como ferramenta para combater o isolamento."},
+{q:"💛 33. O documento veda o acolhimento de adolescentes desacompanhados em Unidades Básicas de Saúde para evitar conflitos com os responsáveis legais.", v:false, j:"O acolhimento deve ser realizado respeitando o sigilo e a autonomia, mesmo sem responsável."},
+{q:"💛 34. A avaliação das condições de saúde para tomada de decisões sobre um adolescente desacompanhado é uma responsabilidade exclusiva do profissional de saúde.", v:true, j:"O texto atribui ao profissional a função de avaliar as condições do adolescente nessas situações."},
+{q:"💛 35. O sigilo profissional no atendimento ao adolescente de 12 a 18 anos é um direito que só pode ser relativizado em situações previstas em leis específicas ou risco à vida.", v:true, j:"Estas são as exceções permitidas para a quebra do sigilo conforme as diretrizes."},
+{q:"💛 36. A Ética e a Cidadania são mencionadas como eixos estruturantes que auxiliam no combate ao isolamento social dos jovens.", v:true, j:"O texto cita expressamente esses eixos como contribuintes para reduzir tal risco."},
+{q:"💛 37. As Diretrizes Nacionais para Atenção Integral à Saúde de Adolescentes e Jovens incluem o tratamento medicamentoso como sua principal estratégia de ação.", v:false, j:"O texto nega que o tratamento medicamentoso esteja entre as Diretrizes Nacionais."},
+{q:"💛 38. A universalidade de acesso aos serviços de saúde deve ser garantida apenas aos adolescentes que comprovadamente não possuem recursos financeiros.", v:false, j:"A universalidade de acesso é um princípio do SUS para todos, sem preconceitos ou privilégios."},
+{q:"💛 39. A cultura de paz é um dos eixos estruturantes das políticas voltadas à atenção integral à saúde dos adolescentes e jovens.", v:true, j:"A cultura de paz está listada como um dos sete eixos estruturantes do documento."},
+{q:"💛 40. O acolhimento do adolescente nas UBS deve ser pautado pela negação da autonomia individual em favor da proteção tutelar da família.", v:false, j:"O acolhimento deve respeitar o sigilo e a autonomia do adolescente conforme o ECA."},
 ];
 
 let repetirUma = false;
@@ -5585,98 +5720,425 @@ function go(id) {
   if (frac) frac.innerText = localStorage.getItem('derrotasGerador') || 0;
 }
 
+
 function render() {
-  if (!currentQuestions || currentQuestions.length === 0) {
-    document.getElementById('qh').innerText = 'Sem questões';
-    document.getElementById('qt').innerText = 'Carregue um banco de dados.';
-    document.getElementById('opts').innerHTML = '';
-    return;
-  }
 
-  const q = currentQuestions[currentIndex];
-  document.getElementById('qh').innerText = `Questão ${currentIndex + 1}/${currentQuestions.length}`;
-  document.getElementById('qt').innerText = q.q;
-  const optsArea = document.getElementById('opts'), fb = document.getElementById('feedback');
-  fb.style.display = 'none'; optsArea.innerHTML = '';
-  optsArea.style.pointerEvents = 'auto';
+    if (window.isVipMode) quizType = 'simulado_vip';
 
-  [true, false].forEach(val => {
-    const btn = document.createElement('div'); btn.className = 'opt'; btn.innerText = val ? "VERDADEIRO" : "FALSO";
-    if (historico[currentIndex] !== undefined) {
-      if (val === historico[currentIndex]) btn.classList.add(val === q.v ? 'correct' : 'wrong');
-      fb.innerText = q.j; fb.style.display = 'block';
-      optsArea.style.pointerEvents = 'none';
+    if (!currentQuestions || currentQuestions.length === 0) {
+
+        document.getElementById('qh').innerText = 'Sem questões';
+
+        document.getElementById('qt').innerText = 'Carregue um banco de dados.';
+
+        document.getElementById('opts').innerHTML = '';
+
+        return;
+
     }
-    btn.onclick = () => check(val, btn);
-    optsArea.appendChild(btn);
-  });
-  document.getElementById('btnPrev').classList.toggle('visible', currentIndex > 0);
-  document.getElementById('btnNext').classList.toggle('visible', historico[currentIndex] !== undefined);
+
+
+
+    const q = currentQuestions[currentIndex];
+
+    document.getElementById('qh').innerText = `Questão ${currentIndex + 1}/${currentQuestions.length}`;
+
+    document.getElementById('qt').innerText = q.q;
+
+    const optsArea = document.getElementById('opts'), fb = document.getElementById('feedback');
+
+    fb.style.display = 'none'; optsArea.innerHTML = '';
+
+    optsArea.style.pointerEvents = 'auto';
+
+
+
+    [true, false].forEach(val => {
+
+        const btn = document.createElement('div'); btn.className = 'opt'; btn.innerText = val ? "VERDADEIRO" : "FALSO";
+
+        if (historico[currentIndex] !== undefined) {
+
+            if (val === historico[currentIndex]) btn.classList.add(val === q.v ? 'correct' : 'wrong');
+
+            fb.innerText = q.j; fb.style.display = 'block';
+
+            optsArea.style.pointerEvents = 'none';
+
+        }
+
+        btn.onclick = () => check(val, btn);
+
+        optsArea.appendChild(btn);
+
+    });
+
+    document.getElementById('btnPrev').classList.toggle('visible', currentIndex > 0);
+
+    document.getElementById('btnNext').classList.toggle('visible', historico[currentIndex] !== undefined);
+
 }
 
-function check(answer, btn) {
-    const q = currentQuestions[currentIndex], acertou = (answer === q.v), cont = document.getElementById('container');
-    historico[currentIndex] = answer;
-    document.getElementById('opts').style.pointerEvents = 'none';
-    
-    if(acertou) {
-        acertosSessao++; 
-        
-        // --- LÓGICA DA SENHA DA AUDIOTECA ---
-        if(quizType === 25) {
-            acertosContadorSenha++;
-            if(acertosContadorSenha === 25) {
-                gerarSenhaTemporaria(); 
-                acertosContadorSenha = 0; // Reseta para não gerar duplicado
-            }
+
+
+/* =====================================================
+   ✅ REGISTRAR RESPOSTA (Apenas anota os pontos)
+===================================================== */
+function registrarResposta(acertou, answer) {
+
+    if (typeof historico !== 'object' || historico === null) {
+
+        historico = {};
+
+    }
+
+
+
+    /* ==========================
+
+       🔥 MODO VIP (ISOLADO)
+
+    ========================== */
+
+    if (window.isVipMode || quizType === 'simulado_vip') {
+
+
+
+        totalRespondidasVip++;
+
+        if (acertou) totalAcertosVip++;
+
+        else totalErrosVip++;
+
+
+
+        localStorage.setItem('vip_total', totalRespondidasVip);
+
+        localStorage.setItem('vip_acertos', totalAcertosVip);
+
+        localStorage.setItem('vip_erros', totalErrosVip);
+
+
+
+        // ⚠️ REGRA DE OURO:
+
+        // VIP grava boolean (true/false), NÃO 'A'/'E'
+
+        historico[currentIndex] = answer;
+
+
+
+        if (typeof atualizarPainelVip === 'function') {
+
+            atualizarPainelVip();
+
         }
+
+
+
+        return; // 🔒 VIP NÃO deixa nada vazar
+
+    }
+
+
+
+    /* ==========================
+
+       📚 MODOS NORMAIS / SOBREVIVENTE
+
+    ========================== */
+
+
+
+    if (acertou) acertosSessao++;
+
+    else erros++;
+
+
+
+    historico[currentIndex] = answer;
+
+
+
+    if (typeof saveProgress === 'function') {
+
+        saveProgress(quizType);
+
+    }
+
+}
+
+function iniciarSimuladoPelaSalaVip() {
+    console.log("VIP: iniciando simulado sem expulsão");
+
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) {
+        salaVip.style.display = "none";
+    }
+
+    window.isVipMode = true;
+    quizType = 'simulado_vip';
+    currentIndex = 0;
+    historico = {};
+    
+    // No VIP, as vidas começam cheias mas não causam expulsão
+    erros = 0; 
+    acertosSessao = 0;
+
+    try {
+        const megaBanco = [
+            ...(typeof bancoOficial !== 'undefined' ? bancoOficial : []),
+            ...(typeof bancoModulos !== 'undefined' ? bancoModulos : []),
+            ...(typeof bancoVariados !== 'undefined' ? bancoVariados : []),
+            ...(typeof bancoPortarias !== 'undefined' ? bancoPortarias : [])
+        ];
+
+        if (megaBanco.length === 0) {
+            alert("Bancos não encontrados!");
+            if (salaVip) salaVip.style.display = "flex";
+            return;
+        }
+
+        currentQuestions = megaBanco.sort(() => 0.5 - Math.random()).slice(0, 30); 
+
+        // Interface: Estrela dourada em vez de corações, se preferir
+        const vContainer = document.getElementById('vidas-container');
+        if (vContainer) {
+            vContainer.innerHTML = '<span style="font-size:1.5em; color: gold;">⭐ SIMULADO VIP ⭐</span>';
+        }
+
+        go('quiz');
+        render();
+
+    } catch (e) {
+        console.error(e);
+        if (salaVip) salaVip.style.display = "flex";
+    }
+}
+
+
+/* =====================================================
+   🚀 CHECK (O Motor que decide o que acontece)
+===================================================== */
+function check(answer, btn) {
+
+    const q = currentQuestions[currentIndex];
+
+    const acertou = (answer === q.v);
+
+    const cont = document.getElementById('container');
+
+
+
+    // ÚNICA INSERÇÃO: Conecta com seu sistema de pontos VIP
+
+    registrarResposta(acertou, answer);
+
+
+
+    historico[currentIndex] = answer;
+
+    document.getElementById('opts').style.pointerEvents = 'none';
+
+    
+
+    if (acertou) {
+
+        acertosSessao++; 
+
+        
+
+        // --- LÓGICA DA SENHA DA AUDIOTECA ---
+
+        if (quizType === 25) {
+
+            acertosContadorSenha++;
+
+            if (acertosContadorSenha === 25) {
+
+                gerarSenhaTemporaria(); 
+
+                acertosContadorSenha = 0;
+
+            }
+
+        }
+
         // ------------------------------------
 
+
+
         btn.classList.add('correct');
+
         cont.classList.add('acertou-flash');
-        setTimeout(() => { cont.classList.remove('acertou-flash'); next(); }, 700);
+
+        setTimeout(() => { 
+
+            cont.classList.remove('acertou-flash'); 
+
+            next(); 
+
+        }, 700);
+
+
+
     } else {
+
+
+
         // SE ERROU NA BOMBA, O CONTADOR DE SENHA VOLTA PARA ZERO
-        if(quizType === 25) {
+
+        if (quizType === 25) {
+
             acertosContadorSenha = 0;
+
         }
 
+
+
         btn.classList.add('wrong');
+
         cont.classList.add('errou-flash');
+
         setTimeout(() => cont.classList.remove('errou-flash'), 700);
+
         
-        if(quizType === 25) {
-             clearInterval(timerInterval); // << PARA O RELÓGIO NA BOMBA
+
+        if (quizType === 25) {
+
+            if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+
+
+
             let d = (parseInt(localStorage.getItem('derrotasGerador')) || 0) + 1; 
+
             localStorage.setItem('derrotasGerador', d);
+
+
+
             cont.classList.add('tremendo');
+
+
+
             const ob = document.getElementById('overlay-blood');
-            ob.className = 'blood-alert-overlay';
-            ob.innerHTML = `<span style="font-size:1.5em; letter-spacing:5px;">💥 SISTEMA COMPROMETIDO 💥</span><br><span style="font-size:3em; font-weight:900;">💥 AUTODESTRUIÇÃO...💥 </span>`;
+
+            if (ob) {
+
+                ob.className = 'blood-alert-overlay';
+
+                ob.innerHTML = `
+
+                    <span style="font-size:1.5em; letter-spacing:5px;">💥 SISTEMA COMPROMETIDO 💥</span><br>
+
+                    <span style="font-size:3em; font-weight:900;">💥 AUTODESTRUIÇÃO...💥</span>
+
+                `;
+
+            }
+
             
-            let bipes = 0; const alarme = setInterval(() => { playAlarm(); bipes++; if(bipes >= 8) clearInterval(alarme); }, 400);
+
+            let bipes = 0;
+
+            const alarme = setInterval(() => {
+
+                if (typeof playAlarm === 'function') playAlarm();
+
+                bipes++;
+
+                if (bipes >= 8) clearInterval(alarme);
+
+            }, 400);
+
             
+
             setTimeout(() => { 
+
                 cont.classList.remove('tremendo');
-                if(ob) { ob.className = ''; ob.style.display = 'none'; }
-                document.getElementById('fail-stats').innerHTML = `A BOMBA EXPLODIU NA SUA CARA!<br>ACERTOS: ${acertosSessao}`;
-                
-                const btnF = document.getElementById('btn-tentar-novamente');
-                if(btnF) {
-                    btnF.onclick = function() { go('area-restrita'); };
-                    btnF.innerText = "TENTAR NOVAMENTE";
+
+                if (ob) { 
+
+                    ob.className = ''; 
+
+                    ob.style.display = 'none'; 
+
                 }
+
+
+
+                const failStats = document.getElementById('fail-stats');
+
+                if (failStats) {
+
+                    failStats.innerHTML = `A BOMBA EXPLODIU NA SUA CARA!<br>ACERTOS: ${acertosSessao}`;
+
+                }
+
                 
+
+                const btnF = document.getElementById('btn-tentar-novamente');
+
+                if (btnF) {
+
+                    btnF.onclick = function() { go('area-restrita'); };
+
+                    btnF.innerText = "TENTAR NOVAMENTE";
+
+                }
+
+                
+
                 go('fail-screen');
+
             }, 5000);
+
+
+
         } else {
+
             erros++; 
-            atualizarVidas(); 
-            document.getElementById('feedback').innerText = q.j; 
-            document.getElementById('feedback').style.display = 'block';
-            document.getElementById('btnNext').classList.add('visible');
+
+            if (typeof atualizarVidas === 'function') atualizarVidas(); 
+
+            const feedbackEl = document.getElementById('feedback');
+
+            if (feedbackEl) {
+
+                feedbackEl.innerText = q.j; 
+
+                feedbackEl.style.display = 'block';
+
+            }
+
+            const btnNext = document.getElementById('btnNext');
+
+            if (btnNext) btnNext.classList.add('visible');
+
         }
+
     }
+
+}
+
+
+function next() {
+
+    if (window.isVipMode) quizType = 'simulado_vip';
+
+    if (currentIndex < currentQuestions.length - 1) {
+
+        currentIndex++;
+
+        render();
+
+        if (isStudyMode(quizType)) saveProgress(quizType);
+
+    } else {
+
+        finalizar();
+
+    }
+
 }
 
 function atualizarVidas() {
@@ -5699,17 +6161,6 @@ function atualizarVidas() {
             go('fail-screen');
         }, 500);
     }
-}
-
-function next() {
-  if (currentIndex < currentQuestions.length - 1) {
-    currentIndex++;
-    render();
-    // salva progresso apenas nos modos de estudo
-    if (isStudyMode(quizType)) saveProgress(quizType);
-  } else {
-    finalizar();
-  }
 }
 
 // --- FOGOS DE ARTIFÍCIO ---
@@ -5891,7 +6342,7 @@ function finalizar() {
             _v.style.display = "none";
         }, 10000);
 
-    } else {
+} else {
 
         _c.innerHTML =
             '<div style="font-size:3em;">📚✅</div>' +
@@ -5901,9 +6352,18 @@ function finalizar() {
 
         _t.style.display = "block";
         _t.innerText = "VOLTAR";
+        
+        // AJUSTE VIP AQUI:
         _t.onclick = function () {
             _o.style.display = "none";
-            go("area-restrita");
+            
+            if (window.isVipMode) {
+                // Se for VIP, volta à Sala do Doador
+                voltarMenuPosVip();
+            } else {
+                // Se não for VIP, segue o padrão
+                go("area-restrita");
+            }
         };
     }
 }
@@ -5982,35 +6442,140 @@ function clearProgress(modo) {
   localStorage.removeItem(`progress_${modo}`);
 }
 
+
+// --- INICIALIZAÇÃO DO BANCO VIP
+let totalRespondidasVip = parseInt(localStorage.getItem('vip_total')) || 0;
+let totalAcertosVip = parseInt(localStorage.getItem('vip_acertos')) || 0;
+let totalErrosVip = parseInt(localStorage.getItem('vip_erros')) || 0;
+window.isVipMode = false;
+
+/* =====================================================
+   2. Painel VIP
+===================================================== */
+function atualizarPainelVip() {
+    const painel = document.getElementById('painel-stats-vip');
+    if (!painel) return;
+
+    const aproveitamento = totalRespondidasVip > 0
+        ? ((totalAcertosVip / totalRespondidasVip) * 100).toFixed(0)
+        : 0;
+
+    painel.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+            <div style="background:#0a0a0a;padding:8px;border-radius:6px;border:1px solid #222;text-align:center;">
+                <small style="color:#666;font-size:.65em;">Questões</small>
+                <b>${totalRespondidasVip}</b>
+            </div>
+            <div style="background:#0a0a0a;padding:8px;border-radius:6px;border:1px solid #00ff4133;text-align:center;">
+                <small style="color:#00ff41;font-size:.65em;">Acertos</small>
+                <b style="color:#00ff41;">${totalAcertosVip}</b>
+            </div>
+            <div style="background:#0a0a0a;padding:8px;border-radius:6px;border:1px solid #ff3b3b33;text-align:center;">
+                <small style="color:#ff3b3b;font-size:.65em;">Erros</small>
+                <b style="color:#ff3b3b;">${totalErrosVip}</b>
+            </div>
+            <div style="background:#0a0a0a;padding:8px;border-radius:6px;border:1px solid #FFD70033;text-align:center;">
+                <small style="color:#FFD700;font-size:.65em;">Aproveit.</small>
+                <b style="color:#FFD700;">${aproveitamento}%</b>
+            </div>
+        </div>
+    `;
+}
+
+
+/* =====================================================
+   5. Reset
+===================================================== */
+function resetarStatsVip() {
+    if (!confirm("Deseja zerar seu histórico VIP?")) return;
+
+    localStorage.removeItem('vip_total');
+    localStorage.removeItem('vip_acertos');
+    localStorage.removeItem('vip_erros');
+
+    totalRespondidasVip = 0;
+    totalAcertosVip = 0;
+    totalErrosVip = 0;
+
+    atualizarPainelVip();
+}
+
+
 // ==========================================
 // MOTOR CENTRAL
 // ==========================================
 function startQuiz(modo) {
-  quizType = modo;
+  // Blindagem de Estado sugerida pelo parceiro
+  window.isVipMode = (modo === 'vip' || modo === 'simulado_vip');
+  quizType = window.isVipMode ? 'simulado_vip' : modo;
+
   currentIndex = 0;
   erros = 0;
   acertosSessao = 0;
   acertosContadorSenha = 0;
-  historico = {}; // padronizado sem acento
+  historico = {};
 
   const vContainer = document.getElementById('vidas-container');
   const btnExtra = document.getElementById('btnExtra');
   const feedback = document.getElementById('feedback');
   if (feedback) feedback.style.display = 'none';
 
-  if (modo === 25) {
-    // Modo sobrevivente: 25 aleatórias do mega banco
+  /* ==========================
+     🔥 MODO VIP (AJUSTADO)
+  ========================== */
+ if (modo === 'vip' || modo === 'simulado_vip') {
+
+    quizType = 'simulado_vip';
+
+    const megaBanco = [
+        ...(typeof bancoOficial !== 'undefined' ? bancoOficial : []),
+        ...(typeof bancoModulos !== 'undefined' ? bancoModulos : []),
+        ...(typeof bancoVariados !== 'undefined' ? bancoVariados : []),
+        ...(typeof bancoPortarias !== 'undefined' ? bancoPortarias : [])
+    ];
+
+    const TOTAL_VIP = 30; // <<< FIXO, NÃO HERDA 25
+
+    currentQuestions = [...megaBanco]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, TOTAL_VIP);
+
+    // vidas / UI
+    if (vContainer) {
+        vContainer.innerHTML =
+            '<span class="bomba-pulsa" style="filter:drop-shadow(0 0 6px gold); font-size:1.5em;">⭐</span>';
+    }
+
+    if (btnExtra) {
+        btnExtra.innerText = "🏛 SALA VIP 🏛";
+        btnExtra.style.background = "#FFD700";
+        btnExtra.style.color = "#000";
+        btnExtra.onclick = () => go('area-apoiador');
+    }
+
+    if (typeof clearProgress === 'function') clearProgress('simulado_vip');
+}
+
+
+  /* ==========================
+     💣 SOBREVIVENTE
+  ========================== */
+  else if (modo === 25) {
     const megaBanco = [...bancoOficial, ...bancoModulos, ...bancoVariados, ...bancoPortarias];
     currentQuestions = megaBanco.sort(() => 0.5 - Math.random()).slice(0, 25);
 
     vContainer.innerHTML = '<span class="bomba-pulsa">💣</span>';
     btnExtra.innerText = "💪 MOTIVACIONAL 💪";
     btnExtra.style.background = "#475569";
-    btnExtra.onclick = mostrarProverbio;
+    btnExtra.onclick = typeof mostrarProverbio === 'function' ? mostrarProverbio : () => {};
 
-    clearProgress(modo); // desafio não carrega progresso
-  } else {
-    // Seleção do banco
+    if (typeof clearProgress === 'function') clearProgress(modo);
+  }
+
+  /* ==========================
+     📚 MODOS NORMAIS
+  ========================== */
+  else {
     let base;
     if (modo === 'total') base = [...bancoOficial];
     else if (modo === 'modulos') base = [...bancoModulos];
@@ -6018,65 +6583,103 @@ function startQuiz(modo) {
     else if (modo === 'portarias') base = [...bancoPortarias];
     else base = [...bancoOficial];
 
-    // Em 'total' você pode limitar a 100, nos estudos usa o tamanho do banco
-    currentQuestions = base.sort(() => 0.5 - Math.random()).slice(0, modo === 'total' ? 100 : base.length);
+    currentQuestions = base
+      .sort(() => 0.5 - Math.random())
+      .slice(0, modo === 'total' ? 100 : base.length);
 
+    vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
+    
     if (modo === 'total') {
-      vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
       btnExtra.innerText = "🏠 MENU 🏠";
       btnExtra.style.background = "#475569";
-      btnExtra.onclick = () => location.reload(); // seu fluxo atual
-      clearProgress(modo); // desafio não carrega progresso
+      btnExtra.onclick = () => location.reload();
+      if (typeof clearProgress === 'function') clearProgress(modo);
     } else {
-      // Estudo: tenta carregar progresso
-      vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
       btnExtra.innerText = "🙏 MISERICÓRDIA 🙏";
       btnExtra.style.background = "#dc2626";
-      btnExtra.onclick = ativarMisericordia;
+      btnExtra.onclick = typeof ativarMisericordia === 'function' ? ativarMisericordia : () => {};
 
-      const saved = loadProgress(modo);
-      if (saved) {
-        currentIndex = Math.min(saved.index || 0, currentQuestions.length - 1);
-        acertosSessao = saved.acertosSessao || 0;
-        erros = saved.erros || 0;
-        historico = saved.historico || {};
+      if (typeof loadProgress === 'function') {
+          const saved = loadProgress(modo);
+          if (saved) {
+            currentIndex = Math.min(saved.index || 0, currentQuestions.length - 1);
+            acertosSessao = saved.acertosSessao || 0;
+            erros = saved.erros || 0;
+            historico = saved.historico || {};
+          }
       }
     }
   }
 
-  // Se não houver questões, evita quebrar
   if (!currentQuestions || currentQuestions.length === 0) {
-    mostrarMensagem("Nenhuma questão disponível neste banco.", "erro");
+    alert("Nenhuma questão disponível neste banco.");
+    return;
   }
 
+  // Ativa botões de navegação
   document.getElementById('btnPrev').classList.add('visible');
   document.getElementById('btnNext').classList.add('visible');
   document.getElementById('btnExtra').classList.add('visible');
 
-  go('quiz'); 
-  render();
-  startTimer();
+  go('quiz');
+  if (typeof render === 'function') render();
+  if (typeof startTimer === 'function') startTimer();
+}
+
+// 1. Simulado Exclusivo Módulo 4 (Engrenagem)
+function iniciarModulo4Vip() {
+    if (typeof bancoVip === 'undefined' || bancoVip.length === 0) {
+        alert("Aura: O Módulo 4 ainda está sendo processado. Crie o 'const bancoVip' no seu arquivo!");
+        return;
+    }
+
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) salaVip.style.display = "none";
+
+    window.isVipMode = true;
+    quizType = 'simulado_vip'; 
+    currentIndex = 0;
+    historico = {};
+
+    // Puxa EXCLUSIVAMENTE do bancoVip (Módulo 4)
+    currentQuestions = [...bancoVip].sort(() => 0.5 - Math.random());
+
+    go('quiz');
+    render();
+    console.log("Módulo 4 VIP iniciado!");
+}
+
+// 2. Mensagem de Coração
+function agradecimentoVip() {
+    const nome = document.getElementById('nome-doador-vip')?.textContent || "Guerreiro";
+    alert(`Sistema: ${nome}, seu apoio mantém esse sistema vivo e em constante evolução. Obrigado por acreditar no projeto! Na engrenagem à esquerda você encontrará questões exclusivas do Módulo 4`);
 }
 
 function atualizarVidas() {
+    // Escudo VIP: Se for VIP, ele apenas marca o erro visualmente, mas NUNCA entra no IF de falha
+    if (window.isVipMode) {
+        if(erros == 1 && document.getElementById('v3')) document.getElementById('v3').style.opacity = '0.2';
+        if(erros == 2 && document.getElementById('v2')) document.getElementById('v2').style.opacity = '0.2';
+        if(erros >= 3 && document.getElementById('v1')) document.getElementById('v1').style.opacity = '0.2';
+        return; // MATA A FUNÇÃO AQUI PARA O VIP (NÃO EXPULSA)
+    }
+
+    // ABAIXO DISSO É O SEU CÓDIGO ORIGINAL INTACTO PARA OS OUTROS MODOS
     if(erros == 1 && document.getElementById('v3')) document.getElementById('v3').style.opacity = '0.2';
     if(erros == 2 && document.getElementById('v2')) document.getElementById('v2').style.opacity = '0.2';
     if(erros >= 3) {
-clearInterval(timerInterval); // PARA O RELÓGIO NA FALHA
+        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval); 
         if(document.getElementById('v1')) document.getElementById('v1').style.opacity = '0.2';
         
         setTimeout(() => { 
             document.getElementById('fail-stats').innerHTML = `ACERTOS NESSA SESSÃO: <span style="color:var(--success)">${acertosSessao}</span>`;
             
-            // ID específico para não haver erro de seleção
             const btnFalha = document.getElementById('btn-tentar-novamente');
             
             if(quizType === 'total') {
-                // Se falhou no Provão, volta para a Capa
                 btnFalha.onclick = function() { go('capa'); }; 
                 btnFalha.innerText = "VOLTAR AO INÍCIO";
             } else {
-                // Se falhou nos simulados, volta para a Área Restrita
                 btnFalha.onclick = function() { go('area-restrita'); }; 
                 btnFalha.innerText = "TENTAR NOVAMENTE";
             }
@@ -6084,6 +6687,23 @@ clearInterval(timerInterval); // PARA O RELÓGIO NA FALHA
             go('fail-screen');
         }, 500);
     }
+}
+
+
+function voltarMenuPosVip() {
+    // 1. Limpa o estado VIP antes de sair
+    window.isVipMode = false;
+
+    // 2. Volta para a tela principal (Capa ou Main)
+    go('capa'); 
+    
+    // 3. O SEGREDO: Força a Sala do Doador a abrir imediatamente sobre a capa
+    setTimeout(() => {
+        const salaVip = document.getElementById('area-apoiador');
+        if (salaVip) {
+            salaVip.style.setProperty("display", "flex", "important");
+        }
+    }, 100);
 }
 
 function mostrarManifesto() {
@@ -6379,26 +6999,29 @@ function fecharSlideVitoria() {
 
 (() => {
   const _d = [
-    /* NOMES (0 a 16) */
-    [82,101,110,97,116,111,32,84,104,101,114,105,111,110],
-    [86,105,118,105,97,110,101,32,66,97,115,116,111,115,32,77,97,99,105,101,108,32,82,111,100,114,105,103,117,101,115],
-    [82,97,109,111,110,32,83,111,117,122,97,32,100,111,32,78,97,115,99,105,109,101,110,116,111],
-    [82,97,102,97,101,108,32,100,97,32,83,105,108,118,97,32,79,108,105,118,101,114,97],
-    [70,101,114,110,97,110,100,111,32,70,114,101,105,114,101,115,32,66,97,115,116,111,115,32,77,101,108,108,111],
-    [76,117,99,97,115,32,86,105,110,105,99,105,117,115,32,65,108,118,101,115,32,100,111,32,78,97,115,99,105,109,101,110,116,111],
-    [65,100,97,108,98,101,114,116,111,32,100,111,115,32,82,101,105,115,32,83,97,108,101,115],
-    [67,108,101,105,108,115,111,110,32,67,111,101,108,104,111,32,80,101,114,101,105,114,97],
-    [82,97,102,97,101,108,32,65,108,101,120,97,110,100,114,101,32,70,101,114,114,101,105,114,97,32,82,97,109,111,115],
-    [74,111,115,101,32,67,97,114,108,111,115,32,77,111,116,97,32,66,97,114,98,111,115,97],
-    [74,111,227,111,32,67,97,114,108,111,115,32,77,97,100,101,105,114,97,32,100,111,32,78,97,115,99,105,109,101,110,116,111],
-    [77,97,114,107,101,110,105,97,32,75,101,108,108,121,32,100,97,32,83,105,108,118,97,32,81,117,101,105,114,111,122],
-    [67,105,99,101,114,111,32,72,105,108,100,101,114,108,108,111,110,32,100,97,32,83,105,108,118,97,32,67,97,118,97,108,99,97,110,116,101],
-    [84,105,97,103,111,32,83,111,97,114,101,115,32,66,97,116,105,115,116,97],
-    [77,97,114,107,101,110,105,97,32,75,101,108,108,121,32,100,97,32,83,105,108,118,97,32,81,117,101,105,114,111,122],
-    [83,97,109,121,97,32,83,97,32,100,97,32,83,105,108,118,97],
-    [67,105,99,101,114,97,32,77,97,114,105,97,32,100,101,32,77,101,108,111,32,78,97,115,99,105,109,101,110,116,111],
+    /* NOMES (0 a 19) */
+    [82,101,110,97,116,111,32,84,104,101,114,105,111,110], // Renato
+    [86,105,118,105,97,110,101,32,66,97,115,116,111,115,32,77,97,99,105,101,108,32,82,111,100,114,105,103,117,101,115], // Viviane
+    [82,97,109,111,110,32,83,111,117,122,97,32,100,111,32,78,97,115,99,105,109,101,110,116,111], // Ramon
+    [82,97,102,97,101,108,32,100,97,32,83,105,108,118,97,32,79,108,105,118,101,114,97], // Rafael
+    [70,101,114,110,97,110,100,111,32,70,114,101,105,114,101,115,32,66,97,115,116,111,115,32,77,101,108,108,111], // Fernando
+    [76,117,99,97,115,32,86,105,110,105,99,105,117,115,32,65,108,118,101,115,32,100,111,32,78,97,115,99,105,109,101,110,116,111], // Lucas
+    [65,100,97,108,98,101,114,116,111,32,100,111,115,32,82,101,105,115,32,83,97,108,101,115], // Adalberto
+    [67,108,101,105,108,115,111,110,32,67,111,101,108,104,111,32,80,101,114,101,105,114,97], // Cleilson
+    [82,97,102,97,101,108,32,65,108,101,120,97,110,100,114,101,32,70,101,114,114,101,105,114,97,32,82,97,109,111,115], // Rafael A.
+    [74,111,115,101,32,67,97,114,108,111,115,32,77,111,116,97,32,66,97,114,98,111,115,97], // Jose
+    [74,111,227,111,32,67,97,114,108,111,115,32,77,97,100,101,105,114,97,32,100,111,32,78,97,115,99,105,109,101,110,116,111], // João
+    [77,97,114,107,101,110,105,97,32,75,101,108,108,121,32,100,97,32,83,105,108,118,97,32,81,117,101,105,114,111,122], // Markenia
+    [67,105,99,101,114,111,32,72,105,108,100,101,114,108,108,111,110,32,100,97,32,83,105,108,118,97,32,67,97,118,97,108,99,97,110,116,101], // Cicero
+    [84,105,97,103,111,32,83,111,97,114,101,115,32,66,97,116,105,115,116,97], // Tiago
+    [77,97,114,107,101,110,105,97,32,75,101,108,108,121,32,100,97,32,83,105,108,118,97,32,81,117,101,105,114,111,122], // Markenia (Dup)
+    [83,97,109,121,97,32,83,97,32,100,97,32,83,105,108,118,97], // Samya
+    [67,105,99,101,114,97,32,77,97,114,105,97,32,100,101,32,77,101,108,111,32,78,97,115,99,105,109,101,110,116,111], // Cicera
+    [70,114,97,110,99,105,108,101,110,101,32,100,101,32,83,111,117,115,97,32,66,101,122,101,114,114,97], // Francilene
+    [65,110,116,111,110,105,111,32,86,97,110,100,101,114,108,97,110,32,77,97,114,105,110,104,111,32,100,101,32,77,101,115,113,117,105,116,97], // Antonio
+    [73,103,111,114,32,76,117,97,110,32,76,105,109,97,32,100,97,32,83,105,108,118,97], // Igor
 
-    /* IDS (17 a 33) */
+    /* IDS (20 a 39) */
     [53,48,49,48],             // 5010
     [53,56,51],                // 583
     [52,56,54,50],             // 4862
@@ -6415,33 +7038,38 @@ function fecharSlideVitoria() {
     [55,56,48,54],             // 7806
     [48,49,52,50,57,56],       // 014298
     [54,53,48,49],             // 6501
-    [50,54,54,57]              // 2669
+    [50,54,54,57],             // 2669
+    [50,53,48,56,51],          // 25083
+    [52,49,50,49],             // 4121
+    [49,57,54,48]              // 1960
   ];
 
   const _s = i => String.fromCharCode(..._d[i]);
 
   const DOADORES = [
-    { id: _s(17), nome: _s(0) },
-    { id: _s(18), nome: _s(1) },
-    { id: _s(19), nome: _s(2) },
-    { id: _s(20), nome: _s(3) },
-    { id: _s(21), nome: _s(4) },
-    { id: _s(22), nome: _s(5) },
-    { id: _s(23), nome: _s(6) },
-    { id: _s(24), nome: _s(7) },
-    { id: _s(25), nome: _s(8) },
-    { id: _s(26), nome: _s(9) },
-    { id: _s(27), nome: _s(10) },
-    { id: _s(28), nome: _s(11) },
-    { id: _s(29), nome: _s(12) },
-    { id: _s(30), nome: _s(13) },
-    { id: _s(31), nome: _s(14) },
-    { id: _s(32), nome: _s(15) },
-    { id: _s(33), nome: _s(16) }
+    { id: _s(20), nome: _s(0) },
+    { id: _s(21), nome: _s(1) },
+    { id: _s(22), nome: _s(2) },
+    { id: _s(23), nome: _s(3) },
+    { id: _s(24), nome: _s(4) },
+    { id: _s(25), nome: _s(5) },
+    { id: _s(26), nome: _s(6) },
+    { id: _s(27), nome: _s(7) },
+    { id: _s(28), nome: _s(8) },
+    { id: _s(29), nome: _s(9) },
+    { id: _s(30), nome: _s(10) },
+    { id: _s(31), nome: _s(11) },
+    { id: _s(32), nome: _s(12) },
+    { id: _s(33), nome: _s(13) },
+    { id: _s(34), nome: _s(14) },
+    { id: _s(35), nome: _s(15) },
+    { id: _s(36), nome: _s(16) },
+    { id: _s(37), nome: _s(17) },
+    { id: _s(38), nome: _s(18) },
+    { id: _s(39), nome: _s(19) }
   ];
 
   window.DOADORES = DOADORES;
-
 })();
 
 /* ===============================
@@ -6490,9 +7118,101 @@ function validarVip(id) {
 }
 
 /* =====================================================
-   ACESSO À AUDIOTECA 
+   ACESSO À ÀREA VIP
    ===================================================== */
-function acessoAdmin() {
+function abrirAudiotecaPelaSalaVip() {
+    // 1. Primeiro: Escondemos a Sala VIP para ela não tapar a visão
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) {
+        salaVip.style.display = "none";
+    }
+
+    // 2. DNA da sua função original que funciona:
+    liberado = true;
+
+    const telaAudioteca = document.getElementById('audioteca');
+    if (telaAudioteca) {
+        telaAudioteca.style.display = "flex";
+        telaAudioteca.style.position = "fixed";
+        telaAudioteca.style.inset = "0";
+        telaAudioteca.style.zIndex = "100000"; // Um pouco maior que os 99999 da sala
+    }
+
+    // 3. Carregamento dos áudios
+    if (typeof carregarAudioteca === "function") {
+        const listaParaUsar = (typeof listaAulas !== 'undefined') ? listaAulas : [];
+        carregarAudioteca(listaParaUsar);
+    }
+}
+
+function abrirEstudosPelaSalaVip() {
+    // 1. Esconde a Sala VIP
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) {
+        salaVip.style.display = 'none';
+    }
+
+    // 2. Se o seu sistema usa a variável 'pessoa' (como na função usuarioIphone),
+    // vamos garantir que ela não esteja vazia para não quebrar o slide.
+    if (typeof pessoa === 'undefined' || !pessoa) {
+        window.pessoa = { nome: "Doador VIP", status: "Classificado", pontos: "---" };
+    }
+
+    // 3. Comando oficial
+    go('area-restrita');
+
+    // 4. Se o slide sumir, forçamos a primeira renderização
+    if (typeof renderizarQuestao === 'function') {
+        renderizarQuestao(0); 
+    }
+}
+
+function irParaAreaApoiador() {
+    const id = prompt("DIGITE SUA SENHA EXCLUSIVA DE APOIADOR:");
+    if (!id) return;
+
+    const doador = validarVip(id);
+
+    if (!doador) {
+        mostrarMensagem(`<h1 style="color:red; font-weight:900;">🤚 ACESSO NEGADO ✋<br> APOIE À CAUSA<br>CONTEÚDO EXCLUSIVO </h1>`, 'erro');
+        return;
+    }
+
+    liberado = true;
+
+    // Garante que o nome apareça
+    const nomeDoadorElemento = document.getElementById('nome-doador-vip');
+    if (nomeDoadorElemento) {
+        nomeDoadorElemento.textContent = doador.nome;
+    }
+
+    // Tenta o go() padrão, mas logo abaixo força a exibição manual
+    go('area-apoiador');
+
+    const telaVip = document.getElementById('area-apoiador');
+    if (telaVip) {
+        telaVip.style.setProperty("display", "flex", "important");
+        telaVip.style.background = "#000"; // Garante que não fique transparente
+    }
+}
+
+function entrarNaAudiotecaVip() {
+    // 1. Teleporta para a tela da audioteca
+    go('audioteca');
+
+    // 2. Chama a função que você já tem para carregar os áudios
+    // Usamos o seu banco de dados padrão (listaAulas)
+    if (typeof carregarAudioteca === "function") {
+        carregarAudioteca(typeof listaAulas !== 'undefined' ? listaAulas : []);
+    }
+
+    // 3. Opcional: Inicia a vigilância se você tiver essa função
+    if (typeof iniciarVigilanciaAudioteca === 'function') {
+        iniciarVigilanciaAudioteca();
+    }
+}
+
+/* function acessoAdmin() {
 
   const id = prompt("DIGITE SUA SENHA EXCLUSIVA DE DOADOR:");
   if (!id) return;
@@ -6515,10 +7235,8 @@ function acessoAdmin() {
     return;
   }
 
-  // 🔓 ACESSO LIBERADO
   liberado = true;
 
-  // 🌟 MENSAGEM PERSONALIZADA
   mostrarMensagem(
     `
     <div style="text-align:center; line-height:1.6;">
@@ -6549,9 +7267,8 @@ function acessoAdmin() {
     </div>
     `,
     'sucesso'
-  );
+  ); 
 
-  /* ===== 1. EXIBE A AUDIOTECA ===== */
   const telaAudioteca = document.getElementById('audioteca');
   if (telaAudioteca) {
     telaAudioteca.style.display = "flex";
@@ -6560,7 +7277,6 @@ function acessoAdmin() {
     telaAudioteca.style.zIndex = "9999";
   }
 
-  /* ===== 2. CARREGA OS ÁUDIOS ===== */
   if (typeof carregarAudioteca === "function") {
     const listaParaUsar =
       (typeof listaAulas !== 'undefined')
@@ -6573,6 +7289,7 @@ function acessoAdmin() {
     carregarAudioteca(listaParaUsar);
   }
 }
+*/
 
 /* =====================================================
    CARREGAMENTO DA AUDIOTECA
@@ -6917,6 +7634,12 @@ if (elFechadura) {
     });
 }
 
+// Isso garante que o painel mostre os dados assim que o código carregar
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof atualizarPainelVip === 'function') {
+        atualizarPainelVip();
+    }
+});
 </script>
 </body>
 </html>
