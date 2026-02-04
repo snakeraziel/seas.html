@@ -533,8 +533,11 @@ button {
          style="position:absolute; bottom:0; right:0; width:50px; height:50px; z-index:99999; cursor:default; background:transparent;">
     </div> -->
 
-    <h1 style="font-size:3em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-    <h2 style="font-size:2em;color:#39FF14;margin:0;">1769 QUESTÕES</h2>
+<h1 style="font-size:3em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
+    <h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+    1769 QUESTÕES 
+    <span id="lampada-vip" onclick="mostrarMensagemVip()" style="cursor:pointer; filter: drop-shadow(0 0 5px #fff);">💡</span>
+</h2>
 
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
       <div id="chave" draggable="true" style="font-size:3em; cursor:grab;">🔑</div>
@@ -6763,6 +6766,10 @@ function iniciarModulo4Vip() {
 
     go('quiz');
     render();
+}
+
+function mostrarMensagemVip() {
+    alert("Na Sala Exclusiva, você tem acesso a todas as 1.769 questões mais algumas centenas exclusivas. Todas com um sistema de contagem de erros e acertos, te dando de forma imediata, sua % de aproveitamento, te dando um parecer real de sua situação. Além disso, você garante acesso irrestrito à Audioteca.");
 }
 
 // 2. Mensagem de Coração
