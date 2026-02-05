@@ -938,7 +938,7 @@ mostrarMensagem(`
       </p>
 
       <p style="color:white; font-weight:700; margin-bottom:10px;">
-        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">18 dias</span> até o grande dia.<br>
+        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">17 dias</span> até o grande dia.<br>
         Aproveite esse tempo para estudar.
       </p>
     </div>
@@ -7122,7 +7122,7 @@ function fecharSlideVitoria() {
 
 (() => {
   const _d = [
-    /* NOMES (0 a 22) */
+    /* NOMES (0 a 23) */
     [82,101,110,97,116,111,32,84,104,101,114,105,111,110], // Renato
     [86,105,118,105,97,110,101,32,66,97,115,116,111,115,32,77,97,99,105,101,108,32,82,111,100,114,105,103,117,101,115], // Viviane
     [82,97,109,111,110,32,83,111,117,122,97,32,100,111,32,78,97,115,99,105,109,101,110,116,111], // Ramon
@@ -7146,8 +7146,9 @@ function fecharSlideVitoria() {
     [82,117,100,115,111,110,32,100,101,32,83,111,117,115,97,32,67,97,114,100,111,115,111], // Rudson
     [65,108,108,105,115,111,110,32,77,97,116,101,117,115,32,70,108,111,114,101,110,99,105,111,32,100,97,32,80,97,122], // Allison
     [70,101,108,105,112,101,32,82,111,100,114,105,103,117,101,115,32,100,111,115,32,83,97,110,116,111,115], // Felipe
+    [82,111,110,97,108,100,32,83,105,108,118,97,32,76,97,110,100,105,109,32,71,111,110,99,97,108,118,101,115], // Ronald
 
-    /* IDS (23 a 45) */
+    /* IDS (24 a 48) */
     [53,48,49,48], // 5010
     [53,56,51], // 583
     [52,56,54,50], // 4862
@@ -7170,35 +7171,39 @@ function fecharSlideVitoria() {
     [49,57,54,48], // 1960
     [50,54,52,55,51], // 26473
     [53,50,50,55], // 5227
-    [49,52,48] // 140
+    [49,52,48], // 140
+    [50,49,57,50,50], // 21922
+    [48,52,56,54,50] // 04862
   ];
 
   const _s = i => String.fromCharCode(..._d[i]);
 
   const DOADORES = [
-    { id: _s(23), nome: _s(0) },
-    { id: _s(24), nome: _s(1) },
-    { id: _s(25), nome: _s(2) },
-    { id: _s(26), nome: _s(3) },
-    { id: _s(27), nome: _s(4) },
-    { id: _s(28), nome: _s(5) },
-    { id: _s(29), nome: _s(6) },
-    { id: _s(30), nome: _s(7) },
-    { id: _s(31), nome: _s(8) },
-    { id: _s(32), nome: _s(9) },
-    { id: _s(33), nome: _s(10) },
-    { id: _s(34), nome: _s(11) },
-    { id: _s(35), nome: _s(12) },
-    { id: _s(36), nome: _s(13) },
-    { id: _s(37), nome: _s(14) },
-    { id: _s(38), nome: _s(15) },
-    { id: _s(39), nome: _s(16) },
-    { id: _s(40), nome: _s(17) },
-    { id: _s(41), nome: _s(18) },
-    { id: _s(42), nome: _s(19) },
-    { id: _s(43), nome: _s(20) },
-    { id: _s(44), nome: _s(21) },
-    { id: _s(45), nome: _s(22) }
+    { id: _s(24), nome: _s(0) },
+    { id: _s(25), nome: _s(1) },
+    { id: _s(26), nome: _s(2) },
+    { id: _s(27), nome: _s(3) },
+    { id: _s(28), nome: _s(4) },
+    { id: _s(29), nome: _s(5) },
+    { id: _s(30), nome: _s(6) },
+    { id: _s(31), nome: _s(7) },
+    { id: _s(32), nome: _s(8) },
+    { id: _s(33), nome: _s(9) },
+    { id: _s(34), nome: _s(10) },
+    { id: _s(35), nome: _s(11) },
+    { id: _s(36), nome: _s(12) },
+    { id: _s(37), nome: _s(13) },
+    { id: _s(38), nome: _s(14) },
+    { id: _s(39), nome: _s(15) },
+    { id: _s(40), nome: _s(16) },
+    { id: _s(41), nome: _s(17) },
+    { id: _s(42), nome: _s(18) },
+    { id: _s(43), nome: _s(19) },
+    { id: _s(44), nome: _s(20) },
+    { id: _s(45), nome: _s(21) },
+    { id: _s(46), nome: _s(22) },
+    { id: _s(47), nome: _s(23) },
+    { id: _s(48), nome: _s(2) }
   ];
 
   window.DOADORES = DOADORES;
@@ -7717,7 +7722,7 @@ function usuarioIphone() {
           <p style="color:white; font-weight:700;">Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span></p>
           <p style="color:white; font-weight:700;">Tipo de inscrição: <span style="color:${corTipo};">${pessoa.tipo ?? "Ampla"}</span></p>
           <p style="color:white; font-weight:700; margin-bottom:10px;">
-            Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">18 dias</span> até o grande dia.<br>
+            Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">17 dias</span> até o grande dia.<br>
             Aproveite esse tempo para estudar.
           </p>
         </div>
