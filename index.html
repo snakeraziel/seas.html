@@ -5678,6 +5678,12 @@ const bancoVip = [
 {q:"💛 145. O adolescente que imita sons e ruídos para perturbar o plantão do socioeducador de maneira insistente comete falta grave.",v:true,j:"Sons e ruídos utilizados para perturbar profissionais de forma repetitiva estão previstos como falta grave no Art. 28."},
 {q:"💛 146. O adolescente que expõe as partes íntimas para um socioeducador dentro do alojamento não comete falta grave, pois o ato ocorreu em local de vivência privada.",v:false,j:"Atitudes de cunho sexual que importunem o profissional configuram falta grave, independente do local da unidade onde ocorram."},
 {q:"💛 147. A presença de outros adolescentes no momento em que um socioeducando pratica ato de natureza sexual ofensiva contra um servidor, reforça a caracterização da falta grave por perturbar a ordem do coletivo.",v:true,j:"Condutas ofensivas que visam desmoralizar o servidor perante o grupo de adolescentes são faltas graves conforme o Art. 28."},
+{q:"💛 148. Durante uma revista geral, um socioeducador encontra um 'estoque' (faca artesanal) escondido dentro do colchão de um adolescente. O jovem afirma que era apenas para defesa pessoal. De acordo com a Portaria 093/2022, possuir instrumento capaz de ferir outrem é falta grave.", v:true, j:"Fabricar, possuir ou portar instrumentos capazes de ferir pessoas é falta grave conforme a Portaria 093/2022, Art. 15."},
+{q:"💛 149. Um grupo de dez adolescentes se recusa a sair para o pátio e começa a gritar palavras de ordem contra a direção, incitando os demais alojamentos a fazerem o mesmo. Essa atitude de subversão à ordem ou à disciplina é falta grave.", v:true, j:"Liderar ou participar de movimentos de subversão à ordem ou à disciplina é falta grave conforme a Portaria 093/2022, Art. 15."},
+{q:"💛 150. Um adolescente, ao ser conduzido para a sala de aula, empurra violentamente o socioeducador e tenta tomar a chave do portão para fugir. Como houve emprego de violência contra a pessoa, essa tentativa de fuga é considerada falta grave.", v:true, j:"Tentar fugir ou facilitar a fuga com ameaça ou violência é falta grave conforme a Portaria 093/2022, Art. 15."},
+{q:"💛 151. Irritado com uma decisão judicial, um adolescente ateia fogo nos lençóis, causando um incêndio que destruiu parte do dormitório. Provocar incêndio é uma falta de natureza média.", v:false, j:"Provocar incêndio é falta grave conforme a Portaria 093/2022, Art. 15. A tentativa é média, mas o ato consumado é grave."},
+{q:"💛 152. Um adolescente é pego desenhando símbolos de uma organização criminosa na parede do refeitório utilizando macarrão. Essa transgressão é falta grave.", v:true, j:"Fazer apologia a organizações criminosas ou incitar a violência é falta grave conforme a Portaria 093/2022, Art. 15."},
+{q:"💛 153. Após ser punido por uma falta média, o adolescente ameaça o socioeducador dizendo: 'eu sei onde tu mora'. Essa atitude será tipificada como falta grave.", v:true, j:"Ameaçar autoridade, funcionário ou qualquer pessoa que preste serviço na unidade é falta grave conforme a Portaria 093/2022, Art. 15."},
 ];
 
 
@@ -6889,8 +6895,19 @@ function iniciarModulo4Vip() {
     let ordemSalva = localStorage.getItem(storageKeyOrdem);
     let indiceSalvo = localStorage.getItem(storageKeyIndex);
 
+    // VERIFICAÇÃO DE ATUALIZAÇÃO DO BANCO
     if (ordemSalva) {
-        // Se já existe uma ordem gravada, ele recupera exatamente ela
+        const indicesExistentes = JSON.parse(ordemSalva);
+        // Se o banco cresceu, deletamos a ordem antiga para incluir as novas questões
+        if (indicesExistentes.length < bancoVip.length) {
+            localStorage.removeItem(storageKeyOrdem);
+            ordemSalva = null; 
+            console.log("Aura: Banco VIP atualizado com sucesso!");
+        }
+    }
+
+    if (ordemSalva) {
+        // Se a ordem salva ainda é válida, recupera ela
         const indices = JSON.parse(ordemSalva);
         currentQuestions = indices.map(i => bancoVip[i]);
         
@@ -6905,7 +6922,7 @@ function iniciarModulo4Vip() {
             currentIndex = 0;
         }
     } else {
-        // PRIMEIRA VEZ: Cria a aleatoriedade e SALVA a ordem para sempre
+        // PRIMEIRA VEZ OU BANCO NOVO: Cria nova ordem aleatória com base no total atual
         let novosIndices = bancoVip.map((_, i) => i);
         novosIndices.sort(() => 0.5 - Math.random());
         
