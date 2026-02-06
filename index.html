@@ -266,8 +266,8 @@ button {
         .bomba-pulsa { display: inline-block; animation: pulseBomba 0.6s infinite; font-size: 1.8em; }
 
         /* MISERICÓRDIA - CORAÇÕES GIGANTES */
-        .heart-misericordia { position: absolute; z-index: 9999; pointer-events: none; animation: flyPopUp 4s forwards; }
-        @keyframes flyPopUp { 0% { transform: translateY(300px) scale(0); opacity: 1; } 20% { transform: translateY(100px) scale(2.5); } 100% { transform: translateY(-600px) scale(1.5); opacity: 0; } }
+     .heart-misericordia { position: absolute; z-index: 9999; pointer-events: none; animation: flyPopUp 4s forwards; }
+        @keyframes flyPopUp { 0% { transform: translateY(300px) scale(0); opacity: 1; } 20% { transform: translateY(100px) scale(2.5); } 100% { transform: translateY(-600px) scale(1.5); opacity: 0; } } 
 
         /* BLOQUEIO ÁREA RESTRITA */
         @keyframes intenseScarlet { 0%, 100% { background: #600; } 50% { background: #f00; } }
@@ -555,8 +555,10 @@ button {
   🆔 INSIRA SUA INSCRIÇÃO 🆔
 </button>
 
-
-    <button class="menu-btn" onclick="entrarComoVisitante()">👥 ENTRE COMO VISITANTE 👥</button>
+<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
+    🏆SALA NÃO TÃO EXCLUSIVA🏆
+</button>
+    <!-- <button class="menu-btn" onclick="entrarComoVisitante()">👥 ENTRE COMO VISITANTE 👥</button> -->
 
 
 </div>
@@ -827,9 +829,10 @@ button {
     <div class="heart-vip" onclick="agradecimentoVip()">❤️</div>
 </div>
 
-<button onclick="location.reload()" style="margin-top: 15px; color: #444; background: none; border: none; text-decoration: underline; font-size: 0.75em; cursor: pointer; display: block; width: 100%;">
-    SAIR DA SALA
-</button>
+<div id="painel-trofeus-vip" style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 12px; border: 2px solid var(--yellow); text-align: center; min-width: 150px; box-shadow: 0 0 10px rgba(255,215,0,0.2); margin: 10px auto;">
+    <span style="color: var(--yellow); font-size: 0.75em; display: block; letter-spacing: 1px; font-weight: bold;">SIMULADOS CONCLUÍDOS</span>
+    <span id="contagem-trofeus" style="font-size: 1.8em; color: #fff; font-weight: bold; display: block; margin-top: 5px;">🏆 0</span>
+</div>
 
 </div>
 
@@ -2109,7 +2112,7 @@ const bancoModulos = [
 {q:"✍ 1020. O material afirma que o risco é algo que já aconteceu, enquanto o evento crítico é apenas uma possibilidade futura que pode ou não ocorrer.", v:false, j:"Risco é a possibilidade de ocorrência de um evento que venha a ter impacto no cumprimento dos objetivos. O evento crítico é a materialização desse risco."},
 {q:"✍ 1021. A identificação de riscos deve ser feita exclusivamente pela diretoria da SEAS, sendo vedada a participação de socioeducadores nesse mapeamento.", v:false, j:"A identificação de riscos deve envolver todos os colaboradores da unidade, pois quem está na ponta do atendimento possui a visão real das vulnerabilidades cotidianas."},
 {q:"✍ 1022. Conforme o texto, a 'Vulnerabilidade' é uma fraqueza que pode ser explorada para causar danos à integridade física ou ao patrimônio da unidade.", v:true, j:"Vulnerabilidade: Condição interna de um sistema ou ambiente que o torna suscetível a ameaças ou ataques, facilitando a ocorrência de danos."},
-{q:"✍ 1023. O Módulo 3 define 'Ameaça' como um factor interno, como a falta de treinamento, que compromete a segurança da unidade socioeducativa.", v:false, j:"Ameaça é um fator externo ou um evento que tem o potencial de causar dano. A falta de treinamento é considerada uma vulnerabilidade interna."},
+{q:"✍ 1023. O Módulo 3 define 'Ameaça' como um fator interno, como a falta de treinamento, que compromete a segurança da unidade socioeducativa.", v:false, j:"Ameaça é um fator externo ou um evento que tem o potencial de causar dano. A falta de treinamento é considerada uma vulnerabilidade interna."},
 {q:"✍ 1024. A matriz de riscos combina a 'Probabilidade' de um evento ocorrer com o 'Impacto' que ele causará caso venha a se materializar.", v:true, j:"A avaliação de risco é feita cruzando a probabilidade da ocorrência com a severidade do impacto causado pelo evento."},
 {q:"✍ 1025. Riscos de 'Impacto Extremo' são aqueles que colocam em risco a vida de pessoas ou a continuidade do funcionamento da própria unidade.", v:true, j:"Impacto extremo refere-se a eventos que podem resultar em mortes, lesões graves ou na interrupção total das atividades socioeducativas."},
 {q:"✍ 1026. O tratamento de riscos na modalidade 'Mitiigar' significa aceitar o risco sem fazer nada, esperando que ele não ocorra.", v:false, j:"Mitigar um risco significa adotar medidas e controles para reduzir a sua probabilidade ou o seu impacto."},
@@ -5960,20 +5963,108 @@ function registrarResposta(acertou, answer) {
 
 }
 
-function iniciarSimuladoPelaSalaVip() {
-    console.log("VIP: iniciando simulado sem expulsão");
 
-    const salaVip = document.getElementById('area-apoiador');
-    if (salaVip) {
-        salaVip.style.display = "none";
+
+
+function iniciarRelogioGlobalVip(minutos) {
+    // Limpa qualquer timer anterior
+    if (timerGlobalVip) clearInterval(timerGlobalVip);
+    
+    tempoSimuladoRestante = minutos * 60; // Transforma em segundos
+
+    timerGlobalVip = setInterval(() => {
+        tempoSimuladoRestante--;
+        
+        // Formata para MM:SS
+        let min = Math.floor(tempoSimuladoRestante / 60);
+        let seg = tempoSimuladoRestante % 60;
+        let displayFormatado = `${min}:${seg < 10 ? '0' + seg : seg}`;
+
+        const display = document.getElementById('timer-display');
+        if (display) {
+            display.innerText = displayFormatado;
+        }
+
+        if (tempoSimuladoRestante <= 0) {
+            clearInterval(timerGlobalVip);
+            alert("Tempo de Simulado Esgotado!");
+            concluirSimuladoVip(); // Finaliza mesmo se não acabou todas
+            go('area-apoiador');
+        }
+    }, 1000);
+}
+
+
+function concluirSimuladoVip() {
+    // Para o relógio no fim
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+
+    let atual = parseInt(localStorage.getItem('simulados_concluidos') || 0);
+    let novoTotal = atual + 1;
+    localStorage.setItem('simulados_concluidos', novoTotal);
+    
+    // Atualiza o painel visual imediatamente
+    const el = document.getElementById('contagem-trofeus');
+    if (el) {
+        el.innerText = "🏆 " + novoTotal;
     }
+}
+
+function iniciarRelogio(segundos) {
+    // 1. ESCUDO VIP: Se estiver no simulado VIP, ignora o relógio por questão
+    // porque agora usamos o Cronômetro Global Único.
+    if (window.isVipMode && quizType === 'simulado_vip') {
+        return; 
+    }
+
+    // 2. LIMPEZA: Mata qualquer intervalo que tenha sobrado da questão anterior
+    if (typeof timerInterval !== 'undefined' && timerInterval !== null) {
+        clearInterval(timerInterval);
+    }
+
+    let tempoRestante = segundos;
+    const display = document.getElementById('timer-display');
+
+    // Se o elemento de exibição não existir na tela, para aqui para não dar erro
+    if (!display) return;
+
+    // Atualiza o número inicial no HTML
+    display.innerText = tempoRestante;
+
+    // 3. INÍCIO DO CRONÔMETRO (Para área restrita/comum)
+    timerInterval = setInterval(() => {
+        tempoRestante--;
+        
+        if (display) {
+            display.innerText = tempoRestante;
+        }
+
+        if (tempoRestante <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+
+            // Se o tempo acabar e NÃO for VIP, ele lida com a falha/vidas
+            if (!window.isVipMode) {
+                // Aqui você pode colocar sua lógica de erro por tempo
+                // Exemplo: verificarResposta(null); ou pularQuestao();
+                console.log("Tempo esgotado na área comum.");
+            }
+        }
+    }, 1000);
+}
+
+// 2. A FUNÇÃO DO SIMULADO (Limpa o relógio antes de começar)
+function iniciarSimuladoPelaSalaVip() {
+    // Mata qualquer relógio antes de começar
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+    
+    console.log("VIP: Iniciando simulado inteligente...");
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) salaVip.style.display = "none";
 
     window.isVipMode = true;
     quizType = 'simulado_vip';
     currentIndex = 0;
-    historico = {};
-    
-    // No VIP, as vidas começam cheias mas não causam expulsão
     erros = 0; 
     acertosSessao = 0;
 
@@ -5985,28 +6076,46 @@ function iniciarSimuladoPelaSalaVip() {
             ...(typeof bancoPortarias !== 'undefined' ? bancoPortarias : [])
         ];
 
-        if (megaBanco.length === 0) {
-            alert("Bancos não encontrados!");
-            if (salaVip) salaVip.style.display = "flex";
-            return;
+        // LÓGICA DE HISTÓRICO VIP
+        let respondidasVip = JSON.parse(localStorage.getItem('respondidas_vip')) || [];
+        let bancoInedito = megaBanco.filter(q => !respondidasVip.includes(q.id));
+
+        if (bancoInedito.length < 30) {
+            respondidasVip = [];
+            localStorage.setItem('respondidas_vip', JSON.stringify([]));
+            bancoInedito = megaBanco;
         }
 
-        currentQuestions = megaBanco.sort(() => 0.5 - Math.random()).slice(0, 30); 
+        currentQuestions = bancoInedito.sort(() => 0.5 - Math.random()).slice(0, 30); 
 
-        // Interface: Estrela dourada em vez de corações, se preferir
+        const novosIds = currentQuestions.map(q => q.id);
+        localStorage.setItem('respondidas_vip', JSON.stringify([...respondidasVip, ...novosIds]));
+
         const vContainer = document.getElementById('vidas-container');
         if (vContainer) {
             vContainer.innerHTML = '<span style="font-size:1.5em; color: gold;">⭐ SIMULADO VIP ⭐</span>';
         }
-
+iniciarRelogioGlobalVip(60);
         go('quiz');
-        render();
+        render(); // O render vai chamar o relógio novo
 
     } catch (e) {
         console.error(e);
         if (salaVip) salaVip.style.display = "flex";
     }
 }
+
+function atualizarPainelSimulados() {
+    const totalSimulados = localStorage.getItem('simulados_concluidos') || 0;
+    const elTrofeu = document.getElementById('contagem-trofeus');
+    
+    if (elTrofeu) {
+        elTrofeu.innerText = "🏆 " + totalSimulados;
+    }
+}
+
+// Executa ao carregar a página para mostrar o saldo atual
+atualizarPainelSimulados();
 
 
 /* =====================================================
@@ -6233,27 +6342,6 @@ function next() {
 
 }
 
-function atualizarVidas() {
-    if(erros >= 1 && document.getElementById('v3')) document.getElementById('v3').style.opacity = '0.2';
-    if(erros >= 2 && document.getElementById('v2')) document.getElementById('v2').style.opacity = '0.2';
-    if(erros >= 3) {
-        clearInterval(timerInterval); // << PARA O RELÓGIO NA FALHA
-        if(document.getElementById('v1')) document.getElementById('v1').style.opacity = '0.2';
-        setTimeout(() => { 
-            document.getElementById('fail-stats').innerHTML = `ACERTOS NESSA SESSÃO: <span style="color:var(--success)">${acertosSessao}</span>`;
-            const btnFalha = document.getElementById('btn-tentar-novamente');
-            
-            if(quizType === 'total') {
-                btnFalha.onclick = function() { go('capa'); }; 
-                btnFalha.innerText = "VOLTAR AO INÍCIO";
-            } else {
-                btnFalha.onclick = function() { go('area-restrita'); }; 
-                btnFalha.innerText = "TENTAR NOVAMENTE";
-            }
-            go('fail-screen');
-        }, 500);
-    }
-}
 
 // --- FOGOS DE ARTIFÍCIO ---
 let rockets = [];
@@ -6436,28 +6524,44 @@ function finalizar() {
 
 } else {
 
-        _c.innerHTML =
-            '<div style="font-size:3em;">📚✅</div>' +
-            '<h2 style="color:var(--yellow);">MÓDULO CONCLUÍDO!</h2>' +
-            '<p style="color:#fff;">Você revisou todas as questões desta seção.</p>' +
-            '<p style="color:var(--success); font-weight:bold;">Progresso resetado para iniciar novo estudo.</p>';
+      // --- DENTRO DA FUNÇÃO ONDE O MÓDULO É CONCLUÍDO ---
 
-        _t.style.display = "block";
-        _t.innerText = "VOLTAR";
+    // 1. Contabiliza o Simulado se estiver no modo VIP
+    if (window.isVipMode && quizType === 'simulado_vip') {
+        let contagem = parseInt(localStorage.getItem('simulados_concluidos') || 0);
+        localStorage.setItem('simulados_concluidos', contagem + 1);
         
-        // AJUSTE VIP AQUI:
-        _t.onclick = function () {
-            _o.style.display = "none";
-            
-            if (window.isVipMode) {
-                // Se for VIP, volta à Sala do Doador
-                voltarMenuPosVip();
-            } else {
-                // Se não for VIP, segue o padrão
-                go("area-restrita");
-            }
-        };
+        // Atualiza o visual do painel (o antigo botão sair) na hora
+        if (typeof atualizarPainelSimulados === 'function') {
+            atualizarPainelSimulados();
+        }
     }
+
+    // 2. Renderiza a mensagem de conclusão
+    _c.innerHTML =
+        '<div style="font-size:3em;">📚✅</div>' +
+        '<h2 style="color:var(--yellow);">MÓDULO CONCLUÍDO!</h2>' +
+        '<p style="color:#fff;">Você revisou todas as questões desta seção.</p>' +
+        '<p style="color:var(--success); font-weight:bold;">' + 
+        (window.isVipMode ? 'Simulado contabilizado no seu painel!' : 'Progresso resetado para iniciar novo estudo.') + 
+        '</p>';
+
+    _t.style.display = "block";
+    _t.innerText = "VOLTAR";
+    
+    // 3. Configura o clique do botão de retorno
+    _t.onclick = function () {
+        _o.style.display = "none";
+        
+        if (window.isVipMode) {
+            // Se for VIP, volta à Sala do Doador (Área VIP)
+            voltarMenuPosVip();
+        } else {
+            // Se não for VIP, segue o fluxo normal da Área Restrita
+            go("area-restrita");
+        }
+    };
+  }
 }
 
 
@@ -6492,18 +6596,18 @@ function triggerDenial() {
     setTimeout(() => { ob.className = ''; ob.style.display = 'none'; location.reload(); }, 5000);
 }
 
-function ativarMisericordia() {
+ function ativarMisericordia() {
     erros = 0; document.querySelectorAll('#vidas-container span').forEach(v => v.style.opacity = '1');
     for(let i=0; i<35; i++) {
         setTimeout(() => {
             const h = document.createElement('div'); h.className = 'heart-misericordia';
-            h.innerHTML = ['❤️','💖','💗','💓','💞'][Math.floor(Math.random()*5)];
+            h.innerHTML = ['💑','👩‍❤️‍👩','👨‍❤️‍👨','💏','👨‍❤️‍💋‍👨'][Math.floor(Math.random()*5)];
             h.style.left = Math.random()*100+'%'; h.style.fontSize = (Math.random()*50+60)+'px';
             document.getElementById('container').appendChild(h);
             setTimeout(() => h.remove(), 5000);
         }, i * 60);
     }
-}
+} 
 
 function prev() { if(currentIndex > 0) { currentIndex--; render(); } }
 function extraAction() { quizType === 'total' || quizType === 25 ? location.reload() : ativarMisericordia(); }
@@ -6607,7 +6711,7 @@ function startQuiz(modo) {
   acertosContadorSenha = 0;
   historico = {};
 
-  const vContainer = document.getElementById('vidas-container');
+ const vContainer = document.getElementById('vidas-container');
   const btnExtra = document.getElementById('btnExtra');
   const feedback = document.getElementById('feedback');
   if (feedback) feedback.style.display = 'none';
@@ -6682,12 +6786,12 @@ function startQuiz(modo) {
     vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
     
     if (modo === 'total') {
-      btnExtra.innerText = "🏠 MENU 🏠";
+      btnExtra.innerText = " MENU ";
       btnExtra.style.background = "#475569";
       btnExtra.onclick = () => location.reload();
       if (typeof clearProgress === 'function') clearProgress(modo);
     } else {
-      btnExtra.innerText = "🙏 MISERICÓRDIA 🙏";
+    btnExtra.innerText = "🤦‍♂️ VIDA INFINITA 🤦‍♀️"; 
       btnExtra.style.background = "#dc2626";
       btnExtra.onclick = typeof ativarMisericordia === 'function' ? ativarMisericordia : () => {};
 
@@ -6768,6 +6872,8 @@ function iniciarModulo4Vip() {
     render();
 }
 
+
+
 function mostrarMensagemVip() {
     alert("Na Sala Exclusiva, você tem acesso a todas as 1.769 questões mais algumas centenas exclusivas. Todas com um sistema de contagem de erros e acertos, te dando de forma imediata, sua % de aproveitamento, te dando um parecer real de sua situação. Além disso, você garante acesso irrestrito à Audioteca.");
 }
@@ -6775,58 +6881,123 @@ function mostrarMensagemVip() {
 // 2. Mensagem de Coração
 function agradecimentoVip() {
     const nome = document.getElementById('nome-doador-vip')?.textContent || "Guerreiro";
-    alert(`Sistema: ${nome}, seu apoio mantém esse sistema vivo e em constante evolução. Obrigado por acreditar no projeto! Na engrenagem à esquerda você encontrará questões exclusivas do Módulo 4`);
+    alert(`Sistema: ${nome}, seu apoio mantém esse sistema vivo e em constante evolução. Obrigado por acreditar no projeto! Na engrenagem à esquerda você encontrará questões exclusivas`);
 }
 
-function atualizarVidas() {
-    // Escudo VIP: Se for VIP, ele apenas marca o erro visualmente, mas NUNCA entra no IF de falha
-    if (window.isVipMode) {
-        if(erros == 1 && document.getElementById('v3')) document.getElementById('v3').style.opacity = '0.2';
-        if(erros == 2 && document.getElementById('v2')) document.getElementById('v2').style.opacity = '0.2';
-        if(erros >= 3 && document.getElementById('v1')) document.getElementById('v1').style.opacity = '0.2';
-        return; // MATA A FUNÇÃO AQUI PARA O VIP (NÃO EXPULSA)
-    }
 
-    // ABAIXO DISSO É O SEU CÓDIGO ORIGINAL INTACTO PARA OS OUTROS MODOS
-    if(erros == 1 && document.getElementById('v3')) document.getElementById('v3').style.opacity = '0.2';
-    if(erros == 2 && document.getElementById('v2')) document.getElementById('v2').style.opacity = '0.2';
-    if(erros >= 3) {
-        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval); 
-        if(document.getElementById('v1')) document.getElementById('v1').style.opacity = '0.2';
-        
-        setTimeout(() => { 
-            document.getElementById('fail-stats').innerHTML = `ACERTOS NESSA SESSÃO: <span style="color:var(--success)">${acertosSessao}</span>`;
-            
-            const btnFalha = document.getElementById('btn-tentar-novamente');
-            
-            if(quizType === 'total') {
-                btnFalha.onclick = function() { go('capa'); }; 
-                btnFalha.innerText = "VOLTAR AO INÍCIO";
-            } else {
-                btnFalha.onclick = function() { go('area-restrita'); }; 
-                btnFalha.innerText = "TENTAR NOVAMENTE";
+
+/* function atualizarVidas() {
+    // Pegamos os elementos uma vez para evitar repetição
+    const v1 = document.getElementById('v1');
+    const v2 = document.getElementById('v2');
+    const v3 = document.getElementById('v3');
+
+    // 1. ATUALIZAÇÃO VISUAL PRECISA
+    if (erros === 1 && v3) v3.style.opacity = '0.2';
+    if (erros === 2 && v2) v2.style.opacity = '0.2';
+    
+    if (erros >= 3) {
+        if (v1) v1.style.opacity = '0.2';
+
+        // 2. ESCUDO VIP: Se for VIP, para aqui e não executa o código de falha
+        if (window.isVipMode) return;
+
+        // 3. SEGUNDA TRAVA DE SEGURANÇA: 
+        // Para o relógio imediatamente para o tempo não esgotar enquanto a animação roda
+        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+
+        // 4. DELAY DE EXPULSÃO (Aumentei para 800ms para dar tempo de ver o erro)
+        setTimeout(() => {
+            // Re-checa se o erro ainda é >= 3 (evita bugs de cliques duplos)
+            if (erros >= 3) {
+                const failStats = document.getElementById('fail-stats');
+                if (failStats) {
+                    failStats.innerHTML = `ACERTOS NESSA SESSÃO: <span style="color:var(--success)">${acertosSessao}</span>`;
+                }
+
+                const btnFalha = document.getElementById('btn-tentar-novamente');
+                if (btnFalha) {
+                    if (quizType === 'total') {
+                        btnFalha.onclick = function() { go('capa'); };
+                        btnFalha.innerText = "VOLTAR AO INÍCIO";
+                    } else {
+                        btnFalha.onclick = function() { go('area-restrita'); };
+                        btnFalha.innerText = "TENTAR NOVAMENTE";
+                    }
+                }
+                go('fail-screen');
             }
-            
-            go('fail-screen');
-        }, 500);
+        }, 800); 
     }
-}
-
+} */
 
 function voltarMenuPosVip() {
-    // 1. Limpa o estado VIP antes de sair
-    window.isVipMode = false;
+    // 1. PASSO 5: Para o relógio global VIP imediatamente para não rodar na capa
+    if (typeof timerGlobalVip !== 'undefined' && timerGlobalVip !== null) {
+        clearInterval(timerGlobalVip);
+        timerGlobalVip = null;
+        console.log("Relógio VIP finalizado.");
+    }
 
-    // 2. Volta para a tela principal (Capa ou Main)
+    // 2. Limpa o estado VIP
+    window.isVipMode = false;
+    quizType = null;
+
+    // 3. Volta para a tela principal
     go('capa'); 
     
-    // 3. O SEGREDO: Força a Sala do Doador a abrir imediatamente sobre a capa
+    // 4. Força a Sala do Doador a abrir sobre a capa
     setTimeout(() => {
         const salaVip = document.getElementById('area-apoiador');
         if (salaVip) {
             salaVip.style.setProperty("display", "flex", "important");
+            
+            // Aproveita para garantir que o painel de troféus esteja atualizado na volta
+            if (typeof atualizarPainelSimulados === 'function') {
+                atualizarPainelSimulados();
+            }
         }
     }, 100);
+}
+
+function irParaAreaApoiador2() {
+    const idDigitado = prompt("DIGITE SEU ID DE USUÁRIO (72h GRÁTIS):");
+    if (!idDigitado) return;
+
+    // Procura o ID dentro da lista de usuários comuns
+    const usuarioEncontrado = usuarios.find(u => u.id == idDigitado);
+
+    if (!usuarioEncontrado) {
+        mostrarMensagem(`<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>USE SEU ID DA ÁREA RESTRITA</h1>`, 'erro');
+        return;
+    }
+
+    // Se achou, libera o acesso como se fosse VIP
+    liberado = true;
+
+    // Garante que o nome do usuário apareça no painel VIP
+    const nomeDoadorElemento = document.getElementById('nome-doador-vip');
+    if (nomeDoadorElemento) {
+        nomeDoadorElemento.textContent = usuarioEncontrado.nome;
+    }
+
+    // Força a entrada na Sala VIP
+    go('area-apoiador');
+
+    const telaVip = document.getElementById('area-apoiador');
+    if (telaVip) {
+        telaVip.style.setProperty("display", "flex", "important");
+        telaVip.style.background = "#000";
+    }
+    
+    // Alerta de boas-vindas para a amostra
+    console.log("Acesso temporário liberado para: " + usuarioEncontrado.nome);
+}
+function irParaAudioteca() {
+    // PASSO 5 AQUI: Garante que o cronômetro não vá junto para a audioteca
+    if (typeof timerGlobalVip !== 'undefined') clearInterval(timerGlobalVip);
+    
+    go('audioteca');
 }
 
 function mostrarManifesto() {
