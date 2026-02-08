@@ -841,7 +841,7 @@ button {
         </button>
 
         <button class="menu-btn" 
-        onclick="iniciarSimuladoPelaSalaVip()" 
+        onclick="simuladoVipNovaEra()" 
         style="width: 350px; padding: 14px 10px; border: 2px solid #ff3b3b; background: rgba(255, 59, 59, 0.1); color: white; font-weight: 900; border-radius: 12px; cursor: pointer;">
     💡📝📊 SIMULADOS 📊📝💡
 </button>
@@ -2557,7 +2557,7 @@ bancoPortarias = [
 {q:"👁‍🗨 6. O uso de aparelho celular durante o horário de trabalho que interfira no desenvolvimento das funções é considerado uma falta média.", v:false, j:"Conforme o art. 18, inciso V (Portaria 006/2023), a utilização de celular ou smartphone durante o trabalho é classificada como falta leve."},
 {q:"👁‍🗨 7. Facilitar ou incitar fugas, motins, tumultos e rebeliões é classificado como falta grave na Seas.", v:true, j:"De acordo com o art. 20, inciso II da Portaria 006/2023, tais atos são considerados faltas graves."},
 {q:"👁‍🗨 8. O abandono de função é caracterizado pela ausência intencional ao serviço, sem justificativa, por mais de 15 dias consecutivos.", v:false, j:"Conforme o art. 20, §2º (Portaria 006/2023), considera-se abandono de função a ausência por mais de 30 (trinta) dias consecutivos."},
-{q:"👁‍🗨 9. De acotdo com a Portaria 006/2023, a sanção de Suspensão no âmbito da Seas é limitada ao prazo máximo de até 30 (trinta) dias.", v:true, j:"De acordo com o art. 23, inciso II e art. 25, a suspensão é limitada a até 30 (trinta) dias."},
+{q:"👁‍🗨 9. De acordo com a Portaria 006/2023, a sanção de Suspensão no âmbito da Seas é limitada ao prazo máximo de até 30 (trinta) dias.", v:true, j:"De acordo com o art. 23, inciso II e art. 25, a suspensão é limitada a até 30 (trinta) dias."},
 {q:"👁‍🗨 10. O Termo de Ajustamento de Conduta (TAC) possui caráter punitivo e deve ser registrado como sanção disciplinar.", v:false, j:"Conforme o art. 12, parágrafo único, e art. 21, §1º, (Portaria 006/2023) o TAC tem caráter estritamente pedagógico e não punitivo."},
 {q:"👁‍🗨 11. Como medida cautelar, o servidor pode ser afastado de suas funções por até 60 dias, sem prejuízo da sua remuneração.", v:true, j:"De acordo com o art. 33 da Portaria 006/2023, o afastamento cautelar pode ser de até 60 dias, prorrogável por igual prazo."},
 {q:"👁‍🗨 12. É dever do servidor comunicar imediatamente à chefia os casos de suspeita ou confirmação de maus-tratos contra adolescentes.", v:true, j:"Estabelecido no art. 44, inciso II, Portaria 006/2023, visando pôr os adolescentes a salvo de tratamentos desumanos ou vexatórios."},
@@ -5709,6 +5709,55 @@ const bancoVip = [
 {q:"💛 151. Irritado com uma decisão judicial, um adolescente ateia fogo nos lençóis, causando um incêndio que destruiu parte do dormitório. Provocar incêndio é uma falta de natureza média.", v:false, j:"Provocar incêndio é falta grave conforme a Portaria 093/2022, Art. 15. A tentativa é média, mas o ato consumado é grave."},
 {q:"💛 152. Um adolescente é pego desenhando símbolos de uma organização criminosa na parede do refeitório utilizando macarrão. Essa transgressão é falta grave.", v:true, j:"Fazer apologia a organizações criminosas ou incitar a violência é falta grave conforme a Portaria 093/2022, Art. 15."},
 {q:"💛 153. Após ser punido por uma falta média, o adolescente ameaça o socioeducador dizendo: 'eu sei onde tu mora'. Essa atitude será tipificada como falta grave.", v:true, j:"Ameaçar autoridade, funcionário ou qualquer pessoa que preste serviço na unidade é falta grave conforme a Portaria 093/2022, Art. 15."},
+{q:"💛 154. A PNAISARI estabelece que o adolescente em cumprimento de medida socioeducativa deve ser incluído no SUS, garantindo que o acesso aos cuidados seja ampliado e organizado.", v:true, j:"O objetivo da política é a inclusão dessa população no SUS, organizando e ampliando o acesso aos cuidados em saúde."},
+{q:"💛 155. De acordo com os objetivos específicos da política, as ações de atenção psicossocial são garantidas apenas para adolescentes que não foram privados de liberdade.", v:false, j:"O Objetivo V da PNAISARI garante ações de atenção psicossocial para os adolescentes em conflito com a lei, sem distinção de regime."},
+{q:"💛 156. No planejamento das práticas sanitárias, deve-se priorizar o isolamento de ações de saúde, ignorando os determinantes sociais como estruturas insalubres ou contextos de violência.", v:false, j:"Ações isoladas que desconsideram os determinantes sociais podem ser inócuas e apresentar baixa efetividade."},
+{q:"💛 157. O município que sedia a unidade socioeducativa é o responsável por assumir as ações de saúde e definir a equipe da Atenção Primária de referência para esses adolescentes.", v:true, j:"A gestão municipal de saúde deve assumir as ações, definindo a equipe de referência da Atenção Primária à Saúde."},
+{q:"💛 158. Uma das diretrizes da PNAISARI prevê que o adolescente em regime de internação deve ser atendido obrigatoriamente dentro das dependências da unidade socioeducativa.", v:false, j:"A política estabelece a necessidade de se priorizar o atendimento de saúde fora das unidades socioeducativas."},
+{q:"💛 159. O Plano Individual de Atendimento (PIA) é um instrumento essencial no sistema socioeducativo e deve, obrigatoriamente, contemplar o eixo da saúde.", v:true, j:"O PIA é um instrumento fundamental e nele o eixo saúde deve ser obrigatoriamente contemplado."},
+{q:"💛 160. A PNAISARI determina que a reinserção social deve ser promovida especialmente para jovens com transtornos mentais ou problemas decorrentes do uso de álcool e outras drogas.", v:true, j:"O Objetivo VII busca promover a reinserção social, especialmente de adolescentes com transtornos mentais ou questões de álcool e drogas."},
+{q:"💛 161. Entre os eixos fundamentais das diretrizes da política, destaca-se a educação permanente dos trabalhadores(as) como estratégia para viabilizar a atenção integral.", v:true, j:"A educação permanente dos trabalhadores é um dos três eixos fundamentais para viabilização da política."},
+{q:"💛 162. Para a execução eficaz das ações de saúde, a realização de um diagnóstico de saúde dos adolescentes no município é considerada opcional pela legislação vigente.", v:false, j:"A realização de um diagnóstico de saúde dos adolescentes em atendimento socioeducativo é fundamental para o planejamento das ações."},
+{q:"💛 163. A intersetorialidade na PNAISARI estimula que a responsabilidade pelo cuidado do adolescente seja compartilhada entre as equipes de saúde e as equipes socioeducativas.", v:true, j:"O Objetivo II estimula ações intersetoriais para a responsabilização conjunta das equipes de saúde e socioeducativas."},
+{q:"💛 164. A política orienta que o Projeto Terapêutico Singular (PTS) deve ser articulado ao Plano Individual de Atendimento (PIA) para suprir as necessidades complexas dessa população.", v:true, j:"A política incentiva a articulação do PTS ao PIA de modo a atender às complexas necessidades desta população."},
+{q:"💛 165. O adolescente que ingressa em uma unidade socioeducativa passa a ser considerado munícipe e responsabilidade do município onde a unidade está localizada, independente da sua cidade de origem.", v:true, j:"O adolescente na unidade socioeducativa passa a ser contabilizado como munícipe e responsabilidade do município que sedia a unidade."},
+{q:"💛 166. A sanção da Lei nº 12.594, que instituiu o SINASE, regulamentou que a responsabilidade pelo cuidado em saúde do adolescente em conflito com a lei pertence ao SUS.", v:true, j:"A Lei do SINASE estabelece formalmente que o SUS é o responsável pelo cuidado em saúde dessa população."},
+{q:"💛 167. Um dos focos da PNAISARI é privilegiar intervenções isoladas da saúde, evitando a articulação com outras políticas públicas para não sobrecarregar o sistema.", v:false, j:"A política busca justamente o contrário: privilegiar intervenções intersetoriais e articular diversas políticas públicas."},
+{q:"💛 168. O Objetivo I da PNAISARI visa ampliar ações e serviços de saúde especialmente para adolescentes que estão privados de liberdade.", v:true, j:"A política prioriza a ampliação do acesso para aqueles que estão em regime de internação ou privação de liberdade."},
+{q:"💛 169. De acordo com o Objetivo III, a PNAISARI busca garantir que o adolescente seja assistido exclusivamente por equipes médicas, excluindo a participação da família no cuidado.", v:false, j:"A política prevê a participação da família e da comunidade no cuidado à saúde do adolescente."},
+{q:"💛 170. O financiamento das ações de saúde previstas na PNAISARI é de responsabilidade única do governo estadual, sem participação da União.", v:false, j:"O financiamento é tripartite, envolvendo recursos da União, dos Estados e dos Municípios."},
+{q:"💛 171. A PNAISARI define que as ações de saúde devem ser desenvolvidas de forma descentralizada e hierarquizada, seguindo os princípios do próprio SUS.", v:true, j:"As ações de saúde para adolescentes em conflito com a lei devem seguir as diretrizes organizativas do Sistema Único de Saúde."},
+{q:"💛 172. Conforme a política, os adolescentes com deficiência física ou intelectual não possuem prioridade de atendimento, devendo aguardar o fluxo comum de qualquer cidadão.", v:false, j:"A política reforça a atenção integral e específica para adolescentes com deficiência ou necessidades especiais."},
+{q:"💛 173. A articulação entre o Poder Judiciário e o SUS é incentivada pela PNAISARI para garantir o cumprimento das normas de saúde dentro das unidades socioeducativas.", v:true, j:"A cooperação entre o Judiciário e o sistema de saúde é fundamental para a viabilização dos direitos dos adolescentes."},
+{q:"💛 174. O Objetivo VI da política foca em prevenir e reduzir danos associados ao uso de substâncias psicoativas, sem necessariamente exigir a abstinência imediata.", v:true, j:"A redução de danos é uma estratégia prevista para lidar com o uso de álcool e outras drogas nesse contexto."},
+{q:"💛 175. No modelo da PNAISARI, o adolescente deve ser visto como um sujeito de direitos, e não apenas como um objeto de intervenção estatal ou judicial.", v:true, j:"A visão do adolescente como sujeito de direitos é a base de toda a doutrina de proteção integral e da PNAISARI."},
+{q:"💛 176. A PNAISARI determina que o acolhimento em saúde deve ser feito apenas no momento da saída do adolescente da unidade, como um exame de liberação.", v:false, j:"O cuidado deve ser contínuo, começando no ingresso e permanecendo durante toda a execução da medida."},
+{q:"💛 177. A autonomia do adolescente deve ser respeitada nas decisões sobre seu tratamento de saúde, conforme previsto nas diretrizes de humanização do SUS.", v:true, j:"O respeito à autonomia e ao protagonismo do jovem faz parte das diretrizes de humanização aplicadas à política."},
+{q:"💛 178. A PNAISARI define que as ações de saúde devem ser integradas ao projeto pedagógico da unidade socioeducativa, visando a formação integral do adolescente.", v:true, j:"As ações de saúde devem compor o projeto político-pedagógico da unidade para garantir a formação e o cuidado integral."},
+{q:"💛 179. No contexto da PNAISARI, o exame de corpo de delito no ingresso do adolescente substitui a necessidade de uma avaliação de saúde inicial pela equipe do SUS.", v:false, j:"O exame pericial não substitui a avaliação de saúde integral que deve ser realizada pelas equipes de atenção primária."},
+{q:"💛 180. A política orienta que o atendimento à saúde do adolescente deve ser registrado em prontuário individual, garantindo o sigilo das informações clínicas.", v:true, j:"O sigilo médico e o registro adequado em prontuário são direitos garantidos ao adolescente em atendimento."},
+{q:"💛 181. O Ministério da Saúde estabelece que a adesão dos estados e municípios à PNAISARI é feita de forma compulsória, sem necessidade de pactuação ou planos formais.", v:false, j:"A adesão exige pactuação e a elaboração de um Plano Operativo Estadual ou Municipal para o repasse de recursos."},
+{q:"💛 182. A promoção da saúde sexual e reprodutiva, incluindo a prevenção de ISTs, é um dos eixos de cuidado obrigatórios previstos na política.", v:true, j:"As ações de saúde reprodutiva e prevenção de infecções fazem parte do cuidado integral previsto pela PNAISARI."},
+{q:"💛 183. As ações de atenção integral aos adolescentes em conflito com a lei devem contemplar a saúde sexual e a saúde reprodutiva.", v:true, j:"As ações vão para além das saúdes sexual e reprodutiva, também fazem parte o acompanhamento do seu crescimento e desenvolvimento físico e psicossocial, a saúde bucal, a saúde mental, a prevenção e controle de agravos, a educação em saúde, os direitos humanos, a promoção da cultura de paz e a prevenção de violências e assistência às vítimas."},
+{q:"💛 184. A política nacional proíbe que profissionais de saúde participem de revistas vexatórias ou procedimentos de punição dentro das unidades socioeducativas.", v:true, j:"Profissionais de saúde não devem participar de ações punitivas ou de segurança que violem a ética profissional."},
+{q:"💛 185. A PNAISARI prevê que apenas médicos e enfermeiros podem compor as equipes de referência para o atendimento socioeducativo, excluindo psicólogos e assistentes sociais.", v:false, j:"A equipe deve ser multiprofissional, incluindo saúde mental e outros profissionais para garantir a interdisciplinaridade."},
+{q:"💛 186. O monitoramento e a avaliação das ações da PNAISARI são feitos exclusivamente pelo Ministério da Justiça, sem interferência do Ministério da Saúde.", v:false, j:"O monitoramento é uma ação conjunta, sendo o Ministério da Saúde o principal gestor das diretrizes sanitárias da política."},
+{q:"💛 187. A saúde bucal é considerada um componente essencial da atenção integral na PNAISARI, devendo ser garantida pelas equipes municipais.", v:true, j:"A atenção em saúde bucal faz parte do rol de serviços essenciais que devem ser ofertados aos adolescentes."},
+{q:"💛 188. O direito à convivência familiar deve ser respeitado durante o tratamento de saúde, permitindo que a família acompanhe o processo terapêutico sempre que possível.", v:true, j:"A articulação com a família é um dos pilares para a eficácia do tratamento e da reinserção social."},
+{q:"💛 189. A PNAISARI estabelece que, se o município não possuir estrutura de saúde, o adolescente deve cumprir sua medida sem assistência até ser transferido.", v:false, j:"A falta de estrutura local não exime o Estado e o Município de buscarem alternativas para garantir o direito constitucional à saúde."},
+{q:"💛 190. O Plano Operativo (PO) é o documento que detalha como as ações de saúde serão executadas no território e é requisito para o repasse de recursos federais.", v:true, j:"O Plano Operativo formaliza a organização das ações e é indispensável para o financiamento da política no município ou estado."},
+{q:"💛 191. A PNAISARI define que a gestão da política é de responsabilidade exclusiva do Governo Federal, cabendo aos municípios apenas a execução física.", v:false, j:"A gestão é compartilhada (tripartite), envolvendo responsabilidades pactuadas entre União, Estados e Municípios."},
+{q:"💛 192. Cabe à Secretaria Estadual de Saúde prestar apoio técnico aos municípios para a elaboração dos Planos Operativos e organização da rede de atenção.", v:true, j:"O estado tem a função de apoiar tecnicamente os municípios na implementação e monitoramento das ações de saúde socioeducativas."},
+{q:"💛 193. Conforme a PNAISARI, os adolescentes que aguardam sentença (internação provisória) não estão incluídos nas ações de saúde da política nacional.", v:false, j:"A política abrange todos os adolescentes em conflito com a lei, incluindo aqueles em internação provisória ou meio aberto."},
+{q:"💛 194. A avaliação do impacto das ações de saúde deve ser realizada periodicamente, utilizando indicadores que meçam a melhoria da qualidade de vida dos jovens.", v:true, j:"O monitoramento e a avaliação sistemática são diretrizes fundamentais para garantir a eficácia da PNAISARI."},
+{q:"💛 195. O incentivo financeiro federal para a PNAISARI é destinado apenas para a compra de medicamentos, sendo proibido o uso para capacitação de pessoal.", v:false, j:"O recurso pode e deve ser utilizado para diversas ações, incluindo a educação permanente das equipes de saúde e socioeducativas."},
+{q:"💛 196. A PNAISARI reforça que o acolhimento do adolescente no SUS deve ser livre de qualquer forma de discriminação, estigma ou preconceito.", v:true, j:"Um dos princípios éticos da política é a garantia de um atendimento humanizado e sem julgamentos morais pela condição de infração."},
+{q:"💛 197. Segundo as diretrizes, a equipe de saúde deve realizar visitas técnicas regulares às unidades socioeducativas para identificar focos de doenças infectocontagiosas.", v:true, j:"A vigilância em saúde e a busca ativa de agravos dentro das unidades são atribuições das equipes de referência."},
+{q:"💛 198. A política nacional estabelece que o lazer e a prática de esportes são considerados componentes externos e não possuem relação com a saúde do adolescente.", v:false, j:"A promoção da saúde envolve o bem-estar físico e mental, onde o lazer e o esporte são considerados fatores protetores fundamentais."},
+{q:"💛 199. A Portaria da PNAISARI prevê que a equipe de saúde da atenção primária deve ter acesso livre às dependências da unidade socioeducativa para prestar assistência.", v:true, j:"Para garantir o cuidado, as equipes de saúde do SUS devem ter livre acesso ao interior das unidades onde o adolescente cumpre a medida."},
+{q:"💛 200. No fechamento do ciclo de atendimento, a PNAISARI orienta que o histórico de saúde do adolescente seja transferido para a rede de saúde de sua cidade de origem.", v:true, j:"A continuidade do cuidado após a liberdade é um dos objetivos para garantir que o jovem não perca o vínculo com o sistema de saúde."}
+
+
 ];
 
 
@@ -5920,10 +5969,12 @@ function go(id) {
 
 
 function render() {
+    // 1. Sincroniza o tipo se for VIP
     if (window.isVipMode) quizType = 'simulado_vip';
 
-    // SALVAMENTO AUTOMÁTICO DO PROGRESSO VIP
-    if (window.isVipMode) {
+    // 2. SALVAMENTO MODULAR: Só salva se for Módulo 4 VIP
+    // Isso evita que o simulado de 30 questões atropele o índice do Módulo 4
+    if (window.isVipMode && quizType === 'modulo4_vip') { 
         localStorage.setItem('vip_indice_modulo4', currentIndex);
     }
 
@@ -5937,20 +5988,28 @@ function render() {
     const q = currentQuestions[currentIndex];
     document.getElementById('qh').innerText = `Questão ${currentIndex + 1}/${currentQuestions.length}`;
     document.getElementById('qt').innerText = q.q;
-    const optsArea = document.getElementById('opts'), fb = document.getElementById('feedback');
-    fb.style.display = 'none'; optsArea.innerHTML = '';
+    
+    const optsArea = document.getElementById('opts');
+    const fb = document.getElementById('feedback');
+    fb.style.display = 'none';
+    optsArea.innerHTML = '';
     optsArea.style.pointerEvents = 'auto';
 
     [true, false].forEach(val => {
-        const btn = document.createElement('div'); btn.className = 'opt'; btn.innerText = val ? "VERDADEIRO" : "FALSO";
+        const btn = document.createElement('div'); 
+        btn.className = 'opt'; 
+        btn.innerText = val ? "VERDADEIRO" : "FALSO";
+        
         if (historico[currentIndex] !== undefined) {
             if (val === historico[currentIndex]) btn.classList.add(val === q.v ? 'correct' : 'wrong');
-            fb.innerText = q.j; fb.style.display = 'block';
+            fb.innerText = q.j; 
+            fb.style.display = 'block';
             optsArea.style.pointerEvents = 'none';
         }
         btn.onclick = () => check(val, btn);
         optsArea.appendChild(btn);
     });
+
     document.getElementById('btnPrev').classList.toggle('visible', currentIndex > 0);
     document.getElementById('btnNext').classList.toggle('visible', historico[currentIndex] !== undefined);
 }
@@ -6047,33 +6106,69 @@ function registrarResposta(acertou, answer) {
 
 
 
-function iniciarRelogioGlobalVip(minutos) {
-    // Limpa qualquer timer anterior
-    if (timerGlobalVip) clearInterval(timerGlobalVip);
+
+function simuladoVipNovaEra() {
+    console.log("Aura: Iniciando motor limpo com selo VIP e Relógio Independente...");
     
-    tempoSimuladoRestante = minutos * 60; // Transforma em segundos
+    // 1. Mata a Sala VIP com força total
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) salaVip.style.setProperty("display", "none", "important");
 
-    timerGlobalVip = setInterval(() => {
-        tempoSimuladoRestante--;
+    // 2. Configura o que o RENDER precisa
+    window.isVipMode = true;
+    quizType = 'simulado_vip';
+    currentIndex = 0;
+    historico = {};
+
+    // 3. Puxa as questões (MegaBanco)
+    const bancoGigante = [
+        ...(typeof bancoOficial !== 'undefined' ? bancoOficial : []),
+        ...(typeof bancoModulos !== 'undefined' ? bancoModulos : []),
+        ...(typeof bancoVariados !== 'undefined' ? bancoVariados : []),
+        ...(typeof bancoPortarias !== 'undefined' ? bancoPortarias : [])
+    ];
+
+    currentQuestions = bancoGigante.sort(() => 0.5 - Math.random()).slice(0, 30);
+
+    // 4. Executa a mudança de tela
+    go('quiz');
+
+    // 5. Inicia o Relógio Independente (Cópia Blindada)
+    const iniciarNovoRelogioVip = (minutos) => {
+        if (timerVipIndependente) clearInterval(timerVipIndependente);
         
-        // Formata para MM:SS
-        let min = Math.floor(tempoSimuladoRestante / 60);
-        let seg = tempoSimuladoRestante % 60;
-        let displayFormatado = `${min}:${seg < 10 ? '0' + seg : seg}`;
+        let segundosTotais = minutos * 60;
+        const vContainer = document.getElementById('vidas-container');
 
-        const display = document.getElementById('timer-display');
-        if (display) {
-            display.innerText = displayFormatado;
-        }
+        timerVipIndependente = setInterval(() => {
+            let mins = Math.floor(segundosTotais / 60);
+            let segs = segundosTotais % 60;
+            let tempoFormatado = (mins < 10 ? "0" + mins : mins) + ":" + (segs < 10 ? "0" + segs : segs);
 
-        if (tempoSimuladoRestante <= 0) {
-            clearInterval(timerGlobalVip);
-            alert("Tempo de Simulado Esgotado!");
-            concluirSimuladoVip(); // Finaliza mesmo se não acabou todas
-            go('area-apoiador');
-        }
-    }, 1000);
+            if (vContainer) {
+                // Mantém o Selo e coloca o Relógio embaixo
+                vContainer.innerHTML = `
+                    <div style="line-height: 1.2;">
+                        <span style="font-size:1.2em; color: gold; display: block;">⭐SALA EXCLUSIVA ⭐</span>
+                        <span style="font-size:1.4em; color: white; font-family: monospace; font-weight: bold;">${tempoFormatado}</span>
+                    </div>`;
+            }
+
+            if (segundosTotais <= 0) {
+                clearInterval(timerVipIndependente);
+                alert("O tempo do Simulado VIP acabou!");
+                if (typeof sairModulo4Vip === 'function') sairModulo4Vip();
+            }
+            segundosTotais--;
+        }, 1000);
+    };
+
+    setTimeout(() => {
+        render();
+        iniciarNovoRelogioVip(60); // Inicia o relógio de 60 min totalmente novo
+    }, 50);
 }
+
 
 
 function concluirSimuladoVip() {
@@ -6134,7 +6229,7 @@ function iniciarRelogio(segundos) {
     }, 1000);
 }
 
-// 2. A FUNÇÃO DO SIMULADO (Limpa o relógio antes de começar)
+//  A FUNÇÃO MALDITA DO MAL ETERNO DOS SETE INFERNOS - NÃO SE APROXIMAR
 function iniciarSimuladoPelaSalaVip() {
     // Mata qualquer relógio antes de começar
     if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
@@ -6176,7 +6271,6 @@ function iniciarSimuladoPelaSalaVip() {
         if (vContainer) {
             vContainer.innerHTML = '<span style="font-size:1.5em; color: gold;">⭐ SIMULADO VIP ⭐</span>';
         }
-
 
 
 iniciarRelogioGlobalVip(60);
@@ -6967,27 +7061,26 @@ function startQuiz(modo) {
 }
 
 function sairModulo4Vip() {
-    // 1. Desativa modo VIP e limpa contexto
+    // 1. Para cronómetros
+    if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+    if (typeof timerGlobalVip !== 'undefined') clearInterval(timerGlobalVip);
+    
+    // 2. Limpa Estados Globais
     window.isVipMode = false;
     quizType = null;
-
-    // 2. Limpa estado do quiz atual para não vazar pro simulado comum
     currentQuestions = [];
     currentIndex = 0;
     historico = {};
 
-    // 3. Mostra novamente a sala VIP (Garante o display antes do go)
+    // 3. Força a restauração visual da Sala VIP
     const salaVip = document.getElementById('area-apoiador');
     if (salaVip) {
-        // Usando o seu padrão de "arrombamento" que funciona
         salaVip.style.setProperty("display", "flex", "important");
         salaVip.style.background = "#000";
     }
 
-    // 4. Volta para a tela da sala VIP
-    go('area-apoiador'); 
-    
-    console.log("Saída do módulo VIP executada com sucesso.");
+    // 4. Volta para a tela da Sala VIP
+    go('area-apoiador');
 }
 
 
@@ -7019,26 +7112,25 @@ function iniciarModulo4Vip() {
     // 1. SEGURANÇA: Se o banco não existe, nem tenta
     if (typeof bancoVip === 'undefined' || bancoVip.length === 0) return;
 
-    // Chaves de Memória que usamos
+    // Chaves de Memória
     const storageKeyIndex = 'vip_indice_modulo4';
     const storageKeyOrdem = 'vip_ordem_modulo4';
     const storageKeyHistorico = 'vip_historico_modulo4';
 
-    // 2. ESTADO GLOBAL (O que o seu render() precisa ver)
+    // 2. ESTADO GLOBAL
     window.isVipMode = true;
-    quizType = 'simulado_vip';
+    quizType = 'modulo4_vip'; // Ajustado para bater com a trava do render inteligente
 
     // 3. RECUPERA O HISTÓRICO
     let h = localStorage.getItem(storageKeyHistorico);
     historico = h ? JSON.parse(h) : {};
 
-    // 4. RECUPERA OU GERA A ORDEM (A parte que deu certo nas comemorações)
+    // 4. RECUPERA OU GERA A ORDEM
     let ordemSalva = localStorage.getItem(storageKeyOrdem);
     let indices;
 
     if (ordemSalva) {
         indices = JSON.parse(ordemSalva);
-        // Se você adicionou questões novas, a ordem antiga quebra o map. Aqui a gente conserta:
         if (indices.length !== bancoVip.length) {
             indices = bancoVip.map((_, i) => i).sort(() => 0.5 - Math.random());
             localStorage.setItem(storageKeyOrdem, JSON.stringify(indices));
@@ -7048,34 +7140,39 @@ function iniciarModulo4Vip() {
         localStorage.setItem(storageKeyOrdem, JSON.stringify(indices));
     }
 
-    // Alimenta a variável que o seu render() usa
     currentQuestions = indices.map(i => bancoVip[i]);
 
-    // 5. DEFINE O ÍNDICE (Onde você parou)
+    // 5. DEFINE O ÍNDICE
     let salvo = localStorage.getItem(storageKeyIndex);
     currentIndex = salvo ? parseInt(salvo) : 0;
 
-    // Se já respondeu a questão atual, pula para a próxima (Regra do +1 que você pediu)
     if (historico[currentIndex] !== undefined && currentIndex < currentQuestions.length - 1) {
         currentIndex++;
     }
 
-    // 6. MUDANÇA DE TELA
+    // 6. MUDANÇA DE TELA E IDENTIDADE VISUAL (O SEU AJUSTE)
     const salaVip = document.getElementById('area-apoiador');
-    if (salaVip) salaVip.style.display = "none";
+    if (salaVip) {
+        salaVip.style.setProperty("display", "none", "important");
+    }
 
-    // Chama as suas funções padrão de troca de tela
+    // AQUI O SELO DE OURO
+    const vContainer = document.getElementById('vidas-container');
+    if (vContainer) {
+        vContainer.innerHTML = '<span style="font-size:1.5em; color: gold;">⭐SALA EXCLUSIVA ⭐</span>';
+    }
+
     go('quiz');
     
-    // Pequeno delay para o DOM respirar e o render() encontrar os IDs
     setTimeout(() => {
         render(); 
         if (typeof aplicarTravaRevisao === 'function') aplicarTravaRevisao();
     }, 50);
 
-    // 7. BOTÃO DE SAÍDA (O seu favorito)
-    renderizarBotaoSairVip(); 
+    // 7. BOTÃO DE SAÍDA
+    if (typeof renderizarBotaoSairVip === 'function') renderizarBotaoSairVip(); 
 }
+
 
 // Função auxiliar para não poluir a principal
 function renderizarBotaoSairVip() {
@@ -7198,80 +7295,161 @@ function voltarMenuPosVip() {
     }, 100);
 }
 
+function prepararContextoSalaVip() {
+    // Estado VIP absoluto
+    window.isVipMode = true;
+    window.isSobrevivente = false;
+    quizType = 'simulado_vip';
+
+    // Mata relógios
+    if (typeof timerInterval !== 'undefined') {
+        clearInterval(timerInterval);
+    }
+
+    // Zera estados de simulado comum
+    erros = 0;
+    acertosSessao = 0;
+    currentIndex = 0;
+
+    // Remove bombas / modos estranhos
+    if (typeof removerBomba === 'function') removerBomba();
+
+    console.log("✔ Contexto VIP preparado");
+}
+
+
 function irParaAreaApoiador2() {
     const idDigitado = prompt("DIGITE SUA INSCRIÇÃO:");
     if (!idDigitado) return;
 
-    // Procura o ID dentro da lista de usuários comuns
     const usuarioEncontrado = usuarios.find(u => u.id == idDigitado);
 
     if (!usuarioEncontrado) {
-        mostrarMensagem(`<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>USE SEU ID DA ÁREA EXCLUSIVA</h1>`, 'erro');
+        mostrarMensagem(
+            `<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>USE SEU ID DA ÁREA EXCLUSIVA</h1>`,
+            'erro'
+        );
         return;
     }
 
-    // Se achou, libera o acesso como se fosse VIP
+    // Liberação
     liberado = true;
 
-    // Garante que o nome do usuário apareça no painel VIP
+    // Nome no painel
     const nomeDoadorElemento = document.getElementById('nome-doador-vip');
     if (nomeDoadorElemento) {
         nomeDoadorElemento.textContent = usuarioEncontrado.nome;
     }
 
-    // Força a entrada na Sala VIP
+    //  PRIMEIRO ENTRA NA TELA
     go('area-apoiador');
 
-    const telaVip = document.getElementById('area-apoiador');
-    if (telaVip) {
-        telaVip.style.setProperty("display", "flex", "important");
-        telaVip.style.background = "#000";
+    //  SÓ DEPOIS PREPARA O CONTEXTO VIP
+    setTimeout(() => {
+        prepararContextoSalaVip();
+
+        const telaVip = document.getElementById('area-apoiador');
+        if (telaVip) {
+            telaVip.style.setProperty("display", "flex", "important");
+            telaVip.style.background = "#000";
+        }
+
+        const vContainer = document.getElementById('vidas-container');
+        if (vContainer) {
+            vContainer.innerHTML =
+                '<span style="font-size:1.2em; color: gold; font-weight:bold;">⭐ SALA EXCLUSIVA ⭐</span>';
+        }
+    }, 0);
+
+    console.log("Acesso VIP concedido:", usuarioEncontrado.nome);
+}
+
+// Exemplo de como deve estar o seu Gerador de 30 questões:
+function gerarSimuladoVip30() {
+    // 1. Pega o banco de 2 mil questões
+    let bancoTotal = [...bancoOficial, ...bancoModulos, ...bancoOutros]; // Ajuste os nomes dos seus bancos
+
+    // 2. EMBARALHAMENTO REAL (Fisher-Yates)
+    // Isso mistura as 2000 questões como um baralho profissional
+    for (let i = bancoTotal.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [bancoTotal[i], bancoTotal[j]] = [bancoTotal[j], bancoTotal[i]];
     }
+
+    // 3. SELECIONA AS 30 DO TOPO (Sempre serão diferentes)
+    currentQuestions = bancoTotal.slice(0, 30);
     
-    // Alerta de boas-vindas para a amostra
-    console.log("Acesso temporário liberado para: " + usuarioEncontrado.nome);
+    // 4. RESET DE ÍNDICE
+    currentIndex = 0;
+    
+    // 5. RENDERIZA
+    render(); 
+    iniciarRelogio(300); // 5 minutos que combinamos
 }
 
 function portaDosFundosVip() {
     const idDigitado = prompt("SALA EXCLUSIVA - DIGITE SUA ID EXCLUSIVA:");
-    const el = document.getElementById('estadoEmoji');
     if (!idDigitado) return;
 
-    // Procura o ID na sua lista existente
+    const el = document.getElementById('estadoEmoji');
     const usuarioEncontrado = usuarios.find(u => u.id == idDigitado);
 
     if (usuarioEncontrado) {
-        // --- EFEITO SUCESSO ---
+        // 1. SUCESSO VISUAL NO TROFÉU
         liberado = true;
-        el.innerText = "🚪";
-        el.className = "estado open";
+        if (el) {
+            el.innerText = "🚪";
+            el.className = "estado open";
+        }
 
-        // Atualiza o nome no painel VIP
+        // 2. NOME NO PAINEL
         const nomeDoadorElemento = document.getElementById('nome-doador-vip');
-        if (nomeDoadorElemento) nomeDoadorElemento.textContent = usuarioEncontrado.nome;
+        if (nomeDoadorElemento) {
+            nomeDoadorElemento.textContent = usuarioEncontrado.nome;
+        }
 
-        // Pequeno delay para o cara ver o brilho da porta antes de entrar
+        // 3. ENTRA NA TELA (Igual à função que deu certo)
+        go('area-apoiador');
+
+        // 4. CHAMA O SEU NOVO CONTEXTO
         setTimeout(() => {
-            go('area-apoiador');
+            prepararContextoSalaVip(); // Usa a função que você criou!
+
             const telaVip = document.getElementById('area-apoiador');
             if (telaVip) {
                 telaVip.style.setProperty("display", "flex", "important");
                 telaVip.style.background = "#000";
             }
-        }, 1200);
+
+            const vContainer = document.getElementById('vidas-container');
+            if (vContainer) {
+                vContainer.innerHTML =
+                    '<span style="font-size:1.2em; color: gold; font-weight:bold;">⭐ SALA EXCLUSIVA ⭐</span>';
+            }
+            
+            // --- EXTERMINADOR DO BOTÃO "ÁREA DE ESTUDOS" ---
+            // Adicionei isso aqui para sumir com o botão intruso que você mencionou
+            const botoes = document.querySelectorAll('button, a');
+            botoes.forEach(btn => {
+                if (btn.innerText && (btn.innerText.includes('ÁREA DE ESTUDOS') || btn.innerText.includes('AREA DE ESTUDO'))) {
+                    btn.style.setProperty("display", "none", "important");
+                }
+            });
+
+        }, 0);
+
+        console.log("🏆 Acesso via Troféu sincronizado com Contexto VIP");
 
     } else {
-        // --- EFEITO ERRO ---
-        el.innerText = "☠️";
-        el.className = "estado error";
-
-        // Volta ao normal após o susto
-        setTimeout(() => {
-            el.innerText = "🚪";
-            el.className = "estado lock";
-        }, 2000);
-        
-        console.log("Acesso negado: ID exclusivo não encontrado.");
+        // ERRO
+        if (el) {
+            el.innerText = "☠️";
+            el.className = "estado error";
+            setTimeout(() => {
+                el.innerText = "🚪";
+                el.className = "estado lock";
+            }, 2000);
+        }
     }
 }
 
@@ -7572,51 +7750,45 @@ function fecharSlideVitoria() {
 /* =====================================================
    BANCO DE DOADORES
    ===================================================== */
-
 (() => {
-  // Lista de Doadores Ofuscada (Modo Hard) - Aura
-  const _0x5a12 = [
-    "\x31\x36\x32\x31", "\x52\x65\x6e\x61\x74\x6f\x20\x54\x68\x65\x72\x69\x6f\x6e",
-    "\x35\x38\x33", "\x56\x69\x76\x69\x61\x6e\x65\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x61\x63\x69\x65\x6c\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73",
-    "\x34\x38\x36\x32", "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f",
-    "\x32\x33\x38\x39", "\x52\x61\x66\x61\x65\x6c\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x4f\x6c\x69\x76\x65\x72\x61",
-    "\x32\x30\x37\x36\x30", "\x46\x65\x72\x6e\x61\x6e\x64\x6f\x20\x46\x72\x65\x69\x72\x65\x73\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x65\x6c\x6c\x6f",
-    "\x31\x32\x32\x33", "\x4c\x75\x63\x61\x73\x20\x56\x69\x6e\x69\x63\x69\x75\x73\x20\x41\x6c\x76\x65\x73\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f",
-    "\x34\x32\x38\x34", "\x41\x64\x61\x6c\x62\x65\x72\x74\x6f\x20\x64\x6f\x73\x20\x52\x65\x69\x73\x20\x53\x61\x6c\x65\x73",
-    "\x32\x36\x30\x30\x39", "\x43\x6c\x65\x69\x6c\x73\x6f\x6e\x20\x43\x6f\x65\x6c\x68\x6f\x20\x50\x65\x72\x65\x6e\x72\x61",
-    "\x36\x34\x31\x39", "\x52\x61\x66\x61\x65\x6c\x20\x41\x6c\x65\x78\x61\x6e\x64\x72\x65\x20\x46\x65\x72\x72\x65\x69\x72\x61\x20\x52\x61\x6d\x6f\x73",
-    "\x31\x35\x39\x36\x36", "\x4a\x6f\x73\x65\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x6f\x74\x61\x20\x42\x61\x72\x62\x6f\x73\x61",
-    "\x38\x32\x30\x39", "\x4a\x6f\x61\x6f\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x61\x64\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f",
-    "\x31\x34\x32\x39\x38", "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a",
-    "\x32\x34\x37\x31\x30", "\x43\x69\x63\x65\x72\x6f\x20\x48\x69\x6c\x64\x65\x72\x6c\x6c\x6f\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x43\x61\x76\x61\x6c\x61\x6e\x74\x65",
-    "\x37\x38\x30\x36", "\x54\x69\x61\x67\x6f\x20\x53\x6f\x61\x72\x65\x73\x20\x42\x61\x74\x69\x73\x74\x61",
-    "\x30\x31\x34\x32\x39\x38", "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a",
-    "\x36\x35\x30\x31", "\x53\x61\x6d\x79\x61\x20\x53\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61",
-    "\x32\x36\x36\x39", "\x43\x69\x63\x65\x72\x61\x20\x4d\x61\x72\x69\x61\x20\x64\x65\x20\x4d\x65\x6c\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f",
-    "\x32\x35\x30\x38\x33", "\x46\x72\x61\x6e\x63\x69\x6c\x65\x6e\x65\x20\x64\x65\x20\x53\x6f\x75\x73\x61\x20\x42\x65\x7a\x65\x72\x72\x61",
-    "\x34\x31\x32\x31", "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x56\x61\x6e\x64\x65\x72\x6c\x61\x6e\x20\x4d\x61\x72\x69\x6e\x68\x6f\x20\x64\x65\x20\x4d\x65\x73\x71\x75\x69\x74\x61",
-    "\x31\x39\x36\x30", "\x49\x67\x6f\x72\x20\x4c\x75\x61\x6e\x20\x4c\x69\x6d\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61",
-    "\x32\x36\x34\x37\x33", "\x52\x75\x64\x73\x6f\x6e\x20\x64\x65\x20\x53\x6f\x75\x73\x61\x20\x43\x61\x72\x64\x6f\x73\x6f",
-    "\x35\x32\x32\x37", "\x41\x6c\x6c\x69\x73\x6f\x6e\x20\x4d\x61\x74\x65\x75\x73\x20\x46\x6c\x6f\x72\x65\x6e\x63\x69\x6f\x20\x64\x61\x20\x50\x61\x7a",
-    "\x31\x34\x30", "\x46\x65\x6c\x69\x70\x65\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73\x20\x64\x6f\x73\x20\x53\x61\x6e\x74\x6f\x73",
-    "\x32\x31\x39\x32\x32", "\x52\x6f\x6e\x61\x6c\x64\x20\x53\x69\x6c\x76\x61\x20\x4c\x61\x6e\x64\x69\x6d\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73",
-    "\x30\x34\x38\x36\x32", "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f",
-    "\x39\x30\x35\x35", "\x44\x61\x6e\x69\x65\x6c\x6c\x65\x20\x53\x6f\x75\x73\x61\x20\x64\x65\x20\x43\x61\x73\x74\x72\x6f",
-    "\x37\x35\x31", "\x45\x6c\x69\x73\x20\x52\x75\x74\x65\x20\x4d\x65\x6c\x6f\x20\x43\x61\x72\x6e\x65\x69\x72\x6f",
-    "\x32\x32\x30\x30\x38", "\x50\x61\x75\x6c\x61\x20\x4b\x61\x74\x65\x6e\x65\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x52\x65\x69\x73"
+  // Aura: Ofuscação estável Unidade 2 - Modo Hex
+  const DOADORES = [
+    { id: "\x31\x36\x32\x31", nome: "\x52\x65\x6e\x61\x74\x6f\x20\x54\x68\x65\x72\x69\x6f\x6e" },
+    { id: "\x35\x38\x33", nome: "\x56\x69\x76\x69\x61\x6e\x65\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x61\x63\x69\x65\x6c\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73" },
+    { id: "\x34\x38\x36\x32", nome: "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x32\x33\x38\x39", nome: "\x52\x61\x66\x61\x65\x6c\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x4f\x6c\x69\x76\x65\x72\x61" },
+    { id: "\x32\x30\x37\x36\x30", nome: "\x46\x65\x72\x6e\x61\x6e\x64\x6f\x20\x46\x72\x65\x69\x72\x65\x73\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x65\x6c\x6c\x6f" },
+    { id: "\x31\x32\x32\x33", nome: "\x4c\x75\x63\x61\x73\x20\x56\x69\x6e\x69\x63\x69\x75\x73\x20\x41\x6c\x76\x65\x73\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x34\x32\x38\x34", nome: "\x41\x64\x61\x6c\x62\x65\x72\x74\x6f\x20\x64\x6f\x73\x20\x52\x65\x69\x73\x20\x53\x61\x6c\x65\x73" },
+    { id: "\x32\x36\x30\x30\x39", nome: "\x43\x6c\x65\x69\x6c\x73\x6f\x6e\x20\x43\x6f\x65\x6c\x68\x6f\x20\x50\x65\x72\x65\x69\x72\x61" },
+    { id: "\x36\x34\x31\x39", nome: "\x52\x61\x66\x61\x65\x6c\x20\x41\x6c\x65\x78\x61\x6e\x64\x72\x65\x20\x46\x65\x72\x72\x65\x69\x72\x61\x20\x52\x61\x6d\x6f\x73" },
+    { id: "\x31\x35\x39\x36\x36", nome: "\x4a\x6f\x73\x65\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x6f\x74\x61\x20\x42\x61\x72\x62\x6f\x73\x61" },
+    { id: "\x38\x32\x30\x39", nome: "\x4a\x6f\xe3\x6f\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x61\x64\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x31\x34\x32\x39\x38", nome: "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a" },
+    { id: "\x32\x34\x37\x31\x30", nome: "\x43\x69\x63\x65\x72\x6f\x20\x48\x69\x6c\x64\x65\x72\x6c\x6c\x6f\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x43\x61\x76\x61\x6c\x63\x61\x6e\x74\x65" },
+    { id: "\x37\x38\x30\x36", nome: "\x54\x69\x61\x67\x6f\x20\x53\x6f\x61\x72\x65\x73\x20\x42\x61\x74\x69\x73\x74\x61" },
+    { id: "\x30\x31\x34\x32\x39\x38", nome: "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a" },
+    { id: "\x36\x35\x30\x31", nome: "\x53\x61\x6d\x79\x61\x20\x53\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
+    { id: "\x32\x36\x36\x39", nome: "\x43\x69\x63\x65\x72\x61\x20\x4d\x61\x72\x69\x61\x20\x64\x65\x20\x4d\x65\x6c\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x32\x35\x30\x38\x33", nome: "\x46\x72\x61\x6e\x63\x69\x6c\x65\x6e\x65\x20\x64\x65\x20\x53\x6f\x75\x73\x61\x20\x42\x65\x7a\x65\x72\x72\x61" },
+    { id: "\x34\x31\x32\x31", nome: "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x56\x61\x6e\x64\x65\x72\x6c\x61\x6e\x20\x4d\x61\x72\x69\x6e\x68\x6f\x20\x64\x65\x20\x4d\x65\x73\x71\x75\x69\x74\x61" },
+    { id: "\x31\x39\x36\x30", nome: "\x49\x67\x6f\x72\x20\x4c\x75\x61\x6e\x20\x4c\x69\x6d\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
+    { id: "\x32\x36\x34\x37\x33", nome: "\x52\x75\x64\x73\x6f\x6e\x20\x64\x65\x20\x53\x6f\x75\x73\x61\x20\x43\x61\x72\x64\x6f\x73\x6f" },
+    { id: "\x35\x32\x32\x37", nome: "\x41\x6c\x6c\x69\x73\x6f\x6e\x20\x4d\x61\x74\x65\x71\x73\x20\x46\x6c\x6f\x72\x65\x6e\x63\x69\x6f\x20\x64\x61\x20\x50\x61\x7a" },
+    { id: "\x31\x34\x30", nome: "\x46\x65\x6c\x69\x70\x65\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73\x20\x64\x6f\x73\x20\x53\x61\x6e\x74\x6f\x73" },
+    { id: "\x32\x31\x39\x32\x32", nome: "\x52\x6f\x6e\x61\x6c\x64\x20\x53\x69\x6c\x76\x61\x20\x4c\x61\x6e\x64\x69\x6d\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73" },
+    { id: "\x30\x34\x38\x36\x32", nome: "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x39\x30\x35\x35", nome: "\x44\x61\x6e\x69\x65\x6c\x6c\x65\x20\x53\x6f\x75\x73\x61\x20\x64\x65\x20\x43\x61\x73\x74\x72\x6f" },
+    { id: "\x37\x35\x31", nome: "\x45\x6c\x69\x73\x20\x52\x75\x74\x65\x20\x4d\x65\x6c\x6f\x20\x43\x61\x72\x6e\x65\x69\x72\x6f" },
+    { id: "\x32\x32\x30\x30\x38", nome: "\x50\x61\x75\x6c\x61\x20\x4b\x61\x74\x65\x6e\x65\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x52\x65\x69\x73" },
+    { id: "\x32\x33\x39\x35\x36", nome: "\x42\x72\x75\x6e\x61\x20\x4d\x69\x72\x65\x6c\x6c\x61\x20\x42\x65\x7a\x65\x72\x72\x61\x20\x41\x6c\x76\x69\x6e\x6f" },
+    { id: "\x34\x35\x33\x33", nome: "\x54\x68\x69\x61\x67\x6f\x20\x53\x69\x6c\x76\x61\x20\x53\x61\x6e\x74\x6f\x73" },
+    { id: "\x32\x32\x33\x35\x36", nome: "\x4a\x6f\x61\x6f\x20\x50\x61\x75\x6c\x6f\x20\x54\x65\x69\x7a\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" }
   ];
 
-  const DOADORES = [];
-  for (let i = 0; i < _0x5a12.length; i += 2) {
-    DOADORES.push({
-      id: _0x5a12[i],
-      nome: _0x5a12[i+1]
-    });
-  }
-
   window.DOADORES = DOADORES;
+  console.log("\x53\x69\x73\x74\x65\x6d\x61\x20\x56\x49\x50\x20\x41\x74\x69\x76\x6f");
 })();
-
 /* ===============================
    
    =============================== */
