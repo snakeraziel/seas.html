@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PROVÃO SEAS</title>
     <style>
+
 .estado {
   transition: all 0.4s ease;
   font-size: 28px;
@@ -403,6 +404,8 @@ button {
              explosionFlash 0.4s ease-in-out;
 }
 
+
+
 /* GARANTE FLUXO CORRETO DA ÁREA RESTRITA */
 #area-restrita {
   justify-content: flex-start; /* tira o empurrão pro centro */
@@ -465,6 +468,14 @@ button {
   border-radius: 4px;
   pointer-events: none; /* Evita que o clique do usuário "bata" no contador em vez do botão */
 }
+
+/* baixa renda */
+@keyframes glow {
+    0% { filter: drop-shadow(0 0 5px #fff); }
+    50% { filter: drop-shadow(0 0 20px gold) drop-shadow(0 0 30px yellow); }
+    100% { filter: drop-shadow(0 0 5px #fff); }
+  }
+  .fx36 { animation: glow 1.2s infinite ease-in-out; }
 
 <!-- @media (max-width: 768px) {
   .contador-hits {
@@ -555,10 +566,11 @@ button {
     </div> -->
 
 <h1 style="font-size:3em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-    <h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
-    1769 QUESTÕES 
-    <span id="lampada-vip" onclick="mostrarMensagemVip()" style="cursor:pointer; filter: drop-shadow(0 0 5px #fff);">💡</span>
+<h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+  2.000 QUESTÕES 
+  <span id="lampada-vip" class="fx36" onclick="mostrarMensagemVip()" style="cursor:pointer;">💡</span> 
 </h2>
+  
 
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
       <div id="chave" draggable="true" style="font-size:3em; cursor:grab;">🔑</div>
@@ -2543,7 +2555,38 @@ let bancoVariados = [
 {q:"💢 189. A PNAISARI estabelece que o Projeto Terapêutico Singular (PTS) deve ser articulado ao Plano Individual de Atendimento (PIA).", v:true, j:"Esses dois planos devem caminhar juntos para o sucesso da medida e da saúde do jovem."},
 {q:"💢 190. A Tricomoníase pode ser assintomática em homens, tornando-os portadores que transmitem o protozoário sem saber.", v:true, j:"A ausência de sintomas no homem facilita a propagação silenciosa da infecção."},
 {q:"💢 191. O assédio moral pode levar o trabalhador a desenvolver transtornos mentais, como depressão e transtorno de ansiedade generalizada.", v:true, j:"O impacto psicológico do assédio é fator de risco direto para adoecimento mental no trabalho."},
-{q:"💢 192. A Lei nº 12.594/2012 instituiu o SINASE, regulamentando a execução de medidas socioeducativas em todo o território nacional.", v:true, j:"Conhecida como Lei do SINASE, ela padroniza o atendimento socioeducativo no país."}
+{q:"💢 192. A Lei nº 12.594/2012 instituiu o SINASE, regulamentando a execução de medidas socioeducativas em todo o território nacional.", v:true, j:"Conhecida como Lei do SINASE, ela padroniza o atendimento socioeducativo no país."},
+{q:"💢 193. A intervenção estatal diante de um ato infracional não deve se limitar à punição, devendo promover responsabilização e oportunidades de desenvolvimento.", v:true, j:"O Estado deve equilibrar a sanção com o caráter educativo e de desenvolvimento do adolescente."},
+{q:"💢 194. O Ministério Público é uma instituição permanente e essencial à função jurisdicional do Estado, e uma de suas missões é defender interesses individuais indisponíveis.", v:true, j:"O MP é uma instituição permanente e essencial à função jurisdicional do Estado. O artigo 127 da Constituição Federal define como sua missão defender a ordem jurídica, defender os interesses sociais, defender o regime democrático e defender os interesses individuais indisponíveis."},
+{q:"💢 195. As medidas socioeducativas, segundo a Lei do SINASE, configuram-se como pena privativa de liberdade idêntica à do sistema prisional.", v:false, j:"A lei deixa claro que a medida não é pena privativa de liberdade, mas um processo de responsabilização educativa."},
+{q:"💢 196. A medida aplicada ao adolescente deve observar o princípio da proporcionalidade e assegurar o respeito à dignidade da pessoa em desenvolvimento.", v:true, j:"A proporcionalidade garante que a medida seja adequada à gravidade do ato e às necessidades do jovem."},
+{q:"💢 197. O socioeducador é peça central para ressignificar a trajetória do adolescente, garantindo o equilíbrio entre responsabilização e proteção.", v:true, j:"O papel do socioeducador é fundamental na execução pedagógica e na segurança do processo socioeducativo."},
+{q:"💢 198. A apreensão de qualquer adolescente deve ser comunicada imediatamente apenas ao Ministério Público, dispensando o aviso à família.", v:false, j:"A apreensão deve ser comunicada imediatamente ao juiz competente e à família do aprendiz ou pessoa por ele indicada."},
+{q:"💢 199. De acordo com o ECA, o adolescente tem o direito de ser identificado pelos responsáveis por sua apreensão e de ser informado sobre seus direitos.", v:true, j:"A transparência e a informação sobre direitos são garantias processuais estabelecidas no Estatuto."},
+{q:"💢 200. A internação provisória, decretada antes da sentença, pode ser mantida pelo prazo máximo de 45 dias, sem possibilidade de prorrogação.", v:true, j:"O prazo de 45 dias é peremptório e sua extrapolação gera a ilegalidade da internação. Em outras palavras, 'não tem conversa', se o prazo de 45 dias passar e o juiz não der a sentença, o jovem tem que ser solto na hora porque a medida se torna ilegal."},
+{q:"💢 201. A remissão pode ser concedida pelo Ministério Público como forma de exclusão do processo, antes mesmo de iniciada a ação judicial.", v:true, j:"O MP possui a prerrogativa de conceder a remissão extrajudicial para evitar o processo quando entender cabível."},
+{q:"💢 202. A medida de internação só pode ser aplicada quando se tratar de ato infracional cometido mediante grave ameaça ou violência à pessoa.", v:true, j:"A violência ou grave ameaça é um dos critérios taxativos do Art. 122 do ECA para a internação."},
+{q:"💢 203. O descumprimento reiterado e injustificado de medida anteriormente imposta não autoriza a regressão do adolescente para a internação.", v:false, j:"O descumprimento injustificado de medida anterior é uma das hipóteses legais que autorizam a internação-sanção."},
+{q:"💢 204. A medida de semiliberdade obriga o adolescente a realizar atividades de escolarização e profissionalização, preferencialmente na comunidade.", v:true, j:"A semiliberdade foca na utilização dos recursos da comunidade para a integração do adolescente."},
+{q:"💢 205. O Plano Individual de Atendimento (PIA) é um instrumento opcional, ficando a critério do diretor da unidade a sua elaboração.", v:false, j:"O PIA é obrigatório e constitui o parâmetro para o acompanhamento e avaliação da medida socioeducativa."},
+{q:"💢 206. A escolarização é uma atividade obrigatória durante o cumprimento de qualquer medida socioeducativa de restrição de liberdade.", v:true, j:"O direito à educação é inalienável e deve ser garantido integralmente dentro das unidades."},
+{q:"💢 207. O adolescente internado tem o direito de receber visitas, ao menos semanalmente, de seus pais, responsáveis e parentes.", v:true, j:"O fortalecimento dos vínculos familiares é diretriz central do SINASE e do ECA."},
+{q:"💢 208. A disciplina na unidade socioeducativa permite o uso de castigos físico, em caráter moderado, como forma de manter a ordem e o respeito às autoridades.", v:false, j:"É terminantemente proibido o uso de castigos corporais, tratamentos cruéis, desumanos ou degradantes no sistema."},
+{q:"💢 209. A idade mínima para a responsabilidade por ato infracional no Brasil é de 12 anos completos.", v:true, j:"Abaixo de 12 anos, a criança que pratica ato infracional não sofre medida socioeducativa, mas recebe apenas medidas protetivas."},
+{q:"💢 210. O Ministério Público tem a função de fiscalizar as entidades de atendimento socioeducativo para garantir o cumprimento da lei.", v:true, j:"O MP atua como fiscal da lei e das condições de execução das medidas nas unidades."},
+{q:"💢 211. A medida de advertência consiste na admoestação verbal, que será reduzida a termo e assinada pelo adolescente e seus responsáveis.", v:true, j:"A advertência é a medida mais branda e foca na repreensão direta sobre o ato praticado."},
+{q:"💢 212. Na execução da medida de prestação de serviços à comunidade, as tarefas devem ser cumpridas aos sábados, domingos e feriados ou dias úteis.", v:true, j:"A PSC deve ser organizada de modo a não prejudicar a frequência à escola ou ao trabalho."},
+{q:"💢 213. O prazo da medida de internação é determinado na sentença e não pode ser alterado até o fim do cumprimento da pena.", v:false, j:"A medida é por tempo indeterminado, com reavaliação obrigatória no máximo a cada seis meses."},
+{q:"💢 214. O princípio da brevidade na internação significa que o adolescente deve ser liberado assim que atingir os objetivos propostos no PIA.", v:true, j:"A brevidade visa garantir que o adolescente não fique internado além do tempo estritamente necessário."},
+{q:"💢 215. A defesa técnica do adolescente deve ser exercida exclusivamente por defensores públicos, sendo vedada a contratação de advogados particulares.", v:false, j:"O adolescente tem o direito de escolher seu defensor, podendo ser advogado particular ou defensor público."},
+{q:"💢 216. A autoridade judiciária pode suspender a medida socioeducativa quando verificar que o adolescente não tem condições de saúde mental.", v:true, j:"Questões de saúde mental podem levar à substituição da medida por tratamento adequado ou medida protetiva."},
+{q:"💢 217. O regime de internação provisória deve ser cumprido em entidades exclusivas para esse fim, separadas dos adolescentes já sentenciados.", v:true, j:"A separação por critérios de idade, compleição física e gravidade do ato é uma determinação legal."},
+{q:"💢 218. A Superintendência do Sistema Estadual de Atendimento Socioeducativo (SEAS) é o órgão responsável pelas medidas de meio aberto no Ceará.", v:false, j:"A SEAS foca na internação e semiliberdade; as medidas de meio aberto (LA e PSC) são de responsabilidade dos municípios."},
+{q:"💢 219. O direito à assistência religiosa é garantido ao adolescente internado, respeitando sua liberdade de crença e culto.", v:true, j:"O adolescente tem o direito de professar sua fé e receber assistência religiosa dentro da unidade."},
+{q:"💢 220. A internação em nenhuma hipótese poderá exceder o período máximo de 3 anos, devendo o jovem ser liberado ou progredir após esse prazo.", v:true, j:"O teto máximo de 3 anos para a internação é uma regra rígida do Art. 121, § 3º do ECA."},
+{q:"💢 221. A participação do adolescente na elaboração de seu próprio Plano Individual de Atendimento (PIA) é um direito e uma estratégia pedagógica.", v:true, j:"Ouvir o jovem na construção de suas metas fortalece o protagonismo e o compromisso com a medida."},
+{q:"💢 222. Ao completar 18 anos, o jovem que cumpre medida socioeducativa deve ser imediatamente transferido para uma penitenciária de segurança máxima.", v:false, j:"O jovem continua cumprindo a medida no sistema socioeducativo até, no máximo, os 21 anos incompletos."},
+{q:"💢 223. A segurança nas unidades socioeducativas deve ser feita de forma a não prejudicar as ações pedagógicas e o bem-estar dos adolescentes.", v:true, j:"Segurança e pedagogia devem caminhar juntas, garantindo a ordem sem violar direitos fundamentais."}
 
 
 ];
@@ -5755,7 +5798,69 @@ const bancoVip = [
 {q:"💛 197. Segundo as diretrizes, a equipe de saúde deve realizar visitas técnicas regulares às unidades socioeducativas para identificar focos de doenças infectocontagiosas.", v:true, j:"A vigilância em saúde e a busca ativa de agravos dentro das unidades são atribuições das equipes de referência."},
 {q:"💛 198. A política nacional estabelece que o lazer e a prática de esportes são considerados componentes externos e não possuem relação com a saúde do adolescente.", v:false, j:"A promoção da saúde envolve o bem-estar físico e mental, onde o lazer e o esporte são considerados fatores protetores fundamentais."},
 {q:"💛 199. A Portaria da PNAISARI prevê que a equipe de saúde da atenção primária deve ter acesso livre às dependências da unidade socioeducativa para prestar assistência.", v:true, j:"Para garantir o cuidado, as equipes de saúde do SUS devem ter livre acesso ao interior das unidades onde o adolescente cumpre a medida."},
-{q:"💛 200. No fechamento do ciclo de atendimento, a PNAISARI orienta que o histórico de saúde do adolescente seja transferido para a rede de saúde de sua cidade de origem.", v:true, j:"A continuidade do cuidado após a liberdade é um dos objetivos para garantir que o jovem não perca o vínculo com o sistema de saúde."}
+{q:"💛 200. No fechamento do ciclo de atendimento, a PNAISARI orienta que o histórico de saúde do adolescente seja transferido para a rede de saúde de sua cidade de origem.", v:true, j:"A continuidade do cuidado após a liberdade é um dos objetivos para garantir que o jovem não perca o vínculo com o sistema de saúde."},
+{q:"💛 201. A adolescência é compreendida como um momento de transformações físicas, psicológicas e sociais, sendo os adolescentes sujeitos em condição peculiar de desenvolvimento.", v:true, j:"A adolescência como uma fase sensível de mudanças que coloca o jovem em condição peculiar de desenvolvimento."},
+{q:"💛 202. Segundo a OPAS, a depressão é uma causa irrelevante de incapacidade entre adolescentes, não sendo motivo de preocupação para as políticas de saúde.", v:false, j:"A OPAS aponta que a depressão é uma das principais causas de incapacidade entre adolescentes em todo o mundo."},
+{q:"💛 203. O suicídio é classificado pela Organização Pan-Americana de Saúde como a terceira principal causa de morte entre adolescentes de 15 a 19 anos.", v:true, j:"Os dados da OPAS confirmam o suicídio como a terceira principal causa de óbito nessa faixa etária específica."},
+{q:"💛 204. A saúde mental é definida tecnicamente apenas como a ausência total de transtornos mentais ou sintomas de doenças psiquiátricas.", v:false, j:"Saúde mental é mais do que a ausência de transtornos; é um estado de bem-estar e a capacidade de seguir em frente após adversidades."},
+{q:"💛 205. O estigma e a discriminação são fatores que podem impedir adolescentes de buscarem ajuda ou de relatarem que não estão se sentindo bem mentalmente.", v:true, j:"O preconceito e o estigma social são barreiras reais que dificultam o acesso ao cuidado em saúde mental."},
+{q:"💛 206. De acordo com o material, a saúde mental não possui nenhuma relação direta com a saúde física ou com as questões emocionais do indivíduo.", v:false, j:"A saúde mental se relaciona com a saúde física, questões emocionais e justiça social."},
+{q:"💛 207. Situações de violência, desigualdade social e preconceito são considerados fatores que interferem negativamente na saúde mental de adolescentes e jovens.", v:true, j:"O contexto de vida, incluindo desigualdades e violências, impacta diretamente o bem-estar mental dessa população."},
+{q:"💛 208. A articulação intersetorial, contribuindo para encaminhamentos adequados a serviços de saúde, educação e assistência social, promovendo atenção integral aos adolescentes, é uma das funções do socioeducador.", v:true, j:"De acordo com as diretrizes do SINASE, da PNAISARI e do ECA, além da articulação intersetorial citada no enunciado, o socioeducador desempenha outras funções articuladas com as equipes interdisciplinares, como participação na elaboração e acompanhamento do PTS e PIA, e a participação em capacitações e supervisões, garantindo atualização profissional contínua para atuação em saúde mental e proteção de direitos."},
+{q:"💛 209. A adolescência é um período em que o sujeito está mais imune a questões de saúde mental, devido à sua plasticidade cerebral e vitalidade física.", v:false, j:"Pelo contrário, as transformações da fase deixam os adolescentes mais suscetíveis a questões de saúde mental."},
+{q:"💛 210. O ebook do Instituto Vita Alere indica que saúde mental envolve conseguir passar pelas coisas ruins que acontecem na vida e conseguir seguir em frente.", v:true, j:"Essa é a definição de resiliência e bem-estar mental apresentada pelo material do instituto e que tem apoio da Unicef."},
+{q:"💛 211. Problemas de saúde mental na adolescência são sempre causados por fatores genéticos, excluindo-se a influência do ambiente ou da pressão social.", v:false, j:"A unidade III do módulo IV destaca que questões familiares, pressão social e uso de substâncias são agravantes significativos."},
+{q:"💛 212. A SBP e a OMS manifestam preocupação especial com a saúde mental dos jovens nos últimos anos devido ao aumento de casos registrados.", v:true, j:"Ambas as organizações têm emitido alertas sobre a vulnerabilidade mental de adolescentes e jovens na atualidade."},
+{q:"💛 213. O termo 'saúde mental' engloba a capacidade do adolescente de lidar com os desafios da vida e participar ativamente da sociedade.", v:true, j:"Saúde mental envolve o equilíbrio emocional e a habilidade de interagir e contribuir com o meio social."},
+{q:"💛 214. De acordo com o texto, o uso de substâncias psicoativas é um fator que pode agravar as vulnerabilidades mentais durante a adolescência.", v:true, j:"O uso de substâncias é citado como um dos fatores que podem piorar o quadro de saúde mental dos jovens."},
+{q:"💛 215. A OPAS indica que a saúde mental é caracterizada pelo isolamento social como forma de proteger o adolescente das pressões externas.", v:false, j:"O isolamento tende a prejudicar a saúde mental; a OPAS foca na capacidade de lidar com adversidades e manter vínculos."},
+{q:"💛 216. A voz do adolescente deve ser valorizada pelas equipes de saúde, pois fortalece sua autoestima e a construção de projetos de vida.", v:true, j:"Valorizar a fala do jovem é diretriz do SINASE e da OMS para promover o desenvolvimento saudável."},
+{q:"💛 217. Quando um adolescente em internação apresenta sinais de depressão, o socioeducador deve ameaçar com medidas disciplinares para conter o comportamento, pois depressão é falta de Deus.", v:false, j:"Sinais de sofrimento mental exigem acolhimento, observação e articulação com a equipe de saúde, nunca julgamento ou punição."},
+{q:"💛 218. A repressão comportamental é a estratégia mais indicada pela OMS para promover o desenvolvimento saudável de jovens em conflito com a lei.", v:false, j:"A repressão agrava conflitos e não promove saúde; o foco deve ser no acolhimento e no fortalecimento de vínculos."},
+{q:"💛 219. O diagnóstico de transtorno mental na adolescência deve levar em conta o contexto social e a fase de desenvolvimento em que o jovem se encontra.", v:true, j:"A saúde mental está ligada ao contexto de vida e às transformações naturais da adolescência."},
+{q:"💛 220. Segundo as diretrizes de atenção integral, a exclusão da família é necessária para que o tratamento de saúde mental do adolescente seja eficaz.", v:false, j:"A exclusão familiar vai contra as normas, pois o vínculo familiar é fundamental para a recuperação e reinserção social."},
+{q:"💛 221. A saúde mental de adolescentes e jovens é influenciada por questões de justiça social e acesso a direitos fundamentais.", v:true, j:"A saúde mental se relaciona com saúde física, questões emocionais e também com a justiça social."},
+{q:"💛 222. O socioeducador desempenha um papel de observador privilegiado, podendo identificar precocemente sinais de sofrimento mental nos adolescentes.", v:true, j:"Pelo contato diário, o socioeducador é essencial na identificação de mudanças de comportamento que indiquem necessidade de ajuda."},
+{q:"💛 223. Transtornos mentais na adolescência são raros e, por isso, não precisam ser abordados nos planos de atendimento socioeducativo.", v:false, j:"A prevalência é significativa, tornando o tema central no planejamento do atendimento ao adolescente."},
+{q:"💛 224. O fortalecimento da rede de apoio social é uma das estratégias para prevenir agravos na saúde mental da população adolescente.", v:true, j:"Ter uma rede de apoio sólida ajuda o jovem a passar por crises e seguir em frente com seu projeto de vida."},
+{q:"💛 225. A saúde mental é um estado de bem-estar que permite ao adolescente lidar com o estresse da vida e desenvolver suas habilidades.", v:true, j:"O conceito de saúde mental envolve o bem-estar e a capacidade de enfrentar estresses e desenvolver potencialidades."},
+{q:"💛 226. Segundo a Organização Pan-Americana de Saúde (OPAS), o suicídio é a principal causa de morte entre jovens de 15 a 21 anos, superando todas as outras causas naturais.", v:false, j:"O suicídio é a terceira principal causa de morte, mas na faixa etária de 15 a 19 anos."},
+{q:"💛 227. A plasticidade cerebral na adolescência permite que intervenções de saúde mental tenham resultados positivos e duradouros no desenvolvimento.", v:true, j:"A fase de transformações e plasticidade cerebral torna o período propício para intervenções preventivas e terapêuticas."},
+{q:"💛 228. De acordo com as diretrizes de saúde mental, o isolamento é a ferramenta mais eficaz para tratar crises de ansiedade em adolescentes privados de liberdade.", v:false, j:"O isolamento tende a prejudicar a saúde mental; a abordagem correta envolve acolhimento e suporte especializado."},
+{q:"💛 229. A saúde mental do adolescente é influenciada pelo ambiente em que vive, incluindo a qualidade das relações familiares e sociais.", v:true, j:"Fatores ambientais, familiares e sociais são determinantes cruciais para a saúde mental durante a adolescência."},
+{q:"💛 230. O ECA determina que adolescentes com transtornos mentais devem ser tratados exclusivamente em hospitais psiquiátricos, longe do convívio social de modo a evitar julgamentos.", v:false, j:"A legislação e as políticas de saúde mental priorizam o tratamento em meio comunitário e a preservação dos vínculos sociais."},
+{q:"💛 231. Problemas de saúde mental na infância e adolescência, se não tratados, podem se estender e trazer prejuízos graves para a vida adulta.", v:true, j:"O cuidado precoce evita que agravos de saúde mental persistam ou piorem na fase adulta."},
+{q:"💛 232. A prática de 'escuta qualificada' por parte dos profissionais da unidade socioeducativa é uma forma de promover saúde mental no cotidiano.", v:true, j:"Ouvir o adolescente de forma técnica e empática é uma ferramenta fundamental de promoção de bem-estar e autoestima."},
+{q:"💛 233. A PNAISARI estabelece que o tratamento de saúde mental deve ser focado apenas no uso de medicamentos, descartando terapias conversacionais.", v:false, j:"O tratamento deve ser integral, envolvendo ações psicossociais, apoio terapêutico e não apenas a medicalização."},
+{q:"💛 234. A sensação de pertencimento a um grupo ou comunidade é considerada um fator de proteção para a saúde mental do jovem.", v:true, j:"O pertencimento e os vínculos sociais saudáveis ajudam a proteger o adolescente contra riscos e vulnerabilidades mentais."},
+{q:"💛 235. O uso prejudicial de álcool e outras drogas na adolescência é visto apenas como uma infração disciplinar, sem relação com a saúde mental.", v:false, j:"O uso de substâncias é um fator de risco e muitas vezes está diretamente ligado ao sofrimento mental e às vulnerabilidades do jovem."},
+{q:"💛 236. Promover a saúde mental no sistema socioeducativo exige a articulação entre os eixos da saúde, da assistência social e da educação.", v:true, j:"A atenção à saúde mental é intersetorial e depende da integração de diversas políticas públicas para ser efetiva."},
+{q:"💛 237. A saúde mental é um direito humano fundamental e deve ser garantida sem qualquer tipo de estigma.", v:true, j:"O acesso à saúde mental de qualidade é tratado como um direito humano básico e universal."},
+{q:"💛 238. Segundo as orientações de saúde mental, o choro ou isolamento repentino do adolescente não devem ser valorizados, pois fazem parte da 'rebeldia' natural da idade.", v:false, j:"Mudanças bruscas de comportamento como isolamento ou choro frequente são sinais de alerta que exigem acolhimento e escuta."},
+{q:"💛 239. A OMS recomenda que as intervenções de saúde mental para adolescentes privilegiem o tratamento em hospitais gerais em vez de CAPS ou centros comunitários.", v:false, j:"A recomendação internacional e nacional prioriza o atendimento em rede comunitária (como os CAPS), evitando a hospitalização desnecessária."},
+{q:"💛 240. O bem-estar emocional do adolescente está diretamente ligado à sua capacidade de construir laços de confiança com os adultos que o cercam.", v:true, j:"Vínculos de confiança com cuidadores e profissionais são pilares para a estabilidade emocional do jovem."},
+{q:"💛 241. A adolescência, por ser uma fase de 'crise' natural, impede que se faça qualquer distinção entre um comportamento típico e um sintoma de sofrimento mental.", v:false, j:"Embora seja uma fase de mudanças, é possível e necessário identificar quando o sofrimento ultrapassa o esperado e gera incapacidade."},
+{q:"💛 242. O bullying e a violência entre pares dentro das unidades socioeducativas são fatores de risco graves para o desenvolvimento de transtornos de ansiedade.", v:true, j:"O ambiente de violência ou perseguição impacta severamente a saúde mental, podendo gerar quadros graves de ansiedade e depressão."},
+{q:"💛 243. A PNAISARI estabelece que as demandas de saúde mental do adolescente devem ser encaminhadas exclusivamente para a rede privada de saúde.", v:false, j:"O atendimento é responsabilidade do SUS, devendo ser articulado com a Rede de Atenção Psicossocial (RAPS)."},
+{q:"💛 244. A autonomia e o protagonismo juvenil são conceitos que auxiliam na promoção da saúde mental e na construção do projeto de vida.", v:true, j:"Incentivar o jovem a ser protagonista de sua própria história fortalece sua saúde mental e seu processo de amadurecimento."},
+{q:"💛 245. O sono adequado e a alimentação balanceada são fatores biológicos que também influenciam o equilíbrio mental na adolescência.", v:true, j:"Há uma integração entre saúde física e mental. Hábitos saudáveis refletem diretamente no bem-estar psíquico."},
+{q:"💛 246. A Escola Nacional da Socioeducação (ENS) oferta, de maneira gratuita e permanente, um espaço de formação qualificada, exclusivo para socioeducadores que atuam com medidas de meio aberto e privativas de liberdade.", v:false, j:"A ENS busca ofertar, de maneira gratuita e permanente, um espaço de formação qualificada para os diferentes profissionais que atuam direta ou indiretamente no Sistema Nacional de Atendimento Socioeducativo."},
+{q:"💛 247. A depressão na adolescência pode se manifestar de forma diferente da adulta, apresentando-se muitas vezes através de irritabilidade extrema ou agressividade.", v:true, j:"Sintomas de irritabilidade e explosões de raiva podem camuflar quadros depressivos em adolescentes e jovens."},
+{q:"💛 248. A Escola Nacional da Socioeducação (ENS) oferece um espaço seguro onde profissionais exclusivos das medidas socioeducativas de  Prestação de Serviço à Comunidade e Liberdade Assistida, possam qualificar sua prática e aprimorar instrumentos de trabalho, visando a melhoria dos serviços, programas, ações, e políticas voltadas aos adolescentes em cumprimento de tais medida.", v:false, j:"As qualificações são referentes aos diferentes profissionais que, direta ou indiretamente, atuam nas medidas de meio aberto e nas restritivas de liberdade."},
+{q:"💛 249. A saúde mental na adolescência deve ser compreendida a partir de uma perspectiva multicausal, envolvendo fatores biológicos, psicológicos e sociais.", v:true, j:"O bem-estar mental é resultado da interação de diversos fatores da vida do jovem."},
+{q:"💛 250. O socioeducador deve ignorar sintomas leves de tristeza do adolescente para evitar que ele se sinta 'vulnerável' diante do grupo.", v:false, j:"O socioeducador deve estar atento a qualquer sinal de sofrimento, pois a escuta e o acolhimento precoce evitam o agravamento."},
+{q:"💛 251. A interrupção brusca de atividades que antes o adolescente gostava de realizar, é um sinal de alerta para possíveis quadros de depressão ou sofrimento mental.", v:true, j:"A perda de interesse em atividades prazerosas (anedonia) é um indicador clínico importante de sofrimento psíquico."},
+{q:"💛 252. O acolhimento em saúde mental nas unidades socioeducativas deve ocorrer apenas por demanda do adolescente, sendo proibida a busca ativa pela equipe.", v:false, j:"A equipe deve realizar a busca ativa e observação constante, não esperando apenas que o adolescente peça ajuda espontaneamente."},
+{q:"💛 253. O fortalecimento da autoestima é citado como uma das bases para que o adolescente consiga construir um projeto de vida longe da criminalidade.", v:true, j:"Uma saúde mental equilibrada e autoestima fortalecida são pilares para a ressocialização e novos caminhos de vida."},
+{q:"💛 254. Adolescentes em conflito com a lei possuem, por norma, uma saúde mental superior à média devido ao rigor da disciplina da unidade.", v:false, j:"Pelo contrário, o contexto de vulnerabilidade e privação de liberdade tende a fragilizar a saúde mental desses jovens."},
+{q:"💛 255. A garantia de espaços de lazer, cultura e esporte dentro da unidade é uma estratégia de promoção de saúde mental prevista em lei.", v:true, j:"O acesso a atividades diversificadas promove o bem-estar e reduz o estresse causado pelo confinamento."},
+{q:"💛 256. Transtornos de ansiedade podem se manifestar fisicamente através de falta de ar, palpitações e sudorese, mesmo sem uma causa física aparente.", v:true, j:"Sintomas psicossomáticos são comuns em quadros de ansiedade e devem ser avaliados pela equipe de saúde."},
+{q:"💛 257. A medicalização deve ser a primeira e única resposta para qualquer conflito comportamental do adolescente na unidade.", v:false, j:"A medicalização excessiva é criticada, e o foco deve ser no acolhimento psicossocial e na compreensão do contexto do sofrimento."},
+{q:"💛 258. O direito ao sigilo sobre o diagnóstico de saúde mental do adolescente deve ser respeitado por todos os profissionais da unidade socioeducativa.", v:true, j:"As informações de saúde são sigilosas e só devem ser compartilhadas entre a equipe técnica para fins estritamente terapêuticos."},
+{q:"💛 259. A formação de grupos de apoio entre os adolescentes é uma ferramenta desaconselhada por aumentar o risco de rebeliões e conflitos internos.", v:false, j:"Espaços de diálogo e grupos de apoio fortalecem os vínculos e são recomendados para a promoção da saúde mental."},
+{q:"💛 260. A saúde mental é um processo dinâmico, o que significa que um adolescente pode passar por períodos de crise e se recuperar totalmente com o apoio adequado.", v:true, j:"A saúde mental não é estática; com intervenção correta e rede de apoio, o jovem pode superar adversidades e retomar seu desenvolvimento."}
+
+
 
 
 ];
@@ -5780,7 +5885,7 @@ const listaAulas = [
     { id: 8, titulo: "Módulo II - Unidade II", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20II.mp3" },
     { id: 9, titulo: "Módulo II - Unidade III", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20III.mp3" },
     { id: 10, titulo: "Módulo II - Unidade IV", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20IV.mp3" },
-    { id: 11, titulo: "Módulo II - Unidade V - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
+    { id: 11, titulo: "Módulo II - Unidade V", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20V.mp3" },
     { id: 12, titulo: "Questões - Módulo II - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
     { id: 13, titulo: "Módulo III - Unidade I - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
     { id: 14, titulo: "Módulo III - Unidade II - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
@@ -7210,7 +7315,7 @@ function aplicarTravaRevisao() {
 // Se quiser, posso te dar o código do prev() e next() também.
 
 function mostrarMensagemVip() {
-    alert("Na Sala Exclusiva, você tem acesso a todas as questões da Área de Estudos, mais algumas centenas exclusivas. Todas com um sistema de contagem de erros e acertos, te dando de forma imediata, sua % de aproveitamento, te dando um parecer real de sua situação. Além disso, você garante acesso irrestrito à Audioteca.");
+    alert("Na Sala Exclusiva, você tem acesso a todas as 2 mil questões da Área de Estudos, mais algumas centenas exclusivas. Todas com um sistema de contagem de erros e acertos, te dando de forma imediata, sua % de aproveitamento, te dando um parecer real de sua situação. Além disso, você garante acesso irrestrito à Audioteca.");
 }
 
 // 2. Mensagem de Coração
