@@ -5,6 +5,27 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>PROVÃO SEAS</title>
     <style>
+body {
+    background:#050505;
+    color:white;
+    font-family:Arial, sans-serif;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    padding:40px;
+}
+
+.emoji {
+    font-size:42px;
+    width:60px;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.fx36{animation:glow 0.9s infinite}
 
 .estado {
   transition: all 0.4s ease;
@@ -469,13 +490,8 @@ button {
   pointer-events: none; /* Evita que o clique do usuário "bata" no contador em vez do botão */
 }
 
-/* baixa renda */
-@keyframes glow {
-    0% { filter: drop-shadow(0 0 5px #fff); }
-    50% { filter: drop-shadow(0 0 20px gold) drop-shadow(0 0 30px yellow); }
-    100% { filter: drop-shadow(0 0 5px #fff); }
-  }
-  .fx36 { animation: glow 1.2s infinite ease-in-out; }
+
+
 
 <!-- @media (max-width: 768px) {
   .contador-hits {
@@ -566,10 +582,12 @@ button {
     </div> -->
 
 <h1 style="font-size:3em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-<h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
-  2.000 QUESTÕES 
-  <span id="lampada-vip" class="fx36" onclick="mostrarMensagemVip()" style="cursor:pointer;">💡</span> 
+    <h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+    2.000 QUESTÕES 
+    <span id="fx36" onclick="mostrarMensagemVip()" style="cursor:pointer; filter: drop-shadow(0 0 5px #fff);">💡</span>
 </h2>
+
+
   
 
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
@@ -577,7 +595,7 @@ button {
       <div id="fechadura" style="font-size:3em; border:3px dashed #39FF14; padding:20px; border-radius:15px;">🔒</div>
     </div> 
 
-<!--    <button class="menu-btn" onclick="usuarioIphone()"
+    <button class="menu-btn" onclick="usuarioIphone()"
   style="
     border-color:#DA70D6;
     color:#DA70D6;
@@ -586,12 +604,12 @@ button {
     text-shadow:0 0 8px rgba(218,112,214,.8);
   ">
   🆔 INSIRA SUA INSCRIÇÃO 🆔
-</button> -->
+</button> 
 
-<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
+<!-- <button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
     🏆SALA NÃO TÃO EXCLUSIVA🏆
-</button>
-    <!-- <button class="menu-btn" onclick="entrarComoVisitante()">👥 ENTRE COMO VISITANTE 👥</button> -->
+</button> -->
+    <button class="menu-btn" onclick="entrarComoVisitante()">👥 VISITANTE OU APOIADOR 🏆</button> 
 
 
 </div>
@@ -636,8 +654,8 @@ button {
         🎵🎶🔊 AUDIOTECA 🎵🎶🔊
     </button> -->
 
-<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador()">
-    ⭐🏆 SALA EXCLUSIVA 🏆⭐
+<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
+    ⭐🏆 ÁREA EXCLUSIVA 🏆⭐
 </button>
 
     <!-- Painel de recorde dentro do menu -->
@@ -5886,8 +5904,7 @@ const listaAulas = [
     { id: 9, titulo: "Módulo II - Unidade III", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20III.mp3" },
     { id: 10, titulo: "Módulo II - Unidade IV", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20IV.mp3" },
     { id: 11, titulo: "Módulo II - Unidade V", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20V.mp3" },
-    { id: 12, titulo: "Questões - Módulo II - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
-    { id: 13, titulo: "Módulo III - Unidade I - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
+    { id: 13, titulo: "Módulo III - Unidade I", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20III%20-%20Unidade%20I.mp3" },
     { id: 14, titulo: "Módulo III - Unidade II - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
     { id: 15, titulo: "Módulo III - Unidade III - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
     { id: 16, titulo: "Módulo III - Unidade IV - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
@@ -7314,9 +7331,11 @@ function aplicarTravaRevisao() {
 // você precisa garantir que a sua função prev() chame o aplicarTravaRevisao()
 // Se quiser, posso te dar o código do prev() e next() também.
 
+
 function mostrarMensagemVip() {
     alert("Na Sala Exclusiva, você tem acesso a todas as 2 mil questões da Área de Estudos, mais algumas centenas exclusivas. Todas com um sistema de contagem de erros e acertos, te dando de forma imediata, sua % de aproveitamento, te dando um parecer real de sua situação. Além disso, você garante acesso irrestrito à Audioteca.");
 }
+
 
 // 2. Mensagem de Coração
 function agradecimentoVip() {
