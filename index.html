@@ -7829,53 +7829,50 @@ function fecharSlideVitoria() {
    BANCO DE DOADORES
    ===================================================== */
 (() => {
-    // Banco de Dados Ofuscado (Hexadecimal - Proteção contra erros de acentuação)
-    const _db = [
-        { i: "31363231", n: "52656e61746f2054686572696f6e" },
-        { i: "353833", n: "56697669616e6520426173746f73204d616369656c20526f64726967756573" },
-        { i: "34383632", n: "52616d6f6e20536f757a6120646f204e617363696d656e746f" },
-        { i: "32333839", n: "52616f61656c2064612053696c7661204f6c6976657261" },
-        { i: "3230373630", n: "4665726e616e646f204672656972657320426173746f73204d656c6c6f" },
-        { i: "31323233", n: "4c756361732056696e696369757320416c76657320646f204e617363696d656e746f" },
-        { i: "34323834", n: "4164616c626572746f20646f7320526569732053616c6573" },
-        { i: "3236303039", n: "436c65696c736f6e20436f656c686f2050657265697261" },
-        { i: "36343139", n: "52616f61656c20416c6578616e6472652046657272656972612052616d6f73" },
-        { i: "3135393636", n: "4a6f7365204361726c6f73204d6f746120426172626f7361" },
-        { i: "38323039", n: "4a6f616f204361726c6f73204d61646569726120646f204e617363696d656e746f" },
-        { i: "3134323938", n: "4d61726b656e6961204b656c6c792064612053696c76612051756569726f7a" },
-        { i: "3234373130", n: "43696365726f2048696c6465726c6c6f6e2064612053696c766120436176616c63616e7465" },
-        { i: "37383036", n: "546961676f20536f617265732042617469737461" },
-        { i: "303134323938", n: "4d61726b656e6961204b656c6c792064612053696c76612051756569726f7a" },
-        { i: "36353031", n: "53616d79612053612064612053696c7661" },
-        { i: "32363639", n: "436963657261204d61726961206465204d656c6f204e617363696d656e746f" },
-        { i: "3235303833", n: "4672616e63696c656e6520646520536f7573612042657a65727261" },
-        { i: "34313231", n: "416e746f6e696f2056616e6465726c616e204d6172696e686f206465204d65737175697461" },
-        { i: "31393630", n: "49676f72204c75616e204c696d612064612053696c7661" },
-        { i: "3236343733", n: "527564736f6e20646520536f75736120436172646f736f" },
-        { i: "35323237", n: "416c6c69736f6e204d617465757320466c6f72656e63696f2064612050617a" },
-        { i: "313430", n: "46656c69706520526f6472696775657320646f732053616e746f73" },
-        { i: "3231393232", n: "526f6e616c642053696c7661204c616e64696d20476f6e63616c766573" },
-        { i: "3034383632", n: "52616d6f6e20536f757a6120646f204e617363696d656e746f" },
-        { i: "39303535", n: "44616e69656c6c6520536f7573612064652043617374726f" },
-        { i: "373531", n: "456c69732052757465204d656c6f204361726e6569726f" },
-        { i: "3232303038", n: "5061756c61204b6174656e656e2064612053696c76612052656973" },
-        { i: "3233393536", n: "4272756e61204d6972656c6c612042657a6572726120416c76696e6f" },
-        { i: "34353333", n: "54686961676f2053696c76612053616e746f73" },
-        { i: "3232333536", n: "4a6f616f205061756c6f20546569786569726120646f204e617363696d656e746f" },
-        { i: "3231383933", n: "4361696f20436573617220476f6d65732064612053696c7665697261" },
-        { i: "3130313933", n: "437269737469616e6520526f6472696775657320646520536f757a61204c696d61" },
-        { i: "33333136", n: "416c616e2064612053696c7661204d6972616e6461" }
-    ];
+  // Aura: Ofuscação Hexadecimal Direta (Sem funções para não bugar)
+  const DOADORES = [
+    { id: "\x31\x36\x32\x31", nome: "Renato Therion" },
+    { id: "\x35\x38\x33", nome: "Viviane Bastos Maciel Rodrigues" },
+    { id: "\x34\x38\x36\x32", nome: "Ramon Souza do Nascimento" },
+    { id: "\x32\x33\x38\x39", nome: "Rafael da Silva Olivera" },
+    { id: "\x32\x30\x37\x36\x30", nome: "Fernando Freires Bastos Mello" },
+    { id: "\x31\x32\x32\x33", nome: "Lucas Vinicius Alves do Nascimento" },
+    { id: "\x34\x32\x38\x34", nome: "Adalberto dos Reis Sales" },
+    { id: "\x32\x36\x30\x30\x39", nome: "Cleilson Coelho Pereira" },
+    { id: "\x36\x34\x31\x39", nome: "Rafael Alexandre Ferreira Ramos" },
+    { id: "\x31\x35\x39\x36\x36", nome: "Jose Carlos Mota Barbosa" },
+    { id: "\x38\x32\x30\x39", nome: "João Carlos Madeira do Nascimento" },
+    { id: "\x31\x34\x32\x39\x38", nome: "Markenia Kelly da Silva Queiroz" },
+    { id: "\x32\x34\x37\x31\x30", nome: "Cicero Hilderllon da Silva Cavalcante" },
+    { id: "\x37\x38\x30\x36", nome: "Tiago Soares Batista" },
+    { id: "\x30\x31\x34\x32\x39\x38", nome: "Markenia Kelly da Silva Queiroz" },
+    { id: "\x36\x35\x30\x31", nome: "Samya Sa da Silva" },
+    { id: "\x32\x36\x36\x39", nome: "Cicera Maria de Melo Nascimento" },
+    { id: "\x32\x35\x30\x38\x33", nome: "Francilene de Sousa Bezerra" },
+    { id: "\x34\x31\x32\x31", nome: "Antonio Vanderlan Marinho de Mesquita" },
+    { id: "\x31\x39\x36\x30", nome: "Igor Luan Lima da Silva" },
+    { id: "\x32\x36\x34\x37\x33", nome: "Rudson de Sousa Cardoso" },
+    { id: "\x35\x32\x32\x37", nome: "Allison Mateus Florencio da Paz" },
+    { id: "\x31\x34\x30", nome: "Felipe Rodrigues dos Santos" },
+    { id: "\x32\x31\x39\x32\x32", nome: "Ronald Silva Landim Goncalves" },
+    { id: "\x30\x34\x38\x36\x32", nome: "Ramon Souza do Nascimento" },
+    { id: "\x39\x30\x35\x35", nome: "Danielle Sousa de Castro" },
+    { id: "\x37\x35\x31", nome: "Elis Rute Melo Carneiro" },
+    { id: "\x32\x32\x30\x30\x38", nome: "Paula Katenen da Silva Reis" },
+    { id: "\x32\x33\x39\x35\x36", nome: "Bruna Mirella Bezerra Alvino" },
+    { id: "\x34\x35\x33\x33", nome: "Thiago Silva Santos" },
+    { id: "\x32\x32\x33\x35\x36", nome: "Joao Paulo Teixeira do Nascimento" },
+    { id: "\x32\x31\x38\x39\x33", nome: "Caio Cesar Gomes da Silveira" },
+    { id: "\x31\x30\x31\x39\x33", nome: "Cristiane Rodrigues de Souza Lima" },
+    { id: "\x33\x33\x31\x36", nome: "Alan da Silva Miranda" },
+    { id: "\x32\x30\x31\x39\x37", nome: "Michel Davi Costa Coelho" },
+    { id: "\x31\x31\x31\x31\x31", nome: "Administrador" }
+  ];
 
-    // Reconstrutor Silencioso
-    window.DOADORES = _db.map(item => {
-        let _id = "", _nome = "";
-        for (let j = 0; j < item.i.length; j += 2) _id += String.fromCharCode(parseInt(item.i.substr(j, 2), 16));
-        for (let k = 0; k < item.n.length; k += 2) _nome += String.fromCharCode(parseInt(item.n.substr(k, 2), 16));
-        return { id: _id, nome: _nome };
-    });
-
+  window.DOADORES = DOADORES;
 })();
+
+    
 /* ===============================
    
    =============================== */
