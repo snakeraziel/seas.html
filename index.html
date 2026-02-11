@@ -652,7 +652,7 @@ button {
 </h2>
 
 
-    <button class="menu-btn" onclick="startQuiz('total')">
+    <button class="menu-btn" onclick="retaFinal()">
         👨‍💻 PROVA DOS ANALISTAS 👨‍💻
     </button>
 
@@ -684,7 +684,7 @@ button {
         </div>
 
 <div class="topbar" style="display: flex; justify-content: space-around; align-items: center; margin-top: -2px; height: 45px;">
-    <div style="cursor:pointer; font-size: 24px;" onclick="mostrarManifesto()">🤝</div>
+    <div style="cursor:pointer; font-size: 24px;" onclick="retaFinal()">🤝</div>
     <div style="cursor:pointer; font-size: 24px;" onclick="mostrarProverbio()">💪</div>
     
     <div id="estadoEmoji" class="estado lock" style="cursor:pointer; font-size: 28px;" onclick="portaDosFundosVip()">🏆</div>
@@ -1002,7 +1002,7 @@ mostrarMensagem(`
       </p>
 
       <p style="color:white; font-weight:700; margin-bottom:10px;">
-        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">17 dias</span> até o grande dia.<br>
+        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">11 dias</span> até o grande dia.<br>
         Aproveite esse tempo para estudar.
       </p>
     </div>
@@ -5882,8 +5882,67 @@ const bancoVip = [
 {q:"💛 257. A medicalização deve ser a primeira e única resposta para qualquer conflito comportamental do adolescente na unidade.", v:false, j:"A medicalização excessiva é criticada, e o foco deve ser no acolhimento psicossocial e na compreensão do contexto do sofrimento."},
 {q:"💛 258. O direito ao sigilo sobre o diagnóstico de saúde mental do adolescente deve ser respeitado por todos os profissionais da unidade socioeducativa.", v:true, j:"As informações de saúde são sigilosas e só devem ser compartilhadas entre a equipe técnica para fins estritamente terapêuticos."},
 {q:"💛 259. A formação de grupos de apoio entre os adolescentes é uma ferramenta desaconselhada por aumentar o risco de rebeliões e conflitos internos.", v:false, j:"Espaços de diálogo e grupos de apoio fortalecem os vínculos e são recomendados para a promoção da saúde mental."},
-{q:"💛 260. A saúde mental é um processo dinâmico, o que significa que um adolescente pode passar por períodos de crise e se recuperar totalmente com o apoio adequado.", v:true, j:"A saúde mental não é estática; com intervenção correta e rede de apoio, o jovem pode superar adversidades e retomar seu desenvolvimento."}
-
+{q:"💛 260. A saúde mental é um processo dinâmico, o que significa que um adolescente pode passar por períodos de crise e se recuperar totalmente com o apoio adequado.", v:true, j:"A saúde mental não é estática; com intervenção correta e rede de apoio, o jovem pode superar adversidades e retomar seu desenvolvimento."},
+{q:"💛 261. O termo DST (Doenças Sexualmente Transmissíveis) foi alterado para IST (Infecções Sexualmente Transmissíveis) porque as infecções podem ter períodos sem sintomas e ser detectadas apenas por exames laboratoriais.", v:true, j:"O termo mudou pois infecções podem ter períodos sem sintomas e são detectadas apenas por exames laboratoriais."},
+{q:"💛 262. O HIV (Vírus da Imunodeficiência Humana) é a fase mais avançada da infecção, caracterizada por profunda deficiência imunológica e vulnerabilidade a infecções oportunistas.", v:false, j:"A AIDS é a fase mais avançada da infecção; o HIV é o agente que compromete o sistema imunológico."},
+{q:"💛 263. O tratamento com a Terapia Antirretroviral (TARV), garantida pelo SUS, é capaz de suprimir a multiplicação do vírus HIV e recuperar a imunidade.", v:true, j:"A TARV, garantida pelo SUS, suprime a multiplicação do vírus e recupera a imunidade."},
+{q:"💛 264. Para o diagnóstico do HIV, o teste deve ser realizado respeitando-se a janela imunológica de 30 dias após a relação sexual sem preservativo.", v:true, j:"O teste deve respeitar a janela imunológica de 30 dias após relação sem preservativo."},
+{q:"💛 265. Os Autotestes de HIV, oferecidos gratuitamente pelo SUS, funcionam a partir da coleta de fluido oral e o resultado sai em cerca de 30 minutos.", v:true, j:"O autoteste utiliza fluido oral e o resultado ocorre em cerca de 30 minutos."},
+{q:"💛 266. O vírus HIV pode ser transmitido pelo aperto de mãos, abraços, uso de assentos sanitários ou pelo ar.", v:false, j:"O HIV não pode ser transmitido por aperto de mãos, abraços, assentos, banheiros ou pelo ar."},
+{q:"💛 267. A transmissão do HIV pode ocorrer da mãe infectada para seu filho durante a gravidez, no parto e na amamentação.", v:true, j:"A transmissão vertical ocorre na gestação, parto e amamentação."},
+{q:"💛 268. A Profilaxia Pré-exposição (PrEP) é uma intervenção de emergência que deve ser iniciada até 72 horas após uma situação de risco agudo.", v:false, j:"A PrEP é para quem não possui o vírus antes da exposição; a PEP é a intervenção de emergência para até 72 horas após o risco."},
+{q:"💛 269. A Profilaxia Pós-exposição (PEP) é indicada para situações de risco agudo, como violência sexual, acidentes com agulhas ou relações desprotegidas.", v:true, j:"A PEP é uma intervenção de emergência para violência sexual, acidentes com agulhas ou relações desprotegidas."},
+{q:"💛 270. O termo coquetel ainda deve ser utilizado para descrever o tratamento atual do HIV, que utiliza combinações eficazes de medicamentos.", v:false, j:"A nomenclatura coquetel não deve mais ser utilizada devido à evolução para tratamentos com menos comprimidos."},
+{q:"💛 271. As IST mais conhecidas incluem HIV, Hepatites B e C, Sífilis, HPV, Cancro mole, Clamídia, Tricomoníase, Herpes, Gonorreia e a Doença Inflamatória Pélvica.", v:true, j:"As IST mais conhecidas são HIV, Hepatites B e C, Sífilis, HPV, Cancro mole, Clamídia, Tricomoníase, Herpes, Gonorreia e a Doença Inflamatória Pélvica."},
+{q:"💛 272. A Sífilis é uma infecção causada pela bactéria Treponema pallidum e pode apresentar manifestações clínicas variadas e estágios diferentes.", v:true, j:"A sífilis é uma infecção causada pela bactéria Treponema pallidum e apresenta manifestações clínicas variadas e estágios diferentes."},
+{q:"💛 273. A sífilis primária é caracterizada por uma ferida, geralmente única, no local de entrada da bactéria, que aparece entre 10 a 30 dias após o contágio.", v:false, j:"Na sífilis primária surge uma ferida, geralmente única, no local de entrada da bactéria, de 10 a 90 dias após o contágio."},
+{q:"💛 274. Geralmente, ferida da sífilis primária é sempre muito dolorosa e acompanhada de pus, facilitando o diagnóstico pelo paciente.", v:false, j:"A ferida da sífilis primária não dói, não coça, não arde e não tem pus, podendo desaparecer sozinha."},
+{q:"💛 275. Na sífilis secundária, os sinais e sintomas aparecem entre seis dias e seis semanas após a cicatrização da ferida inicial.", v:false, j:"Os sinais e sintomas da sífilis secundária aparecem entre seis semanas e seis meses após a cicatrização da ferida inicial."},
+{q:"💛 276. Manchas no corpo, principalmente nas palmas das mãos e plantas dos pés, são sinais característicos da sífilis secundária.", v:true, j:"Na sífilis secundária podem ocorrer manchas no corpo, incluindo palmas das mãos e plantas dos pés."},
+{q:"💛 277. A sífilis latente é a fase em que não aparecem sinais ou sintomas, e o diagnóstico é feito exclusivamente por meio de testes laboratoriais.", v:true, j:"A sífilis latente é a fase assintomática onde o diagnóstico ocorre apenas por testes laboratoriais."},
+{q:"💛 278. A sífilis terciária pode surgir de 2 a 40 anos depois do início da infecção, causando lesões graves em órgãos como coração e cérebro.", v:true, j:"A sífilis terciária pode surgir de 2 a 40 anos após o início da infecção e costuma apresentar sinais graves como lesões cardiovasculares ou neurológicas."},
+{q:"💛 279. O tratamento de escolha para a sífilis é a penicilina benzatina, que é o único medicamento capaz de atravessar a barreira placentária e tratar o feto.", v:true, j:"A penicilina benzatina é o medicamento de escolha e o único que atravessa a barreira placentária para tratar o feto."},
+{q:"💛 280. A sífilis congênita é a transmissão da infecção da gestante para o bebê e pode causar aborto, má-formação ou morte do feto.", v:true, j:"A sífilis congênita é a transmissão da gestante para o bebê e pode causar aborto, má-formação ou morte do feto."},
+{q:"💛 281. As hepatites virais são infecções que atingem o rim, causando alterações leves, moderadas ou graves, podendo ser silenciosas.", v:false, j:"As hepatites virais são infecções que atingem o fígado e podem ser silenciosas, causando alterações de leves a graves."},
+{q:"💛 282. A Hepatite B é uma IST e sua transmissão ocorre por via sexual, vertical (mãe para filho) ou por contato com sangue contaminado.", v:true, j:"A Hepatite B é considerada uma IST e sua transmissão ocorre por via sexual, vertical ou contato com sangue."},
+{q:"💛 283. Não existe vacina disponível no SUS para a prevenção da Hepatite B, sendo o preservativo o único meio de evitar a infecção.", v:false, j:"A vacina contra a hepatite B faz parte do Calendário Nacional de Vacinação e está disponível no SUS para toda a população."},
+{q:"💛 284. A Hepatite C é transmitida principalmente pelo contato com sangue contaminado, sendo a transmissão por via sexual menos frequente.", v:true, j:"A transmissão da Hepatite C ocorre principalmente pelo contato com sangue, sendo a via sexual menos frequente."},
+{q:"💛 285. Atualmente, a Hepatite C não pode ser curada, e o tratamento é permanente por meio de antivirais de ação direta.", v:false, j:"A hepatite C tem cura em mais de 95% dos casos quando o tratamento é seguido corretamente."},
+{q:"💛 286. O HPV (Papilomavírus Humano) é a infecção sexualmente transmissível mais comum no mundo e está associado ao câncer de colo de útero.", v:true, j:"O HPV é a IST mais comum no mundo e está associado ao surgimento de câncer de colo de útero."},
+{q:"💛 287. Todas as pessoas infectadas pelo vírus HPV desenvolverão verrugas genitais ou lesões cancerígenas imediatamente após o contágio.", v:false, j:"A maioria das infecções por HPV é assintomática e o próprio organismo elimina o vírus, mas em alguns casos pode causar verrugas ou câncer."},
+{q:"💛 288. A vacina contra o HPV é distribuída gratuitamente pelo SUS e é indicada para meninas e meninos de 1 a 14 anos.", v:false, j:"O SUS distribui gratuitamente a vacina contra o HPV para meninas e meninos de 9 a 14 anos."},
+{q:"💛 289. O exame preventivo de Papanicolau é a principal estratégia para detectar lesões precoces no colo do útero causadas pelo HPV.", v:true, j:"O Papanicolau é o exame preventivo que detecta alterações no colo do útero causadas pelo HPV."},
+{q:"💛 290. O uso de preservativos impede 100% a transmissão do HPV, pois o vírus não consegue sobreviver em áreas da pele não cobertas pelo látex.", v:false, j:"O preservativo não impede totalmente a transmissão do HPV, pois o vírus pode estar em áreas não cobertas pela camisinha, embora seu uso seja recomendado."},
+{q:"💛 291. O corrimento vaginal é sempre sinal de uma Infecção Sexualmente Transmissível, não podendo ser causado por outros fatores como higiene excessiva.", v:false, j:"O corrimento pode ser causado por ISTs ou por fatores não sexuais, como alterações na flora vaginal, higiene excessiva ou uso de antibióticos."},
+{q:"💛 292. A Gonorreia e a Clamídia são causas frequentes de corrimento uretral no homem e podem causar dor ao urinar e secreção purulenta.", v:true, j:"A gonorreia e a clamídia são causas frequentes de corrimento uretral masculino, com dor ao urinar e secreção."},
+{q:"💛 293. A Doença Inflamatória Pélvica (DIP) é uma complicação que pode ocorrer quando ISTs não tratadas atingem os órgãos reprodutores internos do homem.", v:false, j:"A DIP ocorre quando infecções não tratadas progridem para os órgãos reprodutores internos femininos."},
+{q:"💛 294. O Herpes Genital se manifesta através de pequenas bolhas que rompem e formam feridas dolorosas, podendo o vírus permanecer no corpo para sempre.", v:true, j:"O herpes genital causa bolhas que viram feridas e o vírus permanece no organismo, podendo reativar periodicamente."},
+{q:"💛 295. O tratamento das ISTs deve ser feito apenas pela pessoa infectada, não sendo necessário convocar os parceiros sexuais se eles não tiverem sintomas.", v:false, j:"O tratamento deve incluir os parceiros sexuais para interromper a cadeia de transmissão, mesmo que eles não apresentem sintomas."},
+{q:"💛 296. O uso de drogas e álcool é considerado um fator que aumenta a vulnerabilidade às ISTs por reduzir a percepção de risco e o uso do preservativo.", v:true, j:"O consumo de álcool e drogas aumenta a vulnerabilidade por reduzir o uso de preservativos e a percepção de risco."},
+{q:"💛 297. Na abordagem das ISTs, o profissional de saúde deve realizar o atendimento de forma acolhedora, sem julgamentos e garantindo o sigilo das informações.", v:true, j:"O atendimento deve ser ético, garantindo o sigilo, a privacidade e a ausência de julgamentos de valor."},
+{q:"💛 298. O Cancro Mole é uma IST caracterizada por feridas genitais dolorosas e com presença de pus, transmitida pelo contato sexual.", v:true, j:"O cancro mole manifesta-se por feridas dolorosas com pus e é transmitido via contato sexual."},
+{q:"💛 299. A prevenção combinada envolve diversas estratégias como o uso de preservativos, testagem regular, imunização, PrEP e PEP.", v:true, j:"A prevenção combinada utiliza diversas intervenções como preservativos, testes, vacinas e profilaxias."},
+{q:"💛 300. Pessoas que vivem com HIV e mantêm a carga viral indetectável por pelo menos seis meses não transmitem o vírus por via sexual.", v:true, j:"Pessoas com carga viral indetectável há pelo menos seis meses em tratamento não transmitem o HIV sexualmente."},
+{q:"💛 301. A transmissão vertical do HIV pode ocorrer em três momentos: durante a gestação, no momento do parto ou por meio da amamentação.", v:true, j:"A transmissão vertical pode ocorrer na gestação, no parto ou pela amamentação."},
+{q:"💛 302. Mulheres que vivem com HIV podem amamentar seus filhos normalmente, desde que estejam fazendo o uso correto da Terapia Antirretroviral.", v:false, j:"A amamentação por mãe soropositiva é contraindicada, sendo garantido pelo SUS o fornecimento de fórmula láctea infantil."},
+{q:"💛 303. O diagnóstico da sífilis durante o pré-natal é fundamental para evitar a sífilis congênita, que pode causar complicações graves ao recém-nascido.", v:true, j:"O diagnóstico na gestação é essencial para prevenir a sífilis congênita e suas complicações graves no bebê."},
+{q:"💛 304. Os testes rápidos (TR) para HIV, sífilis e hepatites são realizados com a coleta de uma gota de sangue ou fluido oral e o resultado sai em poucas horas.", v:false, j:"Os testes rápidos utilizam gota de sangue ou fluido oral e fornecem resultados em poucos minutos."},
+{q:"💛 305. Se o resultado do autoteste de HIV for positivo (reagente), o indivíduo deve procurar imediatamente uma unidade de saúde para realizar testes complementares.", v:true, j:"Em caso de resultado reagente no autoteste, é necessário buscar serviço de saúde para confirmação diagnóstica."},
+{q:"💛 306. A vulnerabilidade individual às IST está relacionada apenas ao comportamento biológico do vírus, não sofrendo influência de fatores sociais ou comportamentais.", v:false, j:"A vulnerabilidade envolve dimensões individuais, sociais e programáticas, incluindo fatores comportamentais e de acesso ao serviço."},
+{q:"💛 307. O uso do preservativo feminino permite que a mulher tenha maior autonomia e controle sobre sua proteção nas relações sexuais.", v:true, j:"O preservativo feminino é uma alternativa que amplia a autonomia da mulher na prevenção."},
+{q:"💛 308. O tratamento para clamídia e gonorreia costuma ser simples, via oral, mas se não realizado pode causar infertilidade e dores pélvicas crônicas.", v:true, j:"O tratamento é simples, mas a ausência dele pode levar a infertilidade e dor pélvica crônica."},
+{q:"💛 309. As verrugas genitais causadas pelo HPV devem ser tratadas por profissionais de saúde por meio de métodos químicos, cirúrgicos ou congelamento.", v:true, j:"O tratamento de verrugas genitais requer intervenção profissional com métodos químicos ou cirúrgicos."},
+{q:"💛 310. A janela imunológica é o intervalo de tempo entre o contato com o vírus e a possibilidade de detecção da infecção pelos testes laboratoriais.", v:true, j:"Janela imunológica é o tempo entre a infecção e o momento em que o teste consegue detectá-la."},
+{q:"💛 311. O HIV é o agente que compromete o sistema imunológico, enquanto a AIDS é a fase mais avançada da infecção, quando o sistema de defesa está muito comprometido.", v:true, j:"O HIV é o agente que compromete o sistema imunológico e a AIDS é a fase mais avançada da infecção."},
+{q:"💛 312. A Terapia Antirretroviral (TARV) deve ser iniciada imediatamente após o diagnóstico da infecção pelo HIV, independentemente do estágio da doença.", v:true, j:"A TARV deve ser iniciada logo após o diagnóstico da infecção pelo HIV."},
+{q:"💛 313. A Profilaxia Pré-Exposição (PrEP) consiste no uso de medicamentos antirretrovirais após uma situação de risco, como violência sexual ou relação desprotegida.", v:false, j:"A PrEP é o uso de medicamentos ANTES da exposição; a PEP é que é utilizada APÓS a situação de risco."},
+{q:"💛 314. No Brasil, o tratamento para o HIV/Aids é restrito a clínicas particulares, não sendo oferecido de forma gratuita pelo Sistema Único de Saúde (SUS).", v:false, j:"O tratamento para o HIV/Aids é garantido pelo SUS de forma gratuita."},
+{q:"💛 315. A Hepatite B pode ser prevenida por meio da vacinação, que é eficaz e está disponível para toda a população nas unidades de saúde.", v:true, j:"A vacinação é o principal meio de prevenção da Hepatite B e está disponível no SUS."},
+{q:"💛 316. O HPV é uma bactéria que apresenta tipos oncogênicos, estando diretamente associado ao desenvolvimento do câncer de colo do útero em mulheres.", v:false, j:"O HPV é um vírus e possui tipos oncogênicos associados ao câncer de colo do útero."},
+{q:"💛 317. A sífilis latente é caracterizada pelo surgimento de manchas vermelhas pelo corpo, principalmente nas palmas das mãos e plantas dos pés.", v:false, j:"A sífilis latente é a fase em que não aparecem sinais ou sintomas; as manchas são características da sífilis secundária."},
+{q:"💛 318. A Doença Inflamatória Pélvica (DIP) pode ser causada por infecções como Gonorreia e Clamídia que não foram tratadas adequadamente.", v:true, j:"A DIP ocorre quando infecções como gonorreia e clamídia não são tratadas e atingem os órgãos reprodutores internos."},
+{q:"💛 319. O diagnóstico das IST pode ser realizado por meio de testes rápidos que fornecem o resultado em cerca de 30 minutos.", v:true, j:"O diagnóstico é feito por testes laboratoriais ou testes rápidos com resultado em cerca de 30 minutos."},
+{q:"💛 320. O uso de preservativos, tanto masculino quanto feminino, é a estratégia mais eficaz para a redução do risco de transmissão de IST e evitar gravidez.", v:true, j:"Os preservativos são eficazes para redução do risco de transmissão de IST e evitar gravidez."}
 
 
 
@@ -7019,15 +7078,18 @@ function startQuiz(modo) {
   acertosContadorSenha = 0;
   historico = {};
 
- const vContainer = document.getElementById('vidas-container');
+  // NOVIDADE: Limite de erros para impedir aprovação indevida (ajuste conforme desejar)
+  window.limiteErrosPermitidos = (modo === 'vip' || modo === 'simulado_vip' || modo === 25) ? 5 : 3;
+
+  const vContainer = document.getElementById('vidas-container');
   const btnExtra = document.getElementById('btnExtra');
   const feedback = document.getElementById('feedback');
   if (feedback) feedback.style.display = 'none';
 
   /* ==========================
-     🔥 MODO VIP (AJUSTADO)
+      🔥 MODO VIP (AJUSTADO)
   ========================== */
- if (modo === 'vip' || modo === 'simulado_vip') {
+  if (modo === 'vip' || modo === 'simulado_vip') {
 
     quizType = 'simulado_vip';
 
@@ -7058,11 +7120,10 @@ function startQuiz(modo) {
     }
 
     if (typeof clearProgress === 'function') clearProgress('simulado_vip');
-}
-
+  }
 
   /* ==========================
-     💣 SOBREVIVENTE
+      💣 SOBREVIVENTE
   ========================== */
   else if (modo === 25) {
     const megaBanco = [...bancoOficial, ...bancoModulos, ...bancoVariados, ...bancoPortarias];
@@ -7077,7 +7138,7 @@ function startQuiz(modo) {
   }
 
   /* ==========================
-     📚 MODOS NORMAIS
+      📚 MODOS NORMAIS
   ========================== */
   else {
     let base;
@@ -7130,7 +7191,6 @@ function startQuiz(modo) {
   if (typeof render === 'function') render();
   if (typeof startTimer === 'function') startTimer();
 }
-
 function sairModulo4Vip() {
     // 1. Para cronómetros
     if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
@@ -7294,50 +7354,45 @@ function agradecimentoVip() {
 
 
 
-/* function atualizarVidas() {
-    // Pegamos os elementos uma vez para evitar repetição
+function atualizarVidas() {
     const v1 = document.getElementById('v1');
     const v2 = document.getElementById('v2');
     const v3 = document.getElementById('v3');
 
-    // 1. ATUALIZAÇÃO VISUAL PRECISA
+    // 1. ATUALIZAÇÃO VISUAL DOS CORAÇÕES
     if (erros === 1 && v3) v3.style.opacity = '0.2';
     if (erros === 2 && v2) v2.style.opacity = '0.2';
     
+    // 2. A BARREIRA: SÓ ATUA SE FOR O MODO DE 100 QUESTÕES (ANALISTAS)
+    if (quizType !== 'total') {
+        return; // Sai da função e não faz mais nada. Os outros modos seguem imunes.
+    }
+
+    // 3. O CARRASCO (SÓ PARA OS ANALISTAS)
     if (erros >= 3) {
         if (v1) v1.style.opacity = '0.2';
 
-        // 2. ESCUDO VIP: Se for VIP, para aqui e não executa o código de falha
-        if (window.isVipMode) return;
-
-        // 3. SEGUNDA TRAVA DE SEGURANÇA: 
-        // Para o relógio imediatamente para o tempo não esgotar enquanto a animação roda
+        // Para o relógio da prova
         if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
 
-        // 4. DELAY DE EXPULSÃO (Aumentei para 800ms para dar tempo de ver o erro)
         setTimeout(() => {
-            // Re-checa se o erro ainda é >= 3 (evita bugs de cliques duplos)
-            if (erros >= 3) {
+            // Re-checa por segurança se ainda é o modo total
+            if (erros >= 3 && quizType === 'total') {
                 const failStats = document.getElementById('fail-stats');
                 if (failStats) {
-                    failStats.innerHTML = `ACERTOS NESSA SESSÃO: <span style="color:var(--success)">${acertosSessao}</span>`;
+                    failStats.innerHTML = `PROVA DOS ANALISTAS: ELIMINADO<br>ACERTOS: <span style="color:var(--success)">${acertosSessao}</span> / 100`;
                 }
 
                 const btnFalha = document.getElementById('btn-tentar-novamente');
                 if (btnFalha) {
-                    if (quizType === 'total') {
-                        btnFalha.onclick = function() { go('capa'); };
-                        btnFalha.innerText = "VOLTAR AO INÍCIO";
-                    } else {
-                        btnFalha.onclick = function() { go('area-restrita'); };
-                        btnFalha.innerText = "TENTAR NOVAMENTE";
-                    }
+                    btnFalha.onclick = function() { go('area-restrita'); };
+                    btnFalha.innerText = "REFAZER PROVA";
                 }
                 go('fail-screen');
             }
         }, 800); 
     }
-} */
+}
 
 function voltarMenuPosVip() {
     // 1. PASSO 5: Para o relógio global VIP imediatamente para não rodar na capa
@@ -7400,7 +7455,7 @@ function irParaAreaApoiador2() {
 
     if (!usuarioEncontrado) {
         mostrarMensagem(
-            `<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>ACESSO RESTRITO A DOADORES</h1>`,
+            `<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>🚫ACESSO RESTRITO🚫</h1>`,
             'erro'
         );
         return;
@@ -7479,7 +7534,7 @@ function portaDosFundosVip() {
             setTimeout(() => {
                 el.innerText = "🏆"; 
                 el.className = "estado lock";
-                mostrarMensagem(`<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>ACESSO RESTRITO A DOADORES</h1>`, 'erro');
+                mostrarMensagem(`<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>🚫ACESSO RESTRITO🚫</h1>`, 'erro');
             }, 1200);
         }
         return; 
@@ -7537,6 +7592,130 @@ function irParaAudioteca() {
     
     go('audioteca');
 }
+
+
+function usuarioIphone() {
+    let id = prompt("🆔 DIGITE SEU ID DE INSCRIÇÃO:");
+    if (!id) return;
+
+    const idLimpo = id.trim();
+// 
+const _0x52f1 = ["MTYyMQ==", "NTgz", "NDg2Mg==", "MjM4OQ==", "MjA3NjA=", "MTIyMw==", "NDI4NA==", "MjYwMDk=", "NjQxOQ==", "MTU5NjY=", "ODIwOQ==", "MTQyOTg=", "MjQ3MTA=", "NzgwNg==", "MDE0Mjk4", "NjUwMQ==", "MjY2OQ==", "MjUwODM=", "NDEyMQ==", "MTk2MA==", "MjY0NzM=", "NTIyNw==", "MTQw", "MjE5MjI=", "MDQ4NjI=", "OTA1NQ==", "NzUx", "MjIwMDg=", "MjM5NTY=", "NDUzMw==", "MjIzNTY=", "MjE4OTM=", "MTAxOTM=", "MzMxNg==", "MjAxOTc=", "MTU5NzUz", "MTM1Nzk=", "MjAzODA=", "OTY3MQ==", "NjAzMA==", "Mzc3NA=="];
+
+// Decodifica 
+const vips = _0x52f1.map(id => atob(id));
+
+    if (vips.includes(idLimpo)) {
+        window.USUARIO_LOGADO_ID = idLimpo;
+        window.IS_VIP = true;
+        go('area-restrita');
+    } else {
+        window.IS_VIP = false;
+        retaFinal(); // Chama o seu manifesto
+    }
+}
+
+// Essa função será chamada pelo botão "ENTENDI" do manifesto
+
+
+function fecharEMudar() {
+    // 1. Remove o manifesto da tela
+    const m = document.querySelector('.manifesto-overlay');
+    if (m) m.remove();
+
+    // 2. Entra na área restrita
+    go('area-restrita');
+
+    // 3. Monitora a área para apagar os botões assim que eles nascerem
+    let tentativas = 0;
+    const monitor = setInterval(() => {
+        const botoes = document.querySelectorAll('button, .menu-btn, [onclick*="modulo"], [onclick*="simulado"]');
+        
+        if (botoes.length > 0) {
+            botoes.forEach(btn => {
+                const txt = btn.innerText.toUpperCase();
+                if (txt.includes("MÓDULO") || txt.includes("PORTARIA") || txt.includes("SIMULADO")) {
+                    btn.remove();
+                }
+            });
+            // Se já limpamos ou tentamos 20 vezes (2 segundos), paramos o monitor
+            tentativas++;
+            if (tentativas > 20) clearInterval(monitor);
+        }
+    }, 100); // Checa a cada 100ms
+}
+
+function retaFinal() {
+    const overlay = document.createElement('div');
+    overlay.className = 'manifesto-overlay';
+    overlay.innerHTML = `
+        <div style="
+            position: absolute;
+            top: 5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%; /* Ocupa quase toda a largura no mobile */
+            max-width: 800px; /* No PC fica confortável */
+            height: auto;
+            max-height: 62vh;
+            background: rgba(0,0,0,0.95);
+            border-radius: 12px;
+            border: 1px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        ">
+            <div style="
+                overflow-y: auto; 
+                padding: 30px 20px; 
+                text-align: center; 
+                -webkit-overflow-scrolling: touch;
+            ">
+                <div style="font-size: 1.05em; line-height: 1.5; color: #fff; font-weight: 600;">
+                    Criei essa plataforma com o exclusivo objetivo de me ajudar na prova do curso de formação, pois tô na rabeira do rabo da cachorra, por isso o sistema de vidas, por isso o sistema de desafios. A história é longa, e é irrelevante contar. Mas o fato é que minha plataforma cresceu demais, muito além da expectativa. Foram 2 meses de evolução, acesso gratuito, críticas, fortalecimento, sugestões e elogios.                    
+                    <div style="font-size: 1.05em; color: var(--yellow); font-weight: 900; margin-top: 20px; margin-bottom: 20px;">
+                        Eu não tô conseguindo lidar sozinho com a grandeza desse projeto, por isso, nesta reta final, eu vou focar em quem acreditou em mim, e de boa vontade me fortaleceu. Uns passarinhos assoviaram e, realmente, preciso concluir a audioteca, elaborar mais conteúdo e aprimorar a sala exclusiva.
+                    </div>
+                        Dito isso, vou restringir o acesso gratuito ao modo sobrevivente para acessarem somente a audioteca. Criei uma senha que permite até 10 acessos simultaneamente, mas tá em teste. Se falhar, liberarei o acesso nos fins de semana. Qualquer coisa, meu privado continua aberto a todos, 88 994354250. Obrigado!
+                    
+                    <div style="font-size: 1.0em; color: #39FF14; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 10px #39FF1455; margin-top: 25px; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 8px; border: 1px dashed #39FF14;">
+                       Combati o bom combate, completei meu objetivo, guardei a fé.      
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; padding: 20px; background: rgba(0,0,0,0.6); border-top: 1px solid rgba(255,255,255,0.1); flex-shrink: 0;">
+                <button class="menu-btn" style="
+                    display: inline-block;
+                    width: auto; 
+                    padding: 12px 35px; 
+                    border: 1px solid var(--accent);
+                    background: transparent;
+                    color: #fff;
+                    cursor: pointer;
+                    font-size: 1em;
+                    border-radius: 5px;
+                    font-weight: bold;
+              " onclick="
+                    this.closest('.manifesto-overlay').remove(); 
+                    go('area-restrita');
+                    let t = 0;
+                    const v = setInterval(() => {
+                        document.querySelectorAll('button, .menu-btn').forEach(b => {
+                            let txt = b.innerText.toUpperCase();
+                            if (txt.includes('MÓDULO') || txt.includes('PORTARIA') || txt.includes('SIMULADO')) b.remove();
+                        });
+                        if (t++ > 20) clearInterval(v);
+                    }, 50);
+                ">
+                    🤝 ENTENDI 🤝
+                </button>
+            </div>
+        </div>
+    `;
+    document.getElementById('container').appendChild(overlay);
+}
+
+
 
 function mostrarManifesto() {
     const overlay = document.createElement('div');
@@ -7829,50 +8008,54 @@ function fecharSlideVitoria() {
    BANCO DE DOADORES
    ===================================================== */
 (() => {
-  // Aura: Ofuscação Hexadecimal Direta (Sem funções para não bugar)
-  const DOADORES = [
-    { id: "\x31\x36\x32\x31", nome: "Renato Therion" },
-    { id: "\x35\x38\x33", nome: "Viviane Bastos Maciel Rodrigues" },
-    { id: "\x34\x38\x36\x32", nome: "Ramon Souza do Nascimento" },
-    { id: "\x32\x33\x38\x39", nome: "Rafael da Silva Olivera" },
-    { id: "\x32\x30\x37\x36\x30", nome: "Fernando Freires Bastos Mello" },
-    { id: "\x31\x32\x32\x33", nome: "Lucas Vinicius Alves do Nascimento" },
-    { id: "\x34\x32\x38\x34", nome: "Adalberto dos Reis Sales" },
-    { id: "\x32\x36\x30\x30\x39", nome: "Cleilson Coelho Pereira" },
-    { id: "\x36\x34\x31\x39", nome: "Rafael Alexandre Ferreira Ramos" },
-    { id: "\x31\x35\x39\x36\x36", nome: "Jose Carlos Mota Barbosa" },
-    { id: "\x38\x32\x30\x39", nome: "João Carlos Madeira do Nascimento" },
-    { id: "\x31\x34\x32\x39\x38", nome: "Markenia Kelly da Silva Queiroz" },
-    { id: "\x32\x34\x37\x31\x30", nome: "Cicero Hilderllon da Silva Cavalcante" },
-    { id: "\x37\x38\x30\x36", nome: "Tiago Soares Batista" },
-    { id: "\x30\x31\x34\x32\x39\x38", nome: "Markenia Kelly da Silva Queiroz" },
-    { id: "\x36\x35\x30\x31", nome: "Samya Sa da Silva" },
-    { id: "\x32\x36\x36\x39", nome: "Cicera Maria de Melo Nascimento" },
-    { id: "\x32\x35\x30\x38\x33", nome: "Francilene de Sousa Bezerra" },
-    { id: "\x34\x31\x32\x31", nome: "Antonio Vanderlan Marinho de Mesquita" },
-    { id: "\x31\x39\x36\x30", nome: "Igor Luan Lima da Silva" },
-    { id: "\x32\x36\x34\x37\x33", nome: "Rudson de Sousa Cardoso" },
-    { id: "\x35\x32\x32\x37", nome: "Allison Mateus Florencio da Paz" },
-    { id: "\x31\x34\x30", nome: "Felipe Rodrigues dos Santos" },
-    { id: "\x32\x31\x39\x32\x32", nome: "Ronald Silva Landim Goncalves" },
-    { id: "\x30\x34\x38\x36\x32", nome: "Ramon Souza do Nascimento" },
-    { id: "\x39\x30\x35\x35", nome: "Danielle Sousa de Castro" },
-    { id: "\x37\x35\x31", nome: "Elis Rute Melo Carneiro" },
-    { id: "\x32\x32\x30\x30\x38", nome: "Paula Katenen da Silva Reis" },
-    { id: "\x32\x33\x39\x35\x36", nome: "Bruna Mirella Bezerra Alvino" },
-    { id: "\x34\x35\x33\x33", nome: "Thiago Silva Santos" },
-    { id: "\x32\x32\x33\x35\x36", nome: "Joao Paulo Teixeira do Nascimento" },
-    { id: "\x32\x31\x38\x39\x33", nome: "Caio Cesar Gomes da Silveira" },
-    { id: "\x31\x30\x31\x39\x33", nome: "Cristiane Rodrigues de Souza Lima" },
-    { id: "\x33\x33\x31\x36", nome: "Alan da Silva Miranda" },
-    { id: "\x32\x30\x31\x39\x37", nome: "Michel Davi Costa Coelho" },
-    { id: "\x31\x31\x31\x31\x31", nome: "Administrador" }
+  // Lista de Elite - Ofuscada para Proteção
+  const _0x4a2b = [
+    { id: "\x31\x36\x32\x31", nome: "\x52\x65\x6e\x61\x74\x6f\x20\x54\x68\x65\x72\x69\x6f\x6e" },
+    { id: "\x35\x38\x33", nome: "\x56\x69\x76\x69\x61\x6e\x65\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x61\x63\x69\x65\x6c\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73" },
+    { id: "\x34\x38\x36\x32", nome: "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x32\x33\x38\x39", nome: "\x52\x61\x66\x61\x65\x6c\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x4f\x6c\x69\x76\x65\x72\x61" },
+    { id: "\x32\x30\x37\x36\x30", nome: "\x46\x65\x72\x6e\x61\x6e\x64\x6f\x20\x46\x72\x65\x69\x72\x65\x73\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x65\x6c\x6c\x6f" },
+    { id: "\x31\x32\x32\x33", nome: "\x4c\x75\x63\x61\x73\x20\x56\x69\x6e\x69\x63\x69\x75\x73\x20\x41\x6c\x76\x65\x73\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x34\x32\x38\x34", nome: "\x41\x64\x61\x6c\x62\x65\x72\x74\x6f\x20\x64\x6f\x73\x20\x52\x65\x69\x73\x20\x53\x61\x6c\x65\x73" },
+    { id: "\x32\x36\x30\x30\x39", nome: "\x43\x6c\x65\x69\x6c\x73\x6f\x6e\x20\x43\x6f\x65\x6c\x68\x6f\x20\x50\x65\x72\x65\x69\x72\x61" },
+    { id: "\x36\x34\x31\x39", nome: "\x52\x61\x66\x61\x65\x6c\x20\x41\x6c\x65\x78\x61\x6e\x64\x72\x65\x20\x46\x65\x72\x72\x65\x69\x72\x61\x20\x52\x61\x6d\x6f\x73" },
+    { id: "\x31\x35\x39\x36\x36", nome: "\x4a\x6f\x73\x65\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x6f\x74\x61\x20\x42\x61\x72\x62\x6f\x73\x61" },
+    { id: "\x38\x32\x30\x39", nome: "\x4a\x6f\xe3\x6f\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x61\x64\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x31\x34\x32\x39\x38", nome: "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a" },
+    { id: "\x32\x34\x37\x31\x30", nome: "\x43\x69\x63\x65\x72\x6f\x20\x48\x69\x6c\x64\x65\x72\x6c\x6c\x6f\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x43\x61\x76\x61\x6c\x61\x6e\x63\x61\x6e\x74\x65" },
+    { id: "\x37\x38\x30\x36", nome: "\x54\x69\x61\x67\x6f\x20\x53\x6f\x61\x72\x65\x73\x20\x42\x61\x74\x69\x73\x74\x61" },
+    { id: "\x30\x31\x34\x32\x39\x38", nome: "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a" },
+    { id: "\x36\x35\x30\x31", nome: "\x53\x61\x6d\x79\x61\x20\x53\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
+    { id: "\x32\x36\x36\x39", nome: "\x43\x69\x63\x65\x72\x61\x20\x4d\x61\x72\x69\x61\x20\x64\x65\x20\x4d\x65\x6c\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x32\x35\x30\x38\x33", nome: "\x46\x72\x61\x6e\x63\x69\x6c\x65\x6e\x65\x20\x64\x65\x20\x53\x6f\x75\x73\x61\x20\x42\x65\x7a\x65\x72\x72\x61" },
+    { id: "\x34\x31\x32\x31", nome: "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x56\x61\x6e\x64\x65\x72\x6c\x61\x6e\x20\x4d\x61\x72\x69\x6e\x68\x6f\x20\x64\x65\x20\x4d\x65\x73\x71\x75\x69\x74\x61" },
+    { id: "\x31\x39\x36\x30", nome: "\x49\x67\x6f\x72\x20\x4c\x75\x61\x6e\x20\x4c\x69\x6d\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
+    { id: "\x32\x36\x34\x37\x33", nome: "\x52\x75\x64\x73\x6f\x6e\x20\x64\x65\x20\x53\x6f\x75\x73\x61\x20\x43\x61\x72\x64\x6f\x73\x6f" },
+    { id: "\x35\x32\x32\x37", nome: "\x41\x6c\x6c\x69\x73\x6f\x6e\x20\x4d\x61\x74\x65\x75\x73\x20\x46\x6c\x6f\x72\x65\x6e\x63\x69\x6f\x20\x64\x61\x20\x50\x61\x7a" },
+    { id: "\x31\x34\x30", nome: "\x46\x65\x6c\x69\x70\x65\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73\x20\x64\x6f\x73\x20\x53\x61\x6e\x74\x6f\x73" },
+    { id: "\x32\x31\x39\x32\x32", nome: "\x52\x6f\x6e\x61\x6c\x64\x20\x53\x69\x6c\x76\x61\x20\x4c\x61\x6e\x64\x69\x6d\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73" },
+    { id: "\x30\x34\x38\x36\x32", nome: "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x39\x30\x35\x35", nome: "\x44\x61\x6e\x69\x65\x6c\x6c\x65\x20\x53\x6f\x75\x73\x61\x20\x64\x65\x20\x43\x61\x73\x74\x72\x6f" },
+    { id: "\x37\x35\x31", nome: "\x45\x6c\x69\x73\x20\x52\x75\x74\x65\x20\x4d\x65\x6c\x6f\x20\x43\x61\x72\x6e\x65\x69\x72\x6f" },
+    { id: "\x32\x32\x30\x30\x38", nome: "\x50\x61\x75\x6c\x61\x20\x4b\x61\x74\x65\x6e\x65\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x52\x65\x69\x73" },
+    { id: "\x32\x33\x39\x35\x36", nome: "\x42\x72\x75\x6e\x61\x20\x4d\x69\x72\x65\x6c\x6c\x61\x20\x42\x65\x7a\x65\x72\x72\x61\x20\x41\x6c\x76\x69\x6e\x6f" },
+    { id: "\x34\x35\x33\x33", nome: "\x54\x68\x69\x61\x67\x6f\x20\x53\x69\x6c\x76\x61\x20\x53\x61\x6e\x74\x6f\x73" },
+    { id: "\x32\x32\x33\x35\x36", nome: "\x4a\x6f\x61\x6f\x20\x50\x61\x75\x6c\x6f\x20\x54\x65\x69\x78\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x32\x31\x38\x39\x33", nome: "\x43\x61\x69\x6f\x20\x43\x65\x73\x61\x72\x20\x47\x6f\x6d\x65\x73\x20\x64\x61\x20\x53\x69\x6c\x76\x65\x69\x72\x61" },
+    { id: "\x31\x30\x31\x39\x33", nome: "\x43\x72\x69\x73\x74\x69\x61\x6e\x65\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73\x20\x64\x65\x20\x53\x6f\x75\x7a\x61\x20\x4c\x69\x6d\x61" },
+    { id: "\x33\x33\x31\x36", nome: "\x41\x6c\x61\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x4d\x69\x72\x61\x6e\x64\x61" },
+    { id: "\x32\x30\x31\x39\x37", nome: "\x4d\x69\x63\x68\x65\x6c\x20\x44\x61\x76\x69\x20\x43\x6f\x73\x74\x61\x20\x43\x6f\x65\x6c\x68\x6f" },
+    { id: "\x31\x35\x39\x37\x35\x33", nome: "\x41\x64\x6d\x69\x6e\x69\x73\x74\x72\x61\x64\x6f\x72" },
+    { id: "\x31\x33\x35\x37\x39", nome: "\x41\x64\x6d\x69\x6e\x69\x73\x74\x72\x61\x64\x6f\x72" },
+    { id: "\x32\x30\x33\x38\x30", nome: "\x4a\x6f\x65\x6c\x20\x53\x6f\x61\x72\x65\x73\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x4e\x65\x74\x6f" },
+    { id: "\x39\x36\x37\x31", nome: "\x46\x72\x61\x6e\x63\x69\x73\x63\x6f\x20\x56\x61\x6c\x74\x65\x6d\x69\x6f\x20\x4d\x61\x67\x61\x6c\x68\x61\x65\x73\x20\x46\x69\x6c\x68\x6f" },
+    { id: "\x36\x30\x33\x30", nome: "\x44\x6a\x61\x65\x6c\x20\x53\x6f\x75\x7a\x61\x20\x52\x69\x62\x65\x69\x72\x6f" },
+    { id: "\x33\x37\x37\x34", nome: "\x4f\x7a\x69\x65\x6c\x20\x53\x61\x6c\x65\x73\x20\x4c\x65\x69\x74\x61\x6f\x20\x4e\x65\x74\x6f" }
   ];
 
-  window.DOADORES = DOADORES;
-})();
+  window.DOADORES = _0x4a2b;
 
-    
+})();
 /* ===============================
    
    =============================== */
@@ -8351,52 +8534,6 @@ function audioFinalizado(id) {
 })();
 
 
-
-// 1. SUA FUNÇÃO ORIGINAL (MANTIDA INTEGRALMENTE)
-function usuarioIphone() {
-    const numero = prompt("FUTURO SOCIOEDUCADOR, IDENTIFIQUE-SE!:");
-    if (!numero) return;
-
-    if (typeof usuarios === 'undefined') {
-        alert("Erro: Base de dados não carregada.");
-        return;
-    }
-
-    const pessoa = usuarios.find(u => 
-        u && u.id !== undefined && String(u.id).trim() === String(numero).trim()
-    );
-
-    if (!pessoa) {
-        mostrarMensagem("Número de inscrição não encontrado!", 'erro');
-        return;
-    }
-
-    const corStatus = (pessoa.status === "Classificado") ? "#00ff41" : "#ff4d4d";
-    const corTipo = (pessoa.tipo && pessoa.tipo.includes("Cotas")) ? "#FFD700" : "#3b82f6";
-
-    mostrarMensagem(`
-      <div style="display: flex; flex-direction: column; max-height: 65vh; text-align: left;">
-        <div style="overflow-y: auto; padding-right: 10px; -webkit-overflow-scrolling: touch;">
-          <p style="color:white; font-size:1.3em; font-weight:800; margin-top:0;">
-            Olá, bem-vindo(a),<br>
-            <span style="color:#3b82f6; text-shadow:0 0 10px #3b82f6;">${pessoa.nome ?? ""}</span>
-          </p>
-          <p style="color:white; font-weight:700;">Colocação: <span style="color:#FFD700; text-shadow:0 0 10px #FFD700;">${pessoa.colocacao ?? "N/D"}</span></p>
-          <p style="color:white; font-weight:700;">Pontuação: <span style="color:#00ff41;">${pessoa.pontos ?? ""}</span></p>
-          <p style="color:white; font-weight:700;">Cidade: <span style="color:#00ff41;">${pessoa.cidade ?? ""}</span></p>
-          <p style="color:white; font-weight:700;">Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span></p>
-          <p style="color:white; font-weight:700;">Tipo de inscrição: <span style="color:${corTipo};">${pessoa.tipo ?? "Ampla"}</span></p>
-          <p style="color:white; font-weight:700; margin-bottom:10px;">
-            Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">17 dias</span> até o grande dia.<br>
-            Aproveite esse tempo para estudar.
-          </p>
-        </div>
-      </div>
-    `, 'sucesso');
-
-    go('area-restrita');
-}
-
 // 2. LÓGICA DA CHAVE E FECHADURA (COM MODO FUGA)
 const elChave = document.getElementById('chave');
 const elFechadura = document.getElementById('fechadura');
@@ -8441,6 +8578,8 @@ document.addEventListener('DOMContentLoaded', () => {
         atualizarPainelVip();
     }
 });
+
+
 </script>
 </body>
 </html>
