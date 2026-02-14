@@ -601,7 +601,7 @@ button {
       <div id="fechadura" style="font-size:3em; border:3px dashed #39FF14; padding:20px; border-radius:15px;">🔒</div>
     </div> 
 
-    <button class="menu-btn" onclick="usuarioIphone()"
+<!--    <button class="menu-btn" onclick="usuarioIphone()"
   style="
     border-color:#DA70D6;
     color:#DA70D6;
@@ -610,12 +610,12 @@ button {
     text-shadow:0 0 8px rgba(218,112,214,.8);
   ">
   🆔 INSIRA SUA INSCRIÇÃO 🆔
-</button> 
+</button>  -->
 
 <!-- <button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
     🏆SALA NÃO TÃO EXCLUSIVA🏆
 </button> -->
-    <button class="menu-btn" onclick="entrarComoVisitante()">👥 VISITANTE OU APOIADOR 🏆</button> 
+    <button class="menu-btn" onclick="entrarComoVisitante()"> FUTURO SOCIOEDUCADOR</button> 
 
 
 </div>
@@ -660,7 +660,7 @@ button {
         🎵🎶🔊 AUDIOTECA 🎵🎶🔊
     </button> -->
 
-<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
+<button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador1()">
     ⭐🏆 ÁREA EXCLUSIVA 🏆⭐
 </button>
 
@@ -6015,7 +6015,7 @@ const bancoVip = [
 {q:"💛 390. No diagnóstico de dermatoses ocupacionais, é importante observar se existe melhora das lesões com o afastamento do trabalho.", v:true, j:"A melhora com o afastamento, e a piora no retorno, ajuda a identificar o nexo ocupacional."},
 {q:"💛 391. A COVID-19 é causada por um vírus da família dos coronavírus, especificamente o SARS-CoV-2.", v:true, j:"O vírus causador da COVID-19 é o SARS-CoV-2, da família coronavírus."},
 {q:"💛 392. Segundo a OMS, a classificação de pandemia para a COVID-19 deveu-se à sua rápida propagação global.", v:true, j:"A rápida propagação global levou à classificação de pandemia pela Organização Mundial da Saúde."},
-{q:"💛 393. Pessoas com sintomas respiratórios devem usar máscara para evitar a transmissão, conforme o protocolo de prevenção.", v:true, j:"O uso de máscara por sintomáticos é uma medida preventiva essencial citada no texto."},
+{q:"💛 393. Pessoas com sintomas respiratórios devem usar máscara para evitar a transmissão, conforme o protocolo de prevenção da COVID-19.", v:true, j:"O uso de máscara por sintomáticos é uma, dentre outras, medida preventiva essencial citada no módulo."},
 {q:"💛 394. O protocolo recomenda que pessoas com sintomas respiratórios fiquem em locais fechados e sem ventilação para conter o vírus.", v:false, j:"A recomendação é que permaneçam em locais bem ventilados e, preferencialmente, separados dos demais."},
 {q:"💛 395. A higienização das mãos pode ser feita com água e sabão ou álcool em gel para prevenir a COVID-19.", v:true, j:"Ambas as formas de higiene das mãos são validadas pelo protocolo de prevenção."},
 {q:"💛 396. O diagnóstico da COVID-19 é realizado por meio de testes moleculares (como RT-PCR) ou testes rápidos de antígeno.", v:true, j:"O texto da Unidade VI cita RT-PCR e testes rápidos como métodos de diagnóstico."},
@@ -6057,8 +6057,72 @@ const bancoVip = [
 {q:"💛 432. Uma vez que as lesões da varicela viram crostas, o risco de transmissão pelo contato direto deixa de existir.", v:true, j:"A fase de crosta indica que o vírus não está mais ativo nas lesões externas."},
 {q:"💛 433. Agentes físicos, como radiação solar e calor excessivo, também podem causar dermatoses ocupacionais.", v:true, j:"Além de químicos e biológicos, agentes físicos são causas de doenças da pele no trabalho."},
 {q:"💛 434. A vigilância em saúde deve monitorar os casos de doenças respiratórias para identificar precocemente novos surtos.", v:true, j:"O monitoramento contínuo permite ações rápidas de bloqueio de transmissão."},
-{q:"💛 435. A principal diferença entre endemia e epidemia é que a endemia atinge vários países ao mesmo tempo.", v:false, j:"Endemia é restrita a uma região com recorrência esperada. Epidemia atinge diversas regiões de um mesmo país. Pandemia atinge vários países ao mesmo tempo."}
-
+{q:"💛 435. A principal diferença entre endemia e epidemia é que a endemia atinge vários países ao mesmo tempo.", v:false, j:"Endemia é restrita a uma região com recorrência esperada. Epidemia atinge diversas regiões de um mesmo país. Pandemia atinge vários países ao mesmo tempo."},
+{q:"💛 436. De acordo com a OMS, drogas são apenas compostos sintéticos que alteram as funções físicas do organismo.", v:false, j:"Drogas são compostos naturais ou sintéticos que alteram as funções físicas, cognitivas ou comportamentais do organismo."},
+{q:"💛 437. Uma boa política de drogas deve equilibrar saúde pública, segurança pública, direitos humanos, educação e prevenção.", v:true, j:"Uma boa política de drogas busca equilibrar: Saúde pública, Segurança pública, Direitos humanos, Educação e prevenção."},
+{q:"💛 438. O modelo Proibicionista de política de drogas foca na redução de danos sem exigir a abstinência do usuário.", v:false, j:"O modelo Proibicionista criminaliza o uso, porte e comércio; prioriza medidas punitivas. A Redução de Danos é que foca na minimização dos riscos sem exigir abstinência."},
+{q:"💛 439. No Brasil, a Política Nacional sobre Drogas é estabelecida e regulamentada principalmente pela Lei nº 11.343/2006.", v:true, j:"Regulamentada principalmente pela Lei nº 11.343/2006, a PNAD orienta ações em saúde, assistência social, educação e segurança pública."},
+{q:"💛 440. O tratamento de pessoas com dependência química deve ter a internação como regra e prioridade absoluta.", v:false, j:"O tratamento deve seguir um fluxo que prioriza a autonomia e o cuidado em liberdade, com a internação como último recurso (medida excepcional)."},
+{q:"💛 441. A internação involuntária é permitida no Brasil em casos excepcionais e mediante critérios médicos.", v:true, j:"A lei brasileira permite a internação involuntária em casos de risco à vida ou à saúde do usuário, mediante critérios médicos."},
+{q:"💛 442. Como regra, a internação de usuários e dependentes químicos deve ser em Comunidades Terapêuticas Acolhedoras. Busca-se outros meios em caso de impossibilidade.", v:false, j:"É vedada a internação em comunidades terapêuticas acolhedoras. Em casos de necessidade, a internação precisa ser em unidades de saúde e hospitais gerais."},
+{q:"💛 443. A PNAD de 2019 enfatiza a abstinência como um objetivo prioritário da política de drogas.", v:true, j:"A PNAD de 2019 enfatiza a abstinência como objetivo prioritário, mas também cita a redução de danos."},
+{q:"💛 444. O SISNAD se fundamenta em princípios como direitos humanos, autonomia compartilhada, base científica e responsabilidade individual.", v:false, j:"Princípios do SISNAD: Direitos humanos, Autonomia individual, Base científica e Responsabilidade compartilhada."},
+{q:"💛 445. A estigmatização do usuário de drogas pode facilitar o seu acesso rápido aos serviços de saúde e tratamento.", v:false, j:"Esse estigma impede o acesso a serviços de saúde, atrasando a busca por tratamento."},
+{q:"💛 446. O modelo de Redução de Danos inclui programas como a troca de seringas e educação em saúde.", v:true, j:"O modelo de Redução de Danos foca na minimização de riscos e inclui troca de seringas e educação em saúde."},
+{q:"💛 447. No modelo Proibicionista, o foco principal é a oferta de centros de atendimento e educação para o usuário.", v:false, j:"O modelo proibicionista criminaliza o uso e comércio, priorizando medidas punitivas e encarceramento."},
+{q:"💛 448. A Lei nº 11.343/2006, conhecida como Lei de Drogas, instituiu o Sistema Nacional de Políticas Públicas sobre Drogas (SISNAD).", v:true, j:"A Lei nº 11.343/2006 instituiu o SISNAD para articular ações de prevenção, atenção e repressão ao tráfico."},
+{q:"💛 449. O SISNAD tem como um de seus objetivos principais a criminalização rigorosa de todo e qualquer usuário de drogas.", v:false, j:"O SISNAD visa a prevenção do uso, a atenção e reinserção social de usuários e a repressão ao tráfico ilícito."},
+{q:"💛 450. A responsabilidade pelas políticas de drogas no Brasil é exclusiva do Governo Federal, sem participação de Estados ou municípios.", v:false, j:"Um dos princípios do SISNAD é a responsabilidade compartilhada entre a União, Estados, Distrito Federal e Municípios."},
+{q:"💛 451. O tratamento para dependência química deve, preferencialmente, focar no fortalecimento da autonomia do paciente.", v:true, j:"O tratamento deve seguir um fluxo que prioriza a autonomia e o cuidado em liberdade."},
+{q:"💛 452. As Comunidades Terapêuticas Acolhedoras devem oferecer ambiente residencial e ser de adesão exclusivamente voluntária.", v:true, j:"O acolhimento nessas comunidades é exclusivamente voluntário e em ambiente residencial."},
+{q:"💛 453. A repressão estratégica foca no combate ao tráfico de drogas e no crime organizado, e não no usuário.", v:true, j:"A repressão estratégica busca desarticular organizações criminosas e combater o tráfico ilícito."},
+{q:"💛 454. O CAPS AD é o serviço especializado para o atendimento de pessoas com problemas decorrentes do uso de álcool e outras drogas.", v:true, j:"O CAPS AD (Centro de Atenção Psicossocial - Álcool e Drogas) é o serviço de referência citado na unidade."},
+{q:"💛 455. A política de drogas atual no Brasil veda o isolamento físico do usuário como forma de tratamento.", v:true, j:"A legislação prioriza o cuidado em liberdade e veda práticas que firam os direitos humanos, como o isolamento forçado injustificado."},
+{q:"💛 456. O uso de substâncias psicoativas é considerado exclusivamente uma questão de polícia e segurança pública.", v:false, j:"O uso problemático é uma questão complexa que envolve saúde pública, assistência social e justiça."},
+{q:"💛 457. A educação e prevenção visam informar a sociedade para evitar o uso problemático de substâncias.", v:true, j:"O objetivo da educação e prevenção é informar para evitar o uso e reduzir riscos."},
+{q:"💛 458. O SISNAD define que a reinserção social do usuário deve ser feita através do trabalho, cultura e lazer.", v:true, j:"A reinserção social busca integrar o usuário através de frentes como educação, trabalho e cultura."},
+{q:"💛 459. O estigma social é um facilitador para que o dependente químico procure ajuda médica.", v:false, j:"O estigma e a discriminação dificultam a busca por tratamento e a reinserção social."},
+{q:"💛 460. A internação compulsória é aquela determinada pelo juiz, independentemente da vontade do paciente.", v:true, j:"A internação compulsória é determinada por ordem judicial."},
+{q:"💛 461. No caso de uma transgressão leve cometida por um adolescente, a advertência verbal é uma das medidas disciplinares aplicáveis conforme a Portaria 093/2022.", v:true, j:"O Art. 12 prevê a advertência verbal para transgressões leves."},
+{q:"💛 462. A advertência escrita só tem validade legal no prontuário do adolescente se for assinada exclusivamente por ele, sem possibilidade de testemunhas.", v:false, j:"Segundo o Art. 12 da Portaria 093/2022, a advertência escrita pode ser assinada pelo adolescente ou por duas testemunhas."},
+{q:"💛 463. A suspensão da prática recreativa ou de lazer, como medida para falta leve, pode ser aplicada pelo período máximo de até 2 dias.", v:true, j:"O Art. 12 da Portaria 093/2022 limita a suspensão de lazer ou recreação ao prazo de até 2 dias."},
+{q:"💛 464. Se um socioeducando cometer uma falta leve, a suspensão da sua prática esportiva pode ser estendida por até 5 dias conforme o conselho disciplinar.", v:false, j:"O Art. 12 da Portaria 093/2022 estabelece que a suspensão da prática esportiva é de, no máximo, 3 dias."},
+{q:"💛 465. A privação de produtos autorizados a entrar em dias de visita é uma medida disciplinar prevista para casos de transgressões leves.", v:true, j:"Esta medida está prevista no Art. 12 da Portaria 093/2022."},
+{q:"💛 466. Caso seja necessária a aplicação conjunta de medidas leves, o limite máximo permitido pela Portaria é de até 2 medidas simultâneas.", v:false, j:"O Art. 12 da Portaria 093/2022 define que, em aplicação conjunta, deve-se obedecer o limite máximo de 3 medidas."},
+{q:"💛 467. As medidas de natureza leve não admitem substituição por ações pedagógicas, devendo ser cumpridas apenas como suspensão ou advertência.", v:false, j:"O Art. 12 da Portaria 093/2022 afirma que as medidas leves podem ser substituídas por outras de natureza pedagógica ou educativa."},
+{q:"💛 468. Todas as medidas disciplinares de natureza leve devem ser assinadas, arquivadas no prontuário e afixadas em local visível para os socioeducadores.", v:true, j:"Conforme o parágrafo único do Art. 12 da Portaria 093/2022, a publicidade para os socioeducadores e o registro no prontuário são obrigatórios, e devem ser afixados em local visível para os agentes."},
+{q:"💛 469. Na aplicação conjunta de medidas disciplinares leves, o Conselho deve respeitar a particularidade da transgressão ocorrida.", v:true, j:"O Art. 12 da Portaria 093/2022 exige que se respeite a particularidade da transgressão ao aplicar até 3 medidas conjuntamente."},
+{q:"💛 470. A suspensão da prática esportiva por até 2 dias é uma medida adequada para uma transgressão leve, segundo a Portaria 093/2022.", v:false, j:"O limite para suspensão de prática esportiva em faltas leves é de até 3 dias (Art. 12)."},
+{q:"💛 471. Diferente das faltas leves, a advertência verbal não consta como medida disciplinar aplicável para transgressões de natureza média no Art. 14.", v:true, j:"O Art. 14 da Portaria 093/2022 inicia as medidas a partir da advertência escrita, não prevendo a verbal para faltas médias."},
+{q:"💛 472. Na ocorrência de uma transgressão média, a suspensão da prática recreativa ou de lazer pode ser aplicada por um período de até 3 dias.", v:true, j:"O Art. 14 da Portaria 093/2022 estabelece o limite de até 3 dias para suspensão de lazer em faltas médias."},
+{q:"💛 473. Para transgressões médias, o limite máximo de suspensão da prática esportiva é de 5 dias.", v:true, j:"Conforme o Art. 14 da Portaria 093/2022, a suspensão da prática esportiva em faltas médias é de até 5 dias."},
+{q:"💛 474. A retratação verbal à pessoa ofendida é uma medida disciplinar aplicável especificamente nos casos de transgressões de natureza leve.", v:false, j:"A retratação verbal está prevista no Art. 14 da Portaria 093/2022 para casos de natureza média."},
+{q:"💛 475. Em caso de falta média, a restrição ao dormitório é permitida por um período de até 10 dias, conforme avaliação do conselho.", v:false, j:"O Art. 14 da Portaria 093/2022 limita a restrição ao dormitório ao prazo máximo de até 5 dias."},
+{q:"💛 476. A reparação do dano causado pelo adolescente é considerada uma das medidas disciplinares para transgressões médias na Portaria 093/2022.", v:true, j:"A reparação do dano consta no Art. 14 como medida para faltas médias."},
+{q:"💛 477. Assim como nas faltas leves, a aplicação conjunta de medidas médias deve obedecer ao limite máximo de 2 medidas.", v:false, j:"O Art. 14 da Portaria 093/2022 estabelece que, em caso de aplicação conjunta, deve-se respeitar o limite máximo de 3 medidas."},
+{q:"💛 478. As medidas de natureza média não podem ser substituídas por ações pedagógicas, sendo obrigatória a punição administrativa.", v:false, j:"O Art. 14 da Portaria 093/2022 afirma que as medidas médias podem ser cumulativas ou substituídas por outras de natureza pedagógica ou educativa."},
+{q:"💛 479. É obrigatório que todas as medidas disciplinares de natureza média sejam aplicadas por escrito e arquivadas no prontuário do socioeducando.", v:true, j:"O parágrafo único do Art. 14 da Portaria 093/2022 exige a aplicação por escrito e arquivamento no prontuário."},
+{q:"💛 480. No caso de falta média, as medidas aplicadas devem ser afixadas em local visível para que todos os adolescentes da unidade tomem conhecimento.", v:false, j:"A Portaria 093/2022 determina que sejam afixadas em local visível para conhecimento dos socioeducadores."},
+{q:"💛 481. Ao avaliar uma transgressão média, o conselho disciplinar deve verificar as atas anteriores para checar a reiteração de faltas leves, médias ou graves.", v:true, j:"O Art. 14 da Portaria 093/2022 obriga a avaliação das atas anteriores para verificar se há reiteração de faltas."},
+{q:"💛 482. A privação de produtos autorizados a entrar em dias de visita é uma medida comum tanto para transgressões leves quanto para médias.", v:true, j:"Essa medida aparece tanto no Art. 12 (leves) quanto no Art. 14 (médias), da Portaria 093/2022."},
+{q:"💛 483. Se um adolescente comete uma falta média, ele pode ser suspenso de práticas esportivas por 3 ou 4 dias.", v:true, j:"O limite para suspensão esportiva em faltas médias é de até 5 dias, logo, 3 ou 4 dias é permitido, pois está dentro da legalidade."},
+{q:"💛 484. A suspensão da prática de lazer por 5 dias é uma sanção adequada para uma transgressão de natureza média.", v:false, j:"Para faltas médias, o limite de suspensão de lazer ou recreação é de até 3 dias (Art. 14, Portaria 093/2022)."},
+{q:"💛 485. A advertência escrita para falta média pode ser assinada por duas testemunhas caso o adolescente se negue a assinar.", v:true, j:"O Art. 14 da Portaria 093/2022 prevê a assinatura do adolescente ou de duas testemunhas."},
+{q:"💛 486. Para transgressões de natureza grave, a suspensão da prática recreativa ou de lazer pode ser aplicada por um período de até 7 dias.", v:true, j:"O Art. 16 da Portaria 093/2022 estabelece o limite de até 7 dias para suspensão de lazer em faltas graves."},
+{q:"💛 487. No caso de falta grave, a suspensão da prática esportiva tem o mesmo limite temporal da prática recreativa, sendo de até 7 dias.", v:true, j:"Conforme o Art. 16 da Portaria 093/2022 ambas as suspensões (recreativa e esportiva) são de até 7 dias."},
+{q:"💛 488. A restrição do tempo de visita e a realização de visita monitorada são medidas disciplinares aplicáveis em casos de transgressões graves.", v:true, j:"A restrição e monitoramento da visita estão previstos no Art. 16 da Portaria 093/2022 para faltas graves."},
+{q:"💛 489. Em transgressões graves, a restrição ao dormitório pode durar até 10 dias e, dependendo da gravidade da conduta, pode haver ncaminhamento à ala de medida disciplinar.", v:false, j:"O Art. 16 da Portaria 093/2022 limita a restrição ao dormitório ao prazo máximo de até 7 dias."},
+{q:"💛 490. O adolescente que comete falta grave pode ser encaminhado à ala de medida disciplinar pelo dobro do período de restrição ao dormitório.", v:false, j:"O Art. 16 da Portaria 093/2022 prevê a possibilidade de encaminhamento à ala de medida disciplinar, mas não cita tal prazo."},
+{q:"💛 491. Uma das medidas para faltas graves é a comunicação ao Poder Judiciário com o pedido de audiência de advertência.", v:true, j:"A comunicação ao judiciário para audiência de advertência consta no Art. 16 da Portaria 093/2022."},
+{q:"💛 492. A reparação do dano é uma medida que se aplica apenas às faltas médias, não sendo prevista para as transgressões graves, por ter caráter análogo a crimes.", v:false, j:"A reparação do dano também é uma medida aplicável às faltas graves, conforme o Art. 16 da Portaria 093/2022."},
+{q:"💛 493. Mesmo em transgressões graves, a aplicação conjunta de medidas disciplinares deve respeitar o limite máximo de 3 medidas.", v:true, j:"O Art. 16 da Portaria 093/2022 mantém o limite de no máximo 3 medidas em caso de aplicação conjunta para todas as três modalidades de  transgressões."},
+{q:"💛 494. Todas as medidas disciplinares de natureza grave devem ser aplicadas por escrito, assinadas e arquivadas no prontuário.", v:true, j:"O parágrafo único do Art. 16 da Portaria 093/2022 exige a forma escrita e arquivamento em prontuário."},
+{q:"💛 495. A Portaria 093/2022 veda a fixação das medidas graves em locais visíveis para os socioeducadores para preservar a imagem do menor.", v:false, j:"As medidas devem ser afixadas em local visível para conhecimento dos socioeducadores (Art. 16)."},
+{q:"💛 496. Na análise de uma falta grave, deve-se avaliar as atas anteriores para verificar a reiteração de faltas do adolescente.", v:true, j:"O parágrafo único do Art. 16 da Portaria 093/2022 exige a avaliação de reiteração de faltas leves, médias ou graves."},
+{q:"💛 497. A privação de produtos autorizados a entrar em dias de visita é uma sanção que não pode ser aplicada em transgressões graves.", v:false, j:"Esta medida é aplicável também em faltas graves, conforme previsto no Art. 16 da Portaria 093/2022."},
+{q:"💛 498. A restrição ao dormitório por 7 dias em falta grave dispensa a necessidade de assinatura e arquivamento no prontuário por ser medida urgente.", v:false, j:"Todas as medidas graves devem ser assinadas e arquivadas no prontuário, sem exceção (Art. 16, Portaria 093/2022)."},
+{q:"💛 499. Caso o conselho decida, as medidas graves podem ser substituídas por outras de natureza pedagógica ou educativa.", v:true, j:"O Art. 16 da Portaria 093/2022 permite que as medidas sejam cumulativas ou substituídas por ações pedagógicas/educativas."},
+{q:"💛 500. A suspensão da prática esportiva por 10 dias é uma penalidade prevista para transgressões graves na Portaria 093/2022.", v:false, j:"O limite máximo para suspensão de prática esportiva em faltas graves é de até 7 dias."}
 ];
 
 
@@ -6084,7 +6148,7 @@ const listaAulas = [
     { id: 11, titulo: "Módulo II - Unidade V", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20II%20-%20Unidade%20V.mp3" },
     { id: 13, titulo: "Módulo III - Unidade I", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20III%20-%20Unidade%20I.mp3" },
     { id: 14, titulo: "Módulo III - Unidade II", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Modulo%20III%20-%20Unidade%20II.mp3" },
-    { id: 15, titulo: "Módulo III - Unidade III - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
+    { id: 15, titulo: "Módulo III - Unidade III", url: "https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/M%C3%B3dulo%20III%20-%20Unidade%20III.mp3" },
     { id: 16, titulo: "Módulo III - Unidade IV - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
     { id: 17, titulo: "Módulo III - Unidade V - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
     { id: 18, titulo: "Módulo III - Unidade VI - EM BREVE", url: "https://seusite.com/audios/aula3.mp3" },
@@ -7605,6 +7669,52 @@ function irParaAreaApoiador2() {
     console.log("Acesso VIP concedido via Painel:", usuarioEncontrado.nome);
 }
 
+function irParaAreaApoiador1() {
+    const idDigitado = prompt("DIGITE SUA INSCRIÇÃO:");
+    if (!idDigitado) return;
+
+    // Agora busca no banco geral de USUÁRIOS para o acesso liberado 24h
+    const usuarioEncontrado = usuarios.find(u => u.id == idDigitado);
+
+    if (!usuarioEncontrado) {
+        mostrarMensagem(
+            `<h1 style="color:red; font-weight:900;">🤚 ID NÃO ENCONTRADO ✋<br>🚫ACESSO RESTRITO🚫</h1>`,
+            'erro'
+        );
+        return;
+    }
+
+    // Liberação total
+    liberado = true;
+
+    // Nome no painel (pega o nome do banco de usuários)
+    const nomeDoadorElemento = document.getElementById('nome-doador-vip');
+    if (nomeDoadorElemento) {
+        nomeDoadorElemento.textContent = usuarioEncontrado.nome;
+    }
+
+    // ENTRA NA TELA
+    go('area-apoiador');
+
+    // PREPARA O CONTEXTO VIP
+    setTimeout(() => {
+        prepararContextoSalaVip();
+
+        const telaVip = document.getElementById('area-apoiador');
+        if (telaVip) {
+            telaVip.style.setProperty("display", "flex", "important");
+            telaVip.style.background = "#000";
+        }
+
+        const vContainer = document.getElementById('vidas-container');
+        if (vContainer) {
+            vContainer.innerHTML =
+                '<span style="font-size:1.2em; color: gold; font-weight:bold;">SALA EXCLUSIVA</span>';
+        }
+    }, 0);
+
+    console.log("Acesso VIP temporário concedido para:", usuarioEncontrado.nome);
+}
 
 // Exemplo de como deve estar o seu Gerador de 30 questões:
 function gerarSimuladoVip30() {
