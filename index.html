@@ -648,7 +648,7 @@ button {
 
 
 <h2 style="font-size:1.5em;color:#39FF14;margin:0;">
-    Visitante, passe na prova dos analistas<br> para conquistar 24h de acesso
+    Visitante, passe na prova dos analistas<br> para conquistar 2h de acesso
 </h2>
 
 
@@ -1125,7 +1125,7 @@ const bancoOficial = [
     {q:"👨‍💻 76. A condenação de agente público por crime de tortura não implica perda do cargo, função ou emprego público, pois a estabilidade no cargo é hierarquicamente superior.", v:false, j:"A perda do cargo é efeito automático da condenação pelo crime de tortura (Art. 1º, § 5º da Lei 9.455/97)."},
     {q:"👨‍💻 77. A Portaria SEAS nº 006/2023 é a principal norma que disciplina as atividades correicionais e a apuração de infrações disciplinares no âmbito da SEAS.", v:true, j:"Regulamenta o regime disciplinar e correcional dos servidores da autarquia."},
     {q:"👨‍💻 78. A sindicância é um procedimento apuratório que pode resultar na aplicação de penalidades como advertência, suspensão e demissão, sempre assegurados o contraditório e a ampla defesa.", v:true, j:"Procedimento administrativo padrão para faltas funcionais."},
-    {q:"👨‍💻 79. O afastamento cautelar do servidor durante a investigação pode ser determinado por até 90 dias, prorrogáveis por igual período, sem prejuízo da remuneração.", v:false, j:"O prazo de afastamento preventivo no regime estatutário do Ceará costuma ser de 60 dias, prorrogáveis por igual período, sem prejuízo da remuneração."},
+    {q:"👨‍💻 79. O afastamento cautelar do servidor durante a investigação pode ser determinado por até 90 dias, prorrogáveis por igual período, sem prejuízo da remuneração.", v:false, j:"O prazo de afastamento preventivo no regime estatutário do Ceará costuma ser de 30 dias, prorrogáveis por igual período, sem prejuízo da remuneração."},
     {q:"👨‍💻 80. Entre as competências da Corregedoria, encontram-se a realização de inspeções periódicas, a instauração de sindicâncias e a fiscalização do cumprimento de normas e prazos estabelecidos.", v:true, j:"Funções típicas de controle interno e correição."},
     {q:"👨‍💻 81. É dever exclusivo da família e do Estado assegurar à criança, ao adolescente e ao jovem, com absoluta prioridade, o direito à vida, à saúde, à alimentação, à educação, ao lazer, à profissionalização, à cultura, à dignidade, ao respeito, à liberdade e à convivência familiar e comunitária, além de colocá-los a salvo de toda forma de negligência, discriminação, exploração, violência, crueldade e opressão.", v:false, j:"O dever é da família, da comunidade, da SOCIEDADE em geral e do Poder Público (Art. 227 CF e Art. 4º ECA)."},
     {q:"👨‍💻 82. Questão ANULADA, responda VERDADEIRO para ACERTAR. É assegurado acesso integral às linhas de cuidado voltadas à saúde da criança e do adolescente, por intermédio do Sistema Único de Saúde, observado o princípio da equidade no acesso a ações e serviços para promoção, proteção e recuperação da saúde.", v:true, j:"Questão anulada em virtude de imprecisão, erro material de grafia, dúvida de interpretação, ou outro aspecto que caracterize má formulação da questão."},
@@ -6332,53 +6332,6 @@ function go(id) {
 }
 
 
-function render() {
-    // 1. Sincroniza o tipo se for VIP
-    if (window.isVipMode) quizType = 'simulado_vip';
-
-    // 2. SALVAMENTO MODULAR: Só salva se for Módulo 4 VIP
-    // Isso evita que o simulado de 30 questões atropele o índice do Módulo 4
-    if (window.isVipMode && quizType === 'modulo4_vip') { 
-        localStorage.setItem('vip_indice_modulo4', currentIndex);
-    }
-
-    if (!currentQuestions || currentQuestions.length === 0) {
-        document.getElementById('qh').innerText = 'Sem questões';
-        document.getElementById('qt').innerText = 'Carregue um banco de dados.';
-        document.getElementById('opts').innerHTML = '';
-        return;
-    }
-
-    const q = currentQuestions[currentIndex];
-    document.getElementById('qh').innerText = `Questão ${currentIndex + 1}/${currentQuestions.length}`;
-    document.getElementById('qt').innerText = q.q;
-    
-    const optsArea = document.getElementById('opts');
-    const fb = document.getElementById('feedback');
-    fb.style.display = 'none';
-    optsArea.innerHTML = '';
-    optsArea.style.pointerEvents = 'auto';
-
-    [true, false].forEach(val => {
-        const btn = document.createElement('div'); 
-        btn.className = 'opt'; 
-        btn.innerText = val ? "VERDADEIRO" : "FALSO";
-        
-        if (historico[currentIndex] !== undefined) {
-            if (val === historico[currentIndex]) btn.classList.add(val === q.v ? 'correct' : 'wrong');
-            fb.innerText = q.j; 
-            fb.style.display = 'block';
-            optsArea.style.pointerEvents = 'none';
-        }
-        btn.onclick = () => check(val, btn);
-        optsArea.appendChild(btn);
-    });
-
-    document.getElementById('btnPrev').classList.toggle('visible', currentIndex > 0);
-    document.getElementById('btnNext').classList.toggle('visible', historico[currentIndex] !== undefined);
-}
-
-
 
 /* =====================================================
    ✅ REGISTRAR RESPOSTA (Apenas anota os pontos)
@@ -6665,202 +6618,169 @@ atualizarPainelSimulados();
 ===================================================== */
 function check(answer, btn) {
 
+    // 🛑 TRAVA CONTRA DUPLO CLIQUE / DUPLA EXECUÇÃO
+    if (window._lockResposta) return;
+    window._lockResposta = true;
+
     const q = currentQuestions[currentIndex];
-
     const acertou = (answer === q.v);
-
     const cont = document.getElementById('container');
 
-
-
     // ÚNICA INSERÇÃO: Conecta com seu sistema de pontos VIP
-
     registrarResposta(acertou, answer);
 
-
-
     historico[currentIndex] = answer;
-
     document.getElementById('opts').style.pointerEvents = 'none';
-
     
-
     if (acertou) {
 
         acertosSessao++; 
 
-        
-
         // --- LÓGICA DA SENHA DA AUDIOTECA ---
-
         if (quizType === 25) {
-
             acertosContadorSenha++;
-
             if (acertosContadorSenha === 25) {
-
                 gerarSenhaTemporaria(); 
-
                 acertosContadorSenha = 0;
-
             }
-
         }
-
         // ------------------------------------
 
-
-
         btn.classList.add('correct');
-
         cont.classList.add('acertou-flash');
 
         setTimeout(() => { 
-
             cont.classList.remove('acertou-flash'); 
-
+            window._lockResposta = false; // 🔓 libera para a próxima questão
             next(); 
-
         }, 700);
-
-
 
     } else {
 
-
-
         // SE ERROU NA BOMBA, O CONTADOR DE SENHA VOLTA PARA ZERO
-
         if (quizType === 25) {
-
             acertosContadorSenha = 0;
-
         }
 
-
-
         btn.classList.add('wrong');
-
         cont.classList.add('errou-flash');
-
         setTimeout(() => cont.classList.remove('errou-flash'), 700);
-
         
-
         if (quizType === 25) {
 
             if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
 
-
-
             let d = (parseInt(localStorage.getItem('derrotasGerador')) || 0) + 1; 
-
             localStorage.setItem('derrotasGerador', d);
-
-
 
             cont.classList.add('tremendo');
 
-
-
             const ob = document.getElementById('overlay-blood');
-
             if (ob) {
-
                 ob.className = 'blood-alert-overlay';
-
                 ob.innerHTML = `
-
                     <span style="font-size:2.5em; letter-spacing:5px;">💣SISTEMA💥 <br>COMPROMETIDO💥💥</span><br>
-
                     <span style="font-size:2em; font-weight:900;">💥 AUTODESTRUIÇÃO...💥</span>
-
                 `;
-
             }
-
             
-
             let bipes = 0;
-
             const alarme = setInterval(() => {
-
                 if (typeof playAlarm === 'function') playAlarm();
-
                 bipes++;
-
                 if (bipes >= 8) clearInterval(alarme);
-
             }, 400);
-
             
-
             setTimeout(() => { 
-
                 cont.classList.remove('tremendo');
-
                 if (ob) { 
-
                     ob.className = ''; 
-
                     ob.style.display = 'none'; 
-
                 }
-
-
 
                 const failStats = document.getElementById('fail-stats');
-
                 if (failStats) {
-
                     failStats.innerHTML = `A BOMBA EXPLODIU NA SUA CARA!<br>ACERTOS: ${acertosSessao}`;
-
                 }
-
                 
-
                 const btnF = document.getElementById('btn-tentar-novamente');
-
                 if (btnF) {
-
                     btnF.onclick = function() { go('area-restrita'); };
-
                     btnF.innerText = "TENTAR NOVAMENTE";
-
                 }
-
                 
-
+                window._lockResposta = false; // 🔓 libera caso o jogador volte
                 go('fail-screen');
 
             }, 5000);
 
-
-
         } else {
 
-            erros++; 
+            // 🔒 CORREÇÃO APENAS PARA O MODO TOTAL (PROVA DOS ANALISTAS)
+            if (quizType === 'total') {
+                if (window._ultimoErroIndexTotal === currentIndex) {
+                    window._lockResposta = false;
+                    return;
+                }
+                window._ultimoErroIndexTotal = currentIndex;
+            }
 
+            erros++; 
             if (typeof atualizarVidas === 'function') atualizarVidas(); 
 
             const feedbackEl = document.getElementById('feedback');
-
             if (feedbackEl) {
-
                 feedbackEl.innerText = q.j; 
-
                 feedbackEl.style.display = 'block';
-
             }
 
             const btnNext = document.getElementById('btnNext');
-
             if (btnNext) btnNext.classList.add('visible');
 
+            // 🔓 Libera clique só quando o jogador for para a próxima
+            window._lockResposta = false;
         }
-
     }
+}
 
+
+
+function atualizarVidas() {
+    const v1 = document.getElementById('v1');
+    const v2 = document.getElementById('v2');
+    const v3 = document.getElementById('v3');
+
+    // Visual simples: apaga conforme o número de erros
+    if (erros >= 1 && v3) v3.style.opacity = '0.2';
+    if (erros >= 2 && v2) v2.style.opacity = '0.2';
+    if (erros >= 3 && v1) v1.style.opacity = '0.2';
+
+    // Se não for Analista, sai fora e não mexe em nada
+    if (quizType !== 'total') return;
+
+    // Se for Analista e errou 3 ou mais
+    if (erros >= 3) {
+        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
+
+        setTimeout(() => {
+            if (quizType === 'total') {
+                const failStats = document.getElementById('fail-stats');
+                const btnFalha = document.getElementById('btn-tentar-novamente');
+
+                if (failStats) {
+                    // Mantendo a contagem de erros que você prefere ver
+                    failStats.innerHTML = `PROVA DOS ANALISTAS: ELIMINADO<br>ERROS: ${erros} (MÁXIMO PERMITIDO EXCEDIDO)`;
+                }
+
+                if (btnFalha) {
+                    // Única mudança: redireciona para a capa para não dar o prêmio ao erro
+                    btnFalha.onclick = () => location.reload();
+                    btnFalha.innerText = "VOLTAR AO INÍCIO";
+                }
+                go('fail-screen');
+            }
+        }, 500);
+    }
 }
 
 
@@ -7245,7 +7165,7 @@ function resetarStatsVip() {
 // MOTOR CENTRAL
 // ==========================================
 function startQuiz(modo) {
-  // Blindagem de Estado sugerida pelo parceiro
+  // ... (suas definições de variáveis iniciais que já funcionam)
   window.isVipMode = (modo === 'vip' || modo === 'simulado_vip');
   quizType = window.isVipMode ? 'simulado_vip' : modo;
 
@@ -7255,116 +7175,57 @@ function startQuiz(modo) {
   acertosContadorSenha = 0;
   historico = {};
 
-  // NOVIDADE: Limite de erros para impedir aprovação indevida
-  // No modo 'total' (analista), o limite é rigoroso: 3 erros (admite apenas 2)
-  window.limiteErrosPermitidos = (modo === 'vip' || modo === 'simulado_vip' || modo === 25) ? 5 : 3;
+  // Define o limite rigoroso: No modo total, 3 erros = Fim de jogo imediato.
+  window.limiteErrosPermitidos = (modo === 'total') ? 3 : (window.isVipMode || modo === 25 ? 5 : 3);
 
   const vContainer = document.getElementById('vidas-container');
   const btnExtra = document.getElementById('btnExtra');
-  const feedback = document.getElementById('feedback');
-  if (feedback) feedback.style.display = 'none';
+  
+  // Reseta as vidas visualmente para 3 corações
+  if (vContainer) vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
 
-  /* ==========================
-      🔥 MODO VIP (AJUSTADO)
-  ========================== */
-  if (modo === 'vip' || modo === 'simulado_vip') {
-    quizType = 'simulado_vip';
-    const megaBanco = [
-        ...(typeof bancoOficial !== 'undefined' ? bancoOficial : []),
-        ...(typeof bancoModulos !== 'undefined' ? bancoModulos : []),
-        ...(typeof bancoVariados !== 'undefined' ? bancoVariados : []),
-        ...(typeof bancoPortarias !== 'undefined' ? bancoPortarias : [])
-    ];
-    const TOTAL_VIP = 30; 
-    currentQuestions = [...megaBanco].sort(() => Math.random() - 0.5).slice(0, TOTAL_VIP);
-    if (vContainer) vContainer.innerHTML = '<span class="bomba-pulsa" style="filter:drop-shadow(0 0 6px gold); font-size:1.5em;">⭐</span>';
+  /* ==========================================================
+     LÓGICA EXCLUSIVA: PROVA DOS ANALISTAS (MODO TOTAL)
+  ========================================================== */
+  if (modo === 'total') {
+    let base = [...bancoOficial];
+    currentQuestions = base.sort(() => 0.5 - Math.random()).slice(0, 100);
+
+    // Ajuste do Botão Extra
     if (btnExtra) {
-        btnExtra.innerText = "🏛 SALA VIP 🏛";
-        btnExtra.style.background = "#FFD700";
-        btnExtra.style.color = "#000";
-        btnExtra.onclick = () => go('area-apoiador');
-    }
-    if (typeof clearProgress === 'function') clearProgress('simulado_vip');
-  }
-
-  /* ==========================
-      Bomb SOBREVIVENTE
-  ========================== */
-  else if (modo === 25) {
-    const megaBanco = [...bancoOficial, ...bancoModulos, ...bancoVariados, ...bancoPortarias];
-    currentQuestions = megaBanco.sort(() => 0.5 - Math.random()).slice(0, 25);
-    vContainer.innerHTML = '<span class="bomba-pulsa">💣</span>';
-    btnExtra.innerText = "💪 MOTIVACIONAL 💪";
-    btnExtra.style.background = "#475569";
-    btnExtra.onclick = typeof mostrarProverbio === 'function' ? mostrarProverbio : () => {};
-    if (typeof clearProgress === 'function') clearProgress(modo);
-  }
-
-  /* ==========================
-      📚 MODOS NORMAIS (AJUSTE ANALISTA AQUI)
-  ========================== */
-  else {
-    let base;
-    if (modo === 'total') base = [...bancoOficial];
-    else if (modo === 'modulos') base = [...bancoModulos];
-    else if (modo === 'variados') base = [...bancoVariados];
-    else if (modo === 'portarias') base = [...bancoPortarias];
-    else base = [...bancoOficial];
-
-    // GARANTE 100 QUESTÕES PARA ANALISTAS (MODO TOTAL)
-    currentQuestions = base
-      .sort(() => 0.5 - Math.random())
-      .slice(0, modo === 'total' ? 100 : base.length);
-
-    vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
-    
-    if (modo === 'total') {
-      btnExtra.innerText = " SAIR "; // Mudança sutil para não confundir
+      btnExtra.innerText = " SAIR ";
       btnExtra.style.background = "#475569";
       btnExtra.onclick = () => location.reload();
-      if (typeof clearProgress === 'function') clearProgress(modo);
-      
-      // LOGICA DE FINALIZAÇÃO ANALISTA
-      window.onFinalizarQuiz = () => {
-          if (erros < 3) {
-              alert(`Você acertou ${acertosSessao} questões (mínimo 98)! 🎉\nJá é um socioeducador, só falta tomar posse.`);
-              go('area-restrita');
-          } else {
-              alert(`Você errou ${erros} questões, mais do que o máximo permitido, mas ainda dá tempo de melhorar! 📚`);
-              go('capa');
-          }
-      };
-    } else {
-      btnExtra.innerText = "ÁREA DE ESTUDOS"; 
-      btnExtra.style.background = "#22c55e"; 
-      btnExtra.style.boxShadow = "0 0 10px #22c55e"; 
-      btnExtra.onclick = () => { go('area-restrita'); };
-
-      if (typeof loadProgress === 'function') {
-          const saved = loadProgress(modo);
-          if (saved) {
-            currentIndex = Math.min(saved.index || 0, currentQuestions.length - 1);
-            acertosSessao = saved.acertosSessao || 0;
-            erros = saved.erros || 0;
-            historico = saved.historico || {};
-          }
-      }
     }
-  }
 
-  if (!currentQuestions || currentQuestions.length === 0) {
-    alert("Nenhuma questão disponível neste banco.");
-    return;
-  }
+    // A MÁGICA ESTÁ AQUI: Sobrescrevemos a finalização para este modo
+    window.onFinalizarQuiz = () => {
+      // Se o cara chegou aqui com 3 erros (ou mais), o sistema de 'check' barrou ele.
+      if (erros >= 3) {
+        alert(`❌ REPROVADO! Você cometeu ${erros} erros. O limite para Analistas é de apenas 2 erros.`);
+        go('capa');
+        return; // Mata a execução aqui
+      }
 
-  document.getElementById('btnPrev').classList.add('visible');
-  document.getElementById('btnNext').classList.add('visible');
-  document.getElementById('btnExtra').classList.add('visible');
-
+      // Se ele não bateu o limite de erros, mas o quiz acabou
+      if (currentIndex >= currentQuestions.length - 1) {
+        alert(`🏆 APROVADO, SOCIOEDUCADOR! Acesso total liberado.`);
+        go('area-restrita');
+      } else {
+        // Caso ele tenha saído antes ou algo do tipo
+        go('capa');
+      }
+    };
+  } 
+  // ... (restante do código das outras funções mantido intacto)
+  
   go('quiz');
-  if (typeof render === 'function') render();
-  if (typeof startTimer === 'function') startTimer();
+if (typeof startTimer === 'function') startTimer();
+if (typeof render === 'function') render();
+
 }
+
+
 
 
 function sairModulo4Vip() {
@@ -7530,45 +7391,65 @@ function agradecimentoVip() {
 
 
 
-function atualizarVidas() {
+function resetVidasDisplay() {
+    erros = 0;
     const v1 = document.getElementById('v1');
     const v2 = document.getElementById('v2');
     const v3 = document.getElementById('v3');
-
-    // 1. ATUALIZAÇÃO VISUAL DOS CORAÇÕES
-    if (erros === 1 && v3) v3.style.opacity = '0.2';
-    if (erros === 2 && v2) v2.style.opacity = '0.2';
-    
-    // 2. A BARREIRA: SÓ ATUA SE FOR O MODO DE 100 QUESTÕES (ANALISTAS)
-    if (quizType !== 'total') {
-        return; // Sai da função e não faz mais nada. Os outros modos seguem imunes.
-    }
-
-    // 3. O CARRASCO (SÓ PARA OS ANALISTAS)
-    if (erros >= 3) {
-        if (v1) v1.style.opacity = '0.2';
-
-        // Para o relógio da prova
-        if (typeof timerInterval !== 'undefined') clearInterval(timerInterval);
-
-        setTimeout(() => {
-            // Re-checa por segurança se ainda é o modo total
-            if (erros >= 3 && quizType === 'total') {
-                const failStats = document.getElementById('fail-stats');
-                if (failStats) {
-                    failStats.innerHTML = `PROVA DOS ANALISTAS: ELIMINADO<br>ACERTOS: <span style="color:var(--success)">${acertosSessao}</span> / 100`;
-                }
-
-                const btnFalha = document.getElementById('btn-tentar-novamente');
-                if (btnFalha) {
-                    btnFalha.onclick = function() { go('area-restrita'); };
-                    btnFalha.innerText = "REFAZER PROVA";
-                }
-                go('fail-screen');
-            }
-        }, 800); 
-    }
+    if (v1) v1.style.opacity = '1';
+    if (v2) v2.style.opacity = '1';
+    if (v3) v3.style.opacity = '1';
 }
+
+
+function render() {
+    if (window.isVipMode) quizType = 'simulado_vip';
+    if (window.isVipMode && quizType === 'modulo4_vip') { 
+        localStorage.setItem('vip_indice_modulo4', currentIndex);
+    }
+
+    if (!currentQuestions || currentQuestions.length === 0) {
+        document.getElementById('qh').innerText = 'Sem questões';
+        document.getElementById('qt').innerText = 'Carregue um banco de dados.';
+        document.getElementById('opts').innerHTML = '';
+        return;
+    }
+
+    const q = currentQuestions[currentIndex];
+    document.getElementById('qh').innerText = `Questão ${currentIndex + 1}/${currentQuestions.length}`;
+    document.getElementById('qt').innerText = q.q;
+    
+    const optsArea = document.getElementById('opts');
+    const fb = document.getElementById('feedback');
+    fb.style.display = 'none';
+    
+    // LIMPEZA TOTAL DOS EVENTOS ANTERIORES
+    optsArea.innerHTML = '';
+    optsArea.style.pointerEvents = 'auto';
+
+    [true, false].forEach(val => {
+        const btn = document.createElement('div'); 
+        btn.className = 'opt'; 
+        btn.innerText = val ? "VERDADEIRO" : "FALSO";
+        
+        if (historico[currentIndex] !== undefined) {
+            if (val === historico[currentIndex]) btn.classList.add(val === q.v ? 'correct' : 'wrong');
+            fb.innerText = q.j; 
+            fb.style.display = 'block';
+            optsArea.style.pointerEvents = 'none';
+        } else {
+            // Só adiciona o onclick se a questão ainda não foi respondida
+            btn.onclick = () => check(val, btn);
+        }
+        optsArea.appendChild(btn);
+    });
+
+    document.getElementById('btnPrev').classList.toggle('visible', currentIndex > 0);
+    document.getElementById('btnNext').classList.toggle('visible', historico[currentIndex] !== undefined);
+}
+
+
+
 
 function voltarMenuPosVip() {
     // 1. PASSO 5: Para o relógio global VIP imediatamente para não rodar na capa
