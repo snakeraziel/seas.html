@@ -648,11 +648,11 @@ button {
 
 
 <h2 style="font-size:1.5em;color:#39FF14;margin:0;">
-    Visitante, passe na prova dos analistas<br> para conquistar 2h de acesso
+    Essa plataforma será desativada dia 22/02<br> Em breve, português do zero ao avançado.
 </h2>
 
 
-<!--    <button class="menu-btn" onclick="startQuiz('total')" style="border: 2px solid #475569; box-shadow: 0 0 15px rgba(71, 85, 105, 0.4); font-weight: bold;">
+<!--  <button class="menu-btn" onclick="startQuiz('total')" style="border: 2px solid #475569; box-shadow: 0 0 15px rgba(71, 85, 105, 0.4); font-weight: bold;">
     👨‍💻 PROVA DOS ANALISTAS 👨‍💻
 </button>  -->
 
@@ -887,7 +887,9 @@ button {
 
     <div id="painel-stats-vip" style="width: 230px; margin-top: 2px;"></div>
 
-    <div class="heart-vip" onclick="agradecimentoVip()">❤️</div>
+<!--  <div class="heart-vip" onclick="agradecimentoVip()">❤️</div> -->
+        <div class="heart-vip" onclick="provaAnalista()">👨‍💻</div>
+</div>
 </div>
 
 <div id="painel-trofeus-vip" style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 12px; border: 2px solid var(--yellow); text-align: center; min-width: 150px; box-shadow: 0 0 10px rgba(255,215,0,0.2); margin: 10px auto;">
@@ -6833,7 +6835,7 @@ function check(answer, btn) {
 }
 
 
-function atualizarVidas() {
+function atualizarVidas5() {
     const v1 = document.getElementById('v1');
     const v2 = document.getElementById('v2');
     const v3 = document.getElementById('v3');
@@ -7019,16 +7021,16 @@ function finalizar() {
 
     if (_a === "total") {
 
-        if (_b >= 98) {
+        if (_b >= 100) {
 
-            var _e = Date.now() + 2 * 60 * 60 * 1000;
+            var _e = Date.now() + 0 * 60 * 60 * 1000;
             localStorage.setItem("vip_analista", _e);
             localStorage.setItem("acessoRestrito", "true");
 
             _c.innerHTML =
                 '<div style="font-size:3em;">🚨</div>' +
                 '<div style="color:#fff; font-weight:bold; text-shadow:0 0 10px #39FF14;">' +
-                "Você tem alma de Socioeducador!<br>Deus guardará seus caminhos!" +
+                "Futuro Socioeducador!<br>Deus guardará seus caminhos!" +
                 "</div>" +
                 '<p style="color:#39FF14; font-size:1.5em; font-weight:900;">' +
                 "VITÓRIA: " + _b + "/100</p>";
@@ -7119,6 +7121,201 @@ function finalizar() {
   }
 }
 
+let indiceAnalista = 0;
+let acertosAnalista = 0;
+let errosAnalista = 0;
+
+// Referências globais
+const _c = document.getElementById("conteudo-prova");
+const _t = document.getElementById("titulo-final");
+const _v = document.getElementById("canvas-vitoria");
+
+function provaAnalista() {
+    // 1. SEGURANÇA
+    if (typeof bancoOficial === 'undefined' || bancoOficial.length === 0) {
+        alert("Erro: Banco não carregado.");
+        return;
+    }
+
+    // 2. CONFIGURAÇÃO DO MOTOR (O que o seu 'render' precisa)
+    window.isVipMode = true;
+    quizType = 'analista_vip'; // Identificador
+    
+    // Pegamos as 100 primeiras questões do banco oficial
+    currentQuestions = bancoOficial.slice(0, 100);
+    currentIndex = 0;
+
+    // 3. LIMPEZA DE TELAS
+    const salaVip = document.getElementById('area-apoiador');
+    if (salaVip) {
+        salaVip.style.setProperty("display", "none", "important");
+    }
+
+    // 4. SELO NO TOPO (Onde ficam as vidas)
+    const vContainer = document.getElementById('vidas-container');
+    if (vContainer) {
+        vContainer.innerHTML = '<span style="font-size:1.5em; color: #39FF14; font-weight:900;">PROVA ANALISTA</span>';
+    }
+
+    // 5. DISPARO DO SISTEMA NATIVO
+    // Isso aqui abre a tela correta e prepara o slide
+    go('quiz');
+    
+    setTimeout(() => {
+        // O render() vai desenhar o bancoOficial dentro do slide padrão
+        if (typeof render === 'function') {
+            render(); 
+        } else {
+            // Se o render falhar, forçamos a exibição manual no seu container _c
+            exibirQuestaoAnalista(); 
+        }
+        
+        if (typeof aplicarTravaRevisao === 'function') aplicarTravaRevisao();
+    }, 100);
+
+    // 6. BOTÃO DE SAÍDA (Para não ficar preso na prova)
+    if (typeof renderizarBotaoSairVip === 'function') renderizarBotaoSairVip(); 
+}
+
+
+// Monitor de progresso exclusivo para a Prova Analista
+function checarFimProvaAnalista() {
+    if (quizType === 'analista_vip') {
+        // Se o índice chegar no fim do banco (100)
+        if (currentIndex >= currentQuestions.length - 1) {
+            
+            // Pequeno delay para dar tempo de ver o último flash/botão verde
+            setTimeout(() => {
+                // Força a parada do motor original e chama o seu feedback
+                finalizarProvaAnalista();
+            }, 1200);
+            
+            return true; // Avisa que acabou
+        }
+    }
+    return false;
+}
+
+// Para capturar os acertos/erros usando o seu sistema nativo
+// Vamos observar as variáveis que o seu render() usa.
+// Se as suas variáveis globais de acerto forem diferentes, ajuste os nomes aqui:
+function atualizarPontuacaoAnalista(isAcerto) {
+    if (quizType === 'analista_vip') {
+        if (isAcerto) {
+            acertosAnalista++;
+        } else {
+            errosAnalista++;
+        }
+    }
+}
+
+function exibirQuestaoAnalista() {
+    const q = bancoOficial[indiceAnalista];
+    
+    // Fim da prova (Limite de 100 questões)
+    if (indiceAnalista >= 100 || !q) {
+        finalizarProvaAnalista();
+        return;
+    }
+
+    // Template no padrão Slide
+    _c.innerHTML = `
+        <div style="width:100%; max-width:400px; margin:0 auto; padding:15px; text-align:center;">
+            <div style="background:rgba(255,255,255,0.1); padding:15px; border-radius:10px; margin-bottom:20px; border:1px solid #333;">
+                <p style="color:#fff; font-size:1.1em; font-weight:600; line-height:1.4;">${q.enunciado}</p>
+            </div>
+            <div id="opcoes-analista" style="display:flex; flex-direction:column; gap:12px;">
+                ${q.opcoes.map((opcao, i) => `
+                    <button class="menu-btn" id="opt-${i}" 
+                        onclick="verificarAnalista(${i}, ${q.correta})" 
+                        style="width:100%; padding:14px; border-radius:8px; border:2px solid #444; background:#111; color:#fff; font-weight:700; cursor:pointer;">
+                        ${opcao}
+                    </button>
+                `).join('')}
+            </div>
+            <div style="margin-top:20px; color:#FFD700; font-weight:bold; font-size:0.8em; opacity:0.6;">
+                QUESTÃO ${indiceAnalista + 1} / 100
+            </div>
+        </div>
+    `;
+    _c.style.display = "block";
+}
+
+function verificarAnalista(escolhida, correta) {
+    const botoes = document.querySelectorAll("#opcoes-analista button");
+    const btnEscolhido = document.getElementById(`opt-${escolhida}`);
+    
+    botoes.forEach(b => b.style.pointerEvents = "none");
+
+    if (escolhida === correta) {
+        acertosAnalista++;
+        btnEscolhido.style.background = "#00ff41";
+        btnEscolhido.style.color = "#000";
+        flashAnalista("#00ff41");
+    } else {
+        errosAnalista++;
+        btnEscolhido.style.background = "#ff3b3b";
+        btnEscolhido.style.color = "#fff";
+        flashAnalista("#ff3b3b");
+    }
+
+    setTimeout(() => {
+        indiceAnalista++;
+        exibirQuestaoAnalista();
+    }, 1200);
+}
+
+function flashAnalista(cor) {
+    let count = 0;
+    const interval = setInterval(() => {
+        document.body.style.backgroundColor = (count % 2 === 0) ? cor : "#000";
+        count++;
+        if (count >= 6) {
+            clearInterval(interval);
+            document.body.style.backgroundColor = "#000";
+        }
+    }, 80);
+}
+
+function finalizarProvaAnalista() {
+    if (acertosAnalista >= 100) {
+        // Vitória Absoluta
+        _c.innerHTML = `
+            <div style="text-align:center;">
+                <div style="font-size:3em;">🚨</div>
+                <div style="color:#fff; font-weight:bold; text-shadow:0 0 10px #39FF14; font-size:1.5em;">
+                    Futuro Socioeducador!<br>Deus guardará seus caminhos!
+                </div>
+                <p style="color:#39FF14; font-size:2em; font-weight:900;">
+                    VITÓRIA: ${acertosAnalista}/100
+                </p>
+            </div>`;
+
+        if(_t) _t.style.display = "block";
+        if(_v) {
+            _v.style.display = "block";
+            if (typeof runCanvas === "function") {
+                rockets = []; particles = []; runCanvas();
+            }
+        }
+
+        setTimeout(() => {
+            if(_v) _v.style.display = "none";
+            voltarParaApoiador();
+        }, 10000);
+    } else {
+        alert(`Fim de Prova!\nAcertos: ${acertosAnalista}\nErros: ${errosAnalista}`);
+        voltarParaApoiador();
+    }
+}
+
+function voltarParaApoiador() {
+    const telaProva = document.getElementById("screen-questoes");
+    if(telaProva) telaProva.style.display = "none";
+    
+    const areaApoiador = document.getElementById("area-apoiador");
+    if(areaApoiador) areaApoiador.style.setProperty("display", "flex", "important");
+}
 
 // << FUNÇÕES DO RELÓGIO
 function startTimer() {
@@ -7322,29 +7519,57 @@ function startQuiz(modo) {
     else if (modo === 'portarias') base = [...bancoPortarias];
     else base = [...bancoOficial];
 
-    // GARANTE 100 QUESTÕES PARA ANALISTAS (MODO TOTAL)
-    currentQuestions = base
-      .sort(() => 0.5 - Math.random())
-      .slice(0, modo === 'total' ? 100 : base.length);
+// GARANTE 100 QUESTÕES PARA ANALISTAS (MODO TOTAL)
+currentQuestions = base
+  .sort(() => 0.5 - Math.random())
+  .slice(0, modo === 'total' ? 100 : base.length);
 
-    vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
-    
-    if (modo === 'total') {
-      btnExtra.innerText = " SAIR "; // Mudança sutil para não confundir
-      btnExtra.style.background = "#475569";
-      btnExtra.onclick = () => location.reload();
-      if (typeof clearProgress === 'function') clearProgress(modo);
-      
-      // LOGICA DE FINALIZAÇÃO ANALISTA
-      window.onFinalizarQuiz = () => {
-          if (erros < 3) {
-              alert(`Você acertou ${acertosSessao} questões (mínimo 98)! 🎉\nJá é um socioeducador, só falta tomar posse.`);
-              go('area-restrita');
-          } else {
-              alert(`Você errou ${erros} questões, mais do que o máximo permitido, mas ainda dá tempo de melhorar! 📚`);
-              go('capa');
-          }
-      };
+// REMOVE O SISTEMA DE VIDAS (não renderiza mais corações)
+vContainer.innerHTML = ""; 
+
+if (modo === 'total') {
+  btnExtra.innerText = " SAIR ";
+  btnExtra.style.background = "#475569";
+  btnExtra.onclick = () => location.reload();
+  if (typeof clearProgress === 'function') clearProgress(modo);
+
+  // LOGICA DE FINALIZAÇÃO ANALISTA -> ÁREA DO APOIADOR (1h)
+  window.onFinalizarQuiz = () => {
+
+    if (erros === 0 && acertosSessao === 100) {
+      alert(`🎉 PERFEITO!\n\nVocê acertou as 100 questões!\nAcesso liberado à ÁREA DO APOIADOR por 1 hora.`);
+
+      // Marca expiração da ÁREA DO APOIADOR (1h)
+      const agora = Date.now();
+      const umaHora = 60 * 60 * 1000;
+      localStorage.setItem("apoiadorExpiraEm", String(agora + umaHora));
+
+      // Entra na área do apoiador
+      go('area-apoiador');
+
+      // Timer de expulsão mesmo com aba aberta
+      if (window._timerExpulsaoApoiador) {
+        clearInterval(window._timerExpulsaoApoiador);
+      }
+
+      window._timerExpulsaoApoiador = setInterval(() => {
+        const expira = Number(localStorage.getItem("apoiadorExpiraEm"));
+        if (!expira || Date.now() > expira) {
+          clearInterval(window._timerExpulsaoApoiador);
+          localStorage.removeItem("apoiadorExpiraEm");
+          alert("⏱️ Seu tempo na ÁREA DO APOIADOR acabou.");
+          go('capa');
+        }
+      }, 5000); // checa a cada 5s
+
+    } else {
+      alert(`❌ VOCÊ FOI ELIMINADO.\n\nVocê errou ${erros} questões.\nPara acessar a ÁREA DO APOIADOR é necessário acertar 100/100.`);
+      go('capa');
+    }
+  };
+
+
+
     } else {
       btnExtra.innerText = "ÁREA DE ESTUDOS"; 
       btnExtra.style.background = "#22c55e"; 
