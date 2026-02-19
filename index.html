@@ -648,11 +648,11 @@ button {
 
 
 <h2 style="font-size:1.5em;color:#39FF14;margin:0;">
-    Essa plataforma será desativada dia 22/02<br> Em breve, português do zero ao avançado.
+    Visitante, passe na prova dos analistas<br> para conquistar 2h de acesso
 </h2>
 
 
-<!--  <button class="menu-btn" onclick="startQuiz('total')" style="border: 2px solid #475569; box-shadow: 0 0 15px rgba(71, 85, 105, 0.4); font-weight: bold;">
+<!--    <button class="menu-btn" onclick="startQuiz('total')" style="border: 2px solid #475569; box-shadow: 0 0 15px rgba(71, 85, 105, 0.4); font-weight: bold;">
     👨‍💻 PROVA DOS ANALISTAS 👨‍💻
 </button>  -->
 
@@ -887,9 +887,7 @@ button {
 
     <div id="painel-stats-vip" style="width: 230px; margin-top: 2px;"></div>
 
-<!--  <div class="heart-vip" onclick="agradecimentoVip()">❤️</div> -->
-        <div class="heart-vip" onclick="provaAnalista()">👨‍💻</div>
-</div>
+    <div class="heart-vip" onclick="agradecimentoVip()">❤️</div>
 </div>
 
 <div id="painel-trofeus-vip" style="background: rgba(0,0,0,0.4); padding: 12px; border-radius: 12px; border: 2px solid var(--yellow); text-align: center; min-width: 150px; box-shadow: 0 0 10px rgba(255,215,0,0.2); margin: 10px auto;">
@@ -1954,7 +1952,7 @@ const bancoModulos = [
 {q:"🤝 799. Adolescente desacata socioeducador. Essa atitude configura respaldo legal para uso de algemas.", v:false, j:"De acordo com a Súmula Vinculante 11 e Portaria 004/2021, o uso de algemas é excepcional (PRF - perigo à integridade própria/alheia, resistência ou fundado receio de fuga), não sendo autorizado apenas por desacato verbal."},
 {q:"🤝 800. Uma adolescente grávida foi algemada, nessa situação deve ser informado à direção da Unidade, comunicado à Coordenação Técnica e, obrigatoriamente, à corregedoria da SEAS.", v:true, j:"Conforme a Portaria 004/2021 (Art. 13), o uso de algemas em gestantes é vedado, e qualquer uso excepcional de força deve ser comunicado imediatamente à Corregedoria e órgãos competentes."},
 {q:"🤝 801. Dia de visita, o adolescente estava com seus pais quando dois socioeducadores chegaram com ordem judicial fundamentada para algemar e conduzir o jovem para audiência. O adolescente foi algemado na frente dos pais. Essa atitude está respaldada pela súmula Vinculante n°11.", v:false, j:"A Súmula Vinculante 11 e a Portaria 004/2021 determinam que deve-se evitar o uso de algemas na presença de familiares para evitar a estigmatização, salvo risco iminente que não possa ser evitado."},
-{q:"🤝 802. Renato, socioeducador novato, vindo do cadastro reserva, andava com uma algema pessoal a qual possuía há muitos anos. Tal algema, se encontrava enferrujada, pois já a usava no trabalho de 'vigia de rua'. O fato da algema se encontrar desgastada torna a atitude de Renato em desconformidade com uso permitido pela Portaria SEAS n° 004/2021.", v:true, j:"A Portaria 004/2021 exige que os equipamentos sejam oficiais, cautelados pela SEAS e estejam em perfeitas condições de conservação para garantir a segurança e dignidade."},
+{q:"🤝 802. Renato, socioeducador novato, andava com uma algema pessoal a qual possuía há muitos anos. Mesmo que Renato não a use, o simples fato de portar algema particular em atividade externa, já torna a atitude de Renato em desconformidade com o uso permitido pela Portaria SEAS n° 004/2021.", v:true, j:"A Portaria 004/2021 exige que os equipamentos sejam oficiais, cautelados pela SEAS e estejam em perfeitas condições de conservação para garantir a segurança e dignidade."},
 {q:"🤝 803. Deslocamento é ato de circular dentro do Centro Socioeducativo. Deve ser feito com acompanhamento do socioeducador, lado a lado. Pode haver uso de algemas em casos de risco ou resistência.", v:true, j:"O deslocamento interno exige vigilância ativa e acompanhamento direto, sendo o uso de algemas restrito às hipóteses de segurança previstas na norma."},
 {q:"🤝 804. A revista estrutural deve ser feita uma vez por semana. Já os alojamentos devem ser revistados diariamente. O coordenador de fluxo é o responsável por garantir essa rotina.", v:true, j:"Baseado nos procedimentos de segurança e rotina operacional descritos no Módulo III sobre a organização dos Centros e responsabilidades das coordenações."},
 {q:"🤝 805. A Portaria n° 004/2021 está dividida em blocos temáticos e segue orientações do CONANDA.", v:true, j:"A normativa da SEAS é fundamentada nas resoluções do CONANDA e no SINASE para garantir a padronização do atendimento."},
@@ -2086,9 +2084,9 @@ const bancoModulos = [
 {q:"✍ 931. O 'Coordenador de Plantão' tem autoridade para suspender as visitas caso identifique risco iminente de motim ou instabilidade grave na unidade.", v:true, j:"A suspensão de visitas é medida de segurança excepcional que pode ser adotada pela direção ou coordenação de plantão em situações de crise instalada ou risco iminente."},
 {q:"✍ 932. A revista de alojamento 'estrutural' busca identificar especificamente objetos ilícitos escondidos, como drogas e celulares, ignorando danos em paredes ou grades.", v:false, j:"A revista estrutural foca na integridade física do prédio (grades, paredes, trincos), enquanto a revista de busca foca em materiais proibidos."},
 {q:"✍ 933. Considera-se 'Uso da Força Reativa' aquela aplicada quando o adolescente oferece resistência ativa ou agressão contra o profissional ou terceiros.", v:true, j:"Uso da força reativo: resposta imediata e proporcional a uma agressão ou resistência física oferecida pelo adolescente para cessar o comportamento de risco."},
-{q:"✍ 934. O socioeducador deve manter distância de segurança (espaço de reação) ao interagir com adolescentes, evitando ficar de costas ou em locais sem saída.", v:true, j:"O posicionamento tático e a manutenção da distância de segurança são técnicas fundamentais para prevenir agressões e permitir tempo de reação."},
+{q:"✍ 934. A socioeducação é orientada por dimensões complementares que estruturam sua organização e prática. O SINASE estabelece quatro eixos fundamentais, esses eixos são dependentes e devem ser articulados de maneira dependente.", v:false, j:"Esses eixos são interdependentes e devem ser articulados de maneira integrada, evitando abordagens fragmentadas ou burocratizadas."},
 {q:"✍ 935. A 'Sindicância Investigativa' é o procedimento usado quando não se sabe quem cometeu a falta, servindo para apurar a autoria e a materialidade do fato.", v:true, j:"Sindicância Investigativa: procedimento administrativo de caráter preparatório, destinado a apurar indícios de irregularidade quando a autoria não é de pronto conhecida."},
-{q:"✍ 936. O 'Termo de Ajustamento de Conduta (TAC)' pode ser aplicado como sanção disciplinar máxima, resultando na demissão imediata do servidor temporário.", v:false, j:"O TAC não é uma sanção, mas uma medida administrativa pedagógica e preventiva para ajustar condutas leves, sem caráter punitivo de demissão."},
+{q:"✍ 936. O 'Termo de Ajustamento de Conduta (TAC)' pode ser aplicado como sanção disciplinar máxima, podendo resultar na demissão do servidor temporário.", v:false, j:"O TAC não é uma sanção, mas uma medida administrativa pedagógica e preventiva para ajustar condutas leves, e sem caráter punitivo de demissão."},
 {q:"✍ 937. No sistema socioeducativo, a educação escolar é opcional para o adolescente que já possui histórico de evasão escolar antes da internação.", v:false, j:"A escolarização é obrigatória e direito fundamental do adolescente no sistema socioeducativo, devendo ser garantida pelo Estado durante o cumprimento da medida."},
 {q:"✍ 938. A intervenção em 'Célula de Contenção' é a técnica onde um grupo de socioeducadores atua de forma coordenada para imobilizar um adolescente agressivo.", v:true, j:"Técnicas de intervenção em grupo visam a segurança do profissional e do adolescente, utilizando a superioridade numérica para realizar a contenção sem causar lesões."},
 {q:"✍ 939. O recebimento de 'jumbos' (encomendas da família) deve seguir cronograma específico e passar por inspeção eletrônica e manual obrigatória.", v:true, j:"O controle de entrada de materiais via familiares deve ser rigoroso para impedir o ingresso de itens proibidos que comprometam a segurança."},
@@ -2374,7 +2372,7 @@ const bancoModulos = [
 {q:"✍ 1219. Os adolescentes devem ser meros espectadores dos círculos de paz, cabendo exclusivamente à equipe técnica a definição dos temas e acordos.", v:false, j:"Os adolescentes devem ser protagonistas do processo, participando ativamente da definição dos temas, acordos coletivos e construção de perguntas."},
 {q:"✍ 1220. O círculo de compreensão tem seu esforço direcionado para entender algum aspecto de um conflito, podendo chegar às causas de um problema.", v:true, j:"Círculo de compreensão: o esforço dos participantes desse círculo está direcionado para compreender algum aspecto de um conflito, podendo chegar nas causas."},
 {q:"✍ 1221. A eficácia dos Círculos de Paz deve ser acompanhada apenas quantitativamente, através do número de círculos realizados.", v:false, j:"A eficácia dos Círculos de Paz deve ser acompanhada qualitativamente e quantitativamente (relatos, frequência, indicadores de reincidência, etc.)."},
-{q:"✍ 1222. A Justiça Restaurativa, como filosofia, abarca desde situações de discriminação entre duas pessoas até casos de crimes contra a humanidade.", v:true, j:"A Justiça Restaurativa abarca desde uma situação de discriminação entre duas pessoas a casos de crimes contra a humanidade."},
+{q:"✍ 1222. O Eixo intersetorial orienta a articulação entre diferentes políticas públicas promovendo a proteção integral do adolescente.", v:true, j:" O Eixo intersetorial orienta a articulação entre diferentes políticas públicas — saúde, educação, assistência social, cultura, esporte, trabalho — promovendo a proteção integral do adolescente. A integração entre setores é essencial para garantir que os direitos sejam efetivados em sua totalidade."},
 {q:"✍ 1223. A experiência das Comissões de Verdade e Reconciliação na África do Sul em 1994 é um dos marcos da expansão da Justiça Restaurativa.", v:true, j:"Um dos fatos foi a experiência bem-sucedida com as Comissões de Verdade e Reconciliação na África do Sul, na época do pós-apartheid (1994)."},
 {q:"✍ 1224. Atualmente, as práticas restaurativas estão restritas ao poder judiciário, não sendo recomendadas para escolas ou hospitais.", v:false, j:"Hoje, além da aplicação no poder judiciário, as práticas restaurativas estão presentes em: Escolas, órgãos públicos, empresas, igrejas, hospitais, etc."},
 {q:"✍ 1225. O objeto da palavra deve ser passado de forma aleatória pelo facilitador para quem ele julgar que deve falar no momento.", v:false, j:"Esse é um objeto que passará por todas as pessoas da roda, de modo sequencial."},
@@ -2388,6 +2386,7 @@ const bancoModulos = [
 {q:"✍ 1233. Na Portaria nº 63/2017, o número de visitantes por dia era limitado a 2 pessoas (ou 3, se houver família constituída), sendo que crianças de 2 anos eram computadas nesse limite.", v:false, j:"De fato, o número de visitantes por dia era limitado a 2 pessoas (ou 3, se houver família constituída), entretanto, crianças de até 2 anos de idade não eram computadas no limite de até 2 pessoas."},
 {q:"✍ 1234. A Portaria nº 123/2020 foi uma resposta emergencial e temporária à pandemia de COVID-19, estabelecendo a frequência de visita quinzenal com duração de 1 hora e 30 minutos.", v:true, j:"Esta Portaria regulamentou a Retomada Gradual, estabelecendo frequência quinzenal e duração de 1 hora e 30 minutos. Essa portaria exigia agendamento prévio obrigatório e proibia estritamente a entrada de alimentos e outros materiais (livros, fotos, etc.)."}
 ]; 
+
 
 let bancoVariados = [
 {q:"💢 1. As fases de atendimento consistem em: chegada ao NAI (Núcleo de Atendimento Integrado), inicial (acolhimento e PIA), Intermediária (execução e avaliação) e conclusiva (avaliação e extinção ou redução da medida).", v:true, j:"Conforme as diretrizes do SINASE, o fluxo do atendimento é dividido em etapas que garantem desde a recepção e planejamento (PIA) até o desligamento do adolescente após a reavaliação da medida."},
@@ -2405,7 +2404,7 @@ let bancoVariados = [
 {q:"💢 13. A medida de liberdade assistida deve ter o prazo mínimo de 6 meses, podendo a qualquer tempo ser prorrogada, revogada ou substituída por outra medida.", v:true, j:"A LA (Liberdade Assistida) é a única medida com prazo mínimo fixado em lei (6 meses), permitindo flexibilidade para prorrogação ou substituição conforme o desempenho do adolescente."},
 {q:"💢 14. É dever do Estado garantir ao adolescente em cumprimento de medida socioeducativa o acesso ao ensino obrigatório e à profissionalização.", v:true, j:"A escolarização e a formação profissional são direitos fundamentais e deveres do Estado dentro do sistema socioeducativo, visando a futura reintegração social (Lei do SINASE)."},
 {q:"💢 15. A prestação de serviços à comunidade consiste na realização de tarefas gratuitas de interesse geral, por período não excedente a 6 meses, junto a entidades assistenciais ou hospitais.", v:true, j:"Conforme o Art. 117 do ECA, a PSC tem duração máxima de 6 meses e deve ser cumprida em jornada máxima de 8 horas semanais, sem prejudicar a escola ou trabalho."},
-{q:"💢 16. A internação sanção pode ser aplicada quando o adolescente descumprir injustificadamente a medida anteriormente imposta, não podendo exceder o prazo de 3 meses.", v:true, j:"A internação-sanção é uma medida de caráter coercitivo prevista no Art. 122, inciso III e § 1º do ECA, aplicada pelo descumprimento de medidas menos gravosas, respeitando o teto de 90 dias."},
+{q:"💢 16. A internação sanção pode ser aplicada quando o adolescente descumprir injustificadamente a medida anteriormente imposta, não podendo exceder o prazo de 3 meses.", v:true, j:"A internação-sanção é uma medida de caráter coercitivo prevista no Art. 122, inciso III e § 1º do ECA, aplicada pelo descumprimento de medidas menos gravosas, respeitando o teto de 3 meses."},
 {q:"💢 17. A advertência consiste na admoestação verbal, que será reduzida a termo e assinada pela autoridade judiciária.", v:true, j:"Conforme o Art. 115 do ECA, a advertência é a medida mais leve, servindo como um puxão de orelha formal aplicado pelo juiz e registrado em ata."},
 {q:"💢 18. O adolescente tem o direito de ser informado de seus direitos e deveres no momento de sua admissão na unidade socioeducativa.", v:true, j:"A Lei do SINASE (Lei 12.594/12) estabelece que a transparência e a informação são direitos do adolescente para que ele compreenda as regras da unidade e o processo de sua medida."},
 {q:"💢 19. A medida de obrigação de reparar o dano pode ser substituída por outra medida, caso o adolescente não tenha condições de fazê-lo.", v:true, j:"O Art. 116 do ECA prevê que, havendo manifesta impossibilidade de reparação do dano pelo adolescente, a autoridade poderá substituir a medida por outra mais adequada à realidade do jovem."},
@@ -2421,16 +2420,16 @@ let bancoVariados = [
 {q:"💢 29. O direito ao lazer e a atividades culturais é garantido ao adolescente em cumprimento de medida socioeducativa.", v:true, j:"O acesso à cultura, esporte e lazer é parte do projeto pedagógico de ressocialização previsto no SINASE, sendo essencial para o desenvolvimento integral do jovem internado."},
 {q:"💢 30. A medida de liberdade assistida deve ser acompanhada por um orientador designado pela autoridade judiciária.", v:true, j:"Conforme o Art. 118 do ECA, o papel do orientador na LA é fundamental para acompanhar e auxiliar o adolescente em sua frequência escolar, profissionalização e inserção social."},
 {q:"💢 31. O adolescente tem direito a ser ouvido pela autoridade judiciária sempre que houver a possibilidade de aplicação de medida socioeducativa.", v:true, j:"O direito à oitiva e ao contraditório são garantias fundamentais do devido processo legal socioeducativo, asseguradas pelo ECA para que o jovem exerça sua autodefesa perante o juiz."},
-{q:"💢 32. A medida de internação é a única que permite a restrição total da liberdade do adolescente, devendo ser aplicada apenas em casos de atos infracionais cometidos mediante grave ameaça ou violência a pessoa.", v:false, j:"Embora seja a mais grave, a internação também pode ser aplicada por reiteração no cometimento de outras infrações graves ou pelo descumprimento injustificado de medida anterior (Art. 122 do ECA)."},
+{q:"💢 32. A medida de internação é a única que permite a restrição total da liberdade do adolescente, devendo ser aplicada apenas em casos de atos infracionais cometidos mediante grave ameaça ou violência a pessoa.", v:false, j:"Embora seja a mais grave, a internação também pode ser aplicada por reiteração no descumprimento injustificado de medida anterior (Art. 122 do ECA)."},
 {q:"💢 33. O programa de semiliberdade pode ser realizado em unidades que não possibilitem a custódia exclusiva, permitindo ao adolescente a frequência em recursos da comunidade.", v:true, j:"A semiliberdade pressupõe a escolarização e profissionalização externa, sendo uma medida de transição onde o adolescente reside na unidade, mas utiliza os serviços da rede pública."},
 {q:"💢 34. A avaliação do Plano Individual de Atendimento (PIA) deve levar em conta apenas o desempenho escolar do adolescente.", v:false, j:"A avaliação do PIA é multidimensional (Lei do SINASE), abrangendo a saúde, o fortalecimento de vínculos familiares, o desenvolvimento psicossocial e a participação em oficinas, além da educação."},
 {q:"💢 35. O diretor da unidade socioeducativa tem autonomia para liberar o adolescente antes do prazo de 3 anos, se considerar que ele já está recuperado.", v:false, j:"A liberação ou extinção da medida é competência exclusiva da autoridade judiciária, mediante parecer técnico da equipe da unidade e manifestação do Ministério Público."},
 {q:"💢 36. O acesso a assistência médica, psicológica e odontológica é um dever da unidade socioeducativa e um direito do adolescente internado.", v:true, j:"O direito à saúde integral é uma das garantias previstas no Art. 124 do ECA, devendo o Estado prover o atendimento necessário dentro ou fora da unidade."},
-{q:"💢 37. O adolescente em cumprimento de medida socioeducativa de internação pode votar nas eleições gerais, desde que possua título de eleitor e não haja restrição judicial específica.", v:true, j:"Adolescentes em medida socioeducativa não perdem os direitos políticos, sendo dever do Estado e da Justiça Eleitoral viabilizar seções especiais nas unidades (Art. 15 da CF)."},
+{q:"💢 37. Os 5 eixos estruturantes da socioeducação são Eixo pedagógico, Eixo jurídico, Eixo administrativo, Eixo intersetorial e Eixo psicossocial.", v:false, j:"O Sistema Nacional de Atendimento Socioeducativo estabelece quatro eixos fundamentais Estruturantes da Socioeducação, Eixo pedagógico, Eixo jurídico, Eixo administrativo e Eixo intersetorial."},
 {q:"💢 38. A medida de internação deve ser cumprida em estabelecimento distinto daquele destinado ao acolhimento institucional de crianças.", v:true, j:"Por lei, deve haver separação rigorosa entre adolescentes que cumprem medidas socioeducativas (ato infracional) e crianças ou adolescentes em situação de proteção ou acolhimento."},
 {q:"💢 39. É permitido o uso de força física pelos socioeducadores apenas em situações de legítima defesa ou para impedir fuga e agressões, sempre de forma proporcional.", v:true, j:"O uso da força é excepcional e regido pelo princípio da necessidade e proporcionalidade, devendo ser registrado e justificado em relatório oficial de ocorrência."},
 {q:"💢 40. O adolescente que comete ato infracional análogo a crime hediondo deve cumprir obrigatoriamente 3 anos de internação sem direito a reavaliação periódica.", v:false, j:"Mesmo em casos graves, a reavaliação periódica a cada 6 meses (no máximo) é obrigatória e um direito do adolescente, podendo a medida ser mantida, progredida ou extinta pelo juiz."},
-{q:"💢 41. A medida de semiliberdade não possui prazo máximo determinado em lei, mas segue a regra geral de reavaliação constante.", v:true, j:"Diferente da internação (teto de 3 anos) e da PSC (teto de 6 meses), a semiliberdade foca no alcance das metas do PIA, sendo reavaliada conforme o aproveitamento do jovem."},
+{q:"💢 41. A medida de semiliberdade não possui prazo máximo determinado em lei, mas segue a regra geral de reavaliação constante.", v:true, j:"Diferente da internação (teto de 3 anos), internação-sanção (teto de 3 meses) e da PSC (teto de 6 meses), a semiliberdade foca no alcance das metas do PIA, sendo reavaliada conforme o aproveitamento do jovem."},
 {q:"💢 42. No caso de fuga do adolescente da unidade de internação, a autoridade judiciária deve ser comunicada imediatamente para a expedição de mandado de busca e apreensão.", v:true, j:"A comunicação imediata ao juízo e ao Ministério Público é obrigação legal da unidade para que as medidas legais de localização e retorno sejam tomadas."},
 {q:"💢 43. O adolescente tem direito a receber assistência religiosa, segundo a sua crença, e desde que assim deseje.", v:true, j:"A liberdade de crença e a assistência religiosa são direitos assegurados pelo Art. 124 do ECA e pela Constituição Federal, respeitando o caráter laico do Estado."},
 {q:"💢 44. O trabalho remunerado para o adolescente internado é proibido em qualquer circunstância para não desviar o foco da medida socioeducativa.", v:false, j:"A profissionalização e o trabalho protegido (conforme as regras da CLT e do Menor Aprendiz) são incentivados como parte do processo de emancipação e cidadania do jovem."},
@@ -2463,16 +2462,16 @@ let bancoVariados = [
 {q:"💢 71. O adolescente tem direito a ser ouvido pelo Ministério Público antes da lavratura do auto de infração ou da representação judicial.", v:true, j:"A oitiva informal pelo Promotor de Justiça (Art. 179 do ECA) é uma etapa crucial onde se decide pelo oferecimento da representação, concessão de remissão ou arquivamento do caso."},
 {q:"💢 72. A medida de obrigação de reparar o dano limita-se ao ressarcimento financeiro, não podendo ser convertida em trabalho para a vítima.", v:false, j:"Se o adolescente não tiver meios financeiros, o juiz pode determinar a reparação por outros meios, como a prestação de serviços ou compensação direta, desde que haja anuência da vítima e adequação pedagógica."},
 {q:"💢 73. O direito ao sigilo sobre os antecedentes infracionais do adolescente é garantido mesmo após ele atingir a maioridade civil.", v:true, j:"O sigilo dos dados e certidões de atos infracionais é uma proteção vital para evitar a estigmatização crônica, permitindo que o jovem reinicie sua vida social sem o peso de registros públicos de sua fase adolescente."},
-{q:"💢 74. A falta de vagas em unidades de internação autoriza a manutenção do adolescente em delegacias de polícia por tempo indeterminado.", v:false, j:"O STF e o STJ possuem entendimento consolidado de que a falta de vaga não justifica a custódia em delegacia. Nesses casos, o adolescente deve ser colocado em regime menos gravoso até que surja a vaga adequada."},
+{q:"💢 74. No círculo de paz, todos os participantes se sentam em formato circular, simbolizando igualdade e inclusão. O uso do 'objeto da palavra' garante que todos tenham oportunidade de fala e escuta até se sentir satisfeito.", v:false, j:"O uso de um 'objeto da palavra' garante que todos tenham oportunidade de fala e escuta, sem interrupções."},
 {q:"💢 75. O Plano Individual de Atendimento (PIA) deve ser homologado pelo juiz da execução no prazo máximo de 15 dias após o seu recebimento.", v:true, j:"Conforme a Lei do SINASE (Art. 54), a homologação judicial é necessária para dar validade jurídica ao plano traçado pela equipe técnica, garantindo o controle jurisdicional sobre a execução da medida."},
 {q:"💢 76. O adolescente internado tem o direito de ser visitado por seu advogado em local reservado, sem que a conversa seja monitorada pela equipe de segurança.", v:true, j:"O sigilo profissional entre advogado e cliente é uma prerrogativa constitucional e do Estatuto da OAB, sendo garantido ao adolescente o direito à defesa técnica de forma privada e confidencial."},
-{q:"💢 77. A medida de internação por ato infracional cometido sem violência ou grave ameaça à pessoa só é possível se houver o descumprimento de pelo menos duas medidas socioeducativas anteriores.", v:false, j:"O Art. 122 do ECA autoriza a internação por reiteração no cometimento de outras infrações graves ou por descumprimento de medida anterior (internação-sanção), não exigindo um número fixo de 'duas' medidas."},
+{q:"💢 77. A medida de internação-sanção só é possível se houver o descumprimento de pelo menos duas medidas socioeducativas anteriores.", v:false, j:"O Art. 122 do ECA autoriza a internação por reiteração no descumprimento de medida anterior, mas não exige o número fixo de 'duas' medidas."},
 {q:"💢 78. No sistema socioeducativo, a aplicação de sanções disciplinares por faltas graves deve ser precedida de procedimento administrativo que assegure o direito de defesa ao adolescente.", v:true, j:"Conforme a Lei do SINASE, nenhuma sanção disciplinar pode ser aplicada de forma arbitrária; o adolescente tem o direito de ser ouvido e apresentar sua versão antes da decisão da comissão disciplinar."},
 {q:"💢 79. A medida de semiliberdade obriga o adolescente a permanecer na unidade durante os finais de semana, sendo proibida a visita domiciliar nesses dias.", v:false, j:"A semiliberdade visa o fortalecimento de vínculos. As visitas domiciliares nos fins de semana e feriados são parte estratégica da medida, visando a reintegração gradual à família e à sociedade."},
 {q:"💢 80. O Plano Individual de Atendimento (PIA) deve ser atualizado obrigatoriamente a cada 3 meses, independentemente da evolução do adolescente.", v:false, j:"O SINASE estabelece que a reavaliação da medida ocorre a cada 6 meses, mas o PIA deve ser atualizado sempre que houver mudanças significativas no percurso pedagógico do jovem, não havendo uma trava rígida de 3 meses."},
 {q:"💢 81. Adolescentes em cumprimento de medida socioeducativa têm direito a receber assistência médica gratuita e prioritária pelo Sistema Único de Saúde (SUS).", v:true, j:"O direito à saúde é universal e integral. O sistema socioeducativo deve garantir o acesso prioritário do adolescente às redes de saúde pública, conforme previsto no ECA e na Lei do SINASE."},
 {q:"💢 82. É dever da unidade socioeducativa garantir que o adolescente receba, no mínimo, 4 horas diárias de atividades pedagógicas ou de escolarização.", v:true, j:"O direito à educação no sistema socioeducativo deve observar a carga horária e os parâmetros curriculares do ensino regular, garantindo que o jovem não sofra prejuízo acadêmico durante a internação."},
-{q:"💢 83. A medida de internação-sanção aplicada pelo descumprimento de medida anterior pode ser renovada sucessivamente se o adolescente continuar a descumprir as regras.", v:false, j:"A internação-sanção tem prazo máximo e improrrogável de 90 dias (3 meses) para cada descumprimento, visando o caráter pedagógico e não a punição eterna."},
+{q:"💢 83. A medida de internação-sanção aplicada pelo descumprimento de medida anterior pode ser renovada sucessivamente se o adolescente continuar a descumprir as regras.", v:false, j:"A internação-sanção tem prazo máximo e improrrogável de 3 meses, a medida visa o caráter pedagógico e não a punição eterna."},
 {q:"💢 84. O adolescente tem o direito de ser submetido a exame de corpo de delito sempre que alegar ter sido vítima de agressão física dentro da unidade.", v:true, j:"A preservação da integridade física é dever do Estado. A realização do exame de corpo de delito é um direito do adolescente para comprovar maus-tratos e basear eventuais punições aos responsáveis."},
 {q:"💢 85. A participação do adolescente em atividades culturais e de lazer externas durante a internação depende exclusivamente da autorização do coordenador de segurança.", v:false, j:"As atividades externas em regime de internação dependem de autorização da autoridade judiciária, salvo se a sentença já permitir que fiquem a cargo da equipe técnica (Art. 121, § 1º do ECA)."},
 {q:"💢 86. O registro de faltas e o prontuário do adolescente devem ser mantidos sob sigilo, podendo ser consultados apenas por autoridades judiciais e órgãos de fiscalização.", v:true, j:"O sigilo das informações do adolescente autor de ato infracional visa evitar o estigma e a discriminação, protegendo sua intimidade conforme determina o ECA."},
@@ -6835,7 +6834,7 @@ function check(answer, btn) {
 }
 
 
-function atualizarVidas5() {
+function atualizarVidas() {
     const v1 = document.getElementById('v1');
     const v2 = document.getElementById('v2');
     const v3 = document.getElementById('v3');
@@ -7021,16 +7020,16 @@ function finalizar() {
 
     if (_a === "total") {
 
-        if (_b >= 100) {
+        if (_b >= 98) {
 
-            var _e = Date.now() + 0 * 60 * 60 * 1000;
+            var _e = Date.now() + 2 * 60 * 60 * 1000;
             localStorage.setItem("vip_analista", _e);
             localStorage.setItem("acessoRestrito", "true");
 
             _c.innerHTML =
                 '<div style="font-size:3em;">🚨</div>' +
                 '<div style="color:#fff; font-weight:bold; text-shadow:0 0 10px #39FF14;">' +
-                "Futuro Socioeducador!<br>Deus guardará seus caminhos!" +
+                "Você tem alma de Socioeducador!<br>Deus guardará seus caminhos!" +
                 "</div>" +
                 '<p style="color:#39FF14; font-size:1.5em; font-weight:900;">' +
                 "VITÓRIA: " + _b + "/100</p>";
@@ -7121,203 +7120,6 @@ function finalizar() {
   }
 }
 
-
-
-let indiceAnalista = 0;
-let acertosAnalista = 0;
-let errosAnalista = 0;
-
-// Referências globais
-const _c = document.getElementById("conteudo-prova");
-const _t = document.getElementById("titulo-final");
-const _v = document.getElementById("canvas-vitoria");
-
-function provaAnalista() {
-    // 1. SEGURANÇA
-    if (typeof bancoOficial === 'undefined' || bancoOficial.length === 0) {
-        alert("Erro: Banco não carregado.");
-        return;
-    }
-
-    // 2. CONFIGURAÇÃO DO MOTOR (O que o seu 'render' precisa)
-    window.isVipMode = true;
-    quizType = 'analista_vip'; // Identificador
-    
-    // Pegamos as 100 primeiras questões do banco oficial
-    currentQuestions = bancoOficial.slice(0, 100);
-    currentIndex = 0;
-
-    // 3. LIMPEZA DE TELAS
-    const salaVip = document.getElementById('area-apoiador');
-    if (salaVip) {
-        salaVip.style.setProperty("display", "none", "important");
-    }
-
-    // 4. SELO NO TOPO (Onde ficam as vidas)
-    const vContainer = document.getElementById('vidas-container');
-    if (vContainer) {
-        vContainer.innerHTML = '<span style="font-size:1.5em; color: #39FF14; font-weight:900;">PROVA ANALISTA</span>';
-    }
-
-    // 5. DISPARO DO SISTEMA NATIVO
-    // Isso aqui abre a tela correta e prepara o slide
-    go('quiz');
-    
-    setTimeout(() => {
-        // O render() vai desenhar o bancoOficial dentro do slide padrão
-        if (typeof render === 'function') {
-            render(); 
-        } else {
-            // Se o render falhar, forçamos a exibição manual no seu container _c
-            exibirQuestaoAnalista(); 
-        }
-        
-        if (typeof aplicarTravaRevisao === 'function') aplicarTravaRevisao();
-    }, 100);
-
-    // 6. BOTÃO DE SAÍDA (Para não ficar preso na prova)
-    if (typeof renderizarBotaoSairVip === 'function') renderizarBotaoSairVip(); 
-}
-
-
-// Monitor de progresso exclusivo para a Prova Analista
-function checarFimProvaAnalista() {
-    if (quizType === 'analista_vip') {
-        // Se o índice chegar no fim do banco (100)
-        if (currentIndex >= currentQuestions.length - 1) {
-            
-            // Pequeno delay para dar tempo de ver o último flash/botão verde
-            setTimeout(() => {
-                // Força a parada do motor original e chama o seu feedback
-                finalizarProvaAnalista();
-            }, 1200);
-            
-            return true; // Avisa que acabou
-        }
-    }
-    return false;
-}
-
-// Para capturar os acertos/erros usando o seu sistema nativo
-// Vamos observar as variáveis que o seu render() usa.
-// Se as suas variáveis globais de acerto forem diferentes, ajuste os nomes aqui:
-function atualizarPontuacaoAnalista(isAcerto) {
-    if (quizType === 'analista_vip') {
-        if (isAcerto) {
-            acertosAnalista++;
-        } else {
-            errosAnalista++;
-        }
-    }
-}
-
-function exibirQuestaoAnalista() {
-    const q = bancoOficial[indiceAnalista];
-    
-    // Fim da prova (Limite de 100 questões)
-    if (indiceAnalista >= 100 || !q) {
-        finalizarProvaAnalista();
-        return;
-    }
-
-    // Template no padrão Slide
-    _c.innerHTML = `
-        <div style="width:100%; max-width:400px; margin:0 auto; padding:15px; text-align:center;">
-            <div style="background:rgba(255,255,255,0.1); padding:15px; border-radius:10px; margin-bottom:20px; border:1px solid #333;">
-                <p style="color:#fff; font-size:1.1em; font-weight:600; line-height:1.4;">${q.enunciado}</p>
-            </div>
-            <div id="opcoes-analista" style="display:flex; flex-direction:column; gap:12px;">
-                ${q.opcoes.map((opcao, i) => `
-                    <button class="menu-btn" id="opt-${i}" 
-                        onclick="verificarAnalista(${i}, ${q.correta})" 
-                        style="width:100%; padding:14px; border-radius:8px; border:2px solid #444; background:#111; color:#fff; font-weight:700; cursor:pointer;">
-                        ${opcao}
-                    </button>
-                `).join('')}
-            </div>
-            <div style="margin-top:20px; color:#FFD700; font-weight:bold; font-size:0.8em; opacity:0.6;">
-                QUESTÃO ${indiceAnalista + 1} / 100
-            </div>
-        </div>
-    `;
-    _c.style.display = "block";
-}
-
-function verificarAnalista(escolhida, correta) {
-    const botoes = document.querySelectorAll("#opcoes-analista button");
-    const btnEscolhido = document.getElementById(`opt-${escolhida}`);
-    
-    botoes.forEach(b => b.style.pointerEvents = "none");
-
-    if (escolhida === correta) {
-        acertosAnalista++;
-        btnEscolhido.style.background = "#00ff41";
-        btnEscolhido.style.color = "#000";
-        flashAnalista("#00ff41");
-    } else {
-        errosAnalista++;
-        btnEscolhido.style.background = "#ff3b3b";
-        btnEscolhido.style.color = "#fff";
-        flashAnalista("#ff3b3b");
-    }
-
-    setTimeout(() => {
-        indiceAnalista++;
-        exibirQuestaoAnalista();
-    }, 1200);
-}
-
-function flashAnalista(cor) {
-    let count = 0;
-    const interval = setInterval(() => {
-        document.body.style.backgroundColor = (count % 2 === 0) ? cor : "#000";
-        count++;
-        if (count >= 6) {
-            clearInterval(interval);
-            document.body.style.backgroundColor = "#000";
-        }
-    }, 80);
-}
-
-function finalizarProvaAnalista() {
-    if (acertosAnalista >= 100) {
-        // Vitória Absoluta
-        _c.innerHTML = `
-            <div style="text-align:center;">
-                <div style="font-size:3em;">🚨</div>
-                <div style="color:#fff; font-weight:bold; text-shadow:0 0 10px #39FF14; font-size:1.5em;">
-                    Futuro Socioeducador!<br>Deus guardará seus caminhos!
-                </div>
-                <p style="color:#39FF14; font-size:2em; font-weight:900;">
-                    VITÓRIA: ${acertosAnalista}/100
-                </p>
-            </div>`;
-
-        if(_t) _t.style.display = "block";
-        if(_v) {
-            _v.style.display = "block";
-            if (typeof runCanvas === "function") {
-                rockets = []; particles = []; runCanvas();
-            }
-        }
-
-        setTimeout(() => {
-            if(_v) _v.style.display = "none";
-            voltarParaApoiador();
-        }, 10000);
-    } else {
-        alert(`Fim de Prova!\nAcertos: ${acertosAnalista}\nErros: ${errosAnalista}`);
-        voltarParaApoiador();
-    }
-}
-
-function voltarParaApoiador() {
-    const telaProva = document.getElementById("screen-questoes");
-    if(telaProva) telaProva.style.display = "none";
-    
-    const areaApoiador = document.getElementById("area-apoiador");
-    if(areaApoiador) areaApoiador.style.setProperty("display", "flex", "important");
-}
 
 // << FUNÇÕES DO RELÓGIO
 function startTimer() {
@@ -7521,57 +7323,29 @@ function startQuiz(modo) {
     else if (modo === 'portarias') base = [...bancoPortarias];
     else base = [...bancoOficial];
 
-// GARANTE 100 QUESTÕES PARA ANALISTAS (MODO TOTAL)
-currentQuestions = base
-  .sort(() => 0.5 - Math.random())
-  .slice(0, modo === 'total' ? 100 : base.length);
+    // GARANTE 100 QUESTÕES PARA ANALISTAS (MODO TOTAL)
+    currentQuestions = base
+      .sort(() => 0.5 - Math.random())
+      .slice(0, modo === 'total' ? 100 : base.length);
 
-// REMOVE O SISTEMA DE VIDAS (não renderiza mais corações)
-vContainer.innerHTML = ""; 
-
-if (modo === 'total') {
-  btnExtra.innerText = " SAIR ";
-  btnExtra.style.background = "#475569";
-  btnExtra.onclick = () => location.reload();
-  if (typeof clearProgress === 'function') clearProgress(modo);
-
-  // LOGICA DE FINALIZAÇÃO ANALISTA -> ÁREA DO APOIADOR (1h)
-  window.onFinalizarQuiz = () => {
-
-    if (erros === 0 && acertosSessao === 100) {
-      alert(`🎉 PERFEITO!\n\nVocê acertou as 100 questões!\nAcesso liberado à ÁREA DO APOIADOR por 1 hora.`);
-
-      // Marca expiração da ÁREA DO APOIADOR (1h)
-      const agora = Date.now();
-      const umaHora = 60 * 60 * 1000;
-      localStorage.setItem("apoiadorExpiraEm", String(agora + umaHora));
-
-      // Entra na área do apoiador
-      go('area-apoiador');
-
-      // Timer de expulsão mesmo com aba aberta
-      if (window._timerExpulsaoApoiador) {
-        clearInterval(window._timerExpulsaoApoiador);
-      }
-
-      window._timerExpulsaoApoiador = setInterval(() => {
-        const expira = Number(localStorage.getItem("apoiadorExpiraEm"));
-        if (!expira || Date.now() > expira) {
-          clearInterval(window._timerExpulsaoApoiador);
-          localStorage.removeItem("apoiadorExpiraEm");
-          alert("⏱️ Seu tempo na ÁREA DO APOIADOR acabou.");
-          go('capa');
-        }
-      }, 5000); // checa a cada 5s
-
-    } else {
-      alert(`❌ VOCÊ FOI ELIMINADO.\n\nVocê errou ${erros} questões.\nPara acessar a ÁREA DO APOIADOR é necessário acertar 100/100.`);
-      go('capa');
-    }
-  };
-
-
-
+    vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
+    
+    if (modo === 'total') {
+      btnExtra.innerText = " SAIR "; // Mudança sutil para não confundir
+      btnExtra.style.background = "#475569";
+      btnExtra.onclick = () => location.reload();
+      if (typeof clearProgress === 'function') clearProgress(modo);
+      
+      // LOGICA DE FINALIZAÇÃO ANALISTA
+      window.onFinalizarQuiz = () => {
+          if (erros < 3) {
+              alert(`Você acertou ${acertosSessao} questões (mínimo 98)! 🎉\nJá é um socioeducador, só falta tomar posse.`);
+              go('area-restrita');
+          } else {
+              alert(`Você errou ${erros} questões, mais do que o máximo permitido, mas ainda dá tempo de melhorar! 📚`);
+              go('capa');
+          }
+      };
     } else {
       btnExtra.innerText = "ÁREA DE ESTUDOS"; 
       btnExtra.style.background = "#22c55e"; 
@@ -7720,7 +7494,7 @@ function iniciarModulo4Vip() {
 
 
 // Função auxiliar para não poluir a principal
- function renderizarBotaoSairVip() {
+function renderizarBotaoSairVip() {
     let btnSair = document.getElementById('btn-manual-sair');
     if (!btnSair) {
         btnSair = document.createElement('button');
@@ -7730,7 +7504,7 @@ function iniciarModulo4Vip() {
     btnSair.innerHTML = "🏆 SALA EXCLUSIVA 🏆";
     btnSair.style.cssText = "position:fixed; bottom:85px; left:50%; transform:translateX(-50%); width:180px; padding:12px 0; background:#22c55e !important; color:white !important; border:none; border-radius:6px; font-weight:800; cursor:pointer; font-size:13px; z-index:99999; display:block !important; text-transform:uppercase;";
     btnSair.onclick = sairVip;
-} 
+}
 
 // ESTA FUNÇÃO É A CHAVE: Ela olha o que você já respondeu e "congela" na tela
 function aplicarTravaRevisao() {
@@ -7747,8 +7521,8 @@ function aplicarTravaRevisao() {
             btn.disabled = true; // Impede de trocar a resposta na revisão
             btn.style.cursor = "not-allowed";
         });
-    } 
-} 
+    }
+}
 
 // IMPORTANTE: Para o botão VOLTAR funcionar com isso, 
 // você precisa garantir que a sua função prev() chame o aplicarTravaRevisao()
@@ -8096,7 +7870,9 @@ const vips = [
   "\x31\x32\x32\x33", "\x32\x37\x33\x39\x38", "\x36\x35\x30", "\x34\x33\x32\x32", "\x35\x39", "\x32\x33\x32\x39\x38", 
   "\x37\x35\x34\x34", "\x34\x35\x38\x37", "\x31\x35\x37\x33\x37", "\x32\x37\x30\x38\x32", "\x31\x33\x32\x38\x37", "\x31\x31\x32\x37\x32", 
   "\x34\x33\x35\x39", "\x31\x37\x33", "\x38\x39\x31\x30", "\x32\x38\x33\x36\x38", "\x32\x36\x34\x35\x32", "\x32\x37\x31\x39", 
-  "\x33\x31\x37\x37", "\x35\x31\x35\x35", "\x32\x31\x37\x37\x37", "\x32\x38\x32\x38\x31", "\x33\x32\x38\x39", "\x31\x31\x34\x33\x33", "\x32\x31\x30", "\x31\x35\x34\x33\x39", "\x35\x33\x30\x37", "\x37\x39\x38\x37", "\x32\x38\x37\x36\x32", "\x32\x32\x31\x39\x33", "\x32\x31\x32\x35\x34"
+  "\x33\x31\x37\x37", "\x35\x31\x35\x35", "\x32\x31\x37\x37\x37", "\x32\x38\x32\x38\x31", "\x33\x32\x38\x39", "\x31\x31\x34\x33\x33", 
+  "\x32\x31\x30", "\x31\x35\x34\x33\x39", "\x35\x33\x30\x37", "\x37\x39\x38\x37", "\x32\x38\x37\x36\x32", "\x32\x32\x31\x39\x33", 
+  "\x32\x31\x32\x35\x34", "\x31\x34\x33\x38\x32", "\x39\x36\x37\x36", "\x32\x31\x35", "\x32\x33\x31\x30\x39"
 ];
 
 
@@ -8504,23 +8280,21 @@ function fecharSlideVitoria() {
 /* =====================================================
    BANCO DE DOADORES
    ===================================================== */
-// Hexadecimal Direta (Sem funções para não bugar)
 (() => {
-
   const DOADORES = [
     { id: "\x31\x36\x32\x31", nome: "\x52\x65\x6e\x61\x74\x6f\x20\x54\x68\x65\x72\x69\x6f\x6e" },
     { id: "\x35\x38\x33", nome: "\x56\x69\x76\x69\x61\x6e\x65\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x61\x63\x69\x65\x6c\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73" },
     { id: "\x34\x38\x36\x32", nome: "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
     { id: "\x32\x33\x38\x39", nome: "\x52\x61\x66\x61\x65\x6c\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x4f\x6c\x69\x76\x65\x72\x61" },
-    { id: "\x32\x30\x37\x36\x30", nome: "\x46\x65\x72\x6e\x61\x6e\x64\x6f\x20\x46\x72\x65\x69\x72\x65\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x65\x6c\x6c\x6f" },
+    { id: "\x32\x30\x37\x36\x30", nome: "\x46\x65\x72\x6e\x61\x6e\x64\x6f\x20\x46\x72\x65\x69\x72\x65\x73\x20\x42\x61\x73\x74\x6f\x73\x20\x4d\x65\x6c\x6c\x6f" },
     { id: "\x31\x32\x32\x33", nome: "\x4c\x75\x63\x61\x73\x20\x56\x69\x6e\x69\x63\x69\x75\x73\x20\x41\x6c\x76\x65\x73\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
     { id: "\x34\x32\x38\x34", nome: "\x41\x64\x61\x6c\x62\x65\x72\x74\x6f\x20\x64\x6f\x73\x20\x52\x65\x69\x73\x20\x53\x61\x6c\x65\x73" },
     { id: "\x32\x36\x30\x30\x39", nome: "\x43\x6c\x65\x69\x6c\x73\x6f\x6e\x20\x43\x6f\x65\x6c\x68\x6f\x20\x50\x65\x72\x65\x69\x72\x61" },
     { id: "\x36\x34\x31\x39", nome: "\x52\x61\x66\x61\x65\x6c\x20\x41\x6c\x65\x78\x61\x6e\x64\x72\x65\x20\x46\x65\x72\x72\x65\x69\x72\x61\x20\x52\x61\x6d\x6f\x73" },
     { id: "\x31\x35\x39\x36\x36", nome: "\x4a\x6f\x73\x65\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x6f\x74\x61\x20\x42\x61\x72\x62\x6f\x73\x61" },
-    { id: "\x38\x32\x30\x39", nome: "\x4a\x6f\x61\x6f\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x61\x64\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x38\x32\x30\x39", nome: "\x4a\x6f\x63\x30\x6f\x20\x43\x61\x72\x6c\x6f\x73\x20\x4d\x61\x64\x65\x69\x72\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
     { id: "\x31\x34\x32\x39\x38", nome: "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a" },
-    { id: "\x32\x34\x37\x31\x30", nome: "\x43\x69\x63\x65\x72\x6f\x20\x48\x69\x6c\x64\x65\x72\x6c\x6c\x6f\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x43\x61\x76\x61\x6c\x63\x61\x6e\x74\x65" },
+    { id: "\x32\x34\x37\x31\x30", nome: "\x43\x69\x63\x65\x72\x6f\x20\x48\x69\x6c\x64\x65\x72\x6c\x6c\x6f\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x43\x61\x76\x61\x6c\x61\x6e\x63\x61\x74\x65" },
     { id: "\x37\x38\x30\x36", nome: "\x54\x69\x61\x67\x6f\x20\x53\x6f\x61\x72\x65\x73\x20\x42\x61\x74\x69\x73\x74\x61" },
     { id: "\x30\x31\x34\x32\x39\x38", nome: "\x4d\x61\x72\x6b\x65\x6e\x69\x61\x20\x4b\x65\x6c\x6c\x79\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x51\x75\x65\x69\x72\x6f\x7a" },
     { id: "\x36\x35\x30\x31", nome: "\x53\x61\x6d\x79\x61\x20\x53\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
@@ -8533,7 +8307,7 @@ function fecharSlideVitoria() {
     { id: "\x31\x34\x30", nome: "\x46\x65\x6c\x69\x70\x65\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73\x20\x64\x6f\x73\x20\x53\x61\x6e\x74\x6f\x73" },
     { id: "\x32\x31\x39\x32\x32", nome: "\x52\x6f\x6e\x61\x6c\x64\x20\x53\x69\x6c\x76\x61\x20\x4c\x61\x6e\x64\x69\x6d\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73" },
     { id: "\x30\x34\x38\x36\x32", nome: "\x52\x61\x6d\x6f\x6e\x20\x53\x6f\x75\x7a\x61\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
-    { id: "\x39\x30\x35\x35", nome: "\x44\x61\x6e\x69\x65\x6c\x6c\x65\x20\x53\x6f\x75\x73\x61\x20\x64\x65\x20\x43\x61\x73\x74\x72\x6f" },
+    { id: "\x39\x30\x35\x35", nome: "\x44\x61\x6e\x69\x65\x6c\x6c\x65\x20\x53\x6f\x75\x7a\x61\x20\x64\x65\x20\x43\x61\x73\x74\x72\x6f" },
     { id: "\x37\x35\x31", nome: "\x45\x6c\x69\x73\x20\x52\x75\x74\x65\x20\x4d\x65\x6c\x6f\x20\x43\x61\x72\x6e\x65\x69\x72\x6f" },
     { id: "\x32\x32\x30\x30\x38", nome: "\x50\x61\x75\x6c\x61\x20\x4b\x61\x74\x65\x6e\x65\x6e\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x52\x65\x69\x73" },
     { id: "\x32\x33\x39\x35\x36", nome: "\x42\x72\x75\x6e\x61\x20\x4d\x69\x72\x65\x6c\x6c\x61\x20\x42\x65\x7a\x65\x72\x72\x61\x20\x41\x6c\x76\x69\x6e\x6f" },
@@ -8559,7 +8333,7 @@ function fecharSlideVitoria() {
     { id: "\x31\x34\x34\x33\x38", nome: "\x52\x65\x69\x6e\x61\x6c\x64\x6f\x20\x53\x61\x6c\x65\x73\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73" },
     { id: "\x31\x39\x38\x35\x34", nome: "\x4d\x61\x72\x69\x61\x20\x64\x6f\x20\x43\x61\x72\x6d\x6f\x20\x54\x6f\x72\x72\x65\x73\x20\x64\x65\x20\x41\x6c\x6d\x65\x69\x64\x61" },
     { id: "\x32\x39\x38", nome: "\x43\x69\x63\x65\x72\x6f\x20\x4c\x65\x6f\x6e\x64\x20\x4d\x65\x6e\x64\x6f\x6e\x63\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
-    { id: "\x38\x36\x36\x35", nome: "\x4d\x61\x72\x69\x61\x20\x41\x70\x61\x72\x65\x63\x69\x64\x61\x20\x64\x65\x20\x53\x61\x20\x4d\x65\x64\x65\x69\x72\x6f" },
+    { id: "\x38\x36\x36\x35", nome: "\x4d\x61\x72\x69\x61\x20\x41\x70\x61\x72\x65\x63\x69\x64\x61\x20\x64\x65\x20\x53\x61\x20\x4d\x65\x64\x65\x69\x72\x6f\x73" },
     { id: "\x32\x32\x39\x35\x39", nome: "\x4d\x61\x72\x63\x65\x6c\x6f\x20\x64\x65\x20\x46\x72\x65\x69\x74\x61\x73\x20\x64\x65\x20\x53\x6f\x75\x7a\x61" },
     { id: "\x31\x37\x37\x31\x37", nome: "\x4c\x6f\x72\x69\x73\x20\x48\x65\x72\x62\x65\x72\x74\x20\x53\x61\x62\x6f\x69\x61\x20\x46\x69\x67\x75\x65\x69\x72\x64\x6f" },
     { id: "\x32\x38\x31\x37\x33", nome: "\x52\x61\x6e\x61\x20\x4d\x61\x63\x65\x6c\x79\x20\x4c\x69\x6d\x61\x20\x4a\x6f\x72\x67\x65" },
@@ -8573,17 +8347,17 @@ function fecharSlideVitoria() {
     { id: "\x36\x35\x30", nome: "\x46\x72\x61\x6e\x63\x69\x73\x63\x6f\x20\x41\x6e\x64\x72\x65\x20\x4d\x6f\x72\x61\x69\x73\x20\x42\x61\x72\x72\x6f\x73" },
     { id: "\x34\x33\x32\x32", nome: "\x41\x6e\x61\x20\x50\x61\x75\x6c\x61\x20\x41\x72\x72\x75\x64\x61\x20\x4e\x6f\x6a\x6f\x73\x61" },
     { id: "\x35\x39", nome: "\x4a\x6f\x61\x6f\x20\x50\x61\x75\x6c\x6f\x20\x64\x65\x20\x43\x61\x73\x74\x72\x6f\x20\x41\x6c\x6d\x65\x69\x64\x61" },
-    { id: "\x32\x33\x32\x39\x38", nome: "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x46\x72\x61\x6e\x63\x69\x73\x63\x6f\x20\x50\x61\x69\x76\x61\x20\x43\x61\x76\x61\x6c\x61\x6e\x63\x74\x65" },
+    { id: "\x32\x33\x32\x39\x38", nome: "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x46\x72\x61\x6e\x63\x69\x73\x63\x6f\x20\x50\x61\x69\x76\x61\x20\x43\x61\x76\x61\x6c\x61\x6e\x63\x61\x74\x65" },
     { id: "\x37\x35\x34\x34", nome: "\x42\x72\x75\x6e\x6e\x6f\x20\x4c\x75\x69\x73\x20\x64\x65\x20\x46\x72\x65\x69\x74\x61\x73\x20\x46\x65\x72\x72\x65\x69\x72\x61" },
     { id: "\x34\x35\x38\x37", nome: "\x49\x73\x72\x61\x65\x6c\x20\x4c\x75\x63\x61\x73\x20\x46\x65\x72\x72\x65\x69\x72\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
     { id: "\x31\x35\x37\x33\x37", nome: "\x4c\x75\x63\x61\x73\x20\x53\x6f\x61\x72\x65\x73\x20\x64\x65\x20\x4f\x6c\x69\x76\x65\x69\x72\x61" },
     { id: "\x32\x37\x30\x38\x32", nome: "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x4a\x65\x6f\x76\x61\x6e\x65\x20\x42\x61\x73\x74\x6f\x73\x20\x50\x61\x69\x76\x61" },
     { id: "\x31\x33\x32\x38\x37", nome: "\x49\x74\x61\x6d\x61\x72\x61\x20\x50\x65\x72\x65\x69\x72\x61\x20\x64\x65\x20\x4d\x61\x74\x6f\x73" },
     { id: "\x31\x31\x32\x37\x32", nome: "\x44\x69\x6f\x67\x6f\x20\x51\x75\x65\x69\x72\x6f\x7a\x20\x46\x72\x6f\x74\x61" },
-    { id: "\x34\x33\x35\x39", nome: "\x45\x6d\x65\x72\x73\x6f\x6e\x20\x64\x6f\x73\x20\x53\x61\x6e\x74\x6f\x73\x20\x43\x61\x6e\x64\x69\x64\x6f" },
+    { id: "\x34\x33\x35\x39", nome: "\x45\x6d\x65\x72\x73\x6f\x6e\x20\x64\x6f\x74\x73\x20\x53\x61\x6e\x74\x6f\x73\x20\x43\x61\x6e\x64\x69\x64\x6f" },
     { id: "\x31\x37\x33", nome: "\x4d\x61\x72\x69\x61\x20\x4a\x61\x6e\x61\x72\x69\x61\x20\x43\x61\x72\x64\x6f\x73\x6f\x20\x53\x69\x6c\x76\x61" },
-    { id: "\x38\x39\x31\x30", nome: "\x48\x65\x64\x65\x72\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f\x20\x64\x65\x20\x53\x6f\x75\x7a\x61" },
-    { id: "\x32\x38\x33\x36\x38", nome: "\x44\x65\x62\x6f\x72\x61\x68\x20\x52\x61\x63\x68\x65\x6c\x20\x4d\x65\x6c\x6f\x20\x64\x65\x20\x53\x6f\x75\x7a\x61" },
+    { id: "\x38\x39\x31\x30", nome: "\x48\x65\x64\x65\x72\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f\x20\x64\x65\x20\x53\x6f\x75\x73\x61" },
+    { id: "\x32\x38\x33\x36\x38", nome: "\x44\x65\x62\x6f\x72\x61\x68\x20\x52\x61\x63\x68\x65\x6c\x20\x4d\x65\x6c\x6f\x20\x64\x65\x20\x53\x6f\x75\x73\x61" },
     { id: "\x32\x36\x34\x35\x32", nome: "\x43\x6c\x61\x75\x64\x69\x61\x20\x45\x6c\x69\x7a\x61\x65\x74\x65\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73\x20\x41\x72\x72\x75\x64\x61" },
     { id: "\x32\x37\x31\x39", nome: "\x4c\x75\x63\x65\x6c\x69\x61\x20\x4d\x61\x72\x69\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61\x20\x43\x6f\x73\x74\x61" },
     { id: "\x33\x31\x37\x37", nome: "\x46\x72\x61\x6e\x63\x69\x73\x63\x6f\x20\x57\x65\x6c\x6c\x69\x6e\x67\x74\x6f\x6e\x20\x53\x6f\x75\x73\x61\x20\x64\x65\x20\x4c\x69\x6d\x61" },
@@ -8595,14 +8369,17 @@ function fecharSlideVitoria() {
     { id: "\x32\x31\x30", nome: "\x57\x65\x62\x73\x74\x65\x72\x20\x41\x72\x61\x6e\x64\x61\x20\x52\x6f\x63\x68\x61" },
     { id: "\x31\x35\x34\x33\x39", nome: "\x4a\x65\x66\x66\x65\x72\x73\x6f\x6e\x20\x41\x72\x61\x75\x6a\x6f\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
     { id: "\x35\x33\x30\x37", nome: "\x57\x61\x6e\x65\x73\x73\x61\x20\x42\x69\x74\x74\x65\x6e\x63\x6f\x75\x72\x74\x74" },
-    { id: "\x37\x39\x38\x37", nome: "\x4d\x61\x6e\x6f\x65\x6c\x20\x49\x6e\x61\x63\x69\x6f\x20\x52\x61\x6d\x6f\x73\x20\x47\x6f\x6e\x63\x61\x6c\x76\x65\x73" },
+    { id: "\x37\x39\x38\x37", nome: "\x4d\x61\x6e\x6f\x65\x6c\x20\x49\x6e\x61\x63\x69\x6f\x20\x52\x61\x6d\x6f\x73\x20\x47\x6f\x6d\x65\x73" },
     { id: "\x32\x38\x37\x36\x32", nome: "\x4b\x6c\x65\x69\x74\x6f\x6e\x20\x43\x72\x69\x73\x74\x69\x61\x6e\x6f\x20\x56\x69\x65\x69\x72\x61\x20\x41\x72\x61\x75\x6a\x6f" },
     { id: "\x32\x32\x31\x39\x33", nome: "\x46\x72\x61\x6e\x63\x69\x65\x6c\x20\x41\x6c\x76\x65\x73\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
-    { id: "\x32\x31\x32\x35\x34", nome: "\x52\x61\x69\x6d\x75\x6e\x64\x6f\x20\x4e\x6f\x6e\x61\x74\x6f\x20\x4d\x6f\x75\x72\x61\x20\x46\x65\x6c\x69\x70\x65" }
+    { id: "\x32\x31\x32\x35\x34", nome: "\x52\x61\x69\x6d\x75\x6e\x64\x6f\x20\x4e\x6f\x6e\x61\x74\x6f\x20\x4d\x6f\x75\x72\x61\x20\x46\x65\x6c\x69\x70\x65" },
+    { id: "\x31\x34\x33\x38\x32", nome: "\x41\x6e\x64\x72\x65\x20\x45\x6e\x69\x6f\x20\x46\x65\x72\x6e\x61\x6e\x64\x65\x73\x20\x64\x6f\x20\x4e\x61\x73\x63\x69\x6d\x65\x6e\x74\x6f" },
+    { id: "\x39\x36\x37\x36", nome: "\x43\x6c\x61\x72\x69\x63\x65\x20\x4a\x65\x73\x73\x69\x63\x61\x20\x53\x6f\x75\x73\x61\x20\x64\x61\x20\x53\x69\x6c\x76\x61" },
+    { id: "\x32\x31\x35", nome: "\x41\x6e\x74\x6f\x6e\x69\x6f\x20\x45\x64\x75\x61\x72\x64\x6f\x20\x42\x61\x72\x62\x6f\x73\x61\x20\x50\x65\x72\x65\x69\x72\x61" },
+    { id: "\x32\x33\x31\x30\x39", nome: "\x4a\x61\x6d\x69\x65\x73\x6f\x6e\x20\x52\x6f\x64\x72\x69\x67\x75\x65\x73\x20\x53\x69\x6d\x6f\x65\x73" }
   ];
 
   window.DOADORES = DOADORES;
-
 })();
 
 /* ===============================
