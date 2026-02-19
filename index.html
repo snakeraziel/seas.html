@@ -136,6 +136,17 @@ html, body {
   100% { transform: scale(2.5); opacity: 0; }
 }
 
+@keyframes bounce {
+  0% { transform:translateY(0); }
+  50% { transform:translateY(-18px); }
+  100% { transform:translateY(0); }
+}
+.bounce {
+  animation:bounce 1s infinite;
+  text-shadow:0 0 15px #39FF14;
+}
+
+
 /* Estilo do Player  */
 .audioteca-slide {
   position: fixed;
@@ -273,6 +284,7 @@ button {
   justify-content:center;
   text-align:center;
 }
+
 
 /* FIX CIRÚRGICO */
 #container > .screen {
@@ -685,7 +697,10 @@ button {
 
 <div class="topbar" style="display: flex; justify-content: space-around; align-items: center; margin-top: -2px; height: 45px;">
     <div style="cursor:pointer; font-size: 24px;" onclick="retaFinal()">🤝</div>
-    <div style="cursor:pointer; font-size: 24px;" onclick="mostrarProverbio()">💪</div>
+  
+<div class="bounce" style="cursor:pointer; font-size: 24px; display: inline-block;" onclick="provaAnalista()">
+    👨‍💻
+</div>
     
     <div id="estadoEmoji" class="estado lock" style="cursor:pointer; font-size: 28px;" onclick="portaDosFundosVip()">🏆</div>
 
@@ -6828,13 +6843,10 @@ function check(answer, btn) {
             if (btnNext) btnNext.classList.add('visible');
 
         }
-
     }
-
 }
 
-
-function atualizarVidas() {
+/* function atualizarVidas() {
     const v1 = document.getElementById('v1');
     const v2 = document.getElementById('v2');
     const v3 = document.getElementById('v3');
@@ -6872,7 +6884,8 @@ function atualizarVidas() {
             }
         }, 800); 
     }
-}
+} */
+
 
 
 
@@ -7312,57 +7325,76 @@ function startQuiz(modo) {
     if (typeof clearProgress === 'function') clearProgress(modo);
   }
 
-  /* ==========================
-      📚 MODOS NORMAIS (AJUSTE ANALISTA AQUI)
-  ========================== */
-  else {
+ /* ==========================
+    📚 MODOS NORMAIS (AJUSTE ANALISTA SEM EXPULSÃO)
+========================== */
+else {
     let base;
-    if (modo === 'total') base = [...bancoOficial];
-    else if (modo === 'modulos') base = [...bancoModulos];
-    else if (modo === 'variados') base = [...bancoVariados];
-    else if (modo === 'portarias') base = [...bancoPortarias];
-    else base = [...bancoOficial];
+    if (modo === 'total') {
+        base = (typeof bancoOficial !== 'undefined') ? [...bancoOficial] : [];
+        // Desativa o sistema de vidas antigo para este modo
+        window.vidasAtivas = false; 
+        window.limiteErrosPermitidos = 101; // Valor alto para o motor não expulsar por erro
+    } else if (modo === 'modulos') {
+        base = (typeof bancoModulos !== 'undefined') ? [...bancoModulos] : [];
+    } else if (modo === 'variados') {
+        base = (typeof bancoVariados !== 'undefined') ? [...bancoVariados] : [];
+    } else if (modo === 'portarias') {
+        base = (typeof bancoPortarias !== 'undefined') ? [...bancoPortarias] : [];
+    } else {
+        base = (typeof bancoOficial !== 'undefined') ? [...bancoOficial] : [];
+    }
 
-    // GARANTE 100 QUESTÕES PARA ANALISTAS (MODO TOTAL)
     currentQuestions = base
-      .sort(() => 0.5 - Math.random())
-      .slice(0, modo === 'total' ? 100 : base.length);
+        .sort(() => 0.5 - Math.random())
+        .slice(0, modo === 'total' ? 100 : base.length);
 
-    vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
+    if (vContainer) {
+        // Se for analista, não mostra corações (vidas), mostra o título da prova
+        if (modo === 'total') {
+            vContainer.innerHTML = '<span style="font-size:1.2em; color:#FFD700; font-weight:bold; text-shadow:1px 1px #000;">PROVA ANALISTA</span>';
+        } else {
+            vContainer.innerHTML = '<span id="v1">❤️</span><span id="v2">❤️</span><span id="v3">❤️</span>';
+        }
+    }
     
     if (modo === 'total') {
-      btnExtra.innerText = " SAIR "; // Mudança sutil para não confundir
-      btnExtra.style.background = "#475569";
-      btnExtra.onclick = () => location.reload();
-      if (typeof clearProgress === 'function') clearProgress(modo);
+        btnExtra.innerText = " ABORTAR "; 
+        btnExtra.style.background = "#b91c1c"; 
+        btnExtra.style.color = "#fff";
+        btnExtra.onclick = () => location.reload();
+        
+        if (typeof clearProgress === 'function') clearProgress('total');
       
-      // LOGICA DE FINALIZAÇÃO ANALISTA
-      window.onFinalizarQuiz = () => {
-          if (erros < 3) {
-              alert(`Você acertou ${acertosSessao} questões (mínimo 98)! 🎉\nJá é um socioeducador, só falta tomar posse.`);
-              go('area-restrita');
-          } else {
-              alert(`Você errou ${erros} questões, mais do que o máximo permitido, mas ainda dá tempo de melhorar! 📚`);
-              go('capa');
-          }
-      };
+        // LOGICA DE FINALIZAÇÃO ANALISTA (SÓ NO FIM DAS 100)
+        window.onFinalizarQuiz = () => {
+            if (erros < 3) {
+                alert(`APROVADO! 🎉\nVocê acertou ${acertosSessao} questões.\nO cargo de Analista Socioeducador te espera!`);
+                go('area-restrita');
+            } else {
+                alert(`REPROVADO! 📚\nVocê cometeu ${erros} erros. O limite para Analista é de apenas 2 erros.`);
+                go('capa');
+            }
+        };
     } else {
-      btnExtra.innerText = "ÁREA DE ESTUDOS"; 
-      btnExtra.style.background = "#22c55e"; 
-      btnExtra.style.boxShadow = "0 0 10px #22c55e"; 
-      btnExtra.onclick = () => { go('area-restrita'); };
+        // Reset normal para outros modos
+        window.vidasAtivas = true; 
+        btnExtra.innerText = "ÁREA DE ESTUDOS"; 
+        btnExtra.style.background = "#22c55e"; 
+        btnExtra.style.boxShadow = "0 0 10px #22c55e"; 
+        btnExtra.onclick = () => { go('area-restrita'); };
 
-      if (typeof loadProgress === 'function') {
-          const saved = loadProgress(modo);
-          if (saved) {
-            currentIndex = Math.min(saved.index || 0, currentQuestions.length - 1);
-            acertosSessao = saved.acertosSessao || 0;
-            erros = saved.erros || 0;
-            historico = saved.historico || {};
-          }
-      }
+        if (typeof loadProgress === 'function') {
+            const saved = loadProgress(modo);
+            if (saved) {
+                currentIndex = Math.min(saved.index || 0, currentQuestions.length - 1);
+                acertosSessao = saved.acertosSessao || 0;
+                erros = saved.erros || 0;
+                historico = saved.historico || {};
+            }
+        }
     }
-  }
+}
 
   if (!currentQuestions || currentQuestions.length === 0) {
     alert("Nenhuma questão disponível neste banco.");
@@ -8904,6 +8936,11 @@ document.addEventListener('DOMContentLoaded', () => {
         atualizarPainelVip();
     }
 });
+
+function provaAnalista() {
+    // Agora o emoji apenas "teletransporta" o usuário para a startQuiz no modo total
+    startQuiz('total');
+}
 
 
 </script>
