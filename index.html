@@ -604,14 +604,39 @@ button {
     2.000 QUESTÕES 
     <span id="fx36" onclick="mostrarMensagemVip()" style="cursor:pointer; filter: drop-shadow(0 0 5px #fff);">💡</span>
 </h2>
+<div style="text-align:center; margin-bottom:8px;">
+    <span style="
+        font-size:3em;
+        display:inline-block;
+        animation:teste 1s infinite;
+        filter:drop-shadow(0 0 10px gold);
+    ">🙏</span>
+
+    <span style="
+        font-size:3em;
+        display:inline-block;
+        animation:teste 1s infinite;
+        filter:drop-shadow(0 0 10px silver);
+    ">🤝</span>
+
+    <span style="
+        font-size:3em;
+        display:inline-block;
+        animation:teste 1s infinite;
+        filter:drop-shadow(0 0 10px #cd7f32);
+    ">👊</span>
+</div>
 
 
+<h2 style="font-size:1.5em;color:#39FF14;margin:0;">
+    Combati o bom combate, cumpri meu objetivo,<br> e guardei a minha fé.
+</h2>
   
-
+<!--
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
       <div id="chave" draggable="true" style="font-size:3em; cursor:grab;">🔑</div>
       <div id="fechadura" style="font-size:3em; border:3px dashed #39FF14; padding:20px; border-radius:15px;">🔒</div>
-    </div> 
+    </div>  -->
 
     <button class="menu-btn" onclick="usuarioIphone()"
   style="
@@ -923,17 +948,17 @@ function decodificar(x) {
 // << VARIÁVEIS DO RELÓGIO
 let tempo = 0;
 let timerInterval = null;
-const chave = document.getElementById('chave');
-const fechadura = document.getElementById('fechadura');
+/* const chave = document.getElementById('chave'); */
+/* const fechadura = document.getElementById('fechadura'); */
 
-chave.addEventListener('dragstart', e => {
+/* chave.addEventListener('dragstart', e => {
   e.dataTransfer.setData('text', 'chave');
-});
+}); */
 
-fechadura.addEventListener('dragover', e => e.preventDefault());
+/* fechadura.addEventListener('dragover', e => e.preventDefault()); */
 
-fechadura.addEventListener('drop', e => {
-  e.preventDefault();
+/* fechadura.addEventListener('drop', e => {
+  e.preventDefault(); 
 
   const item = e.dataTransfer.getData('text');
   if (item !== 'chave') return;
@@ -958,9 +983,8 @@ fechadura.addEventListener('drop', e => {
     return;
   }
 
-  /* ===== CORES DINÂMICAS ===== */
+  // ===== CORES DINÂMICAS =====
 
-  // Status
   let corStatus = "#ff0000";
   const statusLower = String(pessoa.status ?? "").toLowerCase();
   if (statusLower.includes("imediata")) {
@@ -969,7 +993,6 @@ fechadura.addEventListener('drop', e => {
     corStatus = "#3b82f6";
   }
 
-  // Tipo
   let corTipo = "#ffffff";
   const tipoLower = String(pessoa.tipo ?? "").toLowerCase();
   if (tipoLower === "cotista") {
@@ -978,66 +1001,49 @@ fechadura.addEventListener('drop', e => {
     corTipo = "#8b5cf6";
   }
 
-  /* ===== MENSAGEM FINAL ===== */
+  // ===== MENSAGEM FINAL =====
 
-mostrarMensagem(`
-  <div style="
-    display: flex; 
-    flex-direction: column; 
-    max-height: 65vh; 
-    text-align: left;
-  ">
-    <div style="
-      overflow-y: auto; 
-      padding-right: 10px; 
-      -webkit-overflow-scrolling: touch;
-    ">
-      <p style="color:white; font-size:1.3em; font-weight:800; margin-top:0;">
-        Olá, bem-vindo(a),<br>
-        <span style="color:#3b82f6; text-shadow:0 0 10px #3b82f6;">
-          ${pessoa.nome ?? ""}
-        </span>
-      </p>
-
-      <p style="color:white; font-weight:700;">
-        Colocação: <span style="color:#FFD700; text-shadow:0 0 10px #FFD700;">${pessoa.colocacao ?? "N/D"}</span>
-      </p>
-
-      <p style="color:white; font-weight:700;">
-        Pontuação: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.pontos ?? ""}</span>
-      </p>
-
-      <p style="color:white; font-weight:700;">
-        Cidade: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.cidade ?? ""}</span>
-      </p>
-
-      <p style="color:white; font-weight:700;">
-        Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span>
-      </p>
-
-      <p style="color:white; font-weight:700;">
-        Tipo de inscrição: <span style="color:${corTipo}; text-shadow:0 0 10px ${corTipo};">${pessoa.tipo ?? "Ampla"}</span>
-      </p>
-
-      <p style="color:white; font-weight:700; margin-bottom:10px;">
-        Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">11 dias</span> até o grande dia.<br>
-        Aproveite esse tempo para estudar.
-      </p>
+  mostrarMensagem(`
+    <div style="display: flex; flex-direction: column; max-height: 65vh; text-align: left;">
+      <div style="overflow-y: auto; padding-right: 10px; -webkit-overflow-scrolling: touch;">
+        <p style="color:white; font-size:1.3em; font-weight:800; margin-top:0;">
+          Olá, bem-vindo(a),<br>
+          <span style="color:#3b82f6; text-shadow:0 0 10px #3b82f6;">
+            ${pessoa.nome ?? ""}
+          </span>
+        </p>
+        <p style="color:white; font-weight:700;">
+          Colocação: <span style="color:#FFD700; text-shadow:0 0 10px #FFD700;">${pessoa.colocacao ?? "N/D"}</span>
+        </p>
+        <p style="color:white; font-weight:700;">
+          Pontuação: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.pontos ?? ""}</span>
+        </p>
+        <p style="color:white; font-weight:700;">
+          Cidade: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.cidade ?? ""}</span>
+        </p>
+        <p style="color:white; font-weight:700;">
+          Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span>
+        </p>
+        <p style="color:white; font-weight:700;">
+          Tipo de inscrição: <span style="color:${corTipo}; text-shadow:0 0 10px ${corTipo};">${pessoa.tipo ?? "Ampla"}</span>
+        </p>
+        <p style="color:white; font-weight:700; margin-bottom:10px;">
+          Ainda faltam <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">11 dias</span> até o grande dia.<br>
+          Aproveite esse tempo para estudar.
+        </p>
+      </div>
     </div>
-  </div>
-`, 'sucesso');
+  `, 'sucesso');
 
-go('area-restrita');
+  go('area-restrita');
 });
+*/
 
+// Anti-Curió (Mantido Ativo)
 (() => {
-
   const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
   if (!isMobile) {
-
     document.addEventListener("contextmenu", e => e.preventDefault());
-
     document.addEventListener("keydown", e => {
       const k = e.key.toLowerCase();
       if (
@@ -1050,19 +1056,13 @@ go('area-restrita');
         return false;
       }
     });
-
     document.addEventListener("selectstart", e => e.preventDefault());
-
     document.addEventListener("visibilitychange", () => {
       document.documentElement.style.filter =
         document.hidden ? "blur(12px)" : "none";
     });
-
   }
-
 })();
-
-
 
 const bancoOficial = [
     {q:"👨‍💻 1. A Superintendência do Sistema Estadual de Atendimento Socioeducativo (SEAS), criada pela Lei Estadual nº 16.040/2016, possui como atribuição exclusiva a administração das unidades de internação, não integrando sua competência a formulação e a coordenação da política estadual de atendimento socioeducativo.", v:false, j:"A SEAS também tem por finalidade a formulação, planejamento e coordenação da política estadual de atendimento socioeducativo (Art. 2º, Lei 16.040/16)."},
