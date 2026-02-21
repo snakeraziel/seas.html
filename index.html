@@ -508,7 +508,30 @@ button {
   pointer-events: none; /* Evita que o clique do usuário "bata" no contador em vez do botão */
 }
 
-
+/* Animação de pulso quando o scanner está ativo */
+.escaneando {
+    animation: pulse-gold 0.6s infinite alternate;
+    transform: scale(1.2);
+}
+@keyframes pulse-gold {
+    from { filter: drop-shadow(0 0 5px gold); }
+    to { filter: drop-shadow(0 0 25px #39FF14); }
+}
+/* Efeito de flash na tela */
+.flash-sucesso {
+    animation: flash-verde 0.5s;
+}
+.flash-erro {
+    animation: flash-vermelho 0.5s;
+}
+@keyframes flash-verde {
+    0% { background-color: rgba(57, 255, 20, 0.3); }
+    100% { background-color: transparent; }
+}
+@keyframes flash-vermelho {
+    0% { background-color: rgba(255, 0, 0, 0.4); }
+    100% { background-color: transparent; }
+}
 
 
 <!-- @media (max-width: 768px) {
@@ -593,17 +616,17 @@ button {
     </button>
 </div>
 
-<div id="capa" class="screen active center" style="position: relative;">
-
-<!--    <div onclick="usuarioIphone()" 
+<div id="capa" class="screen active center" style="position: relative;">   
+<!-- <div onclick="usuarioComum()" 
          style="position:absolute; bottom:0; right:0; width:50px; height:50px; z-index:99999; cursor:default; background:transparent;">
     </div> -->
 
 <h1 style="font-size:3em;color:var(--yellow);margin:0; font-weight:900;">GUIA DEFINITIVO</h1>
-    <h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+ <!-- <h2 style="font-size:2em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
     2.000 QUESTÕES 
     <span id="fx36" onclick="mostrarMensagemVip()" style="cursor:pointer; filter: drop-shadow(0 0 5px #fff);">💡</span>
-</h2>
+</h2> -->
+
 <div style="text-align:center; margin-bottom:8px;">
     <span style="
         font-size:3em;
@@ -628,9 +651,9 @@ button {
 </div>
 
 
-<h2 style="font-size:1.5em;color:#39FF14;margin:0;">
+<h3 style="font-size:1.5em;color:#39FF14;margin:0;">
     Combati o bom combate, cumpri meu objetivo,<br> e guardei a minha fé.
-</h2>
+</h3>
   
 <!--
     <div style="display:flex; align-items:center; justify-content:center; gap:80px; margin-top:40px;">
@@ -638,7 +661,7 @@ button {
       <div id="fechadura" style="font-size:3em; border:3px dashed #39FF14; padding:20px; border-radius:15px;">🔒</div>
     </div>  -->
 
-    <button class="menu-btn" onclick="usuarioIphone()"
+<!--    <button class="menu-btn" onclick="usuarioIphone()"
   style="
     border-color:#DA70D6;
     color:#DA70D6;
@@ -647,12 +670,18 @@ button {
     text-shadow:0 0 8px rgba(218,112,214,.8);
   ">
   🆔 INSIRA SUA INSCRIÇÃO 🆔
+</button> -->
+
+<h2 style="font-size:3.5em;color:#39FF14;margin:0; display: flex; align-items: center; justify-content: center; gap: 10px;">
+   
+    <span id="scanner-btn" onclick="iniciarScanner()" style="cursor:pointer; transition: all 0.3s ease; filter: drop-shadow(0 0 5px #fff); display: inline-block;">📱</span>
+</h2>
+
+ <button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
+    ⭐🏆 ÁREA EXCLUSIVA 🏆⭐
 </button>
 
-<!-- <button class="menu-btn" style="border: 2px solid #FFD700; background: rgba(255, 215, 0, 0.1);" onclick="irParaAreaApoiador2()">
-    🏆SALA NÃO TÃO EXCLUSIVA🏆
-</button> -->
-    <button class="menu-btn" onclick="entrarComoVisitante()">👥VISITANTE OU APOIADOR🏆</button> 
+<!--    <button class="menu-btn" onclick="entrarComoVisitante()">👥VISITANTE OU APOIADOR🏆</button> -->
 
 
 </div>
@@ -1063,6 +1092,190 @@ let timerInterval = null;
     });
   }
 })();
+
+
+function iniciarScanner() {
+    const btn = document.getElementById('scanner-btn');
+    const corpo = document.body;
+    
+    btn.classList.add('escaneando');
+    btn.innerText = "🔍"; 
+
+    // 1. DRAMA DE 2 SEGUNDOS (Aquecimento)
+    setTimeout(() => {
+        const numero = prompt("AGUARDANDO IDENTIFICAÇÃO (INSCRIÇÃO):");
+        
+        if (!numero) {
+            btn.classList.remove('escaneando');
+            btn.innerText = "📱";
+            return;
+        }
+
+        btn.innerText = "⏳"; // Processando...
+
+        // 2. DELAY DE VERIFICAÇÃO (1.5 segundos)
+        setTimeout(() => {
+            const pessoa = usuarios.find(u => u && String(u.id).trim() === String(numero).trim());
+
+            if (pessoa) {
+                corpo.classList.add('flash-sucesso');
+                btn.innerText = "✅";
+                
+                setTimeout(() => {
+                    btn.classList.remove('escaneando');
+                    corpo.classList.remove('flash-sucesso');
+                    // CHAMA A FUNÇÃO QUE MOSTRA OS DADOS DETALHADOS
+                    exibirDadosCompletos(pessoa); 
+                }, 600);
+
+            } else {
+                corpo.classList.add('flash-erro');
+                btn.innerText = "💀";
+                
+                setTimeout(() => {
+                    btn.classList.remove('escaneando');
+                    corpo.classList.remove('flash-erro');
+                    btn.innerText = "📱";
+                    mostrarMensagem("ACESSO NEGADO: Identidade não reconhecida.", 'erro');
+                }, 1200);
+            }
+        }, 1500); 
+
+    }, 2000); 
+}
+
+// ESTA É A FUNÇÃO QUE ESTAVA FALTANDO PARA O SCANNER COMPLETAR A AÇÃO
+function exibirDadosCompletos(pessoa) {
+    // ===== CORES DINÂMICAS (Sua lógica original) =====
+    let corStatus = "#ff0000";
+    const statusLower = String(pessoa.status ?? "").toLowerCase();
+    if (statusLower.includes("imediata")) corStatus = "#39FF14";
+    else if (statusLower.includes("cadastro reserva")) corStatus = "#3b82f6";
+
+    let corTipo = "#ffffff";
+    const tipoLower = String(pessoa.tipo ?? "").toLowerCase();
+    if (tipoLower === "cotista") corTipo = "#fde047";
+    else if (tipoLower === "pcd") corTipo = "#8b5cf6";
+
+    // ===== MENSAGEM FINAL DETALHADA =====
+    mostrarMensagem(`
+        <div style="display: flex; flex-direction: column; max-height: 65vh; text-align: left;">
+            <div style="overflow-y: auto; padding-right: 10px; -webkit-overflow-scrolling: touch;">
+                <p style="color:white; font-size:1.3em; font-weight:800; margin-top:0;">
+                    Olá, bem-vindo(a),<br>
+                    <span style="color:#3b82f6; text-shadow:0 0 10px #3b82f6;">
+                        ${pessoa.nome ?? ""}
+                    </span>
+                </p>
+                <p style="color:white; font-weight:700;">
+                    Colocação: <span style="color:#FFD700; text-shadow:0 0 10px #FFD700;">${pessoa.colocacao ?? "N/D"}</span>
+                </p>
+                <p style="color:white; font-weight:700;">
+                    Pontuação: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.pontos ?? ""}</span>
+                </p>
+                <p style="color:white; font-weight:700;">
+                    Cidade: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.cidade ?? ""}</span>
+                </p>
+                <p style="color:white; font-weight:700;">
+                    Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span>
+                </p>
+                <p style="color:white; font-weight:700;">
+                    Tipo de inscrição: <span style="color:${corTipo}; text-shadow:0 0 10px ${corTipo};">${pessoa.tipo ?? "Ampla"}</span>
+                </p>
+                <p style="color:white; font-weight:700; margin-bottom:10px;">
+                    Em poucas horas, passaremos por<br>mais um desafio.<span style="color:#00ff41; text-shadow:0 0 10px #00ff41;"><br>Boa sorte a todos nós!</span> 
+            </div>
+        </div>
+    `, 'sucesso');
+
+    // Redireciona após 2 segundos para dar tempo de ler
+    setTimeout(() => {
+        if (typeof go === 'function') go('area-restrita');
+    }, 2000);
+}
+
+function usuarioComum() {
+    const numero = prompt("FUTURO SOCIOEDUCADOR, IDENTIFIQUE-SE!:");
+    if (!numero) return;
+
+    // Blindagem total contra base de dados ausente
+    if (typeof usuarios === 'undefined' || !Array.isArray(usuarios)) {
+        mostrarMensagem("Erro interno: base de dados não carregada.", 'erro');
+        return;
+    }
+
+    // Busca o usuário pelo ID (Inscrição)
+    const pessoa = usuarios.find(u =>
+        u &&
+        u.id !== undefined &&
+        String(u.id).trim() === String(numero).trim()
+    );
+
+    if (!pessoa) {
+        mostrarMensagem("Número de inscrição não encontrado!<p> Entre em contato com o administrador.", 'erro');
+        return;
+    }
+
+    // ===== LÓGICA DE CORES DINÂMICAS =====
+    let corStatus = "#ff0000";
+    const statusLower = String(pessoa.status ?? "").toLowerCase();
+    if (statusLower.includes("imediata")) {
+        corStatus = "#39FF14";
+    } else if (statusLower.includes("cadastro reserva")) {
+        corStatus = "#3b82f6";
+    }
+
+    let corTipo = "#ffffff";
+    const tipoLower = String(pessoa.tipo ?? "").toLowerCase();
+    if (tipoLower === "cotista") {
+        corTipo = "#fde047";
+    } else if (tipoLower === "pcd") {
+        corTipo = "#8b5cf6";
+    }
+
+    // ===== EXIBIÇÃO DA MENSAGEM FINAL =====
+    mostrarMensagem(`
+        <div style="display: flex; flex-direction: column; max-height: 65vh; text-align: left;">
+            <div style="overflow-y: auto; padding-right: 10px; -webkit-overflow-scrolling: touch;">
+                <p style="color:white; font-size:1.3em; font-weight:800; margin-top:0;">
+                    Olá, bem-vindo(a),<br>
+                    <span style="color:#3b82f6; text-shadow:0 0 10px #3b82f6;">
+                        ${pessoa.nome ?? ""}
+                    </span>
+                </p>
+
+                <p style="color:white; font-weight:700;">
+                    Colocação: <span style="color:#FFD700; text-shadow:0 0 10px #FFD700;">${pessoa.colocacao ?? "N/D"}</span>
+                </p>
+
+                <p style="color:white; font-weight:700;">
+                    Pontuação: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.pontos ?? ""}</span>
+                </p>
+
+                <p style="color:white; font-weight:700;">
+                    Cidade: <span style="color:#00ff41; text-shadow:0 0 10px #00ff41;">${pessoa.cidade ?? ""}</span>
+                </p>
+
+                <p style="color:white; font-weight:700;">
+                    Situação: <span style="color:${corStatus}; text-shadow:0 0 10px ${corStatus};">${pessoa.status ?? ""}</span>
+                </p>
+
+                <p style="color:white; font-weight:700;">
+                    Tipo de inscrição: <span style="color:${corTipo}; text-shadow:0 0 10px ${corTipo};">${pessoa.tipo ?? "Ampla"}</span>
+                </p>
+
+                <p style="color:white; font-weight:700; margin-bottom:10px;">
+                    Em poucas horas, passaremos<br>por mais um desafio.<span style="color:#00ff41; text-shadow:0 0 10px #00ff41;"><br>Boa sorte a todos nós!</span> 
+                </p>
+            </div>
+        </div>
+    `, 'sucesso');
+
+    // Redireciona após o sucesso
+    if (typeof go === 'function') {
+        go('area-restrita');
+    }
+}
 
 const bancoOficial = [
     {q:"👨‍💻 1. A Superintendência do Sistema Estadual de Atendimento Socioeducativo (SEAS), criada pela Lei Estadual nº 16.040/2016, possui como atribuição exclusiva a administração das unidades de internação, não integrando sua competência a formulação e a coordenação da política estadual de atendimento socioeducativo.", v:false, j:"A SEAS também tem por finalidade a formulação, planejamento e coordenação da política estadual de atendimento socioeducativo (Art. 2º, Lei 16.040/16)."},
