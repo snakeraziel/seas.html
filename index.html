@@ -2,1049 +2,269 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kallel - Acareação Oficial</title>
+    <title>Ranking Dinâmico - Kallel</title>
     <style>
-        :root {
-            --bg: #000;
-            --container-bg: #020617;
-            --verde-limao: #ccff00;
-            --azul-iluminado: #00d9ff;
-            --escarlate: #ff0000;
-            --sucesso: #22c55e;
-            --text-white: #ffffff;
-        }
-
-        * { box-sizing: border-box; }
-
-        body { 
-            margin: 0; background: var(--bg); 
-            font-family: 'Inter', sans-serif; 
-            display: flex; align-items: center; justify-content: center; 
-            min-height: 100vh; color: var(--text-white); overflow: hidden; 
-        }
-
-        #container { 
-            width: 800px; height: 500px; 
-            background: var(--container-bg); 
-            border-radius: 18px; padding: 25px; 
-            position: relative; border: 2px solid rgba(255,255,255,.1); 
-            box-shadow: 0 20px 50px rgba(0,0,0,.5); 
-            display: flex; flex-direction: column; 
-        }
-
-        #capa {
-            flex: 1; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-        }
-
-        h1.iluminado { 
-            color: var(--verde-limao); font-size: 3.5rem; margin: 0; 
-            font-weight: 900; letter-spacing: 2px;
-            text-shadow: 0 0 25px rgba(204, 255, 0, 0.7);
-        }
-
-        .sub.iluminado { 
-            color: var(--azul-iluminado); font-size: 1.2rem; font-weight: 700;
-            text-transform: uppercase; margin-bottom: 40px;
-            text-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
-        }
-
-        #questoes-area { display: none; flex: 1; flex-direction: column; }
-
-        .topo-msg {
-            text-align: center; font-weight: 800; font-size: 1rem;
-            padding: 8px; border-radius: 6px; margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        #pergunta {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.02); border-radius: 12px;
-            padding: 25px; font-size: 1.2rem; line-height: 1.5;
-            text-align: center; border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .controles-resposta { display: flex; gap: 10px; margin-top: 15px; height: 60px; }
-
-        .navegacao { display: flex; gap: 15px; margin-top: 14px; height: 45px; }
-
-        .btn-acao {
-            background: #1e293b; color: #fff; border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px; font-weight: 700; cursor: pointer; text-transform: uppercase;
-            transition: 0.2s;
-        }
-
-        .btn-opt { flex: 2; font-size: 1rem; }
-        .btn-home { flex: 0.6; font-size: 1.3rem; background: #0f172a; }
-        .btn-nav { flex: 1; font-size: 0.8rem; background: #020617; border: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); }
-        .btn-nav:hover { background: #1e293b; color: #fff; }
-
-        #btn-avancar { visibility: hidden; color: var(--azul-iluminado); border-color: var(--azul-iluminado); }
-
-        #flash {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 100; opacity: 0;
-        }
-        @keyframes flash-g { 0%, 100% { opacity: 0; } 50% { opacity: 0.6; background: #22c55e; } }
-        @keyframes flash-r { 0%, 100% { opacity: 0; } 50% { opacity: 0.7; background: #ff0000; } }
-        .anim-g { animation: flash-g 0.2s ease-in-out 3; }
-        .anim-r { animation: flash-r 0.25s ease-in-out 3; }
+        :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+        .app-container { width: 100%; max-width: 600px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b; }
+        h2 { color: var(--accent); text-align: center; letter-spacing: 1px; }
+        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #020617; color: #fff; outline: none; }
+        button { padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { opacity: 0.8; transform: translateY(-2px); }
+        .result-card { background: #1e293b; padding: 20px; border-radius: 12px; margin-top: 20px; display: none; border-left: 5px solid var(--accent); }
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .label { color: #94a3b8; font-size: 0.9rem; }
+        .input-nota { margin-top: 20px; padding: 15px; background: rgba(204, 255, 0, 0.05); border-radius: 8px; border: 1px dashed var(--accent); }
+        #total-score { font-size: 1.5rem; color: var(--accent); font-weight: 800; text-align: center; display: block; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<div id="container">
-    <div id="flash"></div>
+<div class="app-container">
+    <h2>SISTEMA AUTOMÁTICO DE RANKING</h2>
+    
+    <div class="search-box">
+        <input type="number" id="inputId" placeholder="Digite seu ID (Ex: 25820)">
+        <button onclick="buscarCandidato()">BUSCAR</button>
+<label for="abaSelecionada">Selecione sua lista:</label>
+<select id="abaSelecionada" class="form-control">
+  <option value="F-Ampla">Fortaleza - Ampla</option>
+  <option value="F-Cotas">Fortaleza - Cotas</option>
+  <option value="F-PCD">Fortaleza - PCD</option>
+  <option value="S-Ampla">Sobral - Ampla</option>
+  <option value="S-Cotas">Sobral - Cotas</option>
+  <option value="S-PCD">Sobral - PCD</option>
+  <option value="J-Ampla">Juazeiro - Ampla</option>
+  <option value="J-Cotas">Juazeiro - Cotas</option>
+  <option value="J-PCD">Juazeiro - PCD</option>
+</select>
 
-    <div id="capa">
-        <h1 class="iluminado">ACAREAÇÃO</h1>
-        <div class="sub iluminado">MÉDIA DE ASSERTIVIDADE - 89 QUESTÕES</div>
-        <button class="btn-acao" style="padding: 15px 40px; background: #22c55e" onclick="iniciar()">Iniciar Conferência</button>
+</div>
+
+
+    <div id="result-area" class="result-card">
+        <div class="data-row"><span class="label">Nome:</span> <span id="res-nome"></span></div>
+        <div class="data-row"><span class="label">Cidade:</span> <span id="res-cidade"></span></div>
+        <div class="data-row"><span class="label">Status:</span> <span id="res-status"></span></div>
+        <div class="data-row"><span class="label">Colocação Atual:</span> <span id="res-col"></span></div>
+        <div class="data-row"><span class="label">Pontos Base:</span> <span id="res-pontos"></span></div>
+
+        <div class="input-nota">
+    <label class="label">INSIRA SUA NOTA DA PROVA (0 a 100):</label>
+    <input type="number" id="notaProva" placeholder="Ex: 95" oninput="calcularTotal(); atualizarStatusDinamico()">
+</div>
+            <small style="display:block; margin-top:5px; color:#94a3b8">Soma automática com pontos base</small>
+            <span id="total-score">0.0</span>
+            <button style="width:100%; margin-top:15px; background:#22c55e; color:#fff" onclick="enviarParaRanking()">SALVAR RANKING</button>
+<div class="ranking-section">
+  <button onclick="toggleRanking()" class="btn-ranking">
+       📊 Ranking em Tempo Real 📊 
+    </button>
+</div>  
+
+    <div id="ranking-frame-container" style="display: none; margin-top: 20px;">
+        <iframe 
+            src="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?usp=sharing" 
+            style="width: 100%; height: 600px; border: 2px solid #28a745; border-radius: 10px;">
+        </iframe>
+        <p><a href="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?gid=304199799" target="_blank">Abrir em ecrã inteiro ↗</a></p>
     </div>
-
-    <div id="questoes-area">
-        <div id="status" class="topo-msg"></div>
-        <div id="pergunta"></div>
-        <div id="bloco-resposta" class="controles-resposta"></div>
-        <div class="navegacao">
-            <button class="btn-acao btn-nav" onclick="voltar()">⬅ Voltar</button>
-            <button id="btn-avancar" class="btn-acao btn-nav" onclick="avancar()">Avançar ➡</button>
-        </div>
+</div>        
+</div>
     </div>
 </div>
 
+
+
 <script>
     const db = [
-{
-	prova: "Questão 01: A política socioeducativa brasileira é pautada na doutrina da proteção integral, na responsabilização pedagógica e na garantia de direitos.",
-	plataforma: [
-	"✍ 78. A socioeducação é pautada, na atualidade, como uma doutrina de proteção integral, responsabilização pedagógica e garantia de direitos. 👍",
-	"✍ 100. O ECA substituiu um modelo que via adolescentes como ameaça, pela Doutrina da Proteção Integral, pautada na responsabilização pedagógica e na garantia de direitos. 👍"
-],
-	correta: true
-},
-{
-	prova: "Questão 02: A institucionalização da SEAS no Ceará substitui a necessidade de articulação com as políticas de saúde, educação e assistência social, uma vez que o sistema socioeducativo possui autossuficiência funcional.",
-	plataforma: [
-	"✍ 1196. O eixo intersetorial da socioeducação orienta que a SEAS necessita de articulação entre diferentes políticas públicas, como saúde, educação, assistência social, cultura e esporte. 👍",
-	"💛 236. Para promover a saúde mental no sistema socioeducativo exige-se a necessidade de articulação entre os eixos da saúde, da assistência social e da educação. 👍"
-],
-	correta: false 
-},
-{
-	prova: "Questão 03: A SEAS, criada pela Lei Estadual nº 16.040/2016, constitui-se como órgão executor das medidas de internação, possuindo competência articuladora e que atua na implementação da política estadual de socioeducação.",
-	plataforma: ["✍ 36. A SEAS, criada pela Lei nº 16.040/2016, possui competência articuladora e autonomia para implementar a política estadual socioeducativa, sendo um marco para a saída do Ceará do modelo de 'gestão por crise' para uma 'gestão por planejamento'. 👍",
-	"💢 218. A Superintendência do Sistema Estadual de Atendimento Socioeducativo (SEAS) é o órgão responsável pelas medidas de meio aberto no Ceará. 👎",
-	"✍ 991. Conforme os Arts. 3º e 4º do Decreto 32.419/2017, a SEAS tem por finalidade a execução das medidas socioeducativas de internação e semiliberdade no Estado do Ceará. 👍"
-],
-	correta: true
-},
-{
-	prova: "Questão 04: A Lei nº 12.594/2012 que cria o Sistema Nacional de Atendimento Socioeducativo (Sinase) organiza apenas a execução das medidas privativas de liberdade, permanecendo as medidas em meio aberto sob regulação exclusiva do Estatuto da Criança e do Adolescente.",
-	plataforma: ["✍ 787. A Lei 12.594/2012 é a norma que regulamenta como as medidas socioeducativas de Meio Aberto e de Meio Fechado devem ser executadas no Brasil. 👍",
-	"✍ 229. No Brasil, o SINASE (Lei 12.594/2012) organiza como os estados devem executar as medidas socioeducativas de meio aberto e de internação. 👍",
-	"👁‍ 215. Embora o ECA e o SINASE não citem explicitamente a sigla LGBTQIA+, o SINASE complementa o ECA ao incluir a não discriminação em razão de gênero ou orientação sexual na execução das medidas socioeducativas restritivas de liberdade e de meio aberto. 👍"],
-	correta: false
-},
-{
-	prova: "Questão 05: Nos termos do Estatuto da Criança e do Adolescente, a responsabilização por ato infracional pode ocorrer antes dos 12 anos, desde que aplicada exclusivamente em regime de proteção especial.",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 06:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 07:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 08:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 09:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 10:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 11:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 12:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 13:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 14:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 15:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 16:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 17:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 18:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 19:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 20:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 21:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 22:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 23:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 24:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 25:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 26:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 27:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 28:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 29:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 30:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 31:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 32:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 33:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 34:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 35:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 36:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 37:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 38:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 39:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 40:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 41:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 42:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 43:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 44:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 45:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 46:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 47:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 48:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 49:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 50:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 51:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 52:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 53:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 54:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 55:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 56:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 57:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 58:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 59:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 60:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 61:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 62:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 63:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 64:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 65:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 66:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 67:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 68:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 69:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 70:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 71:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 72:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 73:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 74:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 75:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 76:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 77:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 78:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 79:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 80:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 81:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 82:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 83:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 84:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 85:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 86:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 87:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 88:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 89:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 90:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 91:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 92:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 93:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 94:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 95:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 96:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 97:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 98:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 99:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
-{
-	prova: "Questão 100:",
-	plataforma: ["resposta 1",
-	"resposta 2",
-	"resposta 3"
-],
-	correta: true
-},
 
 
 
-];
 
-   // Tenta carregar o progresso salvo, se não existir, começa do zero
-    let index = parseInt(localStorage.getItem('acareacao_index')) || 0;
-    let respostasUsuario = JSON.parse(localStorage.getItem('acareacao_respostas')) || []; 
 
-    function iniciar() {
-        document.getElementById('capa').style.display = 'none';
-        document.getElementById('questoes-area').style.display = 'flex';
-        carregarQuestao();
-    }
 
-    function carregarQuestao() {
-        if (respostasUsuario[index] !== undefined) {
-            exibirResultadoRegistrado();
-        } else {
-            faseProva();
+
+
+
+
+
+
+
+
+
+
+
+
+    ];
+
+let pontosBase = 0; // Global para a calculadora usar
+
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzzU22cOxkUEg-ResEzSTFJeDITInL5sO3ojZP0xSK7-oNJ3gCiLzsyX3BwsDMhozS56Q/exec"; 
+
+async function buscarCandidato() {
+    const idInput = document.getElementById("inputId").value;
+    const aba = document.getElementById("abaSelecionada").value; // Pega a lista (F-Ampla, etc)
+
+    try {
+        const res = await fetch(URL_SCRIPT + "?id=" + idInput + "&aba=" + aba);
+        const data = await res.json();
+
+        if (data.error) {
+            alert("ID não encontrado nesta lista específica.");
+            return;
         }
-    }
 
-    function faseProva() {
-        subIndex = 0; 
-        document.getElementById('btn-avancar').style.visibility = 'hidden';
-        const status = document.getElementById('status');
-        status.innerText = "Como Caiu na Prova";
-        status.style.color = "#f59e0b";
-        status.style.background = "rgba(245, 158, 11, 0.05)";
+        // --- 1. LÓGICA DO STATUS DINÂMICO ---
+        const posicaoNumerica = parseInt(String(data.colocacao).replace(/\D/g, ""));
+        let limiteVagas = 0;
 
-        document.getElementById('pergunta').innerText = db[index].prova;
-        document.getElementById('bloco-resposta').innerHTML = 
-            `<button class="btn-acao btn-opt" style="flex:1" onclick="fasePlataforma()">Similares na Plataforma</button>`;
-    }
+        if (aba === "F-Ampla") limiteVagas = 510;
+        else if (aba === "F-Cotas") limiteVagas = 136;
+        else if (aba === "F-PCD")   limiteVagas = 34;
+        else if (aba === "S-Ampla") limiteVagas = 107;
+        else if (aba === "S-Cotas") limiteVagas = 28;
+        else if (aba === "S-PCD")   limiteVagas = 7;
+        else if (aba === "J-Ampla") limiteVagas = 107;
+        else if (aba === "J-Cotas") limiteVagas = 28;
+        else if (aba === "J-PCD")   limiteVagas = 7;
 
-    function fasePlataforma() {
-        const status = document.getElementById('status');
-        status.innerText = `COMO ESTAVA NA PLATAFORMA (${subIndex + 1} de ${db[index].plataforma.length})`;
-        status.style.color = "#00d9ff"; 
-        status.style.background = "rgba(0, 217, 255, 0.05)";
+        let statusTexto = "";
+        let statusCor = "";
 
-        document.getElementById('pergunta').innerText = db[index].plataforma[subIndex];
-
-        if (subIndex < db[index].plataforma.length - 1) {
-            document.getElementById('bloco-resposta').innerHTML = `
-                <button class="btn-acao btn-opt" style="flex:1; border-color: #ccff00" onclick="proximaSimilar()">SIMILARES DA PLATAFORMA</button>
-            `;
+        if (posicaoNumerica <= limiteVagas) {
+            statusTexto = "Vaga Imediata";
+            statusCor = "#28a745"; // Verde
         } else {
-            document.getElementById('bloco-resposta').innerHTML = `
-                <button id="btnV" class="btn-acao btn-opt" onclick="validar(true)">🦸‍♂️💪 É UM PROFETA? 💪🦸‍♂️</button>
-                <button class="btn-acao btn-home" onclick="location.reload()">🏠</button>
-                <button id="btnF" class="btn-acao btn-opt" onclick="validar(false)">😈🤦‍♂️ FEZ FOI UM PACTO! 🤦‍♂️😈</button>
-            `;
+            statusTexto = "Cadastro Reserva";
+            statusCor = "#dc3545"; // Vermelho
         }
-    }
 
-    function proximaSimilar() {
-        subIndex++;
-        fasePlataforma();
-    }
+        // --- 2. PREENCHIMENTO DOS CAMPOS ---
+        if (document.getElementById("res-id"))     document.getElementById("res-id").innerText = idInput;
+        if (document.getElementById("res-pontos")) document.getElementById("res-pontos").innerText = data.pontosBase;
+        if (document.getElementById("res-total"))  document.getElementById("res-total").innerText = data.total || "0.0";
+        if (document.getElementById("res-cidade")) document.getElementById("res-cidade").innerText = data.cidade;
+        if (document.getElementById("res-nome"))   document.getElementById("res-nome").innerText = data.nome;
+       if (document.getElementById("res-col")) {
+    document.getElementById("res-col").innerText = data.colocacao + "º";
+}
 
-    function exibirResultadoRegistrado() {
-        const acertou = respostasUsuario[index];
-        const status = document.getElementById('status');
+        if (document.getElementById("res-status")) {
+            const elStatus = document.getElementById("res-status");
+            elStatus.innerText = statusTexto;
+            elStatus.style.color = statusCor;
+            elStatus.style.fontWeight = "bold";
+        }
+
+        // Guarda o valor para a calculadora e para o envio
+        window.pontosBase = Number(data.pontosBase);
         
-        status.innerText = acertou ? "REGISTRO: VOCÊ ACERTOU!" : "REGISTRO: VOCÊ ERROU!";
-        status.style.color = acertou ? "#22c55e" : "#ff0000";
-        status.style.background = "rgba(255, 255, 255, 0.05)";
-        
-        document.getElementById('pergunta').innerText = db[index].prova;
-        document.getElementById('bloco-resposta').innerHTML = `
-            <div style="flex:1; display:flex; align-items:center; justify-content:center; font-weight:900; color:${acertou ? '#22c55e' : '#ff0000'}">
-                CONFERÊNCIA JÁ REALIZADA
-            </div>
-            <button class="btn-acao btn-home" onclick="location.reload()">🏠</button>
-        `;
-        document.getElementById('btn-avancar').style.visibility = 'visible';
+        document.getElementById("result-area").style.display = "block";
+
+    } catch (e) {
+        console.error("Erro:", e);
+        alert("Erro ao buscar dados. Verifique a conexão.");
+    }
+}
+
+function calcularTotal() {
+    const notaProva = parseFloat(document.getElementById('notaProva').value) || 0;
+    const base = window.pontosBase || 0;
+    const resultadoTotal = base + notaProva;
+    
+    const displayTotal = document.getElementById('total-score');
+    if (displayTotal) {
+        displayTotal.innerText = resultadoTotal.toFixed(1);
+    }
+}
+
+async function enviarParaRanking() {
+    const id = document.getElementById("inputId").value;
+    const aba = document.getElementById("abaSelecionada").value; // MUITO IMPORTANTE: Envia a aba para o POST
+    const nota = Number(document.getElementById("notaProva").value);
+    const total = (window.pontosBase || 0) + nota;
+
+    const btn = document.querySelector(".btn-enviar"); 
+    if(btn) {
+        btn.innerText = "Enviando...";
+        btn.disabled = true;
     }
 
-    function validar(escolha) {
-        const eCorreto = (escolha === db[index].correta);
-        respostasUsuario[index] = eCorreto; 
-salvarProgresso();
+    try {
+        // Agora o corpo do POST leva a 'aba', para o Apps Script saber onde gravar!
+        await fetch(URL_SCRIPT, {
+            method: "POST",
+            mode: "no-cors",
+            body: JSON.stringify({ id, nota, total, aba }) 
+        });
 
-        const flash = document.getElementById('flash');
-        if(eCorreto) {
-            flash.classList.add('anim-g');
-            document.getElementById(escolha ? 'btnV' : 'btnF').style.background = "#22c55e";
+        alert("Nota salva com sucesso! O ranking está sendo processado.");
+         
+    } catch (e) {
+        alert("Erro ao salvar nota.");
+        if(btn) {
+            btn.innerText = "Enviar para o Ranking";
+            btn.disabled = false;
+        }
+    }
+}
+
+
+function toggleRanking() {
+    const container = document.getElementById("ranking-frame-container");
+    if (container) {
+        container.style.display = (container.style.display === "none") ? "block" : "none";
+        if (container.style.display === "block") container.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+async function atualizarStatusDinamico() {
+    const notaInput = document.getElementById('notaProva').value;
+    if (!notaInput) return; // Se estiver vazio, não faz nada
+
+    const notaProva = parseFloat(notaInput) || 0;
+    const totalSimulado = (window.pontosBase || 0) + notaProva;
+    const aba = document.getElementById("abaSelecionada").value;
+
+    const elStatus = document.getElementById("res-status");
+    const elCol = document.getElementById("res-col");
+
+    try {
+        // Consulta ao servidor qual seria a posição com esse novo total
+        const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
+        const data = await res.json();
+        const novaPosicao = data.posicao;
+
+        // Atualiza a colocação na tela com o "º"
+        if (elCol) elCol.innerText = novaPosicao + "º";
+
+        // --- TUA LÓGICA DE LIMITES DE VAGAS ---
+        let limiteVagas = 0;
+        if (aba === "F-Ampla") limiteVagas = 510;
+        else if (aba === "F-Cotas") limiteVagas = 136;
+        else if (aba === "F-PCD")   limiteVagas = 34;
+        else if (aba === "S-Ampla") limiteVagas = 107;
+        else if (aba === "S-Cotas") limiteVagas = 28;
+        else if (aba === "S-PCD")   limiteVagas = 7;
+        else if (aba === "J-Ampla") limiteVagas = 107;
+        else if (aba === "J-Cotas") limiteVagas = 28;
+        else if (aba === "J-PCD")   limiteVagas = 7;
+
+        // Aplica o Verde ou Vermelho baseado na simulação
+        if (novaPosicao <= limiteVagas) {
+            elStatus.innerText = "Vaga Imediata";
+            elStatus.style.color = "#28a745"; // Verde
         } else {
-            flash.classList.add('anim-r');
-            document.getElementById(escolha ? 'btnV' : 'btnF').style.background = "#ff0000";
+            elStatus.innerText = "Cadastro Reserva";
+            elStatus.style.color = "#dc3545"; // Vermelho
         }
 
-        setTimeout(() => { 
-            flash.classList.remove('anim-g', 'anim-r'); 
-            avancar(); 
-        }, 1200);
+    } catch (e) {
+        console.error("Erro na simulação:", e);
     }
-
-    function avancar() {
-        if(index < db.length - 1) {
-            index++;
-salvarProgresso();
-            carregarQuestao();
-        } else {
-            alert("Fim da acareação!");
-        }
-    }
-
-    function voltar() {
-        if(index > 0) {
-            index--;
-salvarProgresso();
-            carregarQuestao();
-        }
-    }
-function salvarProgresso() {
-        localStorage.setItem('acareacao_index', index);
-        localStorage.setItem('acareacao_respostas', JSON.stringify(respostasUsuario));
-    }
-
-    // Opcional: Função para você resetar tudo quando quiser começar do zero absoluto
-    function resetarTudo() {
-        if(confirm("Deseja apagar todo o histórico e começar da questão 1?")) {
-            localStorage.clear();
-            location.reload();
-        }
-    }
-
+}
 </script>
 </body>
 </html>
