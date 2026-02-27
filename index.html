@@ -182,18 +182,30 @@ function calcularTotal() {
 
 async function enviarParaRanking() {
     const id = document.getElementById("inputId").value;
-    const aba = document.getElementById("abaSelecionada").value; // MUITO IMPORTANTE: Envia a aba para o POST
-    const nota = Number(document.getElementById("notaProva").value);
+    const aba = document.getElementById("abaSelecionada").value;
+    const notaInput = document.getElementById("notaProva").value;
+    const nota = Number(notaInput);
+    
+    // --- TRAVA DE SEGURANÇA CONTRA ENGRAÇADINHOS ---
+    if (nota > 100) {
+        alert("Tive tanto trabalho pra criar esta lista, por favor, colabore. Todos estamos no mesmo barco.");
+        document.getElementById("notaProva").value = ""; // Limpa a nota abusiva
+        calcularTotal(); // Zera o total visual
+        return; // Mata a função aqui, não envia nada pro servidor
+    }
+    // ----------------------------------------------
+
     const total = (window.pontosBase || 0) + nota;
 
-    const btn = document.querySelector(".btn-enviar"); 
+    // Seleciona o botão de salvar (ajustado para o seletor correto do seu HTML)
+    const btn = document.querySelector("button[onclick='enviarParaRanking()']"); 
+    
     if(btn) {
         btn.innerText = "Enviando...";
         btn.disabled = true;
     }
 
     try {
-        // Agora o corpo do POST leva a 'aba', para o Apps Script saber onde gravar!
         await fetch(URL_SCRIPT, {
             method: "POST",
             mode: "no-cors",
@@ -201,16 +213,19 @@ async function enviarParaRanking() {
         });
 
         alert("Nota salva com sucesso! O ranking está sendo processado.");
+        if(btn) {
+            btn.innerText = "SALVAR RANKING";
+            btn.disabled = false;
+        }
          
     } catch (e) {
         alert("Erro ao salvar nota.");
         if(btn) {
-            btn.innerText = "Enviar para o Ranking";
+            btn.innerText = "SALVAR RANKING";
             btn.disabled = false;
         }
     }
 }
-
 
 function toggleRanking() {
     const container = document.getElementById("ranking-frame-container");
