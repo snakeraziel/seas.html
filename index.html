@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Ranking Dinâmico - Kallel</title>
-    <style>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> 
+ <style>
+/* Efeito para quem está nas Vagas Imediatas */
+.status-vaga {
+    border: 2px solid #ccff00 !important;
+    box-shadow: 0 0 25px rgba(204, 255, 0, 0.3);
+    background: linear-gradient(145deg, #1e293b, #020617);
+}
+
+/* Efeito para quem está no CR */
+.status-cr {
+    border: 2px solid #94a3b8 !important;
+    box-shadow: 0 0 15px rgba(148, 163, 184, 0.2);
+}
+
+.medalha { font-size: 1.4rem; vertical-align: middle; margin-right: 8px; }
+
+
         :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
         body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
         .app-container { width: 100%; max-width: 600px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b; }
@@ -20,6 +37,9 @@
     </style>
 </head>
 <body>
+<audio id="somAplausos" src="https://www.soundjay.com/human/sounds/applause-01.mp3" preload="auto"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 <div class="app-container">
     <h2>SISTEMA AUTOMÁTICO DE RANKING</h2>
@@ -237,7 +257,7 @@ function toggleRanking() {
 
 async function atualizarStatusDinamico() {
     const notaInput = document.getElementById('notaProva').value;
-    if (!notaInput) return; // Se estiver vazio, não faz nada
+    if (!notaInput) return; 
 
     const notaProva = parseFloat(notaInput) || 0;
     const totalSimulado = (window.pontosBase || 0) + notaProva;
@@ -245,17 +265,17 @@ async function atualizarStatusDinamico() {
 
     const elStatus = document.getElementById("res-status");
     const elCol = document.getElementById("res-col");
+    const elNome = document.getElementById("res-nome");
+    const card = document.getElementById("result-area");
 
     try {
-        // Consulta ao servidor qual seria a posição com esse novo total
         const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
         const data = await res.json();
         const novaPosicao = data.posicao;
 
-        // Atualiza a colocação na tela com o "º"
         if (elCol) elCol.innerText = novaPosicao + "º";
 
-        // --- TUA LÓGICA DE LIMITES DE VAGAS ---
+        // --- LIMITES DE VAGAS ---
         let limiteVagas = 0;
         if (aba === "F-Ampla") limiteVagas = 510;
         else if (aba === "F-Cotas") limiteVagas = 136;
@@ -267,18 +287,168 @@ async function atualizarStatusDinamico() {
         else if (aba === "J-Cotas") limiteVagas = 28;
         else if (aba === "J-PCD")   limiteVagas = 7;
 
-        // Aplica o Verde ou Vermelho baseado na simulação
+        // Limpa o nome para não acumular medalhas a cada digitação
+        const nomeLimpo = data.nome || elNome.innerText.replace(/🥇|🥈/g, "").trim();
+
         if (novaPosicao <= limiteVagas) {
+            // --- VAGA IMEDIATA: OURO + FESTA ---
             elStatus.innerText = "Vaga Imediata";
-            elStatus.style.color = "#28a745"; // Verde
+            elStatus.style.color = "#ccff00"; // Verde Neon
+            elNome.innerHTML = '🥇 ' + nomeLimpo;
+            card.style.borderLeft = "5px solid #ccff00";
+            card.style.boxShadow = "0 0 20px rgba(204, 255, 0, 0.2)";
+            
+            // Dispara a festa (confetes e fogos)
+            if (typeof lancarFesta === "function") lancarFesta(); 
+
         } else {
+            // --- CR: PRATA ---
             elStatus.innerText = "Cadastro Reserva";
-            elStatus.style.color = "#dc3545"; // Vermelho
+            elStatus.style.color = "#94a3b8"; // Prata
+            elNome.innerHTML = '🥈 ' + nomeLimpo;
+            card.style.borderLeft = "5px solid #94a3b8";
+            card.style.boxShadow = "none";
         }
 
     } catch (e) {
         console.error("Erro na simulação:", e);
     }
+}
+
+// Função auxiliar para o efeito de fogos/confete
+function lancarFesta() {
+    if (typeof confetti === "undefined") return;
+    
+    var end = Date.now() + (3 * 1000);
+    var colors = ['#ccff00', '#22c55e', '#ffffff'];
+
+    (function frame() {
+      confetti({
+        particleCount: 3,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 },
+        colors: colors
+      });
+      confetti({
+        particleCount: 3,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 },
+        colors: colors
+      });
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
+}
+
+async function atualizarStatusDinamico() {
+    const notaInput = document.getElementById('notaProva').value;
+    if (!notaInput) return; 
+
+    const notaProva = parseFloat(notaInput) || 0;
+    const totalSimulado = (window.pontosBase || 0) + notaProva;
+    const aba = document.getElementById("abaSelecionada").value;
+
+    const elStatus = document.getElementById("res-status");
+    const elCol = document.getElementById("res-col");
+    const elNome = document.getElementById("res-nome");
+    const card = document.getElementById("result-area");
+
+    try {
+        const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
+        const data = await res.json();
+        const novaPosicao = data.posicao;
+
+        if (elCol) elCol.innerText = novaPosicao + "º";
+
+        let limiteVagas = 0;
+        if (aba === "F-Ampla") limiteVagas = 510;
+        else if (aba === "F-Cotas") limiteVagas = 136;
+        else if (aba === "F-PCD")   limiteVagas = 34;
+        else if (aba === "S-Ampla") limiteVagas = 107;
+        else if (aba === "S-Cotas") limiteVagas = 28;
+        else if (aba === "S-PCD")   limiteVagas = 7;
+        else if (aba === "J-Ampla") limiteVagas = 107;
+        else if (aba === "J-Cotas") limiteVagas = 28;
+        else if (aba === "J-PCD")   limiteVagas = 7;
+
+        // Limpa medalhas anteriores para não duplicar
+        const nomeLimpo = data.nome || elNome.innerText.replace(/🥇|🥈/g, "").trim();
+
+        if (novaPosicao <= limiteVagas) {
+            // --- ESTADO DE VITÓRIA (Vaga Imediata) ---
+            elStatus.innerText = "Vaga Imediata";
+            elStatus.style.color = "#ccff00"; 
+            elNome.innerHTML = '🥇 ' + nomeLimpo;
+            card.style.borderLeft = "5px solid #ccff00";
+            card.style.boxShadow = "0 0 30px rgba(204, 255, 0, 0.4)";
+
+            // DISPARA A GLÓRIA (Sempre que simular e estiver nas vagas)
+            lancarFesta();
+
+        } else {
+            // --- ESTADO DE ESPERA (Cadastro Reserva) ---
+            elStatus.innerText = "Cadastro Reserva";
+            elStatus.style.color = "#94a3b8";
+            elNome.innerHTML = '🥈 ' + nomeLimpo;
+            card.style.borderLeft = "5px solid #94a3b8";
+            card.style.boxShadow = "none";
+        }
+
+    } catch (e) {
+        console.error("Erro na simulação:", e);
+    }
+}
+
+function lancarFesta() {
+    if (typeof confetti === "undefined") return;
+
+    // 1. Áudio de Aplausos
+    const som = document.getElementById("somAplausos");
+    if (som) {
+        som.currentTime = 0; 
+        som.play().catch(() => {}); // Ignora erro se o browser bloquear
+    }
+
+    // 2. FOGOS DE ARTIFÍCIO (Explosões aleatórias potentes)
+    const duration = 4 * 1000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+      // Lança confetes de baixo (canhão lateral)
+      confetti({
+        particleCount: 7,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.7 },
+        colors: ['#ccff00', '#FFD700', '#ffffff']
+      });
+      confetti({
+        particleCount: 7,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.7 },
+        colors: ['#ccff00', '#FFD700', '#ffffff']
+      });
+
+      // Lança "Fogos" no meio da tela aleatoriamente
+      if (Math.random() > 0.7) {
+        confetti({
+          particleCount: 30,
+          startVelocity: 30,
+          spread: 360,
+          origin: { x: Math.random(), y: Math.random() - 0.2 },
+          colors: ['#ccff00', '#ffffff', '#FFD700']
+        });
+      }
+
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
 }
 </script>
 </body>
