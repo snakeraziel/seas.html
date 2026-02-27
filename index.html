@@ -37,7 +37,7 @@
     </style>
 </head>
 <body>
-<audio id="somAplausos" src="https://www.soundjay.com/human/sounds/applause-01.mp3" preload="auto"></audio>
+<audio id="somAplausos" src="https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Som%20de%20plateia%20gritos%20aplausos%20assobio.MP3" preload="auto"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
@@ -406,42 +406,42 @@ async function atualizarStatusDinamico() {
 function lancarFesta() {
     if (typeof confetti === "undefined") return;
 
-    // 1. Áudio de Aplausos
+    // 1. Áudio de Aplausos (O foco agora é o som!)
     const som = document.getElementById("somAplausos");
     if (som) {
-        som.currentTime = 0; 
-        som.play().catch(() => {}); // Ignora erro se o browser bloquear
+        som.volume = 0.4;
+        som.play().catch(() => {}); 
     }
 
-    // 2. FOGOS DE ARTIFÍCIO (Explosões aleatórias potentes)
-    const duration = 4 * 1000;
-    const end = Date.now() + duration;
+    // 2. Chuva de Confetes Modesta (Otimizada para Celular)
+    var duration = 3 * 1000; // Reduzi para 3 segundos
+    var end = Date.now() + duration;
 
     (function frame() {
-      // Lança confetes de baixo (canhão lateral)
+      // Apenas dois canhões laterais com poucas partículas
       confetti({
-        particleCount: 7,
+        particleCount: 2, // Pouquíssimas partículas por frame
         angle: 60,
-        spread: 55,
-        origin: { x: 0, y: 0.7 },
-        colors: ['#ccff00', '#FFD700', '#ffffff']
+        spread: 45,
+        origin: { x: 0, y: 0.8 },
+        colors: ['#ccff00', '#ffffff']
       });
       confetti({
-        particleCount: 7,
+        particleCount: 2,
         angle: 120,
-        spread: 55,
-        origin: { x: 1, y: 0.7 },
-        colors: ['#ccff00', '#FFD700', '#ffffff']
+        spread: 45,
+        origin: { x: 1, y: 0.8 },
+        colors: ['#ccff00', '#ffffff']
       });
 
-      // Lança "Fogos" no meio da tela aleatoriamente
-      if (Math.random() > 0.7) {
+      // Lança uma "explosão" pequena e central só de vez em quando
+      if (Math.random() > 0.9) {
         confetti({
-          particleCount: 30,
-          startVelocity: 30,
+          particleCount: 15,
+          startVelocity: 25,
           spread: 360,
-          origin: { x: Math.random(), y: Math.random() - 0.2 },
-          colors: ['#ccff00', '#ffffff', '#FFD700']
+          origin: { x: 0.5, y: 0.3 },
+          colors: ['#ccff00', '#FFD700']
         });
       }
 
