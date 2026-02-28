@@ -3,43 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Ranking Dinâmico - Kallel</title>
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> 
- <style>
-/* Efeito para quem está nas Vagas Imediatas */
-.status-vaga {
-    border: 2px solid #ccff00 !important;
-    box-shadow: 0 0 25px rgba(204, 255, 0, 0.3);
-    background: linear-gradient(145deg, #1e293b, #020617);
-}
-
-/* Efeito para quem está no CR */
-.status-cr {
-    border: 2px solid #94a3b8 !important;
-    box-shadow: 0 0 15px rgba(148, 163, 184, 0.2);
-}
-
-.medalha { font-size: 1.4rem; vertical-align: middle; margin-right: 8px; }
-
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> 
+    <style>
         :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
         body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+        
         .app-container { width: 100%; max-width: 600px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b; }
         h2 { color: var(--accent); text-align: center; letter-spacing: 1px; }
-        .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        
+ .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
         input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #020617; color: #fff; outline: none; }
         button { padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
         button:hover { opacity: 0.8; transform: translateY(-2px); }
-        .result-card { background: #1e293b; padding: 20px; border-radius: 12px; margin-top: 20px; display: none; border-left: 5px solid var(--accent); }
+        
+        .result-card { background: #1e293b; padding: 20px; border-radius: 12px; margin-top: 20px; display: none; border-left: 5px solid var(--accent); transition: 0.3s; }
+        
+        /* Estados do Card */
+        .status-vaga { border-left: 5px solid #ccff00 !important; box-shadow: 0 0 25px rgba(204, 255, 0, 0.2); }
+        .status-cr { border-left: 5px solid #94a3b8 !important; box-shadow: none; }
+        
         .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
         .label { color: #94a3b8; font-size: 0.9rem; }
+        .medalha { font-size: 1.4rem; vertical-align: middle; margin-right: 8px; }
+        
         .input-nota { margin-top: 20px; padding: 15px; background: rgba(204, 255, 0, 0.05); border-radius: 8px; border: 1px dashed var(--accent); }
         #total-score { font-size: 1.5rem; color: var(--accent); font-weight: 800; text-align: center; display: block; margin-top: 10px; }
+
+        /* Estilo do Vídeo */
+        .frase-posse { font-size: 1.2rem; font-weight: bold; color: #ccff00; cursor: pointer; text-shadow: 0 0 10px rgba(204, 255, 0, 0.5); transition: 0.3s; margin-top: 20px; text-align: center; }
+        .frase-posse:hover { transform: scale(1.05); }
+        .play-icon { color: #ccff00; font-size: 1.5rem; margin-left: 8px; vertical-align: middle; }
+        
+        .btn-fechar { margin-top: 10px; background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; }
+        
+        .btn-ranking { width: 100%; margin-top: 20px; background: #1e293b; color: var(--accent); border: 1px solid var(--accent); }
     </style>
 </head>
 <body>
-<audio id="somAplausos" src="https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Som%20de%20plateia%20gritos%20aplausos%20assobio.MP3" preload="auto"></audio>
 
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+<audio id="somAplausos" src="https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Som%20de%20plateia%20gritos%20aplausos%20assobio.MP3" preload="auto"></audio>
 
 <div class="app-container">
     <h2>SISTEMA AUTOMÁTICO DE RANKING</h2>
@@ -59,396 +61,167 @@
   <option value="J-Cotas">Juazeiro - Cotas</option>
   <option value="J-PCD">Juazeiro - PCD</option>
 </select>
+    </div>
 
-</div>
-
+    <div style="text-align: center;">
+        <p class="frase-posse" onclick="abrirVideo()">
+            "Só clique aqui se você acredita e toma posse" <span class="play-icon">▶</span>
+        </p>
+        <div id="videoWrapper" style="display: none; margin-top: 15px; background: #000; border-radius: 10px; padding: 10px;">
+            <video id="meuVideo" width="100%" controls playsinline>
+                <source src="https://raw.githubusercontent.com/snakeraziel/media/main/seas.mp4" type="video/mp4">
+            </video>
+            <button onclick="fecharVideo()" class="btn-fechar">FECHAR VÍDEO</button>
+        </div>
+    </div>
 
     <div id="result-area" class="result-card">
         <div class="data-row"><span class="label">Nome:</span> <span id="res-nome"></span></div>
-        <div class="data-row"><span class="label">Cidade:</span> <span id="res-cidade"></span></div>
         <div class="data-row"><span class="label">Status:</span> <span id="res-status"></span></div>
         <div class="data-row"><span class="label">Colocação Atual:</span> <span id="res-col"></span></div>
         <div class="data-row"><span class="label">Pontos Base:</span> <span id="res-pontos"></span></div>
 
         <div class="input-nota">
-    <label class="label">INSIRA SUA NOTA DA PROVA (0 a 100):</label>
-    <input type="number" id="notaProva" placeholder="Ex: 95" oninput="calcularTotal(); atualizarStatusDinamico()">
-</div>
-            <small style="display:block; margin-top:5px; color:#94a3b8">Soma automática com pontos base</small>
+            <label class="label">INSIRA SUA NOTA DA PROVA (0 a 100):</label>
+            <input type="number" id="notaProva" placeholder="Ex: 95" oninput="calcularTotal(); atualizarStatusDinamico()">
             <span id="total-score">0.0</span>
-            <button style="width:100%; margin-top:15px; background:#22c55e; color:#fff" onclick="enviarParaRanking()">SALVAR RANKING</button>
-<div class="ranking-section">
-  <button onclick="toggleRanking()" class="btn-ranking">
-       📊 Ranking em Tempo Real 📊 
-    </button>
-</div>  
+        </div>
+        
+        <button style="width:100%; margin-top:15px; background:#22c55e; color:#fff" onclick="enviarParaRanking()">SALVAR NO RANKING</button>
+        
+        <button onclick="toggleRanking()" class="btn-ranking">📊 Ver Ranking Completo</button>
 
-    <div id="ranking-frame-container" style="display: none; margin-top: 20px;">
-        <iframe 
-            src="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?usp=sharing" 
-            style="width: 100%; height: 600px; border: 2px solid #28a745; border-radius: 10px;">
-        </iframe>
-        <p><a href="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?gid=304199799" target="_blank">Abrir em ecrã inteiro ↗</a></p>
-    </div>
-</div>        
-</div>
+        <div id="ranking-frame-container" style="display: none; margin-top: 20px;">
+            <iframe src="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?usp=sharing" style="width: 100%; height: 400px; border-radius: 10px; border: 1px solid var(--accent);"></iframe>
+        </div>
     </div>
 </div>
-
-
 
 <script>
-    const db = [
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ];
-
-let pontosBase = 0; // Global para a calculadora usar
-
 const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzzU22cOxkUEg-ResEzSTFJeDITInL5sO3ojZP0xSK7-oNJ3gCiLzsyX3BwsDMhozS56Q/exec"; 
 
 async function buscarCandidato() {
     const idInput = document.getElementById("inputId").value;
-    const aba = document.getElementById("abaSelecionada").value; // Pega a lista (F-Ampla, etc)
+    const aba = document.getElementById("abaSelecionada").value;
 
     try {
         const res = await fetch(URL_SCRIPT + "?id=" + idInput + "&aba=" + aba);
         const data = await res.json();
 
         if (data.error) {
-            alert("ID não encontrado nesta lista específica.");
+            alert("ID não encontrado nesta lista.");
             return;
         }
 
-        // --- 1. LÓGICA DO STATUS DINÂMICO ---
-        const posicaoNumerica = parseInt(String(data.colocacao).replace(/\D/g, ""));
-        let limiteVagas = 0;
-
-        if (aba === "F-Ampla") limiteVagas = 510;
-        else if (aba === "F-Cotas") limiteVagas = 136;
-        else if (aba === "F-PCD")   limiteVagas = 34;
-        else if (aba === "S-Ampla") limiteVagas = 107;
-        else if (aba === "S-Cotas") limiteVagas = 28;
-        else if (aba === "S-PCD")   limiteVagas = 7;
-        else if (aba === "J-Ampla") limiteVagas = 107;
-        else if (aba === "J-Cotas") limiteVagas = 28;
-        else if (aba === "J-PCD")   limiteVagas = 7;
-
-        let statusTexto = "";
-        let statusCor = "";
-
-        if (posicaoNumerica <= limiteVagas) {
-            statusTexto = "Vaga Imediata";
-            statusCor = "#28a745"; // Verde
-        } else {
-            statusTexto = "Cadastro Reserva";
-            statusCor = "#dc3545"; // Vermelho
-        }
-
-        // --- 2. PREENCHIMENTO DOS CAMPOS ---
-        if (document.getElementById("res-id"))     document.getElementById("res-id").innerText = idInput;
-        if (document.getElementById("res-pontos")) document.getElementById("res-pontos").innerText = data.pontosBase;
-        if (document.getElementById("res-total"))  document.getElementById("res-total").innerText = data.total || "0.0";
-        if (document.getElementById("res-cidade")) document.getElementById("res-cidade").innerText = data.cidade;
-        if (document.getElementById("res-nome"))   document.getElementById("res-nome").innerText = data.nome;
-       if (document.getElementById("res-col")) {
-    document.getElementById("res-col").innerText = data.colocacao + "º";
-}
-
-        if (document.getElementById("res-status")) {
-            const elStatus = document.getElementById("res-status");
-            elStatus.innerText = statusTexto;
-            elStatus.style.color = statusCor;
-            elStatus.style.fontWeight = "bold";
-        }
-
-        // Guarda o valor para a calculadora e para o envio
+        document.getElementById("res-nome").innerText = data.nome;
+        document.getElementById("res-pontos").innerText = data.pontosBase;
+        document.getElementById("res-col").innerText = data.colocacao + "º";
         window.pontosBase = Number(data.pontosBase);
         
         document.getElementById("result-area").style.display = "block";
+        atualizarStatusDinamico(); // Já valida o status inicial
 
     } catch (e) {
-        console.error("Erro:", e);
-        alert("Erro ao buscar dados. Verifique a conexão.");
+        alert("Erro ao buscar dados.");
     }
 }
 
 function calcularTotal() {
-    const notaProva = parseFloat(document.getElementById('notaProva').value) || 0;
-    const base = window.pontosBase || 0;
-    const resultadoTotal = base + notaProva;
-    
-    const displayTotal = document.getElementById('total-score');
-    if (displayTotal) {
-        displayTotal.innerText = resultadoTotal.toFixed(1);
-    }
+    const nota = parseFloat(document.getElementById('notaProva').value) || 0;
+    const total = (window.pontosBase || 0) + nota;
+    document.getElementById('total-score').innerText = total.toFixed(1);
+}
+
+async function atualizarStatusDinamico() {
+    const notaInput = document.getElementById('notaProva').value;
+    const notaProva = parseFloat(notaInput) || 0;
+    const totalSimulado = (window.pontosBase || 0) + notaProva;
+    const aba = document.getElementById("abaSelecionada").value;
+
+    const elStatus = document.getElementById("res-status");
+    const elCol = document.getElementById("res-col");
+    const elNome = document.getElementById("res-nome");
+    const card = document.getElementById("result-area");
+
+    try {
+        const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
+        const data = await res.json();
+        const novaPosicao = data.posicao;
+
+        if (elCol) elCol.innerText = novaPosicao + "º";
+
+        let limiteVagas = { "F-Ampla": 510, "F-Cotas": 136, "F-PCD": 34, "S-Ampla": 107, "S-Cotas": 28, "S-PCD": 7, "J-Ampla": 107, "J-Cotas": 28, "J-PCD": 7 }[aba];
+
+        const nomeLimpo = data.nome || elNome.innerText.replace(/🥇|🥈/g, "").trim();
+
+        if (novaPosicao <= limiteVagas) {
+            elStatus.innerText = "Vaga Imediata";
+            elStatus.style.color = "#ccff00"; 
+            elNome.innerHTML = '🥇 ' + nomeLimpo;
+            card.className = "result-card status-vaga";
+            card.style.display = "block";
+            if(notaInput) lancarFesta();
+        } else {
+            elStatus.innerText = "Cadastro Reserva";
+            elStatus.style.color = "#94a3b8";
+            elNome.innerHTML = '🥈 ' + nomeLimpo;
+            card.className = "result-card status-cr";
+            card.style.display = "block";
+        }
+    } catch (e) { console.error(e); }
+}
+
+function lancarFesta() {
+    const som = document.getElementById("somAplausos");
+    if (som) { som.volume = 0.4; som.play().catch(() => {}); }
+
+    var duration = 3 * 1000;
+    var end = Date.now() + duration;
+
+    (function frame() {
+      confetti({ particleCount: 2, angle: 60, spread: 45, origin: { x: 0, y: 0.8 }, colors: ['#ccff00', '#ffffff'] });
+      confetti({ particleCount: 2, angle: 120, spread: 45, origin: { x: 1, y: 0.8 }, colors: ['#ccff00', '#ffffff'] });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    }());
 }
 
 async function enviarParaRanking() {
     const id = document.getElementById("inputId").value;
     const aba = document.getElementById("abaSelecionada").value;
-    const notaInput = document.getElementById("notaProva").value;
-    const nota = Number(notaInput);
+    const nota = Number(document.getElementById("notaProva").value);
     
-    // --- TRAVA DE SEGURANÇA CONTRA ENGRAÇADINHOS ---
-    if (nota > 100) {
-        alert("Tive tanto trabalho pra criar esta lista, por favor, colabore. Todos estamos no mesmo barco.");
-        document.getElementById("notaProva").value = ""; // Limpa a nota abusiva
-        calcularTotal(); // Zera o total visual
-        return; // Mata a função aqui, não envia nada pro servidor
-    }
-    // ----------------------------------------------
+    if (nota > 100) { alert("Nota inválida."); return; }
 
     const total = (window.pontosBase || 0) + nota;
-
-    // Seleciona o botão de salvar (ajustado para o seletor correto do seu HTML)
     const btn = document.querySelector("button[onclick='enviarParaRanking()']"); 
-    
-    if(btn) {
-        btn.innerText = "Enviando...";
-        btn.disabled = true;
-    }
+    btn.disabled = true; btn.innerText = "Enviando...";
 
     try {
-        await fetch(URL_SCRIPT, {
-            method: "POST",
-            mode: "no-cors",
-            body: JSON.stringify({ id, nota, total, aba }) 
-        });
-
-        alert("Nota salva com sucesso! O ranking está sendo processado.");
-        if(btn) {
-            btn.innerText = "SALVAR RANKING";
-            btn.disabled = false;
-        }
-         
-    } catch (e) {
-        alert("Erro ao salvar nota.");
-        if(btn) {
-            btn.innerText = "SALVAR RANKING";
-            btn.disabled = false;
-        }
-    }
+        await fetch(URL_SCRIPT, { method: "POST", mode: "no-cors", body: JSON.stringify({ id, nota, total, aba }) });
+        alert("Nota salva com sucesso!");
+    } catch (e) { alert("Erro ao salvar."); }
+    btn.disabled = false; btn.innerText = "SALVAR NO RANKING";
 }
 
 function toggleRanking() {
     const container = document.getElementById("ranking-frame-container");
-    if (container) {
-        container.style.display = (container.style.display === "none") ? "block" : "none";
-        if (container.style.display === "block") container.scrollIntoView({ behavior: 'smooth' });
-    }
+    container.style.display = (container.style.display === "none") ? "block" : "none";
 }
 
-async function atualizarStatusDinamico() {
-    const notaInput = document.getElementById('notaProva').value;
-    if (!notaInput) return; 
-
-    const notaProva = parseFloat(notaInput) || 0;
-    const totalSimulado = (window.pontosBase || 0) + notaProva;
-    const aba = document.getElementById("abaSelecionada").value;
-
-    const elStatus = document.getElementById("res-status");
-    const elCol = document.getElementById("res-col");
-    const elNome = document.getElementById("res-nome");
-    const card = document.getElementById("result-area");
-
-    try {
-        const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
-        const data = await res.json();
-        const novaPosicao = data.posicao;
-
-        if (elCol) elCol.innerText = novaPosicao + "º";
-
-        // --- LIMITES DE VAGAS ---
-        let limiteVagas = 0;
-        if (aba === "F-Ampla") limiteVagas = 510;
-        else if (aba === "F-Cotas") limiteVagas = 136;
-        else if (aba === "F-PCD")   limiteVagas = 34;
-        else if (aba === "S-Ampla") limiteVagas = 107;
-        else if (aba === "S-Cotas") limiteVagas = 28;
-        else if (aba === "S-PCD")   limiteVagas = 7;
-        else if (aba === "J-Ampla") limiteVagas = 107;
-        else if (aba === "J-Cotas") limiteVagas = 28;
-        else if (aba === "J-PCD")   limiteVagas = 7;
-
-        // Limpa o nome para não acumular medalhas a cada digitação
-        const nomeLimpo = data.nome || elNome.innerText.replace(/🥇|🥈/g, "").trim();
-
-        if (novaPosicao <= limiteVagas) {
-            // --- VAGA IMEDIATA: OURO + FESTA ---
-            elStatus.innerText = "Vaga Imediata";
-            elStatus.style.color = "#ccff00"; // Verde Neon
-            elNome.innerHTML = '🥇 ' + nomeLimpo;
-            card.style.borderLeft = "5px solid #ccff00";
-            card.style.boxShadow = "0 0 20px rgba(204, 255, 0, 0.2)";
-            
-            // Dispara a festa (confetes e fogos)
-            if (typeof lancarFesta === "function") lancarFesta(); 
-
-        } else {
-            // --- CR: PRATA ---
-            elStatus.innerText = "Cadastro Reserva";
-            elStatus.style.color = "#94a3b8"; // Prata
-            elNome.innerHTML = '🥈 ' + nomeLimpo;
-            card.style.borderLeft = "5px solid #94a3b8";
-            card.style.boxShadow = "none";
-        }
-
-    } catch (e) {
-        console.error("Erro na simulação:", e);
-    }
+function abrirVideo() {
+    const wrapper = document.getElementById("videoWrapper");
+    const video = document.getElementById("meuVideo");
+    wrapper.style.display = "block";
+    video.play();
+/*    if (video.requestFullscreen) video.requestFullscreen();
+    else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); */
 }
 
-// Função auxiliar para o efeito de fogos/confete
-function lancarFesta() {
-    if (typeof confetti === "undefined") return;
-    
-    var end = Date.now() + (3 * 1000);
-    var colors = ['#ccff00', '#22c55e', '#ffffff'];
-
-    (function frame() {
-      confetti({
-        particleCount: 3,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 },
-        colors: colors
-      });
-      confetti({
-        particleCount: 3,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 },
-        colors: colors
-      });
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    }());
-}
-
-async function atualizarStatusDinamico() {
-    const notaInput = document.getElementById('notaProva').value;
-    if (!notaInput) return; 
-
-    const notaProva = parseFloat(notaInput) || 0;
-    const totalSimulado = (window.pontosBase || 0) + notaProva;
-    const aba = document.getElementById("abaSelecionada").value;
-
-    const elStatus = document.getElementById("res-status");
-    const elCol = document.getElementById("res-col");
-    const elNome = document.getElementById("res-nome");
-    const card = document.getElementById("result-area");
-
-    try {
-        const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
-        const data = await res.json();
-        const novaPosicao = data.posicao;
-
-        if (elCol) elCol.innerText = novaPosicao + "º";
-
-        let limiteVagas = 0;
-        if (aba === "F-Ampla") limiteVagas = 510;
-        else if (aba === "F-Cotas") limiteVagas = 136;
-        else if (aba === "F-PCD")   limiteVagas = 34;
-        else if (aba === "S-Ampla") limiteVagas = 107;
-        else if (aba === "S-Cotas") limiteVagas = 28;
-        else if (aba === "S-PCD")   limiteVagas = 7;
-        else if (aba === "J-Ampla") limiteVagas = 107;
-        else if (aba === "J-Cotas") limiteVagas = 28;
-        else if (aba === "J-PCD")   limiteVagas = 7;
-
-        // Limpa medalhas anteriores para não duplicar
-        const nomeLimpo = data.nome || elNome.innerText.replace(/🥇|🥈/g, "").trim();
-
-        if (novaPosicao <= limiteVagas) {
-            // --- ESTADO DE VITÓRIA (Vaga Imediata) ---
-            elStatus.innerText = "Vaga Imediata";
-            elStatus.style.color = "#ccff00"; 
-            elNome.innerHTML = '🥇 ' + nomeLimpo;
-            card.style.borderLeft = "5px solid #ccff00";
-            card.style.boxShadow = "0 0 30px rgba(204, 255, 0, 0.4)";
-
-            // DISPARA A GLÓRIA (Sempre que simular e estiver nas vagas)
-            lancarFesta();
-
-        } else {
-            // --- ESTADO DE ESPERA (Cadastro Reserva) ---
-            elStatus.innerText = "Cadastro Reserva";
-            elStatus.style.color = "#94a3b8";
-            elNome.innerHTML = '🥈 ' + nomeLimpo;
-            card.style.borderLeft = "5px solid #94a3b8";
-            card.style.boxShadow = "none";
-        }
-
-    } catch (e) {
-        console.error("Erro na simulação:", e);
-    }
-}
-
-function lancarFesta() {
-    if (typeof confetti === "undefined") return;
-
-    // 1. Áudio de Aplausos (O foco agora é o som!)
-    const som = document.getElementById("somAplausos");
-    if (som) {
-        som.volume = 0.4;
-        som.play().catch(() => {}); 
-    }
-
-    // 2. Chuva de Confetes Modesta (Otimizada para Celular)
-    var duration = 3 * 1000; // Reduzi para 3 segundos
-    var end = Date.now() + duration;
-
-    (function frame() {
-      // Apenas dois canhões laterais com poucas partículas
-      confetti({
-        particleCount: 2, // Pouquíssimas partículas por frame
-        angle: 60,
-        spread: 45,
-        origin: { x: 0, y: 0.8 },
-        colors: ['#ccff00', '#ffffff']
-      });
-      confetti({
-        particleCount: 2,
-        angle: 120,
-        spread: 45,
-        origin: { x: 1, y: 0.8 },
-        colors: ['#ccff00', '#ffffff']
-      });
-
-      // Lança uma "explosão" pequena e central só de vez em quando
-      if (Math.random() > 0.9) {
-        confetti({
-          particleCount: 15,
-          startVelocity: 25,
-          spread: 360,
-          origin: { x: 0.5, y: 0.3 },
-          colors: ['#ccff00', '#FFD700']
-        });
-      }
-
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
-    }());
+function fecharVideo() {
+    const wrapper = document.getElementById("videoWrapper");
+    const video = document.getElementById("meuVideo");
+    video.pause();
+    wrapper.style.display = "none";
 }
 </script>
 </body>
