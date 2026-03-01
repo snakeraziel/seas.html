@@ -50,7 +50,7 @@
 }
 
 /* EMOJIS E ANIMAÇÕES */
-.emoji-rain span { position: absolute; font-size: 2.5rem; animation: fall 4s linear infinite; top: -15%; z-index: 50; opacity: 0.6; }
+.emoji-rain span { position: absolute; font-size: 4.5rem; animation: fall 4s linear infinite; top: -15%; z-index: 50; opacity: 0.6; }
 @keyframes fall { to{top:110%;} }
 
 .up-emoji { position: absolute; bottom: -100px; font-size: 3.5rem; animation: riseUp 4s ease-out forwards; z-index: 60; }
@@ -95,7 +95,7 @@
         :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
         body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
         
-        .app-container { width:600px; height:300px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b; }
+        .app-container { width:600px; height:280px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b; }
         h2 { color: var(--accent); text-align: center; letter-spacing: 1px; }
         
  .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
@@ -361,16 +361,16 @@ function montarSlides() {
     container.innerHTML = ""; 
     
     const conteudo = [
-        { h1: "Neste concurso, muita coisa me aconteceu...", glow: "#3b82f6", extra: '<p style="font-size: 0.9em; margin-top: 30px; opacity: 0.7;">(Toque na tela para continuar)</p>' },
-        { h1: "Foram 16 meses de lutas e muitas fases intensas...", glow: "#64748b", rain: ['👊','🤦‍♂️','💪','🏃‍♂️'] },
-        { h1: "Muitos risos, frustrações, desespero e fé compartilhados...", glow: "#ffffff", rain: ['🕊️','😳','🥀','🙏','😂'] },
-        { h1: "Vi meu foco no objetivo ser testado diversas vezes...", glow: "#fbbf24", rain: ['🚫','📆','📊','🏃‍', '⛈'] },
-        { h1: "Vi a galera mostrar resiliência e companheirismo!", glow: "#22c55e", rain: ['🤝','🎶','💣','📚']},
-        { h1: "E ainda estamos aqui, prontos para a posse!", glow: "#ef4444", extra: '<div style="font-size:6em; animation: zoom-infinito 1.4s infinite; margin-top: 30px; filter: drop-shadow(0 0 15px #ef4444);">💪 😎</div>' },
-        { h1: "Mesmo que para alguns, haja uma espera até 2028...", glow: "#ef4444", extra: '<div style="font-size:6em; animation: glow-pisca 0.9s infinite; margin-top: 30px;">🙏 🙌</div>' },
-        { h1: "Em poucos dias, caminhos diferentes irão surgir...", glow: "#94a3b8" },
-        { h1: "Mas o que vivi até aqui, foi uma experiência incrível.", glow: "#fde047" },
-        { h1: "OBRIGADO POR FAZEREM PARTE DISSO!", glow: "#fde047", final: true }
+        { h1: "Neste concurso,<br> muita coisa me aconteceu...", glow: "#3b82f6", extra: '<p style="font-size: 0.9em; margin-top: 30px; opacity: 0.7;">(Toque na tela para continuar)</p>' },
+        { h1: "Foram 16 meses de lutas<br> e muitas fases intensas...", glow: "#64748b", rain: ['👊','🤦‍♂️','💪','🏃‍♂️'] },
+        { h1: "Muitos risos, frustrações,<br> desespero e fé compartilhados...", glow: "#ffffff", rain: ['🕊️','😳','🥀','🙏','😂'] },
+        { h1: "Vi meu foco no objetivo<br> ser testado diversas vezes...", glow: "#fbbf24", rain: ['🚫','📆','📊','🏃‍', '⛈'] },
+        { h1: "Vi a galera mostrar<br> resiliência e companheirismo!", glow: "#22c55e", rain: ['🤝','🎶','💣','📚']},
+      { h1: "E ainda estamos aqui,<br> prontos para a posse!", glow: "#ef4444", extra: '<div style="font-size:6em; animation: zoom-infinito 1.4s infinite; margin-top: 30px; filter: drop-shadow(0 0 15px #ef4444);">💪 😎</div>' },
+        { h1: "Mesmo que para alguns,<br> haja uma espera até 2028...", glow: "#ef4444", extra: '<div style="font-size:6em; animation: glow-pisca 0.9s infinite; margin-top: 30px;">🙏 🙌</div>' },
+        { h1: "Em poucos dias,<br> caminhos diferentes irão surgir", glow: "#94a3b8" },
+        { h1: "Mas o que vivi até aqui,<br> foi uma experiência incrível.", glow: "#fde047" },
+        { h1: "OBRIGADO!<br> POR FAZEREM PARTE DISSO!", glow: "#fde047", final: true }
     ];
 
     conteudo.forEach((item, idx) => {
@@ -448,6 +448,7 @@ function updateParticles() {
     if (Math.random() < 0.05) createFirework(Math.random()*canvas.width, Math.random()*canvas.height/2);
     requestAnimationFrame(updateParticles);
 }
+
 </script>
 </body>
 </html>
