@@ -53,7 +53,7 @@
 .emoji-rain span { position: absolute; font-size: 4rem; animation: fall 4s linear infinite; top: -15%; z-index: 50; opacity: 0.6; }
 @keyframes fall { to{top:110%;} }
 
-.up-emoji { position: absolute; bottom: -100px; font-size: 4.5rem; animation: riseUp 4s ease-out forwards; z-index: 60; }
+.up-emoji { position: absolute; bottom: -100px; font-size: 3.5rem; animation: riseUp 4s ease-out forwards; z-index: 60; }
 @keyframes riseUp { 0% { bottom: -100px; opacity: 1; } 100% { bottom: 110%; opacity: 0; } }
 
 .faith-emoji { position:absolute; font-size:8rem; animation: emergeFaith 4s forwards; z-index:1000; pointer-events: none; }
@@ -95,8 +95,16 @@
         :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
         body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
         
-        .app-container { width:600px; height:260px; background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b; }
-        h2 { color: var(--accent); text-align: center; letter-spacing: 1px; }
+ .app-container { 
+    width: 680px; 
+    min-height: 260px; 
+    height: auto; /* Deixa a caixa crescer para baixo */
+    background: var(--card); 
+    padding: 25px; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    border: 1px solid #1e293b; 
+}
         
  .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
         input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #020617; color: #fff; outline: none; }
@@ -172,6 +180,21 @@
     <button onclick="abrirDespedida()" class="btn-ranking" style="background: linear-gradient(45deg, #1e293b, #3b82f6); border: none; padding: 15px 25px; font-size: 1.1rem; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);">
 ACHO QUE ISSO É UM ADEUS...
     </button>
+<div id="blindagem-container" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">
+        Contagem Regressiva para os ansiosos 🙋‍♀️🙋‍♂️
+    </div>
+    <div id="countdown-timer" style="font-size: 2rem; font-weight: bold; color: var(--accent); margin-bottom: 10px; font-family: monospace;">
+        00:00:00
+    </div>
+    <div style="width: 100%; background: #1e293b; height: 8px; border-radius: 4px; overflow: hidden;">
+        <div id="progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #3b82f6, #22c55e); transition: width 1s linear;"></div>
+    </div>
+    <p id="frase-blindagem" style="font-size: 0.9rem; color: #cbd5e1; margin-top: 12px; font-style: italic; min-height: 40px;">
+        "A calma é a armadura dos fortes."
+    </p>
+</div>
+
 </div>
 
 <div id="modalDespedida" style="display:none; position:fixed; inset:0; z-index:9999; background:#000; overflow:hidden;">
@@ -451,6 +474,67 @@ function updateParticles() {
     requestAnimationFrame(updateParticles);
 }
 
+function iniciarBlindagem() {
+    const targetDate = new Date();
+    targetDate.setHours(17, 0, 0, 0); // Define para as 17:00 de hoje
+
+    // Se já passou das 17h, não faz nada
+    if (new Date() > targetDate) {
+        document.getElementById('blindagem-container').style.display = 'none';
+        return;
+    }
+
+    const frases = [
+        "93 acertos não são por acaso, Kallel.",
+        "O sistema está pronto, e você também.",
+        "A resiliência de 16 meses te trouxe até aqui.",
+        "Respire. O nome já está escrito na lista.",
+        "O cara que fortalece todos também merece paz.",
+        "Faltam poucas horas para o grito de posse.",
+        "A medalha de ouro já tem dono."
+    ];
+
+    function update() {
+        const agora = new Date();
+        const diff = targetDate - agora;
+
+        if (diff <= 0) {
+            document.getElementById('countdown-timer').innerText = "CHEGOU A HORA!";
+            document.getElementById('progress-bar').style.width = "100%";
+            return;
+        }
+
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('countdown-timer').innerText = 
+            `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+        // Cálculo de progresso (baseado no dia de hoje, das 07h às 17h)
+        const inicioDia = new Date(); inicioDia.setHours(7, 0, 0, 0);
+        const totalMs = targetDate - inicioDia;
+        const decorridoMs = agora - inicioDia;
+        const porc = Math.max(0, Math.min(100, (decorridoMs / totalMs) * 100));
+        document.getElementById('progress-bar').style.width = porc + "%";
+
+        // Troca a frase a cada 1 minuto (quando os segundos zeram)
+        if (s === 0) {
+            const novaFrase = frases[Math.floor(Math.random() * frases.length)];
+            document.getElementById('frase-blindagem').innerText = `"${novaFrase}"`;
+        }
+    }
+
+    setInterval(update, 1000);
+    update();
+}
+
+// Chama a função ao carregar a página
+window.addEventListener('load', iniciarBlindagem);
+// Testado, obrigatório no final do script
+window.onload = function() {
+    iniciarBlindagem();
+};
 </script>
 </body>
 </html>
