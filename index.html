@@ -2,70 +2,539 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SISTEMA EM MANUTENÇÃO</title>
+    <title>Ranking Dinâmico - Kallel</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script> 
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #000; /* Começa no preto */
-            color: #b19cd9; /* Lilás sólido, sem brilho */
-            font-family: 'Arial Black', sans-serif;
-            text-align: center;
-            overflow: hidden;
-            /* Animação de 0.2s para um efeito de alerta rápido */
-            animation: alertaEscarlate 0.7s infinite;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
-        @keyframes alertaEscarlate {
-            0% { background-color: #000; }
-            100% { background-color: #d60606; } /* Seu Vermelho Escarlate */
-        }
+/* AJUSTE PARA TELA DE CELULAR */
+#modalDespedida {
+    width: 100vw;
+    height: 100vh;
+    position: fixed; /* Garante que cubra a tela toda */
+    inset: 0;
+    background: #000;
+    z-index: 9999;
+    overflow: hidden;
+    touch-action: none;
+}
 
-        .aviso {
-            z-index: 10;
-            padding: 20px;
-        }
+.slide-msg {
+    display: none; /* Escondi por padrão */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    inset: 0;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-        h1 {
-            font-size: 3.5em;
-            margin: 0;
-            line-height: 1;
-            /* Lilás puro, sem text-shadow para evitar luminosidade */
-            color: #b19cd9; 
-        }
+.slide-msg.active {
+    display: flex; /* Só mostra o slide ativo */
+    animation: zoomIn 0.6s forwards;
+}
 
-        p {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+#slidesDespedida h1 { 
+    font-size: 2.5rem; 
+    width: 90%; 
+    margin: 0;
+    line-height: 1.4;
+    text-shadow: 0 0 15px var(--glow);
+    z-index: 100;
+}
 
-        .icones {
-            font-size: 4em;
-            margin-top: 20px;
-        }
+/* EMOJIS E ANIMAÇÕES */
+.emoji-rain span { position: absolute; font-size: 4rem; animation: fall 4s linear infinite; top: -15%; z-index: 50; opacity: 0.6; }
+@keyframes fall { to{top:110%;} }
+
+.up-emoji { position: absolute; bottom: -100px; font-size: 3.5rem; animation: riseUp 4s ease-out forwards; z-index: 60; }
+@keyframes riseUp { 0% { bottom: -100px; opacity: 1; } 100% { bottom: 110%; opacity: 0; } }
+
+.faith-emoji { position:absolute; font-size:8rem; animation: emergeFaith 4s forwards; z-index:1000; pointer-events: none; }
+@keyframes emergeFaith { 0% { transform: scale(0); opacity: 0; } 20% { opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+
+@keyframes zoomIn { from{opacity:0; transform: scale(0.9);} to{opacity:1; transform: scale(1);} }
+
+/* BOTÃO DE FECHAR */
+.btn-fechar-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    z-index: 10001;
+    cursor: pointer;
+    background: rgba(255,255,255,0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Efeito de Zoom Infinito */
+@keyframes zoom-infinito {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Efeito de Brilho Piscante */
+@keyframes glow-pisca {
+    0%, 100% { filter: drop-shadow(0 0 10px #fff); opacity: 1; }
+    50% { filter: drop-shadow(0 0 30px #fde047); opacity: 0.8; }
+}
+
+
+        :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
+        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; padding: 20px; }
+        
+ .app-container { 
+    width: 680px; 
+    min-height: 260px; 
+    height: auto; /* Deixa a caixa crescer para baixo */
+    background: var(--card); 
+    padding: 25px; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    border: 1px solid #1e293b; 
+}
+        
+ .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #020617; color: #fff; outline: none; }
+        button { padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { opacity: 0.8; transform: translateY(-2px); }
+        
+        .result-card { background: #1e293b; padding: 20px; border-radius: 12px; margin-top: 20px; display: none; border-left: 5px solid var(--accent); transition: 0.3s; }
+        
+        /* Estados do Card */
+        .status-vaga { border-left: 5px solid #ccff00 !important; box-shadow: 0 0 25px rgba(204, 255, 0, 0.2); }
+        .status-cr { border-left: 5px solid #94a3b8 !important; box-shadow: none; }
+        
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .label { color: #94a3b8; font-size: 0.9rem; }
+        .medalha { font-size: 1.4rem; vertical-align: middle; margin-right: 8px; }
+        
+        .input-nota { margin-top: 20px; padding: 15px; background: rgba(204, 255, 0, 0.05); border-radius: 8px; border: 1px dashed var(--accent); }
+        #total-score { font-size: 1.5rem; color: var(--accent); font-weight: 800; text-align: center; display: block; margin-top: 10px; }
+
+        /* Estilo do Vídeo */
+        .frase-posse { font-size: 1.2rem; font-weight: bold; color: #ccff00; cursor: pointer; text-shadow: 0 0 10px rgba(204, 255, 0, 0.5); transition: 0.3s; margin-top: 20px; text-align: center; }
+        .frase-posse:hover { transform: scale(1.05); }
+        .play-icon { color: #ccff00; font-size: 1.5rem; margin-left: 8px; vertical-align: middle; }
+        
+        .btn-fechar { margin-top: 10px; background: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; width: 100%; }
+        
+        .btn-ranking { width: 60%; margin-top: 20px; background: #1e293b; color: var(--accent); border: 1px solid var(--accent); }
+
+/* aqui que nos separamos */
+
     </style>
 </head>
-<body>
+<body onclick="handleInteraction()">
 
-    <div class="aviso">
-        <h1>ALGUMA COISA QUEBROU.</h1>
-        <p>VOLTE MAIS TARDE!</p>
-        <div class="icones">⚠️ 🚧 🛠️ ⚠️</div>
+<audio id="somAplausos" src="https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Som%20de%20plateia%20gritos%20aplausos%20assobio.MP3" preload="auto"></audio>
+
+<div class="app-container">
+    <h2>SISTEMA AUTOMÁTICO DE RANKING</h2>
+    
+    <div class="search-box">
+        <input type="number" id="inputId" placeholder="Digite sua inscrição na UECE">
+        <button onclick="buscarCandidato()">BUSCAR</button>
+<label for="abaSelecionada">Selecione sua lista:</label>
+<select id="abaSelecionada" class="form-control">
+  <option value="F-Ampla">Fortaleza - Ampla</option>
+  <option value="F-Cotas">Fortaleza - Cotas</option>
+  <option value="F-PCD">Fortaleza - PCD</option>
+  <option value="S-Ampla">Sobral - Ampla</option>
+  <option value="S-Cotas">Sobral - Cotas</option>
+  <option value="S-PCD">Sobral - PCD</option>
+  <option value="J-Ampla">Juazeiro - Ampla</option>
+  <option value="J-Cotas">Juazeiro - Cotas</option>
+  <option value="J-PCD">Juazeiro - PCD</option>
+</select>
     </div>
 
-    <script>
-        // Trava a animação após 1 minuto (60.000ms)
-        setTimeout(() => {
-            document.body.style.animation = "none";
-            document.body.style.backgroundColor = "#d60606"; // Fixa no seu escarlate
-        }, 60000);
-    </script>
+<label for="abaSelecionada">Dúvidas, Sugestões, Críticas ou Pedidos: 88 994354250</label>
+<!--    <div style="text-align: center;">
+        <p class="frase-posse" onclick="abrirVideo()">
+            "Dê o Play se você acredita e toma posse" <span class="play-icon">▶</span>
+        </p>
+        <div id="videoWrapper" style="display: none; margin-top: 15px; background: #000; border-radius: 10px; padding: 10px;">
+            <video id="meuVideo" width="100%" controls playsinline>
+                <source src="https://raw.githubusercontent.com/snakeraziel/media/main/seas.mp4" type="video/mp4">
+            </video>
+            <button onclick="fecharVideo()" class="btn-fechar">FECHAR VÍDEO</button>
+       
+ </div>
+    </div>
+-->
 
+<div style="text-align: center; margin-top: 20px;">
+    <button onclick="abrirDespedida()" class="btn-ranking" style="background: linear-gradient(45deg, #1e293b, #3b82f6); border: none; padding: 15px 25px; font-size: 1.1rem; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);">
+ACHO QUE ISSO É UM ADEUS...
+    </button>
+<div id="blindagem-container" style="background: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;">
+    <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">
+        Contagem Regressiva para os ansiosos 🙋‍♀️🙋‍♂️
+    </div>
+    <div id="countdown-timer" style="font-size: 2rem; font-weight: bold; color: var(--accent); margin-bottom: 10px; font-family: monospace;">
+        00:00:00
+    </div>
+    <div style="width: 100%; background: #1e293b; height: 8px; border-radius: 4px; overflow: hidden;">
+        <div id="progress-bar" style="width: 0%; height: 100%; background: linear-gradient(90deg, #3b82f6, #22c55e); transition: width 1s linear;"></div>
+    </div>
+    <p id="frase-blindagem" style="font-size: 0.9rem; color: #cbd5e1; margin-top: 12px; font-style: italic; min-height: 40px;">
+        "A calma é a armadura dos fortes."
+    </p>
+</div>
+
+</div>
+
+<div id="modalDespedida" style="display:none; position:fixed; inset:0; z-index:9999; background:#000; overflow:hidden;">
+    <span onclick="fecharDespedida()" style="position:absolute; top:20px; right:20px; color:#fff; font-size:30px; z-index:10000; cursor:pointer;">&times;</span>
+    <canvas id="fwCanvas"></canvas>
+    <div id="slidesDespedida">
+        </div>
+</div>
+
+    <div id="result-area" class="result-card">
+        <div class="data-row"><span class="label">Nome:</span> <span id="res-nome"></span></div>
+        <div class="data-row"><span class="label">Status:</span> <span id="res-status"></span></div>
+        <div class="data-row"><span class="label">Colocação Atual:</span> <span id="res-col"></span></div>
+        <div class="data-row"><span class="label">Pontos Base:</span> <span id="res-pontos"></span></div>
+
+        <div class="input-nota">
+            <label class="label">INSIRA SUA NOTA DA PROVA (0 a 100):</label>
+            <input type="number" id="notaProva" placeholder="Ex: 95" oninput="calcularTotal(); atualizarStatusDinamico()">
+            <span id="total-score">0.0</span>
+        </div>
+        
+        <button style="width:100%; margin-top:15px; background:#22c55e; color:#fff" onclick="enviarParaRanking()">SALVAR NO RANKING</button>
+        
+        <button onclick="toggleRanking()" class="btn-ranking">
+       📊 Ranking em Tempo Real 📊 
+    </button>
+</div>  
+
+    <div id="ranking-frame-container" style="display: none; margin-top: 20px;">
+        <iframe 
+            src="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?usp=sharing" 
+            style="width: 100%; height: 600px; border: 2px solid #28a745; border-radius: 10px;">
+        </iframe>
+        <p><a href="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?gid=304199799" target="_blank">Abrir em tela maior ↗</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+const URL_SCRIPT = "https://script.google.com/macros/s/AKfycbzzU22cOxkUEg-ResEzSTFJeDITInL5sO3ojZP0xSK7-oNJ3gCiLzsyX3BwsDMhozS56Q/exec"; 
+
+async function buscarCandidato() {
+    const idInput = document.getElementById("inputId").value;
+    const aba = document.getElementById("abaSelecionada").value;
+
+    try {
+        const res = await fetch(URL_SCRIPT + "?id=" + idInput + "&aba=" + aba);
+        const data = await res.json();
+
+        if (data.error) {
+            alert("ID não encontrado nesta lista.");
+            return;
+        }
+
+        document.getElementById("res-nome").innerText = data.nome;
+        document.getElementById("res-pontos").innerText = data.pontosBase;
+        document.getElementById("res-col").innerText = data.colocacao + "º";
+        window.pontosBase = Number(data.pontosBase);
+        
+        document.getElementById("result-area").style.display = "block";
+        atualizarStatusDinamico(); // Já valida o status inicial
+
+    } catch (e) {
+        alert("Erro ao buscar dados.");
+    }
+}
+
+function calcularTotal() {
+    const nota = parseFloat(document.getElementById('notaProva').value) || 0;
+    const total = (window.pontosBase || 0) + nota;
+    document.getElementById('total-score').innerText = total.toFixed(1);
+}
+
+async function atualizarStatusDinamico() {
+    const notaInput = document.getElementById('notaProva').value;
+    const notaProva = parseFloat(notaInput) || 0;
+    const totalSimulado = (window.pontosBase || 0) + notaProva;
+    const aba = document.getElementById("abaSelecionada").value;
+
+    const elStatus = document.getElementById("res-status");
+    const elCol = document.getElementById("res-col");
+    const elNome = document.getElementById("res-nome");
+    const card = document.getElementById("result-area");
+
+    try {
+        const res = await fetch(URL_SCRIPT + "?aba=" + aba + "&simularTotal=" + totalSimulado);
+        const data = await res.json();
+        const novaPosicao = data.posicao;
+
+        if (elCol) elCol.innerText = novaPosicao + "º";
+
+        let limiteVagas = { "F-Ampla": 510, "F-Cotas": 136, "F-PCD": 34, "S-Ampla": 107, "S-Cotas": 28, "S-PCD": 7, "J-Ampla": 107, "J-Cotas": 28, "J-PCD": 7 }[aba];
+
+        const nomeLimpo = data.nome || elNome.innerText.replace(/🥇|🥈/g, "").trim();
+
+        if (novaPosicao <= limiteVagas) {
+            elStatus.innerText = "Vaga Imediata";
+            elStatus.style.color = "#ccff00"; 
+            elNome.innerHTML = '🥇 ' + nomeLimpo;
+            card.className = "result-card status-vaga";
+            card.style.display = "block";
+            if(notaInput) lancarFesta();
+        } else {
+            elStatus.innerText = "Cadastro Reserva";
+            elStatus.style.color = "#94a3b8";
+            elNome.innerHTML = '🥈 ' + nomeLimpo;
+            card.className = "result-card status-cr";
+            card.style.display = "block";
+        }
+    } catch (e) { console.error(e); }
+}
+
+function lancarFesta() {
+    const som = document.getElementById("somAplausos");
+    if (som) { som.volume = 0.4; som.play().catch(() => {}); }
+
+    var duration = 3 * 1000;
+    var end = Date.now() + duration;
+
+    (function frame() {
+      confetti({ particleCount: 2, angle: 60, spread: 45, origin: { x: 0, y: 0.8 }, colors: ['#ccff00', '#ffffff'] });
+      confetti({ particleCount: 2, angle: 120, spread: 45, origin: { x: 1, y: 0.8 }, colors: ['#ccff00', '#ffffff'] });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    }());
+}
+
+async function enviarParaRanking() {
+    const id = document.getElementById("inputId").value;
+    const aba = document.getElementById("abaSelecionada").value;
+    const nota = Number(document.getElementById("notaProva").value);
+    
+    if (nota > 100) { alert("Nota inválida."); return; }
+
+    const total = (window.pontosBase || 0) + nota;
+    const btn = document.querySelector("button[onclick='enviarParaRanking()']"); 
+    btn.disabled = true; btn.innerText = "Enviando...";
+
+    try {
+        await fetch(URL_SCRIPT, { method: "POST", mode: "no-cors", body: JSON.stringify({ id, nota, total, aba }) });
+        alert("Nota salva com sucesso!");
+    } catch (e) { alert("Erro ao salvar."); }
+    btn.disabled = false; btn.innerText = "SALVAR NO RANKING";
+}
+
+function toggleRanking() {
+    const container = document.getElementById("ranking-frame-container");
+    container.style.display = (container.style.display === "none") ? "block" : "none";
+}
+
+function abrirVideo() {
+    const wrapper = document.getElementById("videoWrapper");
+    const video = document.getElementById("meuVideo");
+    wrapper.style.display = "block";
+    video.play();
+/*    if (video.requestFullscreen) video.requestFullscreen();
+    else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen(); */
+}
+
+function fecharVideo() {
+    const wrapper = document.getElementById("videoWrapper");
+    const video = document.getElementById("meuVideo");
+    video.pause();
+    wrapper.style.display = "none";
+}
+
+let currentS = 0;
+let despedidaIniciada = false;
+
+function abrirDespedida() {
+    document.getElementById('modalDespedida').style.display = 'block';
+    if (!despedidaIniciada) {
+        montarSlides();
+        despedidaIniciada = true;
+        // Inicia a animação de fundo (fogos)
+        resize();
+        updateParticles();
+    }
+    showSlideS(0);
+}
+
+function fecharDespedida() {
+    document.getElementById('modalDespedida').style.display = 'none';
+    const audio = document.getElementById('somEsperanca');
+    if(audio) audio.pause();
+}
+
+function montarSlides() {
+    const container = document.getElementById('slidesDespedida');
+    container.innerHTML = ""; 
+    
+    const conteudo = [
+        { h1: "Neste concurso,<br> muita coisa me aconteceu...", glow: "#3b82f6", extra: '<p style="font-size: 0.9em; margin-top: 30px; opacity: 0.7;">(Toque na tela para continuar)</p>' },
+        { h1: "Foram 16 meses de lutas<br> e muitas fases intensas...", glow: "#64748b", rain: ['👊','🤦‍♂️','💪','🏃‍♂️'] },
+        { h1: "Muitos risos, frustrações,<br> desespero e fé compartilhados...", glow: "#ffffff", rain: ['🕊️','😳','🥀','🙏','😂'] },
+        { h1: "Vi meu foco no objetivo<br> ser testado diversas vezes...", glow: "#fbbf24", rain: ['🚫','📆','📊','🏃‍', '⛈'] },
+        { h1: "Vi a galera mostrar<br> resiliência e companheirismo!", glow: "#22c55e", rain: ['🤝','🎶','💣','📚']},
+      { h1: "E ainda estamos aqui,<br> prontos para a posse!", glow: "#ef4444", extra: '<div style="font-size:6em; animation: zoom-infinito 1.4s infinite; margin-top: 30px; filter: drop-shadow(0 0 15px #ef4444);">💪 😎</div>' },
+        { h1: "Mesmo que para alguns,<br> haja uma espera até 2028...", glow: "#ef4444", extra: '<div style="font-size:6em; animation: glow-pisca 0.9s infinite; margin-top: 30px;">🙏 🙌</div>' },
+        { h1: "Em poucos dias,<br> caminhos diferentes irão surgir", glow: "#94a3b8" },
+        { h1: "Mas o que vivi até aqui,<br> foi uma experiência incrível.", glow: "#fde047" },
+        { h1: "OBRIGADO!<br> POR FAZEREM PARTE DISSO!", glow: "#fde047", final: true }
+    ];
+
+    conteudo.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'slide-msg';
+        div.innerHTML = `<h1 style="--glow: ${item.glow}">${item.h1}</h1>${item.extra || ''}`;
+        
+        if (item.rain) {
+            const rainDiv = document.createElement('div');
+            rainDiv.className = 'emoji-rain';
+            item.rain.forEach(emo => {
+                for(let j=0; j<4; j++){
+                    const s = document.createElement('span'); s.textContent = emo;
+                    s.style.left = Math.random()*100+'%'; s.style.animationDelay = Math.random()*4+'s';
+                    rainDiv.appendChild(s);
+                }
+            });
+            div.appendChild(rainDiv);
+        }
+
+        div.onclick = (e) => { 
+            e.stopPropagation(); 
+            
+            // DISPARO DO ÁUDIO
+            // Se o ID for 'somAplausos', ele toca aqui:
+            if (idx === conteudo.length - 2) {
+                const somExistente = document.getElementById('somAplausos');
+                if(somExistente) {
+                    somExistente.currentTime = 0; // Reinicia o som
+                    somExistente.play().catch(err => console.log("Áudio aguardando interação."));
+                }
+            }
+            nextS(); 
+        };
+        container.appendChild(div);
+    });
+}
+
+function showSlideS(i) {
+    const slidesS = document.querySelectorAll('.slide-msg');
+    slidesS.forEach(s => s.classList.remove('active'));
+    slidesS[i].classList.add('active');
+    currentS = i;
+}
+
+function nextS() {
+    const slidesS = document.querySelectorAll('.slide-msg');
+    if (currentS < slidesS.length - 1) {
+        showSlideS(currentS + 1);
+    } else {
+        fecharDespedida();
+    }
+}
+
+// Reutilizando a lógica de Fogos do Script de Natal
+const canvas = document.getElementById('fwCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+function createFirework(x, y) {
+    const color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+    for (let i = 0; i < 20; i++) {
+        const angle = (Math.PI * 2 / 20) * i;
+        particles.push({ x, y, vx: Math.cos(angle) * 4, vy: Math.sin(angle) * 4, opacity: 1, color });
+    }
+}
+function updateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+        p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.opacity -= 0.02;
+        ctx.globalAlpha = p.opacity; ctx.fillStyle = p.color;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2); ctx.fill();
+        if (p.opacity <= 0) particles.splice(i, 1);
+    });
+    if (Math.random() < 0.05) createFirework(Math.random()*canvas.width, Math.random()*canvas.height/2);
+    requestAnimationFrame(updateParticles);
+}
+
+function iniciarBlindagem() {
+    const targetDate = new Date();
+    targetDate.setHours(17, 0, 0, 0); // Define para as 17:00 de hoje
+
+    // Se já passou das 17h, não faz nada
+    if (new Date() > targetDate) {
+        document.getElementById('blindagem-container').style.display = 'none';
+        return;
+    }
+
+    const frases = [
+        "93 acertos não são por acaso, Kallel.",
+        "O sistema está pronto, e você também.",
+        "A resiliência de 16 meses te trouxe até aqui.",
+        "Respire. O nome já está escrito na lista.",
+        "O cara que fortalece todos também merece paz.",
+        "Faltam poucas horas para o grito de posse.",
+        "A medalha de ouro já tem dono."
+    ];
+
+    function update() {
+        const agora = new Date();
+        const diff = targetDate - agora;
+
+        if (diff <= 0) {
+            document.getElementById('countdown-timer').innerText = "CHEGOU A HORA!";
+            document.getElementById('progress-bar').style.width = "100%";
+            return;
+        }
+
+        const h = Math.floor(diff / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+
+        document.getElementById('countdown-timer').innerText = 
+            `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+
+        // Cálculo de progresso (baseado no dia de hoje, das 07h às 17h)
+        const inicioDia = new Date(); inicioDia.setHours(7, 0, 0, 0);
+        const totalMs = targetDate - inicioDia;
+        const decorridoMs = agora - inicioDia;
+        const porc = Math.max(0, Math.min(100, (decorridoMs / totalMs) * 100));
+        document.getElementById('progress-bar').style.width = porc + "%";
+
+        // Troca a frase a cada 1 minuto (quando os segundos zeram)
+        if (s === 0) {
+            const novaFrase = frases[Math.floor(Math.random() * frases.length)];
+            document.getElementById('frase-blindagem').innerText = `"${novaFrase}"`;
+        }
+    }
+
+    setInterval(update, 1000);
+    update();
+}
+
+// Chama a função ao carregar a página
+window.addEventListener('load', iniciarBlindagem);
+// Testado, obrigatório no final do script
+window.onload = function() {
+    iniciarBlindagem();
+};
+</script>
 </body>
 </html>
