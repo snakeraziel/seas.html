@@ -334,7 +334,7 @@ white-space: normal; /* Garante que o texto quebre linhas */
             <h2>ACOMPANHAMENTO DE CONVOCAÇÃO</h2>
             
           <div class="search-box">
-    <input type="text" id="inputNome" placeholder="DIGITE SEU NOME">
+    <input type="text" id="inputNome" placeholder="DIGITE SEU NOME DA FORMA QUE DESEJAR">
     <button onclick="buscarCandidato()">BUSCAR</button>
 <!--
                 <label for="abaSelecionada">Selecione sua lista:</label>
@@ -2038,6 +2038,14 @@ function navegarSimilar(direcao) {
 }
 
 const bancoDeAprovados = [
+
+//JUAZEIRO 
+/*
+
+
+
+
+
   
   { nome: "Marli Ferreira Facanha", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "297" },
   { nome: "Ingrid Alacoc Santos Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "2º", pontos: "296" },
@@ -2251,63 +2259,9 @@ const bancoDeAprovados = [
   { nome: "Adriana Albuquerque Cavalcante", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "158º", pontos: "000" },
   { nome: "Bruno de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "159º", pontos: "000" },
   { nome: "Francisco Wagner Freitas Matos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "160º", pontos: "000" },
-{ nome: "Paula Oliveira Teles", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "000" },
-  { nome: "Ramon Lins da Silva", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "2º", pontos: "000" },
-  { nome: "Luana Quental Leondas da Cruz", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "3º", pontos: "000" },
-  { nome: "Jeferson Ferreira Gomes", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "PcD", colocacao: "3º", pontos: "000" },
-  { nome: "Daniele Alves Martins", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "4º", pontos: "000" },
-  { nome: "Wellington Souza Monteiro", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "PcD", colocacao: "4º", pontos: "000" },
-  { nome: "Jose Wiyuron Lopes Figueiredo", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "5º", pontos: "000" },
-  { nome: "Francisco Aparecido Vieira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "PcD", colocacao: "5º", pontos: "000" },
-  { nome: "Cicero Tavares Leite", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "6º", pontos: "000" },
-  { nome: "Lauro Raimundo de Luna Filho", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "6º", pontos: "000" },
-  { nome: "Francisco Tiago Bezerra de Oliveira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "7º", pontos: "000" },
-  { nome: "Matheus Alexandre Pereira de Sa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "7º", pontos: "000" },
-  { nome: "Tatiana Monteiro Landim Siebra", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "8º", pontos: "000" },
-  { nome: "Gabriel dos Santos Barbosa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "8º", pontos: "000" },
-  { nome: "Naiany Alves da Silva Neri", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "9º", pontos: "000" },
-  { nome: "Valter Witalo Nelo Lima", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "9º", pontos: "000" },
-  { nome: "Francisco Jose Santana Macedo", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "10º", pontos: "000" },
-  { nome: "Gabriel Mendes Teixeira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "10º", pontos: "000" },
-  { nome: "Alberto David Nascimento Vidal", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "11º", pontos: "000" },
-  { nome: "Francisco de Assis Lopes Feitosa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "11º", pontos: "000" },
-  { nome: "Nathalia Nayara Soares Fernandes", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "12º", pontos: "000" },
-  { nome: "Jose Jefferson Pereira dos Santos", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "12º", pontos: "000" },
-  { nome: "Kelly Naiana Lima Araujo", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "13º", pontos: "000" },
-  { nome: "Cicero Costa de Lima", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "13º", pontos: "000" },
-  { nome: "Jose Dheymison de Souza", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "14º", pontos: "000" },
-  { nome: "Maria Andressa dos Santos Tomas", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "14º", pontos: "000" },
-  { nome: "Bruna Mirella Bezerra Alvino", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "15º", pontos: "000" },
-  { nome: "Gledson Alves Pereira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "15º", pontos: "000" },
-  { nome: "Cicera Williana Feitosa de Lima", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "16º", pontos: "000" },
-  { nome: "Pedro dos Santos Calheira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "16º", pontos: "000" },
-  { nome: "Dyego Ribeiro Goncalves", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "17º", pontos: "000" },
-  { nome: "Francisco Rubens de Sousa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "18º", pontos: "000" },
-  { nome: "Eliezio Nascimento Barboza", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "19º", pontos: "000" },
-  { nome: "Antonio Lucas Barbosa da Cruz Melo", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "20º", pontos: "000" },
-  { nome: "Welbster Rodrigues de Oliveira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "21º", pontos: "000" },
-  { nome: "Isaelite Macedo Garcia Dantas", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "22º", pontos: "000" },
-  { nome: "Maria Gabriele Figueiredo Dantas", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "23º", pontos: "000" },
-{ nome: "Raimundo Nonato Ribeiro de Carvalho Junior", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "24º", pontos: "000" },
-  { nome: "Maria Jaqueline do Nascimento", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "25º", pontos: "000" },
-  { nome: "Cricya Damiana da Silva Lima", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "26º", pontos: "000" },
-  { nome: "Felipe Sales Leandro", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "27º", pontos: "000" },
-  { nome: "Gabriel Geraldo Vereda de Souza", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "28º", pontos: "000" },
-  { nome: "Iuri Moreira Costa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "29º", pontos: "000" },
-  { nome: "Edson Tadeu Santana Cordeiro", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "30º", pontos: "000" },
-  { nome: "Jonas Morais Sousa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "31º", pontos: "000" },
-  { nome: "Leonardo Romao Belarmino", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "32º", pontos: "000" },
-  { nome: "Michael Barros Pereira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "33º", pontos: "000" },
-  { nome: "Joao Fabiano Pereira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "34º", pontos: "000" },
-  { nome: "Meyreelen Lisieux Alves Teles", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "35º", pontos: "000" },
-  { nome: "Julio Cesar Almeida de Albuquerque", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "36º", pontos: "000" },
-  { nome: "Cicero Leond Mendonca da Silva", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "37º", pontos: "000" },
-  { nome: "Aliciana Bezerra da Silva", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "38º", pontos: "000" },
-  { nome: "Matheus Bezerra de Macedo", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "39º", pontos: "000" },
-  { nome: "Giselle Costa Maia", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "40º", pontos: "000" },
-  { nome: "Nayara Kelly Vieira Sena", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "41º", pontos: "000" },
-  { nome: "Jose Claudio dos Santos", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "42º", pontos: "000" },
 
+
+//FORTALEZA 
 { nome: "Renata Menezes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "25º", pontos: "000" },
   { nome: "Israel Victor Fernandes de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "26º", pontos: "000" },
   { nome: "Joao Henrique Anderson Mariano Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "27º", pontos: "000" },
@@ -2478,6 +2432,7 @@ const bancoDeAprovados = [
   { nome: "Braitner Rilmar Santos Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "285º", pontos: "000" },
   { nome: "Fabiana Monteiro Cavalcante", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "286º", pontos: "000" },
   { nome: "Vitoria Aquino Rodrigues Araujo", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "287º", pontos: "000" },
+*/
 
 //SOBRAL PCD
  { nome: "Francisco Daelson Laureano Pinheiro", cidade: "Sobral", status: "Convocado", tipo: "PcD", colocacao: "1º", pontos: "78º" },
