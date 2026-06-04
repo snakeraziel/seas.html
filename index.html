@@ -127,15 +127,26 @@ body {
     align-items: flex-start; /* Alinha no topo para não flutuar no meio */
     padding: 20px; 
     margin: 0;
+
+    /* --- TRAVAS DE LARGURA E ALTURA DA TELA --- */
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 .app-container { 
     /* Ocupa todo o espaço disponível no celular, mas trava no seu limite padrão em telas maiores */
     width: 100%; 
-    max-width: 550px; 
+    max-width: 650px; 
+
+    /* Impede que o flexbox do body amasse o container quando ele está com pouco conteúdo */
+    flex-shrink: 0;
     
     /* Perfeito, mantemos o auto para envolver todo o conteúdo dinamicamente */
     height: auto; 
+    
+    /* Garante um porte físico imponente antes mesmo da busca acontecer */
+    min-height: 250px; 
     
     background: var(--card); 
     padding: 25px; 
