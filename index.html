@@ -420,6 +420,18 @@ white-space: normal; /* Garante que o texto quebre linhas */
         <p style="margin: 8px 0; font-weight: bold;">
             Categoria: <span id="res-tipo" style="color: #fde047; text-shadow: 0 0 5px #fde047;"></span>
         </p>
+
+<!-- BARRA DE NAVEGAÇÃO -->
+<div class="navegacao-botoes" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+    <button class="btn-nav" id="btnAnterior" style="padding: 10px; border-radius: 8px; background: #1e293b; color: #ccff00; border: 1px solid #ccff00; cursor: pointer;">Anterior</button>
+    
+    <span style="color: #f00e12; text-shadow: 0 0 5px #f7f5f5; font-weight: bold; text-align: center; font-size: 1.2rem;">
+        TUDO NO TEMPO DE DEUS!
+    </span>
+    
+    <button class="btn-nav" id="btnProximo" style="padding: 10px; border-radius: 8px; background: #1e293b; color: #ccff00; border: 1px solid #ccff00; cursor: pointer;">Próximo</button>
+</div>
+<br>
  <a href="https://docs.google.com/spreadsheets/d/1yaiX7V2z75R5_WzFf19EbJ3zM989Kb5s1twlrqcqzKo/edit?gid=304199799" 
    target="_blank" 
    class="btn-ranking" 
@@ -2820,6 +2832,10 @@ const bancoDeAprovados = [
 
 ];
 
+// 1. VARIÁVEL GLOBAL PARA O MOTOR DE NAVEGAÇÃO
+let indiceAtual = -1;
+
+// 2. A FUNÇÃO DE BUSCA (Agora ela só busca e descobre o número da linha)
 function buscarCandidato() {
     const inputElement = document.getElementById("inputNome");
     
@@ -2830,35 +2846,41 @@ function buscarCandidato() {
 
     // Função interna ninja ATUALIZADA (à prova de falhas)
     const limparTexto = (texto) => {
-        if (!texto) return ""; // Trava: se o nome vier vazio do banco, ele não quebra o código
+        if (!texto) return ""; 
         return String(texto)
-            .normalize("NFD")                  // Separa a letra do acento
-            .replace(/[\u0300-\u036f]/g, "")   // Apaga os acentos
-            .replace(/\s+/g, " ")              // Transforma espaços duplos em simples
+            .normalize("NFD")                  
+            .replace(/[\u0300-\u036f]/g, "")   
+            .replace(/\s+/g, " ")              
             .trim()
             .toLowerCase();
     };
 
-    // Aplica a limpeza no que o usuário digitou
     const nomeDigitado = limparTexto(inputElement.value);
 
-    // Busca no array usando .includes() (acha o candidato mesmo se ele não digitar o nome todo)
-    const pessoa = bancoDeAprovados.find(u => {
+    // A MÁGICA AQUI: Trocamos .find() por .findIndex() para saber exatamente a posição do candidato na lista
+    const indexEncontrado = bancoDeAprovados.findIndex(u => {
         const nomeLimpo = limparTexto(u.nome);
         return nomeLimpo.includes(nomeDigitado) || nomeDigitado.includes(nomeLimpo);
     });
 
-    if (!pessoa) {
-        alert("Não sabe escrever seu nome? Digite-o novamente com ou sem acento .");
+    if (indexEncontrado === -1) {
+        alert("Não sabe escrever seu nome? Digite-o novamente com ou sem acento.");
         return;
     }
 
-    // Se achou, o código segue normal daqui pra baixo (exibindo os dados)
-    console.log("Candidato encontrado:", pessoa);
+    // Atualiza a posição atual e manda renderizar a tela
+    indiceAtual = indexEncontrado;
+    carregarCandidatoNaTela(indiceAtual);
+}
+
+
+// 3. A FUNÇÃO QUE DESENHA NA TELA (Pode ser chamada pela busca ou pelos botões)
+function carregarCandidatoNaTela(index) {
+    const pessoa = bancoDeAprovados[index];
+    console.log("Candidato carregado:", pessoa);
 
     // 1. PREENCHE OS DADOS NO HTML
     const elNome = document.getElementById("res-nome");
-    
     if (elNome) elNome.innerText = pessoa.nome || "--";
 
     const elPontos = document.getElementById("res-pontos");
@@ -2942,9 +2964,28 @@ function buscarCandidato() {
     } else if (animacao === 'imediata') {
         if(som) som.play().catch(() => {});
     } else if (animacao === 'cr') {
-        chuvaDeEsperanca(['🕊️','🙌','🙏']);
+        if(typeof chuvaDeEsperanca === 'function') {
+            chuvaDeEsperanca(['🕊️','🙌','🙏']);
+        }
     }
 }
+
+
+// 4. CONTROLES DE NAVEGAÇÃO DOS BOTÕES
+document.getElementById('btnAnterior').addEventListener('click', function() {
+    if (indiceAtual > 0) {
+        indiceAtual--;
+        carregarCandidatoNaTela(indiceAtual);
+    }
+});
+
+document.getElementById('btnProximo').addEventListener('click', function() {
+    if (indiceAtual >= 0 && indiceAtual < bancoDeAprovados.length - 1) {
+        indiceAtual++;
+        carregarCandidatoNaTela(indiceAtual);
+    }
+});
+
 
 // 5. FUNÇÃO DE EMOJIS INDEPENDENTE DE CSS EXTERNO
 function chuvaDeEsperanca(emojis) {
@@ -3000,6 +3041,48 @@ function chuvaDeEsperanca(emojis) {
 // Executa a contagem imediata
 registrarVisitanteAura();
 
+/*
+// Variável global para rastrear a posição do candidato atual na lista
+let indiceAtual = -1;
+
+// 1. Damos vida aos botões mapeando os cliques
+document.getElementById('btnAnterior').addEventListener('click', function() {
+    // Só volta se não estiver no primeiro da lista
+    if (indiceAtual > 0) {
+        carregarCandidatoNaTela(indiceAtual - 1);
+    }
+});
+
+document.getElementById('btnProximo').addEventListener('click', function() {
+    // Só avança se não for o último da lista
+    // Supondo que a sua lista se chame 'candidatos' (ajuste se for outro nome)
+    if (indiceAtual < candidatos.length - 1) {
+        carregarCandidatoNaTela(indiceAtual + 1);
+    }
+});
+
+// 2. A função que injeta os dados na tela
+function carregarCandidatoNaTela(index) {
+    indiceAtual = index;
+    const pessoa = candidatos[index]; // Puxa os dados da sua lista
+
+    // Preenche os campos que você mapeou no HTML
+    document.getElementById('res-nome').innerText = pessoa.nome;
+    document.getElementById('res-col').innerText = pessoa.colocacao;
+    document.getElementById('res-pontos').innerText = pessoa.pontos;
+    document.getElementById('res-cidade').innerText = pessoa.cidade;
+    document.getElementById('res-tipo').innerText = pessoa.tipo;
+    document.getElementById('status-situacao').innerText = pessoa.status;
+
+    // Atualiza a cor do status dependendo da situação
+    const situacaoElement = document.getElementById('status-situacao');
+    if (pessoa.status.toLowerCase() === "convocado") {
+        situacaoElement.style.color = "#ccff00"; // Verde limão
+    } else {
+        situacaoElement.style.color = "#FFD700"; // Ouro/Amarelo para outros
+    }
+}
+*/
 </script>
 </body>
 </html>
