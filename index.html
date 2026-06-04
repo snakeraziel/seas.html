@@ -118,34 +118,33 @@
 
 :root { --bg: #020617; --card: #0f172a; --accent: #ccff00; --text: #f1f5f9; }
 
+/* 1. O SEGREDO DO ENCAIXE: Força todos os elementos a calcularem margens para dentro */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body { 
     background: var(--bg); 
     color: var(--text); 
     font-family: 'Segoe UI', sans-serif; 
     display: flex; 
     justify-content: center; 
-    align-items: flex-start; /* Alinha no topo para não flutuar no meio */
-    padding: 20px; 
-    margin: 0;
-
-    /* --- TRAVAS DE LARGURA E ALTURA DA TELA --- */
+    align-items: flex-start; 
     width: 100%;
     min-height: 100vh;
-    box-sizing: border-box;
+    overflow-x: hidden; /* Corta qualquer vazamento horizontal pela raiz */
+    padding: 20px; /* Esse padding só vai valer para computadores/telas grandes */
 }
 
 .app-container { 
-    /* Ocupa todo o espaço disponível no celular, mas trava no seu limite padrão em telas maiores */
     width: 100%; 
     max-width: 650px; 
-
-    /* Impede que o flexbox do body amasse o container quando ele está com pouco conteúdo */
     flex-shrink: 0;
-    
-    /* Perfeito, mantemos o auto para envolver todo o conteúdo dinamicamente */
     height: auto; 
     
-    /* Garante um porte físico imponente antes mesmo da busca acontecer */
+    /* Mantém a presença firme na capa antes da injeção de dados */
     min-height: 250px; 
     
     background: var(--card); 
@@ -154,10 +153,27 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
     border: 1px solid #1e293b;
     display: block; 
-    
-    /* Impede que o padding some à largura e quebre o layout */
-    box-sizing: border-box; 
 }
+
+/* 2. O COMANDO DO CELULAR (Cravado na Borda) */
+@media (max-width: 600px) {
+    body {
+        padding: 0; /* Remove a margem externa do fundo, colando o sistema na tela */
+    }
+    
+    .app-container {
+        /* Transforma o container em tela cheia (estilo app nativo) */
+        min-height: 100vh; 
+        
+        border-radius: 0; /* Tira o arredondamento, cravando as quinas na borda do aparelho */
+        border-left: none; /* Remove a borda lateral para não somar 1px e estourar a tela */
+        border-right: none;
+        
+        /* Ajuste do respiro interno para o texto não encostar nas laterais */
+        padding: 20px 15px; 
+    }
+}
+
 
 /* Ajuste tático para as telas menores (celulares) */
 @media (max-width: 600px) {
