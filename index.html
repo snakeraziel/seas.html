@@ -7,6 +7,26 @@
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
 
+
+/* --- MANUAL (Esquerda) --- */
+.btn-manual {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
+    text-align: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4));
+}
+
+.btn-manual:hover {
+    transform: scale(1.15); /* Apenas aumenta o tamanho suavemente */
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
+}
+
+
+
+
 /* AJUSTE PARA TELA DE CELULAR */
 #modalDespedida {
     width: 100vw;
@@ -336,6 +356,8 @@ white-space: normal; /* Garante que o texto quebre linhas */
           <div class="search-box">
     <input type="text" id="inputNome" placeholder="DIGITE O SEU NOME DA FORMA QUE DESEJAR">
     <button onclick="buscarCandidato()">BUSCAR</button>
+
+
 <!--
                 <label for="abaSelecionada">Selecione sua lista:</label>
                 <select id="abaSelecionada" class="form-control">
@@ -355,9 +377,26 @@ white-space: normal; /* Garante que o texto quebre linhas */
 
             <label>Dúvidas, Sugestões, Críticas ou Pedidos: 88 994354250</label>
 <br><br>
- <span style="color: orange; font-size: 0.8em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Acessos ao Sistema</span><br>
-    <span style="color: #39FF14; font-size: 1.5em; font-weight: 900; font-family: monospace; text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);" id="contador-seas">...</span>
+ 
 
+<div style="display: flex; align-items: center; gap: 60px; margin-top: 15px;">
+    
+    <div class="btn-manual" onclick="abrirManual()">
+        <div style="font-size: 35px; line-height: 1;">📓</div>
+        <div style="font-size: 12px; color: #ffd700; font-weight: bold; font-family: sans-serif; text-transform: uppercase; margin-top: 7px;">Manual<br>da<br>Plataforma</div>
+    </div>
+
+   
+    <div style="margin-left: 30px; text-align: center;"> 
+        <span style="color: orange; font-size: 0.8em; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Acessos ao Sistema</span><br>
+        <span style="color: #39FF14; font-size: 1.5em; font-weight: 900; font-family: monospace; text-shadow: 0 0 10px rgba(57, 255, 20, 0.4);" id="contador-seas">...</span>
+    </div>
+    
+ <div class="btn-manual" onclick="abrirDesistentes()">
+        <div style="font-size: 35px; line-height: 1;">📜</div>
+        <div style="font-size: 12px; color: #ffd700; font-weight: bold; font-family: sans-serif; text-transform: uppercase; margin-top: 7px;">Lista<br>de<br>Desistentes</div>
+    </div>
+</div>
 
 <!--
             <div style="text-align: center; margin-top: 10px;">
@@ -2039,7 +2078,7 @@ function navegarSimilar(direcao) {
 
 const bancoDeAprovados = [
 
-//JUAZEIRO AMPLA
+//JUAZEIRO AMPLA CONVOCADOS
 { nome: "Paula Oliveira Teles", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "1º" },
   { nome: "Ramon Lins da Silva", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "2º", pontos: "2º" },
   { nome: "Luana Quental Leondas da Cruz", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "3º", pontos: "3º" },
@@ -2082,6 +2121,8 @@ const bancoDeAprovados = [
   { nome: "Giselle Costa Maia", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "40º", pontos: "40º" },
   { nome: "Nayara Kelly Vieira Sena", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "41º", pontos: "41º" },
   { nome: "Jose Claudio dos Santos", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "42º", pontos: "42º" },
+
+//JUAZEIRO AMPLA IMEDIATA
 { nome: "Alana Maria Brito Lucas", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Ampla Concorrência", colocacao: "43º", pontos: "44º" },
   { nome: "Halyson Eric Mendes Lavor", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Ampla Concorrência", colocacao: "44º", pontos: "45º" },
   { nome: "Jose Lopes Costa", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Ampla Concorrência", colocacao: "45º", pontos: "46º" },
@@ -2147,6 +2188,8 @@ const bancoDeAprovados = [
   { nome: "Valdeglaubia Araujo do Nascimento Silva", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Ampla Concorrência", colocacao: "105º", pontos: "122º" },
   { nome: "Ycaro Barros Muniz", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Ampla Concorrência", colocacao: "106º", pontos: "123º" },
   { nome: "Raissa Maria Viana Diniz", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Ampla Concorrência", colocacao: "107º", pontos: "124º" },
+
+//JUAZEIRO AMPLA CR
   { nome: "Marcelo Alves de Sousa", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "125º" },
   { nome: "Alessandra Lara Gomes Rodrigues Carvalho", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Ampla Concorrência", colocacao: "2º", pontos: "126º" },
   { nome: "Aline Gleide da Silva Pereira", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Ampla Concorrência", colocacao: "3º", pontos: "129º" },
@@ -2315,7 +2358,7 @@ const bancoDeAprovados = [
   { nome: "Gleydson Marques Pessoa", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Ampla Concorrência", colocacao: "166º", pontos: "348º" },
   { nome: "Karem Leticia Cunha Luna", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Ampla Concorrência", colocacao: "167º", pontos: "351º" },
 
-// JUAZEIRO COTAS
+// JUAZEIRO COTAS CONVOCADO
 { nome: "Lauro Raimundo de Luna Filho", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "1º", pontos: "43º" },
   { nome: "Matheus Alexandre Pereira de Sa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "2º", pontos: "50º" },
   { nome: "Gabriel dos Santos Barbosa", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "3º", pontos: "55º" },
@@ -2327,7 +2370,9 @@ const bancoDeAprovados = [
   { nome: "Maria Andressa dos Santos Tomas", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "9º", pontos: "75º" },
   { nome: "Gledson Alves Pereira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "10º", pontos: "84º" },
   { nome: "Pedro dos Santos Calheira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "11º", pontos: "85º" },
-{ nome: "Irlan Martiniano Menezes", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "12º", pontos: "98º" },
+{ nome: "Irlan Martiniano Menezes", cidade: "Juazeiro do Norte", status: 
+//JUAZEIRO COTA IMEDIATA
+"Imediata", tipo: "Negro", colocacao: "12º", pontos: "98º" },
   { nome: "Gildenia Bezerra Silva", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "13º", pontos: "106º" },
   { nome: "Daylan Rodrigues Arraz Agostinho", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "14º", pontos: "111º" },
   { nome: "Vagna Gleciane Pessoa Dias", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "15º", pontos: "113º" },
@@ -2344,6 +2389,8 @@ const bancoDeAprovados = [
   { nome: "Lara Pianco Saraiva", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "26º", pontos: "164º" },
   { nome: "Maria Aparecida dos Santos", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "27º", pontos: "168º" },
   { nome: "Antonio Thalisson da Silva Candido", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "28º", pontos: "174º" },
+
+//JUAZEIRO COTA CR
 { nome: "Joao Paulo Pinheiro Gomes", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Negro", colocacao: "1º", pontos: "183º" },
   { nome: "Paulo Alberto dos Santos", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Negro", colocacao: "2º", pontos: "194º" },
   { nome: "Jose Andre de Andrade", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Negro", colocacao: "3º", pontos: "216º" },
@@ -2391,13 +2438,19 @@ const bancoDeAprovados = [
   { nome: "Geovana Cipriano da Silva", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Negro", colocacao: "45º", pontos: "356º" },
   { nome: "Francisco Ferreira Monteiro Filho", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Negro", colocacao: "46º", pontos: "357º" },
   { nome: "Ana Clarisse de Oliveira Belem", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "Negro", colocacao: "47º", pontos: "360º" },
+
+//JUAZEIRO PCD CONVOCADO
 { nome: "Jeferson Ferreira Gomes", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "PCD", colocacao: "1º", pontos: "146º" },
   { nome: "Wellington Souza Monteiro", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "PCD", colocacao: "2º", pontos: "147º" },
   { nome: "Francisco Aparecido Vieira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "PCD", colocacao: "3º", pontos: "273º" },
+
+//JUAZEIRO PCD IMEDIATA
 { nome: "Jose Carlos Bezerra Duarte", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "PCD", colocacao: "4º", pontos: "295º" },
   { nome: "Jose Fabio de Souza Junior", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "PCD", colocacao: "5º", pontos: "297º" },
   { nome: "Clicerio Pinheiro de Mezezes", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "PCD", colocacao: "6º", pontos: "307º" },
 { nome: "Antonia Lucileda Lopes da Silva", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "PCD", colocacao: "7º", pontos: "342º" },
+
+//JUAZEIRO PCD CR
 { nome: "Cicero Oliveira Lobo", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "8º", pontos: "352º" },
   { nome: "Glauber Ferreira Viana", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "9º", pontos: "353º" },
   { nome: "Janiele Vital Noroes", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "10º", pontos: "358º" },
@@ -2406,9 +2459,9 @@ const bancoDeAprovados = [
   { nome: "Salviano Rodrigues dos Santos", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "13º", pontos: "362º" },
 
 
-/*
-// FORTALEZA AMPLA 
-  { nome: "Marli Ferreira Facanha", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "297" },
+
+// FORTALEZA AMPLA CONVOCADO
+ { nome: "Marli Ferreira Facanha", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "297" },
   { nome: "Ingrid Alacoc Santos Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "2º", pontos: "296" },
   { nome: "Ariane Lavinia Melo de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "3º", pontos: "295" },
   { nome: "Hedley Mariano Almeida de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "4º", pontos: "294" },
@@ -2418,12 +2471,9 @@ const bancoDeAprovados = [
   { nome: "Luana Damasceno Cesar", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "8º", pontos: "288" },
   { nome: "Lisley Rocha Paixao", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "9º", pontos: "288" },
   { nome: "Tatiane Oliveira Ribeiro", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "10º", pontos: "287,5" },
-  { nome: "Natalia Araujo de Meneses Gomes", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "11º", pontos: "287" },
-  { nome: "Raimundo Nonato Maciel", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "11º", pontos: "259" },
+  { nome: "Natalia Araujo de Meneses Gomes", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "11º", pontos: "287" }, 
   { nome: "Itamara Pereira de Matos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "12º", pontos: "287" },
-  { nome: "Jones Neves Marques", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "12º", pontos: "258" },
-  { nome: "Samuel Acacio Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "13º", pontos: "287" },
-  { nome: "Jorge Luiz Nobre Mota", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "13º", pontos: "252,5" },
+{ nome: "Samuel Acacio Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "13º", pontos: "287" },
   { nome: "Pedro de Sousa Xavier", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "14º", pontos: "287" },
   { nome: "Oziel Leite Filho", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "15º", pontos: "286" },
   { nome: "Francileide Chaves de Freitas", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "16º", pontos: "286" },
@@ -2448,49 +2498,26 @@ const bancoDeAprovados = [
   { nome: "Keiliane Rocha de Castro Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "35º", pontos: "283" },
 { nome: "Vitor de Freitas Alves Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "36º", pontos: "000" },
   { nome: "Ismael Martins", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "37º", pontos: "000" },
-  { nome: "Antonio Jordao Nascimento Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "37º", pontos: "000" },
   { nome: "Roberta Sales Montenegro", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "38º", pontos: "000" },
-  { nome: "Dario da Silva Furtado", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "38º", pontos: "000" },
-  { nome: "Italo Ysalo Ferreira Azevedo", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "39º", pontos: "000" },
-  { nome: "Danyelle Oliveira Gama", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "39º", pontos: "000" },
-  { nome: "Italo Michael Rodrigues de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "40º", pontos: "000" },
-  { nome: "Lindongilson do Carmo Pessoa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "40º", pontos: "000" },
-  { nome: "Thiago Sousa e Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "41º", pontos: "000" },
-  { nome: "Raron Chrystian Silvestre Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "42º", pontos: "000" },
-  { nome: "Pedro Henrique da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "43º", pontos: "000" },
-  { nome: "Vilciane Bezerra da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "44º", pontos: "000" },
-  { nome: "Alessandro Tavares Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "45º", pontos: "000" },
-  { nome: "Amisterdam de Oliveira Custodio", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "46º", pontos: "000" },
-{ nome: "Leidiane Menezes Avelino", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "14º", pontos: "000" },
-  { nome: "Paulo Sergio de Pinho Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "15º", pontos: "000" },
-  { nome: "Francisco Evaldo Sampaio do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "17º", pontos: "000" },
-  { nome: "Noelia Maria Loureiro Goncalves", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "41º", pontos: "000" },
+  { nome: "Italo Ysalo Ferreira Azevedo", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "39º", pontos: "000" }, 
+{ nome: "Italo Michael Rodrigues de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "40º", pontos: "000" },
+{ nome: "Noelia Maria Loureiro Goncalves", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "41º", pontos: "000" },
   { nome: "Francisco Thiago Pereira Rocha", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "42º", pontos: "000" },
   { nome: "Gabriel Patricio Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "43º", pontos: "000" },
   { nome: "Benedito Soares Guimaraes", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "44º", pontos: "000" },
   { nome: "Francisco Elineudson Ribeiro da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "45º", pontos: "000" },
   { nome: "Romenia Piedade Ximenes Ribeiro", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "46º", pontos: "000" },
   { nome: "Rita de Cassia Gomes Carneiro", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "47º", pontos: "000" },
-  { nome: "Julio Cesar Alves de Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "47º", pontos: "000" },
   { nome: "Israel de Freitas da Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "48º", pontos: "000" },
-  { nome: "Francisco Eder Brito Nojosa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "48º", pontos: "000" },
   { nome: "Jorge Maciel Brauna de Barros", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "49º", pontos: "000" },
-  { nome: "Abimael Castro de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "49º", pontos: "000" },
-  { nome: "Diego Nascimento de Carvalho", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "50º", pontos: "000" },
-  { nome: "Jardel dos Santos Aguiar", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "50º", pontos: "000" },
+{ nome: "Diego Nascimento de Carvalho", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "50º", pontos: "000" },
   { nome: "Regilane Farias da Silva Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "51º", pontos: "000" },
-  { nome: "Isabel Pena da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "51º", pontos: "000" },
-  { nome: "Isaac Benevides Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "52º", pontos: "000" },
-  { nome: "Francisco Fabio Freitas de Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "52º", pontos: "000" },
+{ nome: "Isaac Benevides Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "52º", pontos: "000" },
   { nome: "Cicera Alexandra Sousa Brito", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "53º", pontos: "000" },
-  { nome: "Jose Augusto Barros de Sousa Filho", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "53º", pontos: "000" },
   { nome: "Expedito Andre de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "54º", pontos: "000" },
-  { nome: "Eriberton dos Santos Bezerra", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "54º", pontos: "000" },
-  { nome: "Julio Cesar Santos Saraiva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "55º", pontos: "000" },
-  { nome: "Emanoely Venancio Sobrinho", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "55º", pontos: "000" },
-{ nome: "Marden Batista dos Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "56º", pontos: "000" },
-  { nome: "Hamilton da Silva Moita", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "56º", pontos: "000" },
-  { nome: "Alicia Gabriela Fernandes da Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "57º", pontos: "000" },
+    { nome: "Julio Cesar Santos Saraiva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "55º", pontos: "000" },
+  { nome: "Marden Batista dos Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "56º", pontos: "000" },
+{ nome: "Alicia Gabriela Fernandes da Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "57º", pontos: "000" },
   { nome: "Fabricio de Paula Alcantara Mariano", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "58º", pontos: "000" },
   { nome: "Laila Rejane Barboza Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "59º", pontos: "000" },
   { nome: "Lucas Montenegro da Silva Rodrigues", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "60º", pontos: "000" },
@@ -2514,20 +2541,7 @@ const bancoDeAprovados = [
   { nome: "Helio de Freitas Bernardino", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "78º", pontos: "000" },
   { nome: "Jose Ravel Silva Fernandes", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "79º", pontos: "000" },
   { nome: "Natanael de Souza Farias", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "80º", pontos: "000" },
-{ nome: "Ataide Carneiro da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "19º", pontos: "000" },
-  { nome: "Ramon Braga da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "20º", pontos: "000" },
-  { nome: "Micael Erik da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "21º", pontos: "000" },
-  { nome: "Gislana Alves Peixoto", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "57º", pontos: "000" },
-  { nome: "Rafael Edmar Carneiro Cavalcante", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "58º", pontos: "000" },
-  { nome: "Jonnatas Alves Sabino", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "59º", pontos: "000" },
-  { nome: "Francisco Willemberg Barbosa Machado", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "60º", pontos: "000" },
-  { nome: "Nino Rafael da Silva Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "61º", pontos: "000" },
-  { nome: "Rafael Lemos de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "62º", pontos: "000" },
-  { nome: "Jeydson Barros Gomes", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "63º", pontos: "000" },
-  { nome: "Adilson Oliveira Santana", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "64º", pontos: "000" },
-  { nome: "Kauan dos Santos Eufrasio", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "65º", pontos: "000" },
-  { nome: "Matheus Batista de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "66º", pontos: "000" },
-  { nome: "Flavia Maria Cruz dos Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "81º", pontos: "000" },
+   { nome: "Flavia Maria Cruz dos Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "81º", pontos: "000" },
   { nome: "Rubens dos Santos Pereira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "82º", pontos: "000" },
   { nome: "Paulo Victor Silva de Freitas", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "83º", pontos: "000" },
 { nome: "Lucas Nogueira da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "84º", pontos: "000" },
@@ -2567,20 +2581,7 @@ const bancoDeAprovados = [
   { nome: "Fabiana Duarte Pimenta de Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "118º", pontos: "000" },
   { nome: "Kaio Victor da Silva Gomes", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "119º", pontos: "000" },
   { nome: "Marcondes Rocha Pereira dos Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "120º", pontos: "000" },
-{ nome: "Jose Eduardo de Araujo Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "22º", pontos: "000" },
-  { nome: "Cid Glaydson Cavalcante de Medeiros", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "23º", pontos: "000" },
-  { nome: "Gabriel Chaves Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "24º", pontos: "000" },
-  { nome: "Eveline Rodrigues de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "67º", pontos: "000" },
-  { nome: "Roberio Felix da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "68º", pontos: "000" },
-  { nome: "Joao Vitor Bernardino Morais", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "69º", pontos: "000" },
-  { nome: "Denis de Barros do Monte", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "70º", pontos: "000" },
-  { nome: "Antonio Ricardo da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "71º", pontos: "000" },
-  { nome: "Josue Robson Balduino de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "72º", pontos: "000" },
-  { nome: "Anibal Fernandes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "73º", pontos: "000" },
-  { nome: "Francisco Ramison Goncalves Queiroz", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "74º", pontos: "000" },
-  { nome: "Paulo Roberto Alves Veras", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "75º", pontos: "000" },
-  { nome: "Wellington Vicente da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "76º", pontos: "000" },
-  { nome: "Vilmer Martins Brito", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "121º", pontos: "000" },
+{ nome: "Vilmer Martins Brito", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "121º", pontos: "000" },
   { nome: "Livia Barros Aguiar", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "122º", pontos: "000" },
   { nome: "Ladghelson Araujo dos Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "123º", pontos: "000" },
   { nome: "Sara Greyce Marcelino de Freitas", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "124º", pontos: "000" },
@@ -2620,23 +2621,7 @@ const bancoDeAprovados = [
   { nome: "Adriana Albuquerque Cavalcante", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "158º", pontos: "000" },
   { nome: "Bruno de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "159º", pontos: "000" },
   { nome: "Francisco Wagner Freitas Matos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "160º", pontos: "000" },
-
-
-//FORTALEZA 
-{ nome: "Renata Menezes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "25º", pontos: "000" },
-  { nome: "Israel Victor Fernandes de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "26º", pontos: "000" },
-  { nome: "Joao Henrique Anderson Mariano Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "27º", pontos: "000" },
-  { nome: "Wilker Maia Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "77º", pontos: "000" },
-  { nome: "Francisco Lucio Dias dos Santos Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "78º", pontos: "000" },
-  { nome: "Francisco Gutemberg Oliveira da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "79º", pontos: "000" },
-  { nome: "Lucimeire Martins Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "80º", pontos: "000" },
-  { nome: "Luziano da Costa Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "81º", pontos: "000" },
-  { nome: "Anderlana Lopes de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "82º", pontos: "000" },
-  { nome: "Alex da Silva Goncalves", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "83º", pontos: "000" },
-  { nome: "Jose Renato Lima da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "84º", pontos: "000" },
-  { nome: "David Lucas de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "85º", pontos: "000" },
-  { nome: "Dalila Isabel de Oliveira Valentim", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "86º", pontos: "000" },
-  { nome: "Monalisa Roberta Pereira da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "161º", pontos: "000" },
+    { nome: "Monalisa Roberta Pereira da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "161º", pontos: "000" },
   { nome: "Edmilson Rodrigues de Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "162º", pontos: "000" },
   { nome: "Denisangela Militao Pinheiro Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "163º", pontos: "000" },
   { nome: "Gileade da Silva Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "164º", pontos: "000" },
@@ -2676,19 +2661,7 @@ const bancoDeAprovados = [
   { nome: "Renata do Nascimento Manfrin", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "198º", pontos: "000" },
   { nome: "Loris Herbert Saboia Figueiredo", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "199º", pontos: "000" },
   { nome: "Denis Rodrigues da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "200º", pontos: "000" },
-{ nome: "Matheus Suares Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "28º", pontos: "000" },
-  { nome: "Maria Corpe Nunes Soares", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "29º", pontos: "000" },
-  { nome: "Carlos Leonardo Lima Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "87º", pontos: "000" },
-  { nome: "Jaesio Vidal da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "88º", pontos: "000" },
-  { nome: "Wellington Franca do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "89º", pontos: "000" },
-  { nome: "Marcelo Santos de Alcantara", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "90º", pontos: "000" },
-  { nome: "Diego Maradona da Silva Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "91º", pontos: "000" },
-  { nome: "Mickaele Nunes Machado", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "92º", pontos: "000" },
-  { nome: "Edson de Andrade Bezerra", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "93º", pontos: "000" },
-  { nome: "Jeilson Moura Alves", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "94º", pontos: "000" },
-  { nome: "Alice Helen Santiago Santana Ipiraja", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "95º", pontos: "000" },
-  { nome: "Bruno do Nascimento Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "96º", pontos: "000" },
-  { nome: "Sarah Ellen Fortes de Almeida", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "201º", pontos: "000" },
+{ nome: "Sarah Ellen Fortes de Almeida", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "201º", pontos: "000" },
   { nome: "Maria Marcela Martins de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "202º", pontos: "000" },
   { nome: "Samuel Victor Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "203º", pontos: "000" },
   { nome: "Mayara Mara de Miranda Mendonca Monteiro", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "204º", pontos: "000" },
@@ -2728,19 +2701,7 @@ const bancoDeAprovados = [
   { nome: "Isaac Ferreira Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "238º", pontos: "000" },
   { nome: "Andre da Silva Pereira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "239º", pontos: "000" },
   { nome: "Francisco dos Santos Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "240º", pontos: "000" },
-{ nome: "Antonia Daniele Gomes Acacio", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "30º", pontos: "000" },
-  { nome: "Pedro Henrique Ribeiro Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "31º", pontos: "000" },
-  { nome: "Vinicius Bruno Rodrigues Pimenta", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "97º", pontos: "000" },
-  { nome: "Francisco Wellington Sousa de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "98º", pontos: "000" },
-  { nome: "Pedro Andre de Sousa Almeida", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "99º", pontos: "000" },
-  { nome: "Benedito Mesquita Neves Freires", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "100º", pontos: "000" },
-  { nome: "Francisco Wanderson Fernandes de Paiva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "101º", pontos: "000" },
-  { nome: "Joao Lenon Xavier da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "102º", pontos: "000" },
-  { nome: "Jose Alisson Barbosa de Paula", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "103º", pontos: "000" },
-  { nome: "Jeferson Galvao de Andrade Bezerra", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "104º", pontos: "000" },
-  { nome: "Paulo Henrique Oliveira Camelo", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "105º", pontos: "000" },
-  { nome: "Narcilio Oliveira Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "106º", pontos: "000" },
-  { nome: "Douglas Lima Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "241º", pontos: "000" },
+{ nome: "Douglas Lima Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "241º", pontos: "000" },
   { nome: "Maria Gabrielle de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "242º", pontos: "000" },
   { nome: "Odail Jose de Freitas", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "243º", pontos: "000" },
   { nome: "Rita Carliana Ferreira da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "244º", pontos: "000" },
@@ -2780,32 +2741,138 @@ const bancoDeAprovados = [
   { nome: "Natalina Ribeiro Viana", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "278º", pontos: "000" },
   { nome: "Victor Mendes da Silva Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "279º", pontos: "000" },
   { nome: "Carla Magda Barreira do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "280º", pontos: "000" },
-{ nome: "Ana Karoline Salviano Damasceno", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "107º", pontos: "000" },
-  { nome: "Jose Carlos Valente da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "108º", pontos: "000" },
-  { nome: "Emanuelle Cristina da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "109º", pontos: "000" },
-  { nome: "Jocelio Vieira Lima Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "110º", pontos: "000" },
-  { nome: "Francisco Carlos de Souza Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "111º", pontos: "000" },
-  { nome: "Ana Celia Torres Ibiapina", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "112º", pontos: "000" },
-  { nome: "Joelma Lourenco da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "281º", pontos: "000" },
+ { nome: "Joelma Lourenco da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "281º", pontos: "000" },
   { nome: "Kelvin Aquino da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "282º", pontos: "000" },
   { nome: "Renato Mikael Felix Fernandes", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "283º", pontos: "000" },
   { nome: "Ramon Vieira Sales de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "284º", pontos: "000" },
   { nome: "Braitner Rilmar Santos Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "285º", pontos: "000" },
   { nome: "Fabiana Monteiro Cavalcante", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "286º", pontos: "000" },
   { nome: "Vitoria Aquino Rodrigues Araujo", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "287º", pontos: "000" },
-*/
 
-//SOBRAL PCD
+
+
+// FORTALEZA PCD CONVOCADO
+{ nome: "Raimundo Nonato Maciel", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "11º", pontos: "259" },
+{ nome: "Jones Neves Marques", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "12º", pontos: "258" },
+{ nome: "Jorge Luiz Nobre Mota", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "13º", pontos: "252,5" },
+{ nome: "Leidiane Menezes Avelino", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "14º", pontos: "000" },
+  { nome: "Paulo Sergio de Pinho Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "15º", pontos: "000" },
+// FALTA O 16, FOI CHAMADO COMO 570 NEGRO
+  { nome: "Francisco Evaldo Sampaio do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "17º", pontos: "000" },
+// FALTA O 18, FOI CHAMADO COMO 640 NEGRO
+ { nome: "Ataide Carneiro da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "19º", pontos: "000" },
+  { nome: "Ramon Braga da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "20º", pontos: "000" },
+  { nome: "Micael Erik da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "21º", pontos: "000" },
+{ nome: "Jose Eduardo de Araujo Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "22º", pontos: "000" },
+  { nome: "Cid Glaydson Cavalcante de Medeiros", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "23º", pontos: "000" },
+  { nome: "Gabriel Chaves Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "24º", pontos: "000" },
+{ nome: "Renata Menezes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "25º", pontos: "000" },
+  { nome: "Israel Victor Fernandes de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "26º", pontos: "000" },
+  { nome: "Joao Henrique Anderson Mariano Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "27º", pontos: "000" },
+{ nome: "Matheus Suares Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "28º", pontos: "000" },
+  { nome: "Maria Corpe Nunes Soares", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "29º", pontos: "000" },
+{ nome: "Antonia Daniele Gomes Acacio", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "30º", pontos: "000" },
+  { nome: "Pedro Henrique Ribeiro Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "31º", pontos: "000" },
+
+
+
+
+
+
+//FORTALEZA COTA CONVOCADO
+{ nome: "Antonio Jordao Nascimento Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "37º", pontos: "000" },
+{ nome: "Dario da Silva Furtado", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "38º", pontos: "000" },
+  { nome: "Danyelle Oliveira Gama", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "39º", pontos: "000" },
+     { nome: "Lindongilson do Carmo Pessoa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "40º", pontos: "000" },
+  { nome: "Thiago Sousa e Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "41º", pontos: "000" },
+  { nome: "Raron Chrystian Silvestre Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "42º", pontos: "000" },
+  { nome: "Pedro Henrique da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "43º", pontos: "000" },
+  { nome: "Vilciane Bezerra da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "44º", pontos: "000" },
+  { nome: "Alessandro Tavares Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "45º", pontos: "000" },
+  { nome: "Amisterdam de Oliveira Custodio", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "46º", pontos: "000" },
+{ nome: "Julio Cesar Alves de Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "47º", pontos: "000" },
+  { nome: "Francisco Eder Brito Nojosa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "48º", pontos: "000" },
+  { nome: "Abimael Castro de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "49º", pontos: "000" },
+  { nome: "Jardel dos Santos Aguiar", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "50º", pontos: "000" },
+  { nome: "Isabel Pena da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "51º", pontos: "000" },
+    { nome: "Francisco Fabio Freitas de Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "52º", pontos: "000" },
+{ nome: "Jose Augusto Barros de Sousa Filho", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "53º", pontos: "000" },
+{ nome: "Eriberton dos Santos Bezerra", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "54º", pontos: "000" },
+{ nome: "Emanoely Venancio Sobrinho", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "55º", pontos: "000" },
+ { nome: "Hamilton da Silva Moita", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "56º", pontos: "000" },
+{ nome: "Gislana Alves Peixoto", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "57º", pontos: "000" },
+  { nome: "Rafael Edmar Carneiro Cavalcante", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "58º", pontos: "000" },
+  { nome: "Jonnatas Alves Sabino", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "59º", pontos: "000" },
+  { nome: "Francisco Willemberg Barbosa Machado", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "60º", pontos: "000" },
+  { nome: "Nino Rafael da Silva Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "61º", pontos: "000" },
+  { nome: "Rafael Lemos de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "62º", pontos: "000" },
+  { nome: "Jeydson Barros Gomes", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "63º", pontos: "000" },
+  { nome: "Adilson Oliveira Santana", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "64º", pontos: "000" },
+  { nome: "Kauan dos Santos Eufrasio", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "65º", pontos: "000" },
+  { nome: "Matheus Batista de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "66º", pontos: "000" },
+  { nome: "Eveline Rodrigues de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "67º", pontos: "000" },
+  { nome: "Roberio Felix da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "68º", pontos: "000" },
+ { nome: "Joao Vitor Bernardino Morais", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "69º", pontos: "000" },
+  { nome: "Denis de Barros do Monte", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "70º", pontos: "000" },
+  { nome: "Antonio Ricardo da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "71º", pontos: "000" },
+  { nome: "Josue Robson Balduino de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "72º", pontos: "000" },
+  { nome: "Anibal Fernandes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "73º", pontos: "000" },
+  { nome: "Francisco Ramison Goncalves Queiroz", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "74º", pontos: "000" },
+  { nome: "Paulo Roberto Alves Veras", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "75º", pontos: "000" },
+  { nome: "Wellington Vicente da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "76º", pontos: "000" },
+{ nome: "Wilker Maia Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "77º", pontos: "000" },
+  { nome: "Francisco Lucio Dias dos Santos Barbosa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "78º", pontos: "000" },
+  { nome: "Francisco Gutemberg Oliveira da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "79º", pontos: "000" },
+  { nome: "Lucimeire Martins Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "80º", pontos: "000" },
+  { nome: "Luziano da Costa Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "81º", pontos: "000" },
+  { nome: "Anderlana Lopes de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "82º", pontos: "000" },
+  { nome: "Alex da Silva Goncalves", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "83º", pontos: "000" },
+  { nome: "Jose Renato Lima da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "84º", pontos: "000" },
+  { nome: "David Lucas de Oliveira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "85º", pontos: "000" },
+  { nome: "Dalila Isabel de Oliveira Valentim", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "86º", pontos: "000" },
+ { nome: "Carlos Leonardo Lima Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "87º", pontos: "000" },
+  { nome: "Jaesio Vidal da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "88º", pontos: "000" },
+  { nome: "Wellington Franca do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "89º", pontos: "000" },
+  { nome: "Marcelo Santos de Alcantara", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "90º", pontos: "000" },
+  { nome: "Diego Maradona da Silva Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "91º", pontos: "000" },
+  { nome: "Mickaele Nunes Machado", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "92º", pontos: "000" },
+  { nome: "Edson de Andrade Bezerra", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "93º", pontos: "000" },
+  { nome: "Jeilson Moura Alves", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "94º", pontos: "000" },
+  { nome: "Alice Helen Santiago Santana Ipiraja", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "95º", pontos: "000" },
+  { nome: "Bruno do Nascimento Souza", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "96º", pontos: "000" },
+  { nome: "Vinicius Bruno Rodrigues Pimenta", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "97º", pontos: "000" },
+  { nome: "Francisco Wellington Sousa de Lima", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "98º", pontos: "000" },
+  { nome: "Pedro Andre de Sousa Almeida", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "99º", pontos: "000" },
+  { nome: "Benedito Mesquita Neves Freires", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "100º", pontos: "000" },
+  { nome: "Francisco Wanderson Fernandes de Paiva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "101º", pontos: "000" },
+  { nome: "Joao Lenon Xavier da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "102º", pontos: "000" },
+  { nome: "Jose Alisson Barbosa de Paula", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "103º", pontos: "000" },
+  { nome: "Jeferson Galvao de Andrade Bezerra", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "104º", pontos: "000" },
+  { nome: "Paulo Henrique Oliveira Camelo", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "105º", pontos: "000" },
+  { nome: "Narcilio Oliveira Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "106º", pontos: "000" },
+{ nome: "Ana Karoline Salviano Damasceno", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "107º", pontos: "000" },
+  { nome: "Jose Carlos Valente da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "108º", pontos: "000" },
+  { nome: "Emanuelle Cristina da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "109º", pontos: "000" },
+  { nome: "Jocelio Vieira Lima Santos", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "110º", pontos: "000" },
+  { nome: "Francisco Carlos de Souza Silva", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "111º", pontos: "000" },
+  { nome: "Ana Celia Torres Ibiapina", cidade: "Fortaleza", status: "Convocado", tipo: "Negro", colocacao: "112º", pontos: "000" },
+ 
+
+
+
+//SOBRAL PCD CONVOCADO
  { nome: "Francisco Daelson Laureano Pinheiro", cidade: "Sobral", status: "Convocado", tipo: "PcD", colocacao: "1º", pontos: "78º" },
   { nome: "Tatiane Aparecida Rottini Ximenes", cidade: "Sobral", status: "Convocado", tipo: "PcD", colocacao: "2º", pontos: "109º" },
   { nome: "Ruberlanis Araujo Aguiar", cidade: "Sobral", status: "Convocado", tipo: "PcD", colocacao: "3º", pontos: "123º" },
+
+//SOBRAL PCD IMEDIATA
 { nome: "Joao Victor Silva Barros", cidade: "Sobral", status: "imediata", tipo: "PCD", colocacao: "4º", pontos: "203º" },
   { nome: "Antonio Alisson da Silva Leite", cidade: "Sobral", status: "imediata", tipo: "PCD", colocacao: "5º", pontos: "247º" },
   { nome: "Gleison Ferreira de Lima", cidade: "Sobral", status: "imediata", tipo: "PCD", colocacao: "6º", pontos: "316º" },
   { nome: "Lourdyneuma de Castro Gurgel", cidade: "Sobral", status: "imediata", tipo: "PCD", colocacao: "7º", pontos: "320º" },
   { nome: "Valmor Tarcio dos Santos Luz", cidade: "Sobral", status: "imediata", tipo: "PCD", colocacao: "8º", pontos: "323º" },
 
-//SOBRAL COTAS
+//SOBRAL COTAS CONVOCADO
 { nome: "Antonio Marcos Silva Pimentel", cidade: "Sobral", status: "Convocado", tipo: "Negro", colocacao: "1º", pontos: "55º" },
   { nome: "Ivanildo Souza Costa Mendes", cidade: "Sobral", status: "Convocado", tipo: "Negro", colocacao: "2º", pontos: "58º" },
   { nome: "Francisco Mateus Lopes Marques", cidade: "Sobral", status: "Convocado", tipo: "Negro", colocacao: "3º", pontos: "72º" },
@@ -2819,6 +2886,8 @@ const bancoDeAprovados = [
   { nome: "Heder Nascimento de Sousa", cidade: "Sobral", status: "Convocado", tipo: "Negro", colocacao: "11º", pontos: "149º" },
   { nome: "Joao Paulo da Silva Gomes", cidade: "Sobral", status: "Convocado", tipo: "Negro", colocacao: "12º", pontos: "160º" },
   { nome: "Bertoni Vasconcelos Diogo", cidade: "Sobral", status: "Convocado", tipo: "Negro", colocacao: "13º", pontos: "168º" },
+
+//SOBRAL COTAS IMEDIATA
 { nome: "Alber de Sa Gomes", cidade: "Sobral", status: "imediata", tipo: "cotas", colocacao: "14º", pontos: "173º" },
   { nome: "Manoel Aurielio de Carvalho Lopes", cidade: "Sobral", status: "imediata", tipo: "cotas", colocacao: "15º", pontos: "189º" },
   { nome: "Arlana de Sousa Amarante", cidade: "Sobral", status: "imediata", tipo: "cotas", colocacao: "16º", pontos: "197º" },
@@ -2834,6 +2903,8 @@ const bancoDeAprovados = [
   { nome: "Raimundo Nonato de Maria", cidade: "Sobral", status: "imediata", tipo: "cotas", colocacao: "26º", pontos: "249º" },
   { nome: "Emanuel Guarinho Prado", cidade: "Sobral", status: "imediata", tipo: "cotas", colocacao: "27º", pontos: "256º" },
   { nome: "Pedro Henrique de Lima Oliveira", cidade: "Sobral", status: "imediata", tipo: "cotas", colocacao: "28º", pontos: "259º" },
+
+//SOBRAL COTAS CR
 { nome: "Jose Adecio Pereira Romao", cidade: "Sobral", status: "cadastro reserva", tipo: "cotas", colocacao: "1º", pontos: "263º" },
   { nome: "Manoel Barbosa Neto", cidade: "Sobral", status: "cadastro reserva", tipo: "cotas", colocacao: "2º", pontos: "266º" },
   { nome: "Carlos Adailson Fernandes Sousa", cidade: "Sobral", status: "cadastro reserva", tipo: "cotas", colocacao: "3º", pontos: "276º" },
@@ -2866,7 +2937,7 @@ const bancoDeAprovados = [
   { nome: "Jose Nicassio Araujo de Abreu", cidade: "Sobral", status: "cadastro reserva", tipo: "cotas", colocacao: "30º", pontos: "343º" },
   { nome: "Roberlano Linhares Braga", cidade: "Sobral", status: "cadastro reserva", tipo: "cotas", colocacao: "31º", pontos: "344º" },
 
-//SOBRAL AMPLA
+//SOBRAL AMPLA CONVOCADO
 { nome: "Rosimeire Martins de Castro", cidade: "Sobral", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "1º", pontos: "1º" },
   { nome: "Diana Pereira Romao", cidade: "Sobral", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "2º", pontos: "2º" },
   { nome: "Luiz Victor Coelho Albuquerque", cidade: "Sobral", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "3º", pontos: "3º" },
@@ -2915,6 +2986,8 @@ const bancoDeAprovados = [
   { nome: "Andrezza Maria Borges Batista", cidade: "Sobral", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "46º", pontos: "46º" },
   { nome: "Luis Carlos Vicente", cidade: "Sobral", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "47º", pontos: "47º" },
   { nome: "Lucas Barbosa Aragao", cidade: "Sobral", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "48º", pontos: "48º" },
+
+//SOBRAL AMPLA IMEDIATA
 { nome: "Matusalem Magalhaes dos Santos", cidade: "Sobral", status: "imediata", tipo: "Ampla Concorrência", colocacao: "49º", pontos: "49º" },
   { nome: "Yago Pereira da Silva", cidade: "Sobral", status: "imediata", tipo: "Ampla Concorrência", colocacao: "50º", pontos: "50º" },
   { nome: "Joao Carlos Madeira do Nascimento", cidade: "Sobral", status: "imediata", tipo: "Ampla Concorrência", colocacao: "51º", pontos: "51º" },
@@ -2974,6 +3047,8 @@ const bancoDeAprovados = [
   { nome: "Francisco Danilson Siqueira de Araujo", cidade: "Sobral", status: "imediata", tipo: "Ampla Concorrência", colocacao: "105º", pontos: "111º" },
   { nome: "Danilo Renes do Nascimento", cidade: "Sobral", status: "imediata", tipo: "Ampla Concorrência", colocacao: "106º", pontos: "112º" },
   { nome: "Fernando Farrapo Cavalcante", cidade: "Sobral", status: "imediata", tipo: "Ampla Concorrência", colocacao: "107º", pontos: "113º" },
+
+//SOBRAL AMPLA CR
 { nome: "Jose Waldecy Costa Silva", cidade: "Sobral", status: "cadastro reserva", tipo: "ampla concorrência", colocacao: "1º", pontos: "114º" },
   { nome: "Lucinilton Magalhaes Costa", cidade: "Sobral", status: "cadastro reserva", tipo: "ampla concorrência", colocacao: "2º", pontos: "115º" },
   { nome: "Francisco Joerno da Silva Borges", cidade: "Sobral", status: "cadastro reserva", tipo: "ampla concorrência", colocacao: "3º", pontos: "116º" },
@@ -3399,6 +3474,98 @@ function carregarCandidatoNaTela(index) {
     }
 }
 */
+
+
+function abrirManual() {
+    const overlay = document.createElement("div");
+    overlay.id = "overlay-manual-plataforma";
+    overlay.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); display:flex; align-items:center; justify-content:center; z-index:9999999;";
+
+    overlay.innerHTML = `
+    <div style="background:#0a0a0a; border:2px solid #FFD700; padding:30px; border-radius:15px; text-align:center; box-shadow:0 0 30px rgba(255, 215, 0, 0.3); width: 800px; max-width: 95%; max-height: 90vh; overflow-y: auto; position: relative;">
+        
+        <h2 style="color:#FFD700; font-size: 1.8em; margin-bottom: 20px; text-transform: uppercase;"> Manual da Plataforma</h2>
+        
+        <div style="text-align: left; color: #fff; font-size: 1em; line-height: 1.6; margin-bottom: 20px;">
+<b>            Bem vind@ ao Guia de Acompanhamento de Convocação.<br>Este manual tem 3 objetivos principais:<br>
+-Facilitar o acompanhamento das convocações.<br>
+-Facilitar a acareação das listas oficiais.<br>
+-Facilitar o entendimento da plataforma<br>
+Existem 2 formas de se fazer consulta: manual e planilha.<br>
+<span style='color:violet;'>Manual</span>: A partir de uma determinada posição, por exemplo, à sua, você clica em <span style='color:gray;'><i>Anterior</i></span> ou <span style='color:gray;'><i>Próximo</i></span> e percorre a lista. Manualmente, é possível checar a posição das <span style='color:orange;'>2.582</span> pessoas, distribuídas em Juazeiro (362), Fortaleza (1.875) e Sobral (345).<br>
+<span style='color:violet;'>Planilha</span>: Basta clicar em <i>Listas de Convocação</i> para ter acesso a todas as categorias de todas as localidades.<br>
+Esta plataforma será atualizada a cada convocação durante toda a validade do concurso.<br>Dito isso, vamos as principais dúvidas.<br><br>
+            <h3 style="color: #4169E1;">CONVOCAÇÃO NA CATEGORIA</h3>
+É a posição em que você se encontra em relação a sua categoria.<br>
+Uma vez definida, essa posição é imutável, exceto por ordem judicial.<br>
+Pense em sua posição como uma <span style='color:orange;'>senha bancária</span>. Muitas vezes, a gente aguarda um bom tempo, e o nosso tipo de senha para de andar justamente na nossa vez, então a gente vê diversas outras senhas sendo chamadas, menos a nossa.<br>
+Exemplificando: Fulano está na posição 49 da ampla de Sobral, e o governador chamou 64 pessoas na T1. Isso significa que Fulano foi convocado? Não! Pois a SEAS dividiu essas 64 pessoas em 48 (ampla) 13 (negro) e 3 (PCD).<br>
+Fazendo analogia às filas bancárias, Fulano aguardou 48 senhas do seu mesmo tipo serem chamadas, depois a fila parou pra ele, restando-lhe apenas observar outros tipos de senhas serem chamadas (negro e PCD).<br> O fato de você ser o próximo em sua categoria não significa que você será o próximo a ser convocado. Existem outras categorias, e a próxima senha a ser chamada é um ato discricionário.<br>
+<br>
+            <h3 style="color: blue;">COLUNA F - PLANILHA</h3>
+         Os números <span style='color:blue;'><b>azuis</b></span> representam a ordem a qual a pessoa foi convocada na lista oficial da SEAS.
+            <br><br>
+<h3 style="color: #39FF14;"> COLUNA G - PLANILHA</h3>
+          Essa coluna representa sua posição geral na lista oficial da UECE. Existem 3 variações de cores:<br>
+Os números <span style='color:green;'><b>verdes</b></span> representam as pessoas convocadas pela SEAS.<br>
+Os números <span style='color:yellow;'><b>dourados</b></span> representam as pessoas dentro das vagas imediatas e que estão prestes a serem convocadas.<br>
+Os números <span style='color:purple;'><b>roxos</b></span> representam as pessoas que estão no cadastro reserva.<br>
+            <br>
+ <h3 style="color: gray;">COLUNA H - PLANILHA</h3>
+         Os números dessa coluna representam a ordem a qual a pessoa foi classificada em sua categoria de acordo com a lista oficial da UECE, exclusivamente para negro e PCD.
+            <br>
+        </div>
+
+        <button id="btn-fechar-manual" style="width: 100%; padding:15px; font-weight:bold; border:none; border-radius:8px; background:#ffd700; color:#000; cursor:pointer; box-shadow: 0 4px 0 #b8860b; font-size: 1.1em; margin-top: 10px;">FECHAR MANUAL</button>
+    </div>`;
+
+    document.body.appendChild(overlay);
+
+    document.getElementById('btn-fechar-manual').onclick = () => {
+        overlay.remove();
+    };
+}
+
+function abrirDesistentes() {
+    const overlay = document.createElement("div");
+    overlay.id = "overlay-desistentes";
+    overlay.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); display:flex; align-items:center; justify-content:center; z-index:9999999;";
+
+    overlay.innerHTML = `
+    <div style="background:#0a0a0a; border:2px solid #FFD700; padding:30px; border-radius:15px; text-align:center; box-shadow:0 0 30px rgba(255, 215, 0, 0.3); width: 800px; max-width: 95%; max-height: 90vh; overflow-y: auto; position: relative;">
+        
+        <h2 style="color:#FFD700; font-size: 1.8em; margin-bottom: 20px; text-transform: uppercase;">📜 Lista de Desistentes 📜</h2>
+        
+        <div style="text-align: left; color: #fff; font-size: 1em; line-height: 1.6; margin-bottom: 20px;">
+            <p>Ainda não há registros oficiais de desistentes, mas, quando houver, seguirá os modelos abaixo:<br>
+Nome: <span style='color:green;'><b>Fulano de Tal</b></span><br>
+Categoria: <span style='color:blue;'><b>PCD</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+
+Nome: <span style='color:green;'><b>Beltrano</b></span><br>
+Categoria: <span style='color:blue;'><b>NEGRO</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas solicitou Final de Fila.</span><br><br>
+
+Nome: <span style='color:green;'><b>Sicrano</b></span><br>
+Categoria: <span style='color:blue;'><b>AMPLA</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/206, tomou Posse, mas solicitou exoneração dia 25/05/2027.</span><br><br>
+</p>
+        </div>
+
+        <button id="btn-fechar-desistentes" style="width: 100%; padding:15px; font-weight:bold; border:none; border-radius:8px; background:#ffd700; color:#000; cursor:pointer; box-shadow: 0 4px 0 #b8860b; font-size: 1.1em; margin-top: 10px;">FECHAR LISTA</button>
+    </div>`;
+
+    document.body.appendChild(overlay);
+
+    document.getElementById('btn-fechar-desistentes').onclick = () => {
+        overlay.remove();
+    };
+}
+
+
 </script>
 </body>
 </html>
