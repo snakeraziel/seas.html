@@ -2712,7 +2712,7 @@ const bancoDeAprovados = [
   { nome: "Adriano Ferreira de Sousa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "249º", pontos: "000" },
   { nome: "Francisco Silva dos Anjos", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "250º", pontos: "000" },
   { nome: "Paulo Ricardo Lima Medeiros", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "251º", pontos: "000" },
-{ nome: "Renata de Sousa Sampaio", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "252º", pontos: "000" },
+{ nome: "Renata de Sousa Sampaio", cidade: "Fortaleza", status: "Desistente", tipo: "Ampla Concorrência", colocacao: "252º", pontos: "000" },
   { nome: "Alcir Santana da Costa", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "253º", pontos: "000" },
   { nome: "Eduardo Alves Lira", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "254º", pontos: "000" },
   { nome: "Denys Felipe de Oliveira Ribeiro", cidade: "Fortaleza", status: "Convocado", tipo: "Ampla Concorrência", colocacao: "255º", pontos: "000" },
@@ -3537,21 +3537,57 @@ function abrirDesistentes() {
         <h2 style="color:#FFD700; font-size: 1.8em; margin-bottom: 20px; text-transform: uppercase;">📜 Lista de Desistentes 📜</h2>
         
         <div style="text-align: left; color: #fff; font-size: 1em; line-height: 1.6; margin-bottom: 20px;">
-            <p>Ainda não há registros oficiais de desistentes, mas, quando houver, seguirá os modelos abaixo:<br>
-Nome: <span style='color:green;'><b>Fulano de Tal</b></span><br>
-Categoria: <span style='color:blue;'><b>PCD</b></span><br>
+            <p>No momento existe <b>7 <span style='color:red;'>ELIMINADOS.</b></span><br><br>
+
+//7º
+Nome: <span style='color:green;'><b>Renata de Sousa Sampaio</b></span><br>
+Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>
+Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocada dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+
+//6º
+Nome: <span style='color:green;'><b>Jailson Tavares Freitas Lima</b></span><br>
+Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>
+Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>
 Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
 Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 
-Nome: <span style='color:green;'><b>Beltrano</b></span><br>
-Categoria: <span style='color:blue;'><b>NEGRO</b></span><br>
+//5º
+Nome: <span style='color:green;'><b>Renato Mikael Felix Fernandes</b></span><br>
+Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>
+Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>
 Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
-Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas solicitou Final de Fila.</span><br><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 
-Nome: <span style='color:green;'><b>Sicrano</b></span><br>
-Categoria: <span style='color:blue;'><b>AMPLA</b></span><br>
+//4º
+Nome: <span style='color:green;'><b>Hamilton da Silva Moita</b></span><br>
+Categoria: <span style='color:blue;'><b>Negro</b></span><br>
+Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>
 Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
-Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/206, tomou Posse, mas solicitou exoneração dia 25/05/2027.</span><br><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+
+//3º
+Nome: <span style='color:green;'><b>Ramon Braga da Silva</b></span><br>
+Categoria: <span style='color:blue;'><b>PCD</b></span><br>
+Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+
+//2º
+Nome: <span style='color:green;'><b>Israel Victor Fernandes de Lima</b></span><br>
+Categoria: <span style='color:blue;'><b>PCD</b></span><br>
+Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+
+//1º
+Nome: <span style='color:green;'><b> Romario Trajano Silva</b></span><br>
+Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>
+Cidade: <span style='color:pink;'><b>Sobral</b></span><br>
+Status: <span style='color:red;'><b>DESISTENTE</b></span><br>
+Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+
 </p>
         </div>
 
