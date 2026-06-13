@@ -175,40 +175,47 @@ body {
     display: block; 
 }
 
-/* 2. O COMANDO DO CELULAR (Cravado na Borda) */
+/* AJUSTE TOTAL PARA CELULAR (ÁREA AMARELA) */
 @media (max-width: 600px) {
     body {
-        padding: 0; /* Remove a margem externa do fundo, colando o sistema na tela */
+        padding: 0 !important; 
+        margin: 0 !important;
+        display: block !important; 
+        background: #020617; 
     }
     
     .app-container {
-        /* Transforma o container em tela cheia (estilo app nativo) */
-        min-height: 100vh; 
-        
-        border-radius: 0; /* Tira o arredondamento, cravando as quinas na borda do aparelho */
-        border-left: none; /* Remove a borda lateral para não somar 1px e estourar a tela */
-        border-right: none;
-        
-        /* Ajuste do respiro interno para o texto não encostar nas laterais */
-        padding: 20px 15px; 
+        width: 100% !important;    
+        max-width: 100% !important; 
+        min-height: 100vh !important; 
+        border-radius: 0 !important; 
+        margin: 0 !important;        
+        border: none !important;     
+        padding: 15px !important;    
+        display: flex !important;
+        flex-direction: column !important;
     }
-}
 
-
-/* Ajuste tático para as telas menores (celulares) */
-@media (max-width: 600px) {
-    .app-container {
-        /* Reduzimos o recuo interno para ganhar mais espaço útil de leitura para as questões */
-        padding: 15px; 
-        
-        /* Suaviza o arredondamento para combinar melhor com margens estreitas */
-        border-radius: 10px; 
+    .search-box {
+        flex-direction: column; 
     }
-}
     
+    input {
+        width: 100% !important;
+    }
+
+    div[style*="display: flex"] {
+        gap: 15px !important; 
+        justify-content: space-around !important;
+    }
+}
+
+/* --- REGRAS GERAIS (Computador e Base) --- */
 .search-box { display: flex; gap: 10px; margin-bottom: 20px; }
 input { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #334155; background: #020617; color: #fff; outline: none; }
 button { padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
+
+
 button:hover { opacity: 0.8; transform: translateY(-2px); }
         
 .result-card { background: #1e293b; padding: 20px; border-radius: 12px; margin-top: 20px; display: none; border-left: 5px solid var(--accent); transition: 0.3s; }
@@ -237,41 +244,60 @@ button:hover { opacity: 0.8; transform: translateY(-2px); }
 #questoes-area {
     position: fixed;
     inset: 0;
-padding-top: -10px;
     display: none; /* O JS muda para flex quando inicia */
     align-items: center;
     justify-content: center;
-    background: #020617; /* Esse é o fundo da tela toda */
+    background: var(--bg); /* Usa a cor de fundo do root para manter o padrao */
     z-index: 5000;
-    padding: 10px; /* Remova os 350px de padding, deixe só um respiro */
+    padding: 20px; /* Respiro padrão para desktop */
 }
 
 #card-quiz {
     width: 100%;
     max-width: 600px;
-    height: 380px; /* Abaixa para caber a justificativa sem rolar tanto */
-    background-color: #111827;
+    height: 380px;
+    background-color: var(--card);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    padding-top: -10px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     position: relative;
-    overflow: hidden; /* Garante que nada saia do card */
+    overflow: hidden; 
+    border: 1px solid #1e293b;
 }
 
-/* Área do texto: essencial para não ter rolagem no card todo */
+/* 3. A MAGIA PARA O CELULAR NO SLIDE DE QUESTÕES */
+@media (max-width: 600px) {
+    #questoes-area {
+        padding: 0; /* Remove os recuos externos no celular */
+    }
+
+    #card-quiz {
+        height: 100vh; /* Faz o card ocupar a tela inteira do celular de cima a baixo */
+        border-radius: 0; /* Tira bordas arredondadas que sobram nas laterais */
+        border: none;
+        padding: 15px; /* Ajusta o padding interno para caber tudo e ter área de respiro */
+    }
+}
+
+/* Área do texto */
 #pergunta-container {
-height: auto; /* Deixa o texto crescer naturalmente */
-    min-height: 150px; /* Garante um espaço mínimo */
-    max-height: 220px; /* Limite máximo antes de começar a rolar */   
- overflow-y: auto; 
+    height: auto; 
+    min-height: 150px; 
+    max-height: 220px; 
+    overflow-y: auto;   
     margin-bottom: 10px;
 }
 
+@media (max-width: 600px) {
+    #pergunta-container {
+         max-height: 50vh; /* No celular, a pergunta pode crescer mais se precisar */
+    }
+}
+
 .navegacao {
-    margin-top: auto; /* Joga os botões para o fim do card de 380px */
+    margin-top: auto; 
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -283,23 +309,25 @@ height: auto; /* Deixa o texto crescer naturalmente */
     line-height: 1.4;
     color: #fff;
     margin-bottom: 10px;
-white-space: normal; /* Garante que o texto quebre linhas */
+    white-space: normal; 
 }
 
 #bloco-resposta {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Espaço entre o V e o F */
+    gap: 15px; 
     width: 100%;
-    margin-top: 10px; /* ISSO FAZ OS BOTÕES V/F DESCEREM */
-
+    margin-top: 10px; 
 }
 
-/* Garante que os botões V/F tenham um tamanho legal ao descer */
 .btn-opt {
-    flex: 1; /* Faz eles dividirem o espaço igualmente */
+    flex: 1; 
     max-width: 250px;
     padding: 12px;
+    background: #1e293b !important;
+    color: white !important;
+    border: 1px solid #3b82f6;
+    border-radius: 8px; /* Ajuste visual pro botão */
 }
 
 #msg-justificativa {
@@ -311,14 +339,24 @@ white-space: normal; /* Garante que o texto quebre linhas */
     display: none;
 }
 
-.btn-acao { padding: 12px 20px; border-radius: 8px; border: none; background: var(--accent); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
-.btn-opt { flex: 1; }
-.btn-home { background: #1e293b; color: #fff; border: 1px solid #334155; }
+.btn-acao { 
+    padding: 12px 20px; 
+    border-radius: 8px; 
+    border: none; 
+    background: var(--accent); 
+    color: #000; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s; 
+}
+
+.btn-home { 
+    background: #1e293b; 
+    color: #fff; 
+    border: 1px solid #334155; 
+}
+
 #flash { position: fixed; inset: 0; pointer-events: none; z-index: 10001; }
-.anim-g { animation: flashG 1.2s; }
-.anim-r { animation: flashR 1.2s; }
-@keyframes flashG { 0% { background: rgba(34, 197, 94, 0.5); } 100% { background: transparent; } }
-@keyframes flashR { 0% { background: rgba(255, 0, 0, 0.5); } 100% { background: transparent; } }
 
 @keyframes piscadaVerde {
     0%, 33%, 66% { background-color: rgba(34, 197, 94, 0.7); }
@@ -335,6 +373,9 @@ white-space: normal; /* Garante que o texto quebre linhas */
 .anim-g { animation: piscadaVerde 1.2s ease-in-out; }
 .anim-r { animation: piscadaVermelha 1.2s ease-in-out; }
 
+
+
+
 /* Botão Neutro Padrão */
 .btn-opt {
     background: #1e293b !important;
@@ -345,13 +386,14 @@ white-space: normal; /* Garante que o texto quebre linhas */
     </style>
 </head>
 <body onclick="handleInteraction()">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <div id="flash"></div>
     <audio id="somAplausos" src="https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Som%20de%20plateia%20gritos%20aplausos%20assobio.MP3" preload="auto"></audio>
 
     <div class="app-container">
         <div id="capa">
-            <h2>ACOMPANHAMENTO DE CONVOCAÇÃO</h2>
+            <h2>ACOMPANHAMENTO DE CR</h2>
             
           <div class="search-box">
     <input type="text" id="inputNome" placeholder="DIGITE O SEU NOME DA FORMA QUE DESEJAR">
@@ -375,7 +417,7 @@ white-space: normal; /* Garante que o texto quebre linhas */
 </div>       
      </div>
 
-            <label>Dúvidas, Sugestões, Críticas ou Pedidos: 88 994354250</label>
+            <label>Dúvidas, Sugestões ou Críticas: 88 994354250</label>
 <br><br>
  
 
@@ -416,7 +458,9 @@ white-space: normal; /* Garante que o texto quebre linhas */
                     </button>
                 </div>
             </div>
-        </div> <div id="result-area" class="result-card">
+        </div>
+
+ <div id="result-area" class="result-card">
             <div class="data-row"><span class="label">Nome:</span> <span id="res-nome"></span></div>
             <div class="data-row"><span class="label">Status:</span> <span id="res-status"></span></div>
             <div class="data-row"><span class="label">Colocação Atual:</span> <span id="res-col"></span></div>
@@ -2371,6 +2415,7 @@ const bancoDeAprovados = [
   { nome: "Gledson Alves Pereira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "10º", pontos: "84º" },
   { nome: "Pedro dos Santos Calheira", cidade: "Juazeiro do Norte", status: "Convocado", tipo: "Negro", colocacao: "11º", pontos: "85º" },
 { nome: "Irlan Martiniano Menezes", cidade: "Juazeiro do Norte", status: 
+
 //JUAZEIRO COTA IMEDIATA
 "Imediata", tipo: "Negro", colocacao: "12º", pontos: "98º" },
   { nome: "Gildenia Bezerra Silva", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "Negro", colocacao: "13º", pontos: "106º" },
@@ -2451,12 +2496,12 @@ const bancoDeAprovados = [
 { nome: "Antonia Lucileda Lopes da Silva", cidade: "Juazeiro do Norte", status: "Imediata", tipo: "PCD", colocacao: "7º", pontos: "342º" },
 
 //JUAZEIRO PCD CR
-{ nome: "Cicero Oliveira Lobo", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "8º", pontos: "352º" },
-  { nome: "Glauber Ferreira Viana", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "9º", pontos: "353º" },
-  { nome: "Janiele Vital Noroes", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "10º", pontos: "358º" },
-  { nome: "Cicero Carlos Moreira de Santana", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "11º", pontos: "359º" },
-  { nome: "Tatiane Pereira Bezerra", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "12º", pontos: "361º" },
-  { nome: "Salviano Rodrigues dos Santos", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "13º", pontos: "362º" },
+{ nome: "Cicero Oliveira Lobo", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "1º", pontos: "352º" },
+  { nome: "Glauber Ferreira Viana", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "2º", pontos: "353º" },
+  { nome: "Janiele Vital Noroes", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "3º", pontos: "358º" },
+  { nome: "Cicero Carlos Moreira de Santana", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "4º", pontos: "359º" },
+  { nome: "Tatiane Pereira Bezerra", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "5º", pontos: "361º" },
+  { nome: "Salviano Rodrigues dos Santos", cidade: "Juazeiro do Norte", status: "Cadastro Reserva", tipo: "PCD", colocacao: "6º", pontos: "362º" },
 
 
 
@@ -2758,27 +2803,27 @@ const bancoDeAprovados = [
 
 
 // FORTALEZA PCD CONVOCADO
-{ nome: "Raimundo Nonato Maciel", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "11º", pontos: "335º" },
-{ nome: "Jones Neves Marques", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "12º", pontos: "368º" },
-{ nome: "Jorge Luiz Nobre Mota", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "13º", pontos: "523º" },
-{ nome: "Leidiane Menezes Avelino", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "14º", pontos: "558º" },
-  { nome: "Paulo Sergio de Pinho Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "15º", pontos: "562º" },
+{ nome: "Raimundo Nonato Maciel", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "1º", pontos: "335º" },
+{ nome: "Jones Neves Marques", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "2º", pontos: "368º" },
+{ nome: "Jorge Luiz Nobre Mota", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "3º", pontos: "523º" },
+{ nome: "Leidiane Menezes Avelino", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "4º", pontos: "558º" },
+  { nome: "Paulo Sergio de Pinho Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "5º", pontos: "562º" },
 // FALTA O 16, FOI CHAMADO COMO 570 NEGRO
-  { nome: "Francisco Evaldo Sampaio do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "17º", pontos: "594º" },
+  { nome: "Francisco Evaldo Sampaio do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "6º", pontos: "594º" },
 // FALTA O 18, FOI CHAMADO COMO 640 NEGRO
- { nome: "Ataide Carneiro da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "19º", pontos: "660º" },
-  { nome: "Ramon Braga da Silva", cidade: "Fortaleza", status: "Desistente", tipo: "PcD", colocacao: "20º", pontos: "682º" },
-  { nome: "Micael Erik da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "21º", pontos: "687º" },
-{ nome: "Jose Eduardo de Araujo Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "22º", pontos: "713º" },
-{ nome: "Cid Glaydson Cavalcante de Medeiros", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "23º", pontos: "760º" },
-{ nome: "Gabriel Chaves Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "24º", pontos: "782º" },
-{ nome: "Renata Menezes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "25º", pontos: "811º" },
-{ nome: "Israel Victor Fernandes de Lima", cidade: "Fortaleza", status: "Desistente", tipo: "PcD", colocacao: "26º", pontos: "830º" },
-{ nome: "Joao Henrique Anderson Mariano Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "27º", pontos: "866º" },
-{ nome: "Matheus Suares Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "28º", pontos: "894º" },
-{ nome: "Maria Corpe Nunes Soares", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "29º", pontos: "1030º" },
-{ nome: "Antonia Daniele Gomes Acacio", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "30º", pontos: "1050º" },
-{ nome: "Pedro Henrique Ribeiro Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "31º", pontos: "1094º" },
+ { nome: "Ataide Carneiro da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "7º", pontos: "660º" },
+  { nome: "Ramon Braga da Silva", cidade: "Fortaleza", status: "Desistente", tipo: "PcD", colocacao: "8º", pontos: "682º" },
+  { nome: "Micael Erik da Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "9º", pontos: "687º" },
+{ nome: "Jose Eduardo de Araujo Ferreira", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "10º", pontos: "713º" },
+{ nome: "Cid Glaydson Cavalcante de Medeiros", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "11º", pontos: "760º" },
+{ nome: "Gabriel Chaves Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "12º", pontos: "782º" },
+{ nome: "Renata Menezes do Nascimento", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "13º", pontos: "811º" },
+{ nome: "Israel Victor Fernandes de Lima", cidade: "Fortaleza", status: "Desistente", tipo: "PcD", colocacao: "14º", pontos: "830º" },
+{ nome: "Joao Henrique Anderson Mariano Martins", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "15º", pontos: "866º" },
+{ nome: "Matheus Suares Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "16º", pontos: "894º" },
+{ nome: "Maria Corpe Nunes Soares", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "17º", pontos: "1030º" },
+{ nome: "Antonia Daniele Gomes Acacio", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "18º", pontos: "1050º" },
+{ nome: "Pedro Henrique Ribeiro Silva", cidade: "Fortaleza", status: "Convocado", tipo: "PcD", colocacao: "19º", pontos: "1094º" },
 
 // FORTALEZA PCD IMEDIATA
 { nome: "Marcos Paulo Uchoa Machado", cidade: "Fortaleza", status: "Imediata", tipo: "PcD", colocacao: "20º", pontos: "1148º" },
@@ -3735,9 +3780,9 @@ function abrirManual() {
 <b>            Bem vind@ ao Guia de Acompanhamento de Convocação.<br>Este manual tem 3 objetivos principais:<br>
 -Facilitar o acompanhamento das convocações.<br>
 -Facilitar a acareação das listas oficiais.<br>
--Facilitar o entendimento da plataforma<br>
-Existem 2 formas de se fazer consulta: manual e planilha.<br>
-<span style='color:violet;'>Manual</span>: A partir de uma determinada posição, por exemplo, à sua, você clica em <span style='color:gray;'><i>Anterior</i></span> ou <span style='color:gray;'><i>Próximo</i></span> e percorre a lista. Manualmente, é possível checar a posição das <span style='color:orange;'>2.582</span> pessoas, distribuídas em Juazeiro (362), Fortaleza (1.875) e Sobral (345).<br>
+-Facilitar o entendimento da plataforma.<br>
+Existem 2 formas de se fazer consulta: manual e planilha.<br><br>
+<span style='color:violet;'>Manual</span>: A partir de uma determinada posição, por exemplo, à sua, você clica em <span style='color:gray;'><i>Anterior</i></span> ou <span style='color:gray;'><i>Próximo</i></span> e percorre a lista. Manualmente, é possível checar a posição das <span style='color:orange;'>2.582</span> pessoas, distribuídas em Juazeiro (362), Fortaleza (1.875) e Sobral (345).<br><br>
 <span style='color:violet;'>Planilha</span>: Basta clicar em <i>Listas de Convocação</i> para ter acesso a todas as categorias de todas as localidades.<br>
 Esta plataforma será atualizada a cada convocação durante toda a validade do concurso.<br>Dito isso, vamos as principais dúvidas.<br><br>
             <h3 style="color: #4169E1;">CONVOCAÇÃO NA CATEGORIA</h3>
@@ -3778,27 +3823,27 @@ function abrirDesistentes() {
 
     const bancoDeDados = {
         "F-Ampla": `
-4º<br>Nome: <span style='color:green;'><b>Renato Mikael Felix Fernandes</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>283º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+4º<br>Nome: <span style='color:green;'><b>Renato Mikael Felix Fernandes</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>283º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 
-3º<br>Nome: <span style='color:green;'><b>Jailson Tavares Freitas Lima</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>268º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+3º<br>Nome: <span style='color:green;'><b>Jailson Tavares Freitas Lima</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>268º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 
-2º<br>Nome: <span style='color:green;'><b>Renata de Sousa Sampaio</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>252º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocada dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+2º<br>Nome: <span style='color:green;'><b>Renata de Sousa Sampaio</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>252º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocada no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 
-1º<br>Nome: <span style='color:green;'><b>Ari Marcio de Farias</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>189º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+1º<br>Nome: <span style='color:green;'><b>Ari Marcio de Farias</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>189º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 `,
 
         "F-Cotas": `
-1º<br>Nome: <span style='color:green;'><b>Hamilton da Silva Moita</b></span><br>Categoria: <span style='color:blue;'><b>Negro</b></span><br>Posição: <span style='color:#e642f5'><b>20º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+1º<br>Nome: <span style='color:green;'><b>Hamilton da Silva Moita</b></span><br>Categoria: <span style='color:blue;'><b>Negro</b></span><br>Posição: <span style='color:#e642f5'><b>20º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia no 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 `,
 
        "F-PCD": `
-2º<br>Nome: <span style='color:green;'><b>Israel Victor Fernandes de Lima</b></span><br>Categoria: <span style='color:blue;'><b>PCD</b></span><br>Posição: <span style='color:#e642f5'><b>14º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+2º<br>Nome: <span style='color:green;'><b>Israel Victor Fernandes de Lima</b></span><br>Categoria: <span style='color:blue;'><b>PCD</b></span><br>Posição: <span style='color:#e642f5'><b>14º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 
-1º<br>Nome: <span style='color:green;'><b>Ramon Braga da Silva</b></span><br>Categoria: <span style='color:blue;'><b>PCD</b></span><br>Posição: <span style='color:#e642f5'><b>8º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+1º<br>Nome: <span style='color:green;'><b>Ramon Braga da Silva</b></span><br>Categoria: <span style='color:blue;'><b>PCD</b></span><br>Posição: <span style='color:#e642f5'><b>8º</b></span><br>Cidade: <span style='color:pink;'><b>Fortaleza</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 `,
 
  "S-Ampla": `
-1º<br>Nome: <span style='color:green;'><b>Romario Trajano Silva</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>28º</b></span><br>Cidade: <span style='color:pink;'><b>Sobral</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
+1º<br>Nome: <span style='color:green;'><b>Romario Trajano Silva</b></span><br>Categoria: <span style='color:blue;'><b>Ampla Concorrência</b></span><br>Posição: <span style='color:#e642f5'><b>28º</b></span><br>Cidade: <span style='color:pink;'><b>Sobral</b></span><br>Status: <span style='color:red;'><b>DESISTENTE</b></span><br>Caso Concreto: <span style='color:orange;'>Convocado no dia 06/06/2026, mas não compareceu para entregar os documentos da Posse.</span><br><br>
 `,
 
 
@@ -3812,7 +3857,7 @@ function abrirDesistentes() {
 
     overlay.innerHTML = `
     <div style="background:#0a0a0a; border:2px solid #FFD700; padding:30px; border-radius:15px; text-align:center; box-shadow:0 0 30px rgba(255, 215, 0, 0.3); width: 800px; max-width: 95%; max-height: 90vh; overflow-y: auto; position: relative;">
-        <h2 style="color:#FFD700; font-size: 1.8em; margin-bottom: 10px; text-transform: uppercase;">📜 Lista de Desistentes 📜</h2>
+        <h2 style="color:#FFD700; font-size: 1.2em; margin-bottom: 10px; text-transform: uppercase;">📜 Lista de Desistentes 📜</h2>
         <p style="color: #fff; margin-bottom: 20px;">Olá, são <b>${horaExata}</b> do dia <b>${dataExata}</b> e, até esse momento, existem <b>8</b> pessoas <b><span style='color:red;'>ELIMINADAS.</span></b><br></p>
 <b>Fortaleza:</b> 4 Ampla, 1 Negro, 2 PCD<br>
 <b>Sobral:</b> 1 Ampla, 0 Negro, 0 PCD<br>
