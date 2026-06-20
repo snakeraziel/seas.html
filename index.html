@@ -5196,7 +5196,7 @@ function carregarCandidatoNaTela(index) {
         statusFinal = statusLower.includes("empossada") ? 'EMPOSSADA' : 'EMPOSSADO';
         corStatus = '#FFD700'; // Dourado
         animacao = 'posse';
-        fraseTopo = "PARABÉNS PELA SUADA E ESTRESSANTE CONQUISTA!";
+        fraseTopo = "FOI UMA CONQUISTA SUADA E ESTRESSANTE.\nPARABÉNS!";
     }
     else if (statusLower.includes("convocado")) {
         medalha = '🥇';
@@ -5215,14 +5215,14 @@ function carregarCandidatoNaTela(index) {
         statusFinal = 'CR - NA EXPECTATIVA';
         corStatus = '#3b82f6'; // Azul
         animacao = 'cr'; 
-        fraseTopo = "SEUS ESFORÇOS NÃO FORAM EM VÃO. ACREDITE!";
+        fraseTopo = "SEUS ESFORÇOS NÃO FORAM EM VÃO.\nACREDITE!";
     }
     else if (statusLower.includes("desistente")) {
         medalha = '❌';
         statusFinal = 'DESISTENTE';
         corStatus = '#ef4444'; // Vermelho
         animacao = 'desistente'; // Gatilho do holofote vermelho
-        fraseTopo = "SEUS ESFORÇOS RESPINGARAM EM TERCEIROS. GRATIDÃO!";
+        fraseTopo = "SEUS ESFORÇOS RESPINGARAM EM TERCEIROS.\nVOCÊ É INCRÍVEL!";
     } 
 
     // Limpa troféu ou champanhe antigo antes de gerar o novo
