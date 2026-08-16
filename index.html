@@ -929,7 +929,7 @@ html, body {
 <!-- ========================================= -->
 <audio id="som-mosquito-secreto" loop src="https://github.com/snakeraziel/aulas-seas/raw/refs/heads/main/Som%20de%20Mosquito.mp3"></audio>
 
-<div id="easter-egg-mosquito" style="position: fixed; font-size: 40px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; z-index: 9999999; pointer-events: none; user-select: none; top: 0; left: 0; margin: 0; padding: 0; opacity: 1; filter: drop-shadow(0 0 2px rgba(255,255,255,0.4));">🦟</div>
+<div id="easter-egg-mosquito" style="position: fixed; font-size: 60px; width: 40px; height: 60px; display: flex; align-items: center; justify-content: center; z-index: 9999999; pointer-events: none; user-select: none; top: 0; left: 0; margin: 0; padding: 0; opacity: 1; filter: drop-shadow(0 0 2px rgba(255,255,255,0.4));">🦟</div>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const mosquito = document.getElementById('easter-egg-mosquito');
@@ -969,7 +969,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function posicionarInicial() {
         alvos = obterAlvosVisiveis();
-        let alvoInicial = alvos.find(el => el.innerText.toUpperCase().includes('ACESSOS')) || alvos[0];
+        let alvoInicial = alvos.find(el => el.innerText.toUpperCase().includes('ERROS')) || alvos[0];
         
         let initX = window.innerWidth / 2;
         let initY = 150;
@@ -997,8 +997,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (audioMosquito) audioMosquito.volume = 0.5; 
         iniciarNovoCicloSaltos();
 
-        // 🔥 A NOVA REGRA GERAL:
-        // 100 milissegundos após o motor ligar, QUALQUER clique na tela mata o mosquito.
+           // 100 milissegundos após o motor ligar, QUALQUER clique na tela mata o mosquito.
         setTimeout(() => {
             document.body.addEventListener('click', (e) => {
                 if (mosquitoMorto) return;
